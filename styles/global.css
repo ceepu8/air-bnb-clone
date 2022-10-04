@@ -1,0 +1,54 @@
+@tailwind base;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap");
+
+@import "semantic-ui-css/semantic.min.css";
+
+:root {
+  --pink: #ff395c;
+  --white: #ffffff;
+  --black: #222222;
+  --light-grey: #dddddd;
+  --grey: #5a5a5a;
+  --med-grey: #717171;
+
+  --font-sans: "Roboto", sans-serif;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  padding: 0 0;
+  margin: 0 0;
+}
+
+ul,
+li {
+  list-style: none;
+  margin-top: 5px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+.max-width-1440 {
+  max-width: 1440px;
+}
+
+@layer base {
+  .pinkButton {
+    @apply py-2 px-4 bg-pink rounded text-white;
+  }
+
+  .boxShadow {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+
+  .inputField {
+    @apply block border-[1px] border-medGrey w-full px-4 py-3;
+  }
+}
+
+@tailwind components;
+@tailwind utilities;
