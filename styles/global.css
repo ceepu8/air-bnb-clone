@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap");
 
 @import "semantic-ui-css/semantic.min.css";
+@import "react-toastify/dist/ReactToastify.css";
 
 :root {
   --pink: #ff395c;
@@ -10,7 +11,7 @@
   --light-grey: #dddddd;
   --grey: #5a5a5a;
   --med-grey: #717171;
-
+  --red: #ff0000
   --font-sans: "Roboto", sans-serif;
 }
 
