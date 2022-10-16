@@ -2,21 +2,36 @@ import { ApiResponse, LoginValues } from "@/interfaces/auth";
 import { User } from "@/interfaces/user";
 import { PayloadAction } from "@reduxjs/toolkit";
 import authApi from "api-client/authApi";
-import { fork, take, call, takeEvery, put } from "redux-saga/effects";
+import { toast } from "react-toastify";
+import { call, fork, put, take } from "redux-saga/effects";
+import { userLocalService } from "services/localService";
 import { login, loginSuccess, logout } from "./authReducer";
 
 function* handleLogin(payload: LoginValues) {
   try {
     const result: ApiResponse<User> = yield authApi.signin(payload);
-    console.log(result);
-    yield put(loginSuccess(result.data));
+
+    switch (result.statusCode) {
+      case 200:
+        toast.success(result.message);
+        userLocalService.setUserInfor(result.data);
+        yield put(loginSuccess(result.data));
+        break;
+
+      case 400:
+        toast.error(result.message);
+        break;
+
+      default:
+        break;
+    }
   } catch (error) {
     console.log(error);
   }
 }
 
 function* handleLogout() {
-  console.log("Handle Logout");
+  userLocalService.removeUserInfor();
 }
 
 function* watchLoginFlow() {
@@ -24,8 +39,8 @@ function* watchLoginFlow() {
     const action: PayloadAction<LoginValues> = yield take(login.type);
     yield fork(handleLogin, action.payload);
 
-    // yield take(logout.type);
-    // yield call(handleLogout);
+    yield take(logout.type);
+    yield call(handleLogout);
   }
 }
 

@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 
 import "../styles/global.css";
 import store from "redux/store";
+import { ConnectedRouter } from "connected-react-router";
 
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const Layout = Component.Layout ?? EmptyLayout;
