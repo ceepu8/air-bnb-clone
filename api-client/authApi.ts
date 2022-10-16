@@ -1,9 +1,9 @@
-import { UserLogin } from "@/interfaces/index";
+import { ApiResponse, LoginValues, User } from "@/interfaces/index";
 import axiosClient from "./axiosClient";
 
 const authApi = {
-  signin(data: UserLogin) {
-    return axiosClient.post<unknown, any>("/auth/signin", data);
+  signin(data: LoginValues) {
+    return axiosClient.post<unknown, ApiResponse<User>>("/auth/signin", data);
   },
   logout() {
     return axiosClient.post<unknown, any>("/auth/logout");

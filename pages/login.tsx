@@ -1,50 +1,25 @@
 import AuthLayout from "@/layouts/auth";
-import { useRouter } from "next/router";
 import Link from "next/link";
-
-import { useForm, SubmitHandler } from "react-hook-form";
-
-import authApi from "api-client/authApi";
-
-import { ToastContainer, toast } from "react-toastify";
-
-import React from "react";
-
-interface FormValues {
-  email: string;
-  password: string;
-}
+import { useRouter } from "next/router";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { LoginValues } from "@/interfaces/index";
+import { ToastContainer } from "react-toastify";
+import { login } from "redux/auth/authReducer";
+import { useAppDispatch } from "redux/hooks";
 
 const Login = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>({
+  } = useForm<LoginValues>({
     mode: "onBlur",
   });
 
-  const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    try {
-      const result = await authApi.signin(data);
-      switch (result.statusCode) {
-        case 400:
-          toast.error(result.message);
-          break;
+  const dispatch = useAppDispatch();
 
-        case 200:
-          toast.success(result.message);
-          setTimeout(() => {
-            router.push("/");
-          }, 1500);
-          break;
-
-        default:
-          break;
-      }
-    } catch (error) {
-      console.log(error);
-    }
+  const onSubmit: SubmitHandler<LoginValues> = async (data) => {
+    dispatch(login(data));
   };
 
   const router = useRouter();

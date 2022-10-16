@@ -46,7 +46,9 @@ export default function handler(
             expires: tomorrow,
           });
 
-          (res as NextApiResponse).status(200).json({ statusCode, message });
+          (res as NextApiResponse)
+            .status(200)
+            .json({ statusCode, message, data: content });
         } catch (error) {
           console.log(error);
 
