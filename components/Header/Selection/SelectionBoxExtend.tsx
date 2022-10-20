@@ -1,12 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 import styles from './selection.module.css';
 
 import classnames from 'classnames';
 
 import { BiSearch } from 'react-icons/bi';
-import MapDropdown from './MapDropdown';
-import useFlag from 'hooks/useFlag';
+import MapSelection from './MapSelection/MapSelection';
+import DateSelection from './DateSelection/DateSelection';
 
 const Nav = () => {
   return (
@@ -30,68 +30,12 @@ interface SelectionForm {
   select: null | string;
 }
 
-const MapSelection = () => {
-  const { value: isDropdown, setToggle, setClose, setOpen } = useFlag();
-  const [active, setActive] = useState(false);
-  return (
-    <div className="relative">
-      <div
-        className={classnames('grow-[2]', styles.selectionInput, {
-          'bg-white': active,
-        })}
-      >
-        <label htmlFor="destination" className={classnames(styles.labelInput)}>
-          Địa điểm
-        </label>
-        <br />
-        <input
-          id="destination"
-          placeholder="Tìm kiếm điểm đến"
-          onFocus={() => {
-            setOpen();
-            setActive(true);
-          }}
-          onBlur={() => {
-            setClose();
-            setActive(false);
-          }}
-          className={classnames(styles.customInput, {
-            // active: select === 'destination',
-          })}
-        />
-      </div>
-      {isDropdown && <MapDropdown />}
-    </div>
-  );
-};
-
 const SelectionForm = ({ select }: SelectionForm) => {
   return (
     <form className="max-w-[800px] mx-auto">
-      <div className="flex items-center border border-lightGrey bg-grey100 border-solid rounded-full">
+      <div className="flex items-center border border-lightGrey bg-grey100 border-solid rounded-full relative">
         <MapSelection />
-        <div className={`${styles.borderLine}`}></div>
-        <div
-          className={classnames(styles.flexInput, styles.selectionInput, {
-            active: select === 'destination',
-          })}
-        >
-          <label htmlFor="checkin" className={classnames(styles.labelInput)}>
-            Nhận phòng
-          </label>
-          <div>Thêm ngày</div>
-        </div>
-        <div className={`${styles.borderLine}`}></div>
-        <div
-          className={classnames(styles.flexInput, styles.selectionInput, {
-            active: select === 'destination',
-          })}
-        >
-          <label htmlFor="checkout" className={classnames(styles.labelInput)}>
-            Trả phòng
-          </label>
-          <div>Thêm ngày</div>
-        </div>
+        <DateSelection />
         <div className={`${styles.borderLine}`}></div>
         <div
           className={classnames(

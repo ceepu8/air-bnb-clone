@@ -1,0 +1,37 @@
+.selectionInput {
+  padding: 10px 25px 10px 20px;
+  /* background-color: var(--white); */
+  border-radius: 50px;
+  position: relative;
+}
+
+.selectionInput:hover {
+  background-color: var(--white);
+}
+
+.labelInput {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.borderLine {
+  height: 20px;
+  width: 1px;
+  background-color: var(--light-grey);
+}
+
+.dropdown {
+  position: absolute;
+  top: 110%;
+  background-color: var(--white);
+  border-radius: 5px;
+  box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+}
+
+.dateDropdown {
+  left: 0;
+  min-width: 450px;
+  padding: 30px;
+  box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+}

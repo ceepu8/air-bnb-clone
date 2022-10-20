@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React from 'react';
-import styles from './selection.module.css';
+import styles from './styles.module.css';
 
 const regions = [
   {
