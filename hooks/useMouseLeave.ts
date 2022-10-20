@@ -4,21 +4,19 @@ type Props = {};
 
 const useMouseLeave = () => {
   const [value, setValue] = useState(false);
-  const ref = useRef<any>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const node = ref.current;
-
-    if (node) {
-      node.addEventListener('mouseleave', () => {
-        setValue(false);
-      });
-
-      return () => {
-        node.removeEventListener('mouseleave', () => {});
-      };
+    function handleClickOutside(event) {
+      setValue(!ref.current.contains(event.target));
     }
-  }, [ref.current]);
+    // Bind the event listener
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [ref]);
 
   return [ref, value];
 };

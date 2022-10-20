@@ -2,24 +2,29 @@ import React from 'react';
 import styles from './styles.module.css';
 import classnames from 'classnames';
 import DateDropdown from './DateDropdown';
+import useFlag from 'hooks/useFlag';
+import useMouseLeave from 'hooks/useMouseLeave';
 
 type Props = {};
 
 const DateSelection = (props: Props) => {
+  const { value: isDropdown, setToggle } = useFlag();
+  const [ref, isMouseIn] = useMouseLeave();
+  console.log(isDropdown && isMouseIn);
+
   return (
     <div className="flex">
-      {/* <div className={`${styles.borderLine}`}></div> */}
       <div
+        ref={ref}
         className={classnames(styles.flexInput, styles.selectionInput, {
-          //   active: select === 'destination',
+          'bg-white': !isMouseIn,
         })}
       >
         <label htmlFor="checkin" className={classnames(styles.labelInput)}>
           Nhận phòng
         </label>
-        <div>Thêm ngày</div>
+        <div> Thêm ngày</div>
       </div>
-      {/* <div className={`${styles.borderLine}`}></div> */}
       <div
         className={classnames(styles.flexInput, styles.selectionInput, {
           //   active: select === 'destination',
@@ -30,7 +35,7 @@ const DateSelection = (props: Props) => {
         </label>
         <div>Thêm ngày</div>
       </div>
-      <DateDropdown />
+      {!isMouseIn && <DateDropdown />}
     </div>
   );
 };

@@ -3,12 +3,11 @@ import { BsGlobe } from 'react-icons/bs';
 
 import classnames from 'classnames';
 
-import Link from 'next/link';
+import { useEffect, useRef } from 'react';
 import styles from './header.module.css';
-import { useEffect, useRef, useState } from 'react';
 
-import Menu from './Menu';
 import useFlag from 'hooks/useFlag';
+import Menu from './Menu';
 
 const UserNav = () => {
   const { value: isDropdown, setClose, setToggle } = useFlag();

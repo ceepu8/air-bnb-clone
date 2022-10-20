@@ -1,12 +1,13 @@
 import { useEffect, useRef } from 'react';
 
-import styles from './selection.module.css';
+import styles from './styles.module.css';
 
 import classnames from 'classnames';
 
 import { BiSearch } from 'react-icons/bi';
 import MapSelection from './MapSelection/MapSelection';
 import DateSelection from './DateSelection/DateSelection';
+import PeopleSelection from './PeopleSelection/PeopleSelection';
 
 const Nav = () => {
   return (
@@ -36,28 +37,7 @@ const SelectionForm = ({ select }: SelectionForm) => {
       <div className="flex items-center border border-lightGrey bg-grey100 border-solid rounded-full relative">
         <MapSelection />
         <DateSelection />
-        <div className={`${styles.borderLine}`}></div>
-        <div
-          className={classnames(
-            styles.flexInput,
-            styles.selectionInput,
-            'flex grow-[2] items-center',
-            {
-              active: select === 'destination',
-            },
-          )}
-        >
-          <div className="w-1/2">
-            <label htmlFor="customer" className={classnames(styles.labelInput)}>
-              Khách
-            </label>
-            <div>Thêm khách</div>
-          </div>
-          <button className="pinkButton p-2 rounded-full w-1/2 flex items-center justify-around">
-            <BiSearch />
-            Tìm kiếm
-          </button>
-        </div>
+        <PeopleSelection />
       </div>
     </form>
   );

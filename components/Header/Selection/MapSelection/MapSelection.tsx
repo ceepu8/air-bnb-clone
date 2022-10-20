@@ -1,5 +1,6 @@
 import classnames from 'classnames';
 import useFlag from 'hooks/useFlag';
+import useMouseLeave from 'hooks/useMouseLeave';
 import React, { useState } from 'react';
 import MapDropdown from './MapDropdown';
 import styles from './styles.module.css';
@@ -7,13 +8,14 @@ import styles from './styles.module.css';
 type Props = {};
 
 const MapSelection = () => {
-  const { value: isDropdown, setToggle, setClose, setOpen } = useFlag();
-  const [active, setActive] = useState(false);
+  const [ref, isMouseOut] = useMouseLeave();
+
   return (
-    <div>
+    <>
       <div
+        ref={ref}
         className={classnames('grow-[2]', styles.selectionInput, {
-          'bg-white': active,
+          'bg-white': !isMouseOut,
         })}
       >
         <label htmlFor="destination" className={classnames(styles.labelInput)}>
@@ -23,21 +25,13 @@ const MapSelection = () => {
         <input
           id="destination"
           placeholder="Tìm kiếm điểm đến"
-          onFocus={() => {
-            setOpen();
-            setActive(true);
-          }}
-          onBlur={() => {
-            setClose();
-            setActive(false);
-          }}
           className={classnames(styles.customInput, {
             // active: select === 'destination',
           })}
         />
       </div>
-      {isDropdown && <MapDropdown />}
-    </div>
+      {!isMouseOut && <MapDropdown />}
+    </>
   );
 };
 

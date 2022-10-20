@@ -7,7 +7,7 @@ import { DateRange, DayPicker } from 'react-day-picker';
 
 type Props = {};
 
-const pastMonth = new Date(2020, 10, 15);
+const pastMonth = new Date();
 
 const DateDropdown = (props: Props) => {
   const defaultSelected: DateRange = {

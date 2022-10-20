@@ -1,4 +1,4 @@
-import styles from './selection.module.css';
+import styles from './styles.module.css';
 
 import classnames from 'classnames';
 
