@@ -14,13 +14,13 @@
 
 .selectionInput {
   padding: 10px 25px 10px 20px;
-  background-color: var(--white);
+  /* background-color: var(--white); */
   border-radius: 50px;
   position: relative;
 }
 
 .selectionInput:hover {
-  background-color: var(--light-grey);
+  background-color: var(--white);
 }
 
 .labelInput {
@@ -39,7 +39,7 @@
 }
 
 .navItem::after {
-  content: "";
+  content: '';
   width: 100%;
   height: 2px;
   background: transparent;
@@ -101,4 +101,15 @@
   left: 50%;
   position: absolute;
   visibility: hidden;
+}
+
+.menuDropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+  min-width: 250px;
+  padding: 10px 15px;
 }

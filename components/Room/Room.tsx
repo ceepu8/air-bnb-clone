@@ -1,6 +1,6 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import Room from "../../interfaces/room";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import Room from '../../interfaces/room';
 
 interface RoomItemProps {
   room: Room;
@@ -19,7 +19,7 @@ const RoomItem = (props: RoomItemProps) => {
         <div className="flex flex-col">
           <span className="text-lg font-semibold">{room.name}</span>
           <span>
-            {room.locationId?.name} - {room.locationId?.province}
+            {room.locationId?.tenViTri} - {room.locationId?.tinhThanh}
           </span>
         </div>
       </div>
@@ -32,11 +32,11 @@ export const Room = () => {
   const fetchAPI = async () => {
     try {
       const { data } = await axios({
-        url: "https://airbnb.cybersoft.edu.vn/api/rooms?limit=8",
-        method: "GET",
+        url: 'https://airbnb.cybersoft.edu.vn/api/rooms?limit=8',
+        method: 'GET',
         headers: {
           tokenByClass:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCAyNCIsIkhldEhhblN0cmluZyI6IjI1LzExLzIwMjIiLCJIZXRIYW5UaW1lIjoiMTY2OTMzNDQwMDAwMCIsIm5iZiI6MTYzNzk0NjAwMCwiZXhwIjoxNjY5NDgyMDAwfQ.vwkhYBKLRzJB0Tm18qLCchebQxHvEsbsbUYBmlawj5s",
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCAyNCIsIkhldEhhblN0cmluZyI6IjI1LzExLzIwMjIiLCJIZXRIYW5UaW1lIjoiMTY2OTMzNDQwMDAwMCIsIm5iZiI6MTYzNzk0NjAwMCwiZXhwIjoxNjY5NDgyMDAwfQ.vwkhYBKLRzJB0Tm18qLCchebQxHvEsbsbUYBmlawj5s',
         },
       });
       setRooms(data);
@@ -48,11 +48,10 @@ export const Room = () => {
   useEffect(() => {
     fetchAPI();
   }, []);
-  console.log(rooms);
 
   return (
     <section className="max-w-[1315px] mx-auto mt-12">
-      <h1 className="text-3xl font-semibold">Ở bất cứ đâu</h1>
+      <h2 className="h2">Ở bất cứ đâu</h2>
 
       <div className="flex flex-wrap items-center justify-around">
         {rooms?.map((room) => (

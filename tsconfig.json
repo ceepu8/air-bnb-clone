@@ -21,7 +21,8 @@
     "paths": {
       "@/components/*": ["./components/*"],
       "@/interfaces/*": ["./interfaces/*"],
-      "@/layouts/*": ["./layouts/*"]
+      "@/layouts/*": ["./layouts/*"],
+      "@/constants/*": ["./constants/*"]
     }
   },
   "exclude": ["node_modules"],

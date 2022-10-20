@@ -1,29 +1,55 @@
-import { BsGlobe } from "react-icons/bs";
-import { AiOutlineMenu, AiOutlineUser } from "react-icons/ai";
+import { AiOutlineMenu, AiOutlineUser } from 'react-icons/ai';
+import { BsGlobe } from 'react-icons/bs';
 
-import classnames from "classnames";
+import classnames from 'classnames';
 
-import styles from "./header.module.css";
+import Link from 'next/link';
+import styles from './header.module.css';
+import { useEffect, useRef, useState } from 'react';
+
+import Menu from './Menu';
+import useFlag from 'hooks/useFlag';
 
 const UserNav = () => {
+  const { value: isDropdown, setClose, setToggle } = useFlag();
+
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const node = ref.current;
+
+    if (node) {
+      node.addEventListener('mouseleave', (e) => {
+        if (e) {
+          setClose();
+        }
+      });
+
+      return () => {
+        node.removeEventListener('mouseleave', () => {});
+      };
+    }
+  }, [ref.current]);
+
   return (
-    <div
-      className="flex items-center justify-around"
-      style={{ padding: "18px 0" }}
-    >
+    <div className="flex items-center justify-around py-3">
       <button>Trở thành chủ nhà</button>
       <div>
         <BsGlobe />
       </div>
-      <button
-        className={classnames(
-          "flex items-center justify-around px-3 py-2",
-          styles.roundBorder
-        )}
-      >
-        <AiOutlineMenu />
-        <AiOutlineUser />
-      </button>
+      <div className="relative" ref={ref}>
+        <button
+          className={classnames(
+            'flex items-center justify-around px-3 py-2 my-2',
+            styles.roundBorder,
+          )}
+          onClick={() => setToggle()}
+        >
+          <AiOutlineMenu />
+          <AiOutlineUser />
+        </button>
+        <Menu isDropdown={isDropdown} />
+      </div>
     </div>
   );
 };

@@ -15,10 +15,7 @@
     "@types/react-transition-group": "^4.4.5",
     "axios": "^0.27.2",
     "classnames": "^2.3.1",
-    "connected-next-router": "^4.2.0",
-    "connected-react-router": "^6.9.3",
     "cookies": "^0.8.0",
-    "history": "4.10.1",
     "http-proxy": "^1.18.1",
     "next": "^12.2.5",
     "next-redux-wrapper": "^8.0.0",
@@ -64,9 +61,9 @@
   "devDependencies": {
     "@types/axios": "^0.14.0",
     "@types/cookies": "^0.7.7",
-    "@types/history": "^4.7.11",
     "@types/http-proxy": "^1.17.9",
     "autoprefixer": "^10.4.8",
+    "eslint-config-prettier": "^8.5.0",
     "postcss": "^8.4.16",
     "tailwindcss": "^3.1.8"
   }
