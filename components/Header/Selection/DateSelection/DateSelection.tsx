@@ -8,14 +8,12 @@ import useMouseLeave from 'hooks/useMouseLeave';
 type Props = {};
 
 const DateSelection = (props: Props) => {
-  const { value: isDropdown, setToggle } = useFlag();
-  const [ref, isMouseIn] = useMouseLeave();
-  console.log(isDropdown && isMouseIn);
+  const { ref, value: isMouseIn } = useMouseLeave<HTMLDivElement>();
 
   return (
     <div className="flex">
       <div
-        ref={ref as React.RefObject<HTMLDivElement>}
+        ref={ref}
         className={classnames(styles.flexInput, styles.selectionInput, {
           'bg-white': !isMouseIn,
         })}

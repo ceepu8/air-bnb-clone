@@ -1,10 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-type Props = {};
-
-const useMouseLeave = () => {
+function useMouseLeave<T extends HTMLElement>() {
   const [value, setValue] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<T>(null);
 
   useEffect(() => {
     function handleClickOutside({ target }: MouseEvent) {
@@ -18,7 +16,7 @@ const useMouseLeave = () => {
     };
   }, [ref]);
 
-  return [ref, value];
-};
+  return { ref, value };
+}
 
 export default useMouseLeave;

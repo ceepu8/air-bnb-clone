@@ -8,12 +8,12 @@ import styles from './styles.module.css';
 type Props = {};
 
 const MapSelection = () => {
-  const [ref, isMouseOut] = useMouseLeave();
+  const { ref, value: isMouseOut } = useMouseLeave<HTMLDivElement>();
 
   return (
     <>
       <div
-        ref={ref as React.RefObject<HTMLDivElement>}
+        ref={ref}
         className={classnames('grow-[2]', styles.selectionInput, {
           'bg-white': !isMouseOut,
         })}

@@ -9,10 +9,10 @@ import useMouseLeave from 'hooks/useMouseLeave';
 type Props = {};
 
 const PeopleSelection = (props: Props) => {
-  const [ref, isMouseIn] = useMouseLeave();
+  const { ref, value: isMouseIn } = useMouseLeave<HTMLDivElement>();
   return (
     <div
-      ref={ref as React.RefObject<HTMLDivElement>}
+      ref={ref}
       className={classnames(styles.flexInput, styles.selectionInput, 'flex grow-[2] items-center')}
     >
       <div className="w-1/2">
