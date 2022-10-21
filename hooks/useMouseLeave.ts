@@ -7,13 +7,13 @@ const useMouseLeave = () => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    function handleClickOutside(event) {
-      setValue(!ref.current.contains(event.target));
+    function handleClickOutside({ target }: MouseEvent) {
+      const isMouseDown = !ref.current?.contains(target as Node);
+      setValue(isMouseDown);
     }
     // Bind the event listener
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      // Unbind the event listener on clean up
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [ref]);

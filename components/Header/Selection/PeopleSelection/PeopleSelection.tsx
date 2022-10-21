@@ -4,13 +4,15 @@ import styles from './styles.module.css';
 import { BiSearch } from 'react-icons/bi';
 import PeopleDropdown from './PeopleDropdown';
 import useFlag from 'hooks/useFlag';
+import useMouseLeave from 'hooks/useMouseLeave';
 
 type Props = {};
 
 const PeopleSelection = (props: Props) => {
-  const { value: isDropdown, setToggle } = useFlag();
+  const [ref, isMouseIn] = useMouseLeave();
   return (
     <div
+      ref={ref as React.RefObject<HTMLDivElement>}
       className={classnames(styles.flexInput, styles.selectionInput, 'flex grow-[2] items-center')}
     >
       <div className="w-1/2">
@@ -23,7 +25,7 @@ const PeopleSelection = (props: Props) => {
         <BiSearch />
         Tìm kiếm
       </button>
-      {isDropdown && <PeopleDropdown />}
+      {!isMouseIn && <PeopleDropdown />}
     </div>
   );
 };

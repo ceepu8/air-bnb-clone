@@ -15,7 +15,7 @@ const DateSelection = (props: Props) => {
   return (
     <div className="flex">
       <div
-        ref={ref}
+        ref={ref as React.RefObject<HTMLDivElement>}
         className={classnames(styles.flexInput, styles.selectionInput, {
           'bg-white': !isMouseIn,
         })}

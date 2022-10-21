@@ -13,7 +13,7 @@ const MapSelection = () => {
   return (
     <>
       <div
-        ref={ref}
+        ref={ref as React.RefObject<HTMLDivElement>}
         className={classnames('grow-[2]', styles.selectionInput, {
           'bg-white': !isMouseOut,
         })}
