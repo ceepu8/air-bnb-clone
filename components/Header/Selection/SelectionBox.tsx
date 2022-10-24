@@ -3,6 +3,7 @@ import styles from './styles.module.css';
 import classnames from 'classnames';
 
 import { BiSearch } from 'react-icons/bi';
+import Button from '@/components/common/Button';
 
 interface Props {
   onSet: any;
@@ -29,9 +30,7 @@ const SelectionBox = (props: Props) => {
         <button className="mx-3 text-sm">Tuần bất kì</button>
         <span className={classnames(styles.borderLine)}></span>
         <button className="mx-3 text-medGrey font-thin text-sm">Thêm khách</button>
-        <button className="pinkButton rounded-full p-2">
-          <BiSearch />
-        </button>
+        <Button className="p-2" variant="primary" shape="circle" icon={<BiSearch />} />
       </div>
     </nav>
   );

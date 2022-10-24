@@ -4,6 +4,7 @@ import styles from './styles.module.css';
 import { BiSearch } from 'react-icons/bi';
 import PeopleDropdown from './PeopleDropdown';
 import useMouseLeave from 'hooks/useMouseLeave';
+import Button from '@/components/common/Button';
 
 type Props = {};
 
@@ -22,10 +23,13 @@ const PeopleSelection = (props: Props) => {
         </label>
         <div>Thêm khách</div>
       </div>
-      <button className="pinkButton p-2 rounded-full w-1/2 flex items-center justify-around">
-        <BiSearch />
+      <Button
+        className="py-3 px-5 bg-linear-gradient-100 font-bold"
+        shape="circle"
+        icon={<BiSearch />}
+      >
         Tìm kiếm
-      </button>
+      </Button>
       <PeopleDropdown isOpen={!isMouseIn} />
     </div>
   );

@@ -44,13 +44,13 @@ const Header = () => {
     <header
       className={`${
         extendSelectionBox ? 'h-[140px]' : 'h-[70px]'
-      } mx-auto fixed top-0 right-0 w-full border-solid border-lightGrey border-bottom border transition-all bg-white`}
+      } mx-auto fixed top-0 right-0 w-full border-solid border-grey-200 border-bottom border transition-all bg-white`}
     >
       <div className="max-w-[1315px] mx-auto flex  justify-around">
         <div className={classnames(styles.flexItem)}>
           <Logo />
         </div>
-        <div className={` grow-[2] relative `}>
+        <div className="grow-[2] relative">
           <SelectionBoxExtend
             isToggle={extendSelectionBox}
             onSet={extendComponent}

@@ -7,6 +7,7 @@ import locationApi from '../../api-client/locationApi';
 import { Location } from '../../interfaces/locations';
 import ImageListLoading from '../Loading/ImageList';
 import Image from '../Image/Image';
+import Button from '../common/Button';
 
 interface LocationItemProps {
   location: Location;
@@ -58,14 +59,23 @@ const Destination = () => {
       {loading && <ImageListLoading />}
 
       <div className="text-center">
-        <button
-          className="py-2 px-4 bg-pink rounded text-white"
+        {/* <button
+          className="py-2 px-4 bg-primary rounded text-white"
           onClick={() => {
             setPage(page + 1);
           }}
         >
           Xem thêm
-        </button>
+        </button> */}
+        <Button
+          className="py-2 px-4"
+          variant="primary"
+          onClick={() => {
+            setPage(page + 1);
+          }}
+        >
+          Xem thêm
+        </Button>
       </div>
     </section>
   );

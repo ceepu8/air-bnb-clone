@@ -25,7 +25,7 @@ module.exports = {
       'purple-100': 'var(--purple-100)',
       'purple-200': 'var(--purple-200)',
     },
-    background: {
+    backgroundImage: {
       'linear-gradient-100': 'var(--linear-gradient-100)',
       'linear-gradient-200': 'var(--linear-gradient-200)',
       'linear-gradient-300': 'var(--linear-gradient-300)',

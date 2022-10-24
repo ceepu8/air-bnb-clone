@@ -6,6 +6,7 @@ import { LoginValues } from '@/interfaces/index';
 import { ToastContainer } from 'react-toastify';
 import { login } from 'redux/auth/authReducer';
 import { useAppDispatch } from 'redux/hooks';
+import Button from '@/components/common/Button';
 
 const Login = () => {
   const {
@@ -30,7 +31,7 @@ const Login = () => {
       <div className="login-container max-w-[568px] w-full p-10 boxShadow rounded">
         <Link href="/">
           <a>
-            <i className="arrow alternate circle left icon text-4xl text-pink mb-5 hover:text-black transition-all"></i>
+            <i className="arrow alternate circle left icon !text-4xl text-primary mb-5 hover:text-black transition-all"></i>
           </a>
         </Link>
         <h1 className="mb-5 text-2xl font-semibold">Welcome to Airbnb</h1>
@@ -66,7 +67,9 @@ const Login = () => {
               <span className="text-[red]">This is required</span>
             )}
           </div>
-          <button className="pinkButton mt-5 w-full">LOGIN</button>
+          <Button className="py-2 px-4 font-bold mt-5 w-full" variant="primary">
+            LOGIN
+          </Button>
         </form>
         <button className="w-full" type="button" onClick={() => router.push('/register')}>
           Do not have the account yet? <strong>Register</strong>
