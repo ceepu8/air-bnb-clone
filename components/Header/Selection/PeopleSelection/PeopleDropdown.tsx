@@ -44,9 +44,13 @@ const selectionList = [
   },
 ];
 
-const PeopleDropdown = () => {
+const PeopleDropdown = ({ isOpen }: any) => {
   return (
-    <div className={classnames(styles.dropdown, styles.peopleDropdown, 'rounded-3xl')}>
+    <div
+      className={classnames(styles.dropdown, styles.peopleDropdown, 'rounded-3xl hidden', {
+        '!block': isOpen,
+      })}
+    >
       {selectionList.map((selection) => (
         <Selection type={selection.type} subNote={selection.subNote} />
       ))}

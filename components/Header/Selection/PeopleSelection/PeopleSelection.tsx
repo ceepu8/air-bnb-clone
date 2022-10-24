@@ -3,7 +3,6 @@ import classnames from 'classnames';
 import styles from './styles.module.css';
 import { BiSearch } from 'react-icons/bi';
 import PeopleDropdown from './PeopleDropdown';
-import useFlag from 'hooks/useFlag';
 import useMouseLeave from 'hooks/useMouseLeave';
 
 type Props = {};
@@ -13,7 +12,9 @@ const PeopleSelection = (props: Props) => {
   return (
     <div
       ref={ref}
-      className={classnames(styles.flexInput, styles.selectionInput, 'flex grow-[2] items-center')}
+      className={classnames(styles.flexInput, styles.selectionInput, 'flex grow-[2] items-center', {
+        'bg-white': !isMouseIn,
+      })}
     >
       <div className="w-1/2">
         <label htmlFor="customer" className={classnames(styles.labelInput)}>
@@ -25,7 +26,7 @@ const PeopleSelection = (props: Props) => {
         <BiSearch />
         Tìm kiếm
       </button>
-      {!isMouseIn && <PeopleDropdown />}
+      <PeopleDropdown isOpen={!isMouseIn} />
     </div>
   );
 };

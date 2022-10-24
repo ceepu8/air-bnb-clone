@@ -1,15 +1,60 @@
+@import 'react-day-picker/dist/style.css';
+@import 'semantic-ui-css/semantic.min.css';
+@import 'react-toastify/dist/ReactToastify.css';
+
 @tailwind base;
+@import './custom.css';
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
 
 :root {
-  --pink: #ff395c;
+  --primary-pink: #ff385c;
   --white: #ffffff;
-  --black: #222222;
-  --very-light-grey: #eaeaea;
-  --light-grey: #dddddd;
-  --grey: #5a5a5a;
-  --med-grey: #717171;
-  --red: #ff0000;
+  --black-100: #000000;
+  --black-200: #222222;
+  --grey-100: #f7f7f7;
+  --grey-200: #ebebeb;
+  --grey-300: #dddddd;
+  --grey-400: #b0b0b0;
+  --grey-500: #717171;
+  --red-100: #c13515;
+  --red-200: #b32505;
+  --skintone: #fff8f6;
+  --orange-100: #e07912;
+  --green: #008a05;
+  --blue: #428bff;
+  --purple-100: #92174d;
+  --purple-200: #460479;
+  --linear-gradient-100: linear-gradient(to right, #e61e4d 0%, #e31c5f 50%, #d70466 100%);
+  --linear-gradient-200: linear-gradient(to right, #bd1e59 0%, #92174d 50%, #861453 100%);
+  --linear-gradient-300: linear-gradient(to right, #59086e 0%, #460479 50%, #440589 100%);
+  --linear-radial-100: radial-gradient(
+    circle at center,
+    #ff385c 0%,
+    #e61e4d 27.5%,
+    #e31c5f 40%,
+    #d70466 57.5%,
+    #bd1e59 75%,
+    #bd1e59 100%
+  );
+  --linear-radial-200: radial-gradient(
+    circle at center,
+    #d70466 0%,
+    #bd1e59 30%,
+    #92174d 55%,
+    #861453 72.5%,
+    #6c0d63 90%,
+    #6c0d63 100%
+  );
+  --linear-radial-300: radial-gradient(
+    circle at center,
+    #6c0d63 0%,
+    #59086e 30%,
+    #460479 55%,
+    #440589 72.5%,
+    #3b07bb 90%,
+    #3b07bb 100%
+  );
   --font-sans: 'Roboto', sans-serif;
 }
 
@@ -76,12 +121,12 @@ body,
 .rdp-day_selected:hover {
   color: white;
   opacity: 1;
-  background-color: var(--pink);
+  background-color: var(--primary-pink);
 }
 
 @layer base {
   .pinkButton {
-    @apply py-2 px-4 bg-pink rounded text-white;
+    @apply py-2 px-4 bg-primary rounded text-white;
   }
 
   .boxShadow {
@@ -89,7 +134,7 @@ body,
   }
 
   .inputField {
-    @apply block border-[1px] border-medGrey w-full px-4 py-3;
+    @apply block border-[1px] border-grey-300 w-full px-4 py-3;
   }
 }
 

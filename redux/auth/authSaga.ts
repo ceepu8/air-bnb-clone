@@ -1,13 +1,15 @@
-import { ApiResponse, LoginValues } from "@/interfaces/auth";
-import { User } from "@/interfaces/user";
-import { PayloadAction } from "@reduxjs/toolkit";
-import authApi from "api-client/authApi";
-import { toast } from "react-toastify";
-import { call, fork, put, take } from "redux-saga/effects";
-import { userLocalService } from "services/localService";
-import { login, loginSuccess, logout } from "./authReducer";
+import { ApiResponse, LoginValues } from '@/interfaces/auth';
+import { User } from '@/interfaces/user';
+import { PayloadAction } from '@reduxjs/toolkit';
+import authApi from 'api-client/authApi';
+import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
+import { call, fork, put, take } from 'redux-saga/effects';
+import { userLocalService } from 'services/localService';
+import { login, loginSuccess, logout } from './authReducer';
 
 function* handleLogin(payload: LoginValues) {
+  const router = useRouter();
   try {
     const result: ApiResponse<User> = yield authApi.signin(payload);
 
@@ -16,6 +18,7 @@ function* handleLogin(payload: LoginValues) {
         toast.success(result.message);
         userLocalService.setUserInfor(result.data);
         yield put(loginSuccess(result.data));
+        router.push('/');
         break;
 
       case 400:

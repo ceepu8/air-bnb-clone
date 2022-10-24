@@ -55,7 +55,7 @@
 }
 
 .roundBorder {
-  @apply border-lightGrey border-solid border rounded-full;
+  @apply border-grey-200 border-solid border rounded-full;
 }
 
 .selectionBoxExtend {

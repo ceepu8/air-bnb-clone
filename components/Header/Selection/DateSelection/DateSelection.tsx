@@ -23,11 +23,7 @@ const DateSelection = (props: Props) => {
         </label>
         <div> Thêm ngày</div>
       </div>
-      <div
-        className={classnames(styles.flexInput, styles.selectionInput, {
-          //   active: select === 'destination',
-        })}
-      >
+      <div className={classnames(styles.flexInput, styles.selectionInput, {})}>
         <label htmlFor="checkout" className={classnames(styles.labelInput)}>
           Trả phòng
         </label>

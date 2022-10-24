@@ -25,9 +25,7 @@ const MapSelection = () => {
         <input
           id="destination"
           placeholder="Tìm kiếm điểm đến"
-          className={classnames(styles.customInput, {
-            // active: select === 'destination',
-          })}
+          className={classnames(styles.customInput)}
         />
       </div>
       {!isMouseOut && <MapDropdown />}

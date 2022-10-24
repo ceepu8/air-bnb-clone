@@ -9,7 +9,6 @@ function useMouseLeave<T extends HTMLElement>() {
       const isMouseDown = !ref.current?.contains(target as Node);
       setValue(isMouseDown);
     }
-    // Bind the event listener
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);

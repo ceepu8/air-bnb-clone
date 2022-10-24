@@ -32,7 +32,7 @@ const Logo = () => {
   );
 };
 
-const Header = (props: Props) => {
+const Header = () => {
   const [extendSelectionBox, setExtendSelectionBox] = useState(false);
   const [select, setSelect] = useState('destination');
 
