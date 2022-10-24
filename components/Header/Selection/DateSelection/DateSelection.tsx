@@ -11,9 +11,8 @@ const DateSelection = (props: Props) => {
   const { ref, value: isMouseIn } = useMouseLeave<HTMLDivElement>();
 
   return (
-    <div className="flex">
+    <div ref={ref} className="grid grid-cols-2">
       <div
-        ref={ref}
         className={classnames(styles.flexInput, styles.selectionInput, {
           'bg-white': !isMouseIn,
         })}
@@ -29,7 +28,7 @@ const DateSelection = (props: Props) => {
         </label>
         <div>Thêm ngày</div>
       </div>
-      {!isMouseIn && <DateDropdown />}
+      <DateDropdown isOpen={!isMouseIn} />
     </div>
   );
 };

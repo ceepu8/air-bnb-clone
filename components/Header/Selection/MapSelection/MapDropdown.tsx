@@ -41,7 +41,7 @@ const RegionItem = ({ image, name }: RegionProps) => {
         <img
           src={image}
           alt=""
-          className="w-full h-[120px] border-lightGrey border-[1px] border-solid rounded-lg"
+          className="w-full h-[120px] border-grey-300 border-[1px] border-solid rounded-lg"
         />
       </div>
       <p>{name}</p>
@@ -49,9 +49,13 @@ const RegionItem = ({ image, name }: RegionProps) => {
   );
 };
 
-const MapDropdown = () => {
+const MapDropdown = ({ isOpen }: { isOpen: boolean }) => {
   return (
-    <div className={classNames(styles.dropdown, styles.mapDropdown, 'rounded-3xl')}>
+    <div
+      className={classNames(styles.dropdown, styles.mapDropdown, 'rounded-3xl hidden', {
+        '!block': isOpen,
+      })}
+    >
       <h4 className="h4">Tìm kiếm theo khu vực</h4>
       <div className="flex flex-wrap">
         {regions.map((region) => (

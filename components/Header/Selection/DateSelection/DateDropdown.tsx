@@ -9,7 +9,7 @@ type Props = {};
 
 const pastMonth = new Date();
 
-const DateDropdown = (props: Props) => {
+const DateDropdown = ({ isOpen }: { isOpen: boolean }) => {
   const defaultSelected: DateRange = {
     from: pastMonth,
     to: addDays(pastMonth, 4),
@@ -17,7 +17,11 @@ const DateDropdown = (props: Props) => {
   const [range, setRange] = useState<DateRange | undefined>(defaultSelected);
 
   return (
-    <div className={classnames(styles.dropdown, styles.dateDropdown, 'rounded-3xl')}>
+    <div
+      className={classnames(styles.dropdown, styles.dateDropdown, 'rounded-3xl hidden', {
+        '!block': isOpen,
+      })}
+    >
       <DayPicker
         numberOfMonths={2}
         mode="range"

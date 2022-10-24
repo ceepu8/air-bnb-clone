@@ -8,14 +8,13 @@ import styles from './styles.module.css';
 type Props = {};
 
 const MapSelection = () => {
-  const { ref, value: isMouseOut } = useMouseLeave<HTMLDivElement>();
+  const { ref, value: isMouseIn } = useMouseLeave<HTMLDivElement>();
 
   return (
-    <>
+    <div ref={ref}>
       <div
-        ref={ref}
-        className={classnames('grow-[2]', styles.selectionInput, {
-          'bg-white': !isMouseOut,
+        className={classnames(styles.selectionInput, {
+          'bg-white': !isMouseIn,
         })}
       >
         <label htmlFor="destination" className={classnames(styles.labelInput)}>
@@ -28,8 +27,8 @@ const MapSelection = () => {
           className={classnames(styles.customInput)}
         />
       </div>
-      {!isMouseOut && <MapDropdown />}
-    </>
+      <MapDropdown isOpen={!isMouseIn} />
+    </div>
   );
 };
 

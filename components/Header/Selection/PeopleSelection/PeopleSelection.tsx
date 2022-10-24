@@ -13,23 +13,14 @@ const PeopleSelection = (props: Props) => {
   return (
     <div
       ref={ref}
-      className={classnames(styles.flexInput, styles.selectionInput, 'flex grow-[2] items-center', {
+      className={classnames(styles.flexInput, styles.selectionInput, {
         'bg-white': !isMouseIn,
       })}
     >
-      <div className="w-1/2">
-        <label htmlFor="customer" className={classnames(styles.labelInput)}>
-          Khách
-        </label>
-        <div>Thêm khách</div>
-      </div>
-      <Button
-        className="py-3 px-5 bg-linear-gradient-100 font-bold"
-        shape="circle"
-        icon={<BiSearch />}
-      >
-        Tìm kiếm
-      </Button>
+      <label htmlFor="customer" className={classnames(styles.labelInput)}>
+        Khách
+      </label>
+      <div>Thêm khách</div>
       <PeopleDropdown isOpen={!isMouseIn} />
     </div>
   );
