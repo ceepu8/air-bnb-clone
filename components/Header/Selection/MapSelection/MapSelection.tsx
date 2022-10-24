@@ -13,19 +13,15 @@ const MapSelection = () => {
   return (
     <div ref={ref}>
       <div
-        className={classnames(styles.selectionInput, {
+        className={classnames('selection-input', {
           'bg-white': !isMouseIn,
         })}
       >
-        <label htmlFor="destination" className={classnames(styles.labelInput)}>
+        <label htmlFor="destination" className="label-input">
           Địa điểm
         </label>
         <br />
-        <input
-          id="destination"
-          placeholder="Tìm kiếm điểm đến"
-          className={classnames(styles.customInput)}
-        />
+        <input className="bg-transparent" id="destination" placeholder="Tìm kiếm điểm đến" />
       </div>
       <MapDropdown isOpen={!isMouseIn} />
     </div>

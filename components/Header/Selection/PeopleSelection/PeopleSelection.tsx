@@ -1,10 +1,8 @@
 import React from 'react';
 import classnames from 'classnames';
 import styles from './styles.module.css';
-import { BiSearch } from 'react-icons/bi';
 import PeopleDropdown from './PeopleDropdown';
 import useMouseLeave from 'hooks/useMouseLeave';
-import Button from '@/components/common/Button';
 
 type Props = {};
 
@@ -13,11 +11,11 @@ const PeopleSelection = (props: Props) => {
   return (
     <div
       ref={ref}
-      className={classnames(styles.flexInput, styles.selectionInput, {
+      className={classnames('selection-input', {
         'bg-white': !isMouseIn,
       })}
     >
-      <label htmlFor="customer" className={classnames(styles.labelInput)}>
+      <label htmlFor="customer" className="label-input">
         Khách
       </label>
       <div>Thêm khách</div>

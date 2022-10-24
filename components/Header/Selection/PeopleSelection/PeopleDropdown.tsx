@@ -1,7 +1,6 @@
 import React from 'react';
-import classnames from 'classnames';
-import styles from './styles.module.css';
 import { AiFillMinusCircle, AiFillPlusCircle } from 'react-icons/ai';
+import Dropdown from '@/components/common/Dropdown';
 
 type SelectionProps = {
   type: string;
@@ -46,15 +45,11 @@ const selectionList = [
 
 const PeopleDropdown = ({ isOpen }: any) => {
   return (
-    <div
-      className={classnames(styles.dropdown, styles.peopleDropdown, 'rounded-3xl hidden', {
-        '!block': isOpen,
-      })}
-    >
+    <Dropdown isOpen={isOpen} className="top-[110%] right-0 min-w-[350px]">
       {selectionList.map((selection) => (
         <Selection type={selection.type} subNote={selection.subNote} />
       ))}
-    </div>
+    </Dropdown>
   );
 };
 

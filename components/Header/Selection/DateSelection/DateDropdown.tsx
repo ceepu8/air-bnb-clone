@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import styles from './styles.module.css';
-import classnames from 'classnames';
 
 import { addDays, format } from 'date-fns';
 import { DateRange, DayPicker } from 'react-day-picker';
-
-type Props = {};
+import Dropdown from '@/components/common/Dropdown';
 
 const pastMonth = new Date();
 
@@ -17,11 +14,7 @@ const DateDropdown = ({ isOpen }: { isOpen: boolean }) => {
   const [range, setRange] = useState<DateRange | undefined>(defaultSelected);
 
   return (
-    <div
-      className={classnames(styles.dropdown, styles.dateDropdown, 'rounded-3xl hidden', {
-        '!block': isOpen,
-      })}
-    >
+    <Dropdown isOpen={isOpen} className="top-[110%] left-[50%] -translate-x-1/2">
       <DayPicker
         numberOfMonths={2}
         mode="range"
@@ -29,7 +22,7 @@ const DateDropdown = ({ isOpen }: { isOpen: boolean }) => {
         selected={range}
         onSelect={setRange}
       />
-    </div>
+    </Dropdown>
   );
 };
 

@@ -4,6 +4,7 @@
 
 @tailwind base;
 @import './custom.css';
+@import './header.css';
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
 
@@ -125,11 +126,7 @@ body,
 }
 
 @layer base {
-  .pinkButton {
-    @apply py-2 px-4 bg-primary rounded text-white;
-  }
-
-  .boxShadow {
+  .box-shadow {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   }
 

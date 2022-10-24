@@ -1,3 +1,4 @@
+import Dropdown from '@/components/common/Dropdown';
 import classNames from 'classnames';
 import React from 'react';
 import styles from './styles.module.css';
@@ -51,18 +52,14 @@ const RegionItem = ({ image, name }: RegionProps) => {
 
 const MapDropdown = ({ isOpen }: { isOpen: boolean }) => {
   return (
-    <div
-      className={classNames(styles.dropdown, styles.mapDropdown, 'rounded-3xl hidden', {
-        '!block': isOpen,
-      })}
-    >
+    <Dropdown isOpen={isOpen} className="max-w-[450px] top-[110%] left-0">
       <h4 className="h4">Tìm kiếm theo khu vực</h4>
       <div className="flex flex-wrap">
         {regions.map((region) => (
           <RegionItem image={region.image} name={region.name} />
         ))}
       </div>
-    </div>
+    </Dropdown>
   );
 };
 
