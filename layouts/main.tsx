@@ -1,6 +1,6 @@
-import Footer from "@/components/Footer/Footer";
-import Header from "@/components/Header/Header";
-import { LayoutProps } from "@/interfaces/index";
+import Footer from '@/components/combination/Footer';
+import Header from '@/components/combination/Header';
+import { LayoutProps } from '@/interfaces/index';
 
 export function MainLayout({ children }: LayoutProps) {
   return (

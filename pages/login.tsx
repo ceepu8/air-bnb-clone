@@ -6,7 +6,7 @@ import { LoginValues } from '@/interfaces/index';
 import { ToastContainer } from 'react-toastify';
 import { login } from 'redux/auth/authReducer';
 import { useAppDispatch } from 'redux/hooks';
-import Button from '@/components/common/Button';
+import Button from '@/components/general/Button';
 
 const Login = () => {
   const {

@@ -6,7 +6,7 @@ function useMouseLeave<T extends HTMLElement>() {
 
   useEffect(() => {
     function handleClickOutside({ target }: MouseEvent) {
-      const isMouseDown = !ref.current?.contains(target as Node);
+      const isMouseDown = ref.current?.contains(target as Node) ? true : false;
       setValue(isMouseDown);
     }
     document.addEventListener('mousedown', handleClickOutside);
