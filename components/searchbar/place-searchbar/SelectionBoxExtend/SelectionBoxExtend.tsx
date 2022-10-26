@@ -5,9 +5,9 @@ import styles from './styles.module.css';
 import classnames from 'classnames';
 
 import { BiSearch } from 'react-icons/bi';
-import MapSelection from '../MapSelection/MapSelection';
-import DateSelection from '../DateSelection/DateSelection';
-import PeopleSelection from '../PeopleSelection/PeopleSelection';
+import MapSelection from '../MapSelection';
+import DateSelection from '../DateSelection';
+import PeopleSelection from '../PeopleSelection';
 import Button from '@/components/general/Button';
 import HeaderNav from '@/components/navigation/HeaderNav';
 
@@ -25,12 +25,10 @@ const SelectionForm = ({ select }: SelectionForm) => {
         <div className="col-span-2">
           <DateSelection />
         </div>
-        <div className="col-span-1">
+        <div className="col-span-2 relative">
           <PeopleSelection />
-        </div>
-        <div className="col-span-1">
           <Button
-            className="py-3 px-5 bg-linear-gradient-100 font-bold"
+            className="py-3 px-5 bg-linear-gradient-100 font-bold absolute right-0 mr-4 top-1/2 -translate-y-1/2"
             shape="circle"
             icon={<BiSearch />}
           >
