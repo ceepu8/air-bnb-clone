@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
 type SelectionProps = {
   isActive: boolean;
   labelText: string;
-  children: ReactNode;
+  children: JSX.Element | JSX.Element[];
 };
 
 const CapsuleSelection = ({ isActive, labelText, children }: SelectionProps) => {
