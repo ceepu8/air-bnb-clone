@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { BsGlobe } from 'react-icons/bs';
 import UserNav from '../navigation/UserNav';
-import Selection from './Selection';
+import useFlag from 'hooks/useFlag';
+import PlaceSearchBar from '../searchbar/place-searchbar';
 
 type Props = {};
 
@@ -26,11 +27,7 @@ const Logo = () => {
 };
 
 const Header = () => {
-  const [extendSelectionBox, setExtendSelectionBox] = useState(false);
-
-  const extendComponent = (value: boolean) => {
-    setExtendSelectionBox(value);
-  };
+  const { value: extendSelectionBox, setToggle } = useFlag();
 
   return (
     <header
@@ -43,7 +40,7 @@ const Header = () => {
           <Logo />
         </div>
         <div className="col-span-3 relative">
-          <Selection extendSelectionBox={extendSelectionBox} extendComponent={extendComponent} />
+          <PlaceSearchBar extendSelectionBox={extendSelectionBox} extendComponent={setToggle} />
         </div>
         <div className="col-span-1">
           <div className="flex items-center justify-around">
