@@ -1,7 +1,9 @@
 import CapsuleSelection from '@/components/data-entry/CapsuleSelection';
 import useMouseLeave from 'hooks/useMouseLeave';
 import Dropdown from '@/components/navigation/Dropdown';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { useContext } from 'react';
+import { SearchFormContext } from './SearchPlaceContext';
+import { SearchFormProps } from './interface';
 
 const regions = [
   {
@@ -51,13 +53,24 @@ const regions = [
 type RegionProps = {
   image: string;
   name: string;
-  handleSelect: Dispatch<SetStateAction<string>>;
 };
 
-const RegionItem = ({ image, name, handleSelect }: RegionProps) => {
+const RegionItem = ({ image, name }: RegionProps) => {
+  const context = useContext(SearchFormContext);
+
   return (
     <div className="w-1/3 p-2">
-      <div className="h-[120px]" onClick={() => handleSelect(name)}>
+      <div
+        className="h-[120px]"
+        onClick={() => {
+          context?.setState?.((state: SearchFormProps) => {
+            return {
+              ...state,
+              placeId: name,
+            };
+          });
+        }}
+      >
         <img
           src={image}
           alt=""
@@ -69,19 +82,13 @@ const RegionItem = ({ image, name, handleSelect }: RegionProps) => {
   );
 };
 
-const MapDropdown = ({
-  isOpen,
-  handleSelect,
-}: {
-  isOpen: boolean;
-  handleSelect: Dispatch<SetStateAction<string>>;
-}) => {
+const MapDropdown = ({ isOpen }: { isOpen: boolean }) => {
   return (
     <Dropdown isOpen={isOpen} className="max-w-[450px] top-[110%] left-0">
       <h4 className="h4">Tìm kiếm theo khu vực</h4>
       <div className="flex flex-wrap">
         {regions.map(({ hinhAnh, tinhThanh }) => (
-          <RegionItem image={hinhAnh} name={tinhThanh} handleSelect={handleSelect} />
+          <RegionItem image={hinhAnh} name={tinhThanh} />
         ))}
       </div>
     </Dropdown>
@@ -89,8 +96,8 @@ const MapDropdown = ({
 };
 
 const MapSelection = () => {
+  const context = useContext(SearchFormContext);
   const { ref, value: isMouseIn } = useMouseLeave<HTMLDivElement>();
-  const [value, setValue] = useState('');
 
   return (
     <div ref={ref}>
@@ -99,10 +106,10 @@ const MapSelection = () => {
           className="bg-transparent"
           id="destination"
           placeholder="Tìm kiếm điểm đến"
-          value={value}
+          value={context?.state.placeId}
         />
       </CapsuleSelection>
-      <MapDropdown isOpen={isMouseIn} handleSelect={setValue} />
+      <MapDropdown isOpen={isMouseIn} />
     </div>
   );
 };
