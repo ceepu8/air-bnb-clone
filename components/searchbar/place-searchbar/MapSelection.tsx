@@ -1,9 +1,9 @@
 import CapsuleSelection from '@/components/data-entry/CapsuleSelection';
-import useMouseLeave from 'hooks/useMouseLeave';
 import Dropdown from '@/components/navigation/Dropdown';
+import useMouseLeave from 'hooks/useMouseLeave';
+import usePlaceSearchForm from 'hooks/usePlaceSearchForm';
 import { useContext } from 'react';
 import { SearchFormContext } from './SearchPlaceContext';
-import { SearchFormProps } from './interface';
 
 const regions = [
   {
@@ -56,21 +56,11 @@ type RegionProps = {
 };
 
 const RegionItem = ({ image, name }: RegionProps) => {
-  const context = useContext(SearchFormContext);
+  const { handleSetState } = usePlaceSearchForm();
 
   return (
     <div className="w-1/3 p-2">
-      <div
-        className="h-[120px]"
-        onClick={() => {
-          context?.setState?.((state: SearchFormProps) => {
-            return {
-              ...state,
-              placeId: name,
-            };
-          });
-        }}
-      >
+      <div className="h-[120px]" onClick={() => handleSetState(name)}>
         <img
           src={image}
           alt=""

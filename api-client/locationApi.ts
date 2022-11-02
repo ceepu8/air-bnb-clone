@@ -1,9 +1,9 @@
-import { LocationBackendCResult } from '../interfaces/locations';
+import { LocationBackendResult } from '../interfaces/locations';
 import axiosClient from './axiosClient';
 
 const locationApi = {
   getLocation(page: number, limit: number) {
-    return axiosClient.get<unknown, LocationBackendCResult>(
+    return axiosClient.get<unknown, LocationBackendResult>(
       `vi-tri/phan-trang-tim-kiem?pageIndex=${page}&pageSize=${limit}`,
     );
   },

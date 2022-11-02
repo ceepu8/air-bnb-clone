@@ -25,7 +25,7 @@ const LocationItem = ({ location }: LocationItemProps) => {
   );
 };
 
-const Destination = () => {
+export const Destination = () => {
   const [locations, setLocation] = useState<Location[]>([]);
   const [loading, setLoading] = useState<Boolean>(false);
   const [page, setPage] = useState<number>(1);
@@ -72,5 +72,3 @@ const Destination = () => {
     </section>
   );
 };
-
-export default Destination;
