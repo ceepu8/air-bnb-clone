@@ -77,8 +77,8 @@ const MapDropdown = ({ isOpen }: { isOpen: boolean }) => {
     <Dropdown isOpen={isOpen} className="max-w-[450px] top-[110%] left-0">
       <h4 className="h4">Tìm kiếm theo khu vực</h4>
       <div className="flex flex-wrap">
-        {regions.map(({ hinhAnh, tinhThanh }) => (
-          <RegionItem image={hinhAnh} name={tinhThanh} />
+        {regions.map(({ hinhAnh, tinhThanh }, index) => (
+          <RegionItem key={index} image={hinhAnh} name={tinhThanh} />
         ))}
       </div>
     </Dropdown>

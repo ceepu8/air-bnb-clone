@@ -42,9 +42,14 @@ const Selection = ({ type, subNote, code }: SelectionProps) => {
 const PeopleDropdown = ({ isOpen }: { isOpen: boolean }) => {
   return (
     <Dropdown isOpen={isOpen} className="top-[110%] right-0 min-w-[350px]">
-      {PEOPLE_SELECTION_LIST.map((selection) => {
+      {PEOPLE_SELECTION_LIST.map((selection, index) => {
         return (
-          <Selection code={selection.code} type={selection.type} subNote={selection.subNote} />
+          <Selection
+            key={index}
+            code={selection.code}
+            type={selection.type}
+            subNote={selection.subNote}
+          />
         );
       })}
     </Dropdown>

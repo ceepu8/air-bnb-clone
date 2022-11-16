@@ -1,13 +1,10 @@
-import axios from 'axios';
-import { LIMIT_DESTINATION } from '../../constants';
-import React, { useEffect, useState } from 'react';
-import ContentLoader from 'react-content-loader';
+import { useEffect, useState } from 'react';
 import locationApi from '../../api-client/locationApi';
+import { LIMIT_DESTINATION } from '../../constants';
 
 import { Location } from '../../interfaces/locations';
-import Image from '../data-display/Image';
-import Button from '../general/Button';
 import ImageListLoading from '../feedback/skeleton/ImageList';
+import Button from '../general/Button';
 
 interface LocationItemProps {
   location: Location;
