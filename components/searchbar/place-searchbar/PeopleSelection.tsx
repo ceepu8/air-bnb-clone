@@ -40,9 +40,10 @@ const Selection = ({ type, subNote, code, number }: SelectionProps) => {
 const PeopleDropdown = ({ isOpen, data }: { isOpen: boolean; data: any }) => {
   return (
     <Dropdown isOpen={isOpen} className="top-[110%] right-0 min-w-[350px]">
-      {PEOPLE_SELECTION_LIST.map((selection) => {
+      {PEOPLE_SELECTION_LIST.map((selection, index) => {
         return (
           <Selection
+            key={index}
             number={data[selection.code]}
             code={selection.code}
             type={selection.type}

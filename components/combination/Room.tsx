@@ -55,7 +55,7 @@ export const Room = () => {
 
       <div className="flex flex-wrap items-center justify-around">
         {rooms?.map((room) => (
-          <RoomItem room={room} />
+          <RoomItem key={room?._id} room={room} />
         ))}
       </div>
     </section>

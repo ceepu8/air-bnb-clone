@@ -3,7 +3,7 @@ import ContentLoader from "react-content-loader";
 
 interface LoaderProps {
   screen: string;
-  imageType: string;
+  imagetype: string;
   style: {
     opacity: string;
   };
@@ -40,7 +40,7 @@ const Loader = (props: LoaderProps) => {
       width={width}
       {...props}
     >
-      {props.imageType === "circle" ? (
+      {props.imagetype === "circle" ? (
         <circle cx="60" cy="45" r="30" />
       ) : (
         <rect x="20" y="20" rx="5" ry="5" width="64" height="63" />
@@ -60,7 +60,7 @@ const ImageListLoading = () => (
         .map((e, i) => (
           <Loader
             screen="desktop"
-            imageType="rectangle"
+            imagetype="rectangle"
             key={i}
             style={{ opacity: Number(2 / i).toFixed(1) }}
           />
