@@ -1,8 +1,7 @@
-import Destination from '@/components/combination/Destination';
 import Carousel from '@/components/data-display/Carousel';
 import React from 'react';
 
-import { Room } from '../components/combination/Room';
+import { Accommodation, Destination } from '../components/combination';
 import { NextPageWithLayout } from '../interfaces';
 import { MainLayout } from '../layouts';
 
@@ -11,7 +10,7 @@ const HomePage: NextPageWithLayout = () => {
     <>
       <Carousel />
       <Destination />
-      <Room />
+      <Accommodation />
     </>
   );
 };

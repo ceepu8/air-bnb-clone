@@ -1,6 +1,6 @@
 import React from 'react';
-import SelectionBox from './SelectionBox/SelectionBox';
-import SelectionBoxExtend from './SelectionBoxExtend/SelectionBoxExtend';
+import SelectionBox from './SelectionBox';
+import SelectionBoxExtend from './SelectionBoxExtend';
 
 const PlaceSearchBar = ({
   extendSelectionBox,

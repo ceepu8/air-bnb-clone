@@ -7,11 +7,11 @@ export interface People {
   toddler: number;
 }
 
-export interface SearchFormProps {
+export type SearchFormProps = {
   placeId: string;
   date: DateRange;
   people: People;
-}
+};
 
 export type SearchFormContextState = {
   state: SearchFormProps;

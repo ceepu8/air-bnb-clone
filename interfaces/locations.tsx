@@ -1,12 +1,13 @@
 export interface Location {
-  hinhAnh: string;
-  id: number;
-  quocGia: string;
-  tenViTri: string;
-  tinhThanh: string;
+  country: string;
+  deleteAt: boolean;
+  image: string;
+  name: string;
+  province: string;
+  valueate: number;
 }
 
-export interface LocationBackendCResult {
+export interface LocationBackendResult {
   statusCode: number;
   content: Content;
   dateTime: Date;
