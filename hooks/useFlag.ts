@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 type Props = {};
 
 const useFlag = () => {
-  const [value, setValue] = useState<Boolean>(false);
+  const [value, setValue] = useState<boolean>(false);
 
   function setOpen() {
     setValue(true);

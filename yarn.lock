@@ -745,6 +745,11 @@ csstype@^3.0.2:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.0.tgz#4ddcac3718d787cf9df0d1b7d15033925c8f29f2"
   integrity sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==
 
+date-fns@^2.29.3:
+  version "2.29.3"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.29.3.tgz#27402d2fc67eb442b511b70bbdf98e6411cd68a8"
+  integrity sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==
+
 defined@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/defined/-/defined-1.0.0.tgz#c98d9bcef75674188e110969151199e39b1fa693"
@@ -1346,6 +1351,11 @@ react-content-loader@^6.2.0:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/react-content-loader/-/react-content-loader-6.2.0.tgz#cd8fee8160b8fda6610d0c69ce5aee7b8094cba6"
   integrity sha512-r1dI6S+uHNLW68qraLE2njJYOuy6976PpCExuCZUcABWbfnF3FMcmuESRI8L4Bj45wnZ7n8g71hkPLzbma7/Cw==
+
+react-day-picker@^8.3.5:
+  version "8.3.5"
+  resolved "https://registry.yarnpkg.com/react-day-picker/-/react-day-picker-8.3.5.tgz#db00f7657e71f697055dcecbe2d9e91f84e4b026"
+  integrity sha512-cSMNjbn5IKZLVgfvPopbg+Dk5qQPesi2prlxXBrXlCODUThk5Zyu5fDn7njZt3y7ih65gWbZId0D0lnhyiF1GQ==
 
 react-dom@^18.2.0:
   version "18.2.0"

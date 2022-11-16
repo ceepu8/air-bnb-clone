@@ -1,26 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-type Props = {};
-
-const useMouseLeave = () => {
+function useMouseLeave<T extends HTMLElement>() {
   const [value, setValue] = useState(false);
-  const ref = useRef<any>(null);
+  const ref = useRef<T>(null);
 
   useEffect(() => {
-    const node = ref.current;
-
-    if (node) {
-      node.addEventListener('mouseleave', () => {
-        setValue(false);
-      });
-
-      return () => {
-        node.removeEventListener('mouseleave', () => {});
-      };
+    function handleClickOutside({ target }: MouseEvent) {
+      const isMouseDown = ref.current?.contains(target as Node) ? true : false;
+      setValue(isMouseDown);
     }
-  }, [ref.current]);
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [ref]);
 
-  return [ref, value];
-};
+  return { ref, value };
+}
 
 export default useMouseLeave;

@@ -1,0 +1,14 @@
+.selection-input {
+  padding: 10px 25px 10px 20px;
+  border-radius: 50px;
+}
+
+.selection-input:hover {
+  background-color: var(--white);
+}
+
+.label-input {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+}

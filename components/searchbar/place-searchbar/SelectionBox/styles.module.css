@@ -1,0 +1,21 @@
+.selectionBox {
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  max-height: 100%;
+  transform: scale(1) translateX(-50%);
+  transition: all 0.3s;
+  opacity: 1;
+  visibility: visible;
+}
+
+.selectionBoxDeactive {
+  transform: scale(1.5) translateX(-30%);
+  height: 0;
+  transition: all 0.3s;
+  opacity: 0;
+  top: 0px;
+  left: 50%;
+  position: absolute;
+  visibility: hidden;
+}
