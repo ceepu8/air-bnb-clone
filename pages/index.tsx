@@ -9,7 +9,7 @@ const HomePage: NextPageWithLayout = () => {
   return (
     <>
       <Carousel />
-      <Destination />
+      {/* <Destination /> */}
       <Accommodation />
     </>
   );
