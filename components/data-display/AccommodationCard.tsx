@@ -1,7 +1,8 @@
 import { Accommodation } from '@/interfaces/index';
-import Link from 'next/link';
+import Image from 'next/image';
 import { AiFillStar } from 'react-icons/ai';
 import { BsFillSuitHeartFill } from 'react-icons/bs';
+import NavLink from '../navigation/Link';
 
 type Props = {
   room: Accommodation;
@@ -9,6 +10,7 @@ type Props = {
 
 const HeartIcon = () => {
   return (
+    // TODO: handle click button
     <button>
       <BsFillSuitHeartFill
         stroke="white"
@@ -21,42 +23,42 @@ const HeartIcon = () => {
 };
 
 export const AccommodationCard = (props: Props) => {
-  const { room } = props;
+  const { id, hinhAnh, tenPhong, phongNgu, phongTam, giaTien, khach } = props.room || {};
   return (
-    <Link href={`acommodation/${room.id}`}>
-      <a>
-        <div className="col-span-1">
-          <div className="flex flex-col relative">
-            <div className="overflow-hidden rounded-2xl">
-              <img
-                src={room.hinhAnh}
-                alt="accommodation"
-                className="max-w-[200%] min-h-[300px] object-cover rounded mr-2"
-              />
+    <NavLink disabled href={`acommodation/${id}`}>
+      <div className="col-span-1">
+        <div className="flex flex-col relative">
+          <div className="overflow-hidden rounded-2xl">
+            <Image
+              src={hinhAnh}
+              alt="accommodation"
+              className="!max-w-[200%] !min-w-[200%] !min-h-[300px] object-cover rounded mr-2"
+              width={300}
+              height={300}
+            />
+          </div>
+
+          <HeartIcon />
+
+          <div className="flex flex-col mt-4 text-black-200">
+            <span className="text-lg font-extrabold">{tenPhong}</span>
+
+            <div className="flex justify-between items-center">
+              <span className="text-grey-500">
+                Phòng ngủ: {phongNgu} - Phòng tắm: {phongTam}
+              </span>
+              <span className="flex items-center">
+                <AiFillStar className="mr-1" />
+                4.5
+              </span>
             </div>
 
-            <HeartIcon />
+            <span className="text-grey-500">Đón tối đa {khach} khách</span>
 
-            <div className="flex flex-col mt-4 text-black-200">
-              <span className="text-lg font-extrabold">{room.tenPhong}</span>
-
-              <div className="flex justify-between items-center">
-                <span className="text-grey-500">
-                  Phòng ngủ: {room.phongNgu} - Phòng tắm: {room.phongTam}
-                </span>
-                <span className="flex items-center">
-                  <AiFillStar className="mr-1" />
-                  4.5
-                </span>
-              </div>
-
-              <span className="text-grey-500">Đón tối đa {room.khach} khách</span>
-
-              <span className="font-semibold">${room.giaTien} đêm</span>
-            </div>
+            <span className="font-semibold">${giaTien} đêm</span>
           </div>
         </div>
-      </a>
-    </Link>
+      </div>
+    </NavLink>
   );
 };
