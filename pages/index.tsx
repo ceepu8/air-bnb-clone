@@ -8,8 +8,7 @@ import { MainLayout } from '../layouts';
 const HomePage: NextPageWithLayout = () => {
   return (
     <>
-      <Carousel />
-      {/* <Destination /> */}
+      <Destination />
       <Accommodation />
     </>
   );

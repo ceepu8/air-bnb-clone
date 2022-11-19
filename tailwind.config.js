@@ -59,6 +59,7 @@ module.exports = {
       skintone: 'var(--skintone)',
       blue: 'var(--blue)',
       green: 'var(--green)',
+      transparent: 'transparent',
       'orange-100': 'var(--black-100)',
       'black-100': 'var(--black-100)',
       'black-200': 'var(--black-200)',

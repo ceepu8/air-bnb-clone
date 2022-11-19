@@ -1092,6 +1092,11 @@ jquery@x.*:
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
   integrity sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==
 
+keen-slider@^6.8.3:
+  version "6.8.3"
+  resolved "https://registry.yarnpkg.com/keen-slider/-/keen-slider-6.8.3.tgz#c42b27fb1afca0a2eb722676410cdd3af80f2e0f"
+  integrity sha512-tJFokyUiHAtbGGQHnNMm3MLCpOm+z1JZsaOOMVnzTYAfAqLDT/zI/cE1mf82Bxmp1uHSIeUUkH+EZGzRQrSO/w==
+
 keyboard-key@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/keyboard-key/-/keyboard-key-1.1.0.tgz#6f2e8e37fa11475bb1f1d65d5174f1b35653f5b7"

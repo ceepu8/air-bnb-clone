@@ -1,10 +1,9 @@
 export interface Location {
-  country: string;
-  deleteAt: boolean;
-  image: string;
-  name: string;
-  province: string;
-  valueate: number;
+  id: number;
+  tenViTri: string;
+  tinhThanh: string;
+  quocGia: string;
+  hinhAnh: string;
 }
 
 export interface LocationBackendResult {
