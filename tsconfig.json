@@ -19,12 +19,9 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/components/*": ["./components/*"],
-      "@/interfaces/*": ["./interfaces/*"],
-      "@/layouts/*": ["./layouts/*"],
-      "@/constants/*": ["./constants/*"]
+      "@/*": ["./*"]
     }
   },
   "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "interfaces/index.ts"]
 }

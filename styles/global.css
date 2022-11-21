@@ -141,15 +141,16 @@ body,
     -webkit-transform: translateY(-50%);
     fill: #000;
     cursor: pointer;
+    background: var(--white);
   }
 
   .arrow-left {
-    left: 5px;
+    left: 42px;
   }
 
   .arrow-right {
     left: auto;
-    right: 5px;
+    right: 42px;
   }
 
   .arrow-disabled {

@@ -1,8 +1,8 @@
+import { Location } from '@/interfaces';
 import classNames from 'classnames';
 import { useKeenSlider } from 'keen-slider/react';
-import { useEffect, useState } from 'react';
-import { Location } from '../../interfaces/locations';
-import ImageListLoading from '../feedback/skeleton/ImageList';
+import { useState } from 'react';
+import NavLink from '../navigation/Link';
 
 const data = [
   {
@@ -147,42 +147,48 @@ function Arrow(props: any) {
 
 type LocationItemProps = {
   location: Location;
-  index: number;
 };
 
 const LocationItem = (props: LocationItemProps) => {
-  const { index } = props;
-  const { hinhAnh, tenViTri, tinhThanh } = props.location || {};
+  const { hinhAnh, tenViTri, tinhThanh, id } = props.location || {};
   return (
-    <div
-      className={`keen-slider__slide group flex flex-col items-center my-5 border-b-2 border-transparent transition-all hover:border-grey-300 slide-${index}`}
-    >
-      <img src={hinhAnh} alt="location image" className="w-[50px] h-[50px] rounded-full shrink-0" />
-      <div className="flex flex-col items-center mt-2 group-hover:font-semibold">
-        <span className="text-xs">{tenViTri}</span>
-        <span className="text-xs">{tinhThanh}</span>
+    <NavLink disabled href={`/province/${id}`}>
+      <div
+        className={`group flex flex-col my-5 border-b-2 border-transparent pb-2 hover:border-grey-300`}
+      >
+        <img
+          src={hinhAnh}
+          alt="location image"
+          className="w-[50px] h-[50px] rounded-full shrink-0 mx-auto"
+        />
+        <div className="flex flex-col  mt-2 group-hover:!font-semibold text-center">
+          <span className="text-xs whitespace-nowrap text-ellipsis overflow-hidden">
+            {tenViTri}
+          </span>
+          <span className="text-xs">{tinhThanh}</span>
+        </div>
       </div>
-    </div>
+    </NavLink>
   );
 };
 
 export const Destination = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [locations, setLocation] = useState<Location[]>(data);
-  const [loading, setLoading] = useState<Boolean>(false);
-
   const [loaded, setLoaded] = useState(false);
+
+  console.log(currentSlide);
 
   const [sliderRef, instanceRef] = useKeenSlider({
     initial: 0,
     loop: true,
     mode: 'free-snap',
     slides: {
-      perView: 12,
-      spacing: 15,
+      perView: 'auto',
+      spacing: 10,
     },
     slideChanged(slider) {
-      setCurrentSlide(slider.track.details.rel);
+      setCurrentSlide(slider.track.details.rel + 1);
     },
     created() {
       setLoaded(true);
@@ -190,12 +196,14 @@ export const Destination = () => {
   });
 
   return (
-    <section className="max-w-[1315px] px-12 mx-auto mt-[80px] relative">
+    <section className="max-w-[1315px] px-12 mx-auto mt-[112px] relative">
       <h2 className="h2">Khám phá những điểm đến gần đây</h2>
 
-      <div ref={sliderRef} className="keen-slider">
-        {locations?.map((location, index) => (
-          <LocationItem location={location} index={index} />
+      <div ref={sliderRef} className="keen-slider max-w-[90%] mx-auto">
+        {locations?.map((location) => (
+          <div key={location.id} className="keen-slider__slide max-w-[75px] min-w-[75px]">
+            <LocationItem location={location} />
+          </div>
         ))}
       </div>
       {loaded && instanceRef.current && (
@@ -212,21 +220,6 @@ export const Destination = () => {
           />
         </>
       )}
-      {/* {loaded && instanceRef.current && (
-        <div className="dots">
-          {[
-            ...Array(instanceRef.current.track.details.slides.length).keys(),
-          ].map((idx) => {
-            return (
-              <button
-                key={idx}
-                onClick={() => {
-                  instanceRef.current?.moveToIdx(idx)
-                }}
-                className={"dot" + (currentSlide === idx ? " active" : "")}
-              ></button>
-            )
-          })} */}
     </section>
   );
 };

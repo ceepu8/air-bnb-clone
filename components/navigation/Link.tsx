@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 type Props = {
-  disabled: boolean;
+  disabled?: boolean;
   children: JSX.Element;
   href: string;
 };
