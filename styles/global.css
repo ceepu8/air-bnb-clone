@@ -156,6 +156,19 @@ body,
   .arrow-disabled {
     fill: rgba(255, 255, 255, 0.5);
   }
+
+  .skeleton {
+    animation: skeleton-loading 1s linear infinite alternate;
+  }
+
+  @keyframes skeleton-loading {
+    0% {
+      background-color: var(--grey-200);
+    }
+    100% {
+      background-color: var(--grey-300);
+    }
+  }
 }
 
 @tailwind components;

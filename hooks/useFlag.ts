@@ -13,8 +13,8 @@ const useFlag = () => {
     setValue(false);
   }
 
-  function setToggle() {
-    setValue(!value);
+  function setToggle(open: any) {
+    setValue(open);
   }
 
   return { value, setOpen, setClose, setToggle };

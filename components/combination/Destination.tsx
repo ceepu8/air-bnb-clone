@@ -1,6 +1,7 @@
 import { Location } from '@/interfaces';
 import classNames from 'classnames';
 import { useKeenSlider } from 'keen-slider/react';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import NavLink from '../navigation/Link';
 
@@ -151,24 +152,41 @@ type LocationItemProps = {
 
 const LocationItem = (props: LocationItemProps) => {
   const { hinhAnh, tenViTri, tinhThanh, id } = props.location || {};
+
+  const router = useRouter();
+
   return (
-    <NavLink disabled href={`/province/${id}`}>
+    <button
+      className="w-full"
+      onClick={() => {
+        router.push(`/?locationId=${id}`);
+      }}
+    >
       <div
-        className={`group flex flex-col my-5 border-b-2 border-transparent pb-2 hover:border-grey-300`}
+        className={classNames(
+          `group flex flex-col my-5 border-b-2 border-transparent pb-2 hover:border-grey-300`,
+          {
+            'border-grey-300': Number(router.query.locationId) == id,
+          },
+        )}
       >
         <img
           src={hinhAnh}
           alt="location image"
           className="w-[50px] h-[50px] rounded-full shrink-0 mx-auto"
         />
-        <div className="flex flex-col  mt-2 group-hover:!font-semibold text-center">
+        <div
+          className={classNames('flex flex-col  mt-2 group-hover:!font-semibold text-center', {
+            'font-semibold': Number(router.query.locationId) == id,
+          })}
+        >
           <span className="text-xs whitespace-nowrap text-ellipsis overflow-hidden">
             {tenViTri}
           </span>
           <span className="text-xs">{tinhThanh}</span>
         </div>
       </div>
-    </NavLink>
+    </button>
   );
 };
 
@@ -177,15 +195,13 @@ export const Destination = () => {
   const [locations, setLocation] = useState<Location[]>(data);
   const [loaded, setLoaded] = useState(false);
 
-  console.log(currentSlide);
-
   const [sliderRef, instanceRef] = useKeenSlider({
     initial: 0,
     loop: true,
     mode: 'free-snap',
     slides: {
       perView: 'auto',
-      spacing: 10,
+      spacing: 15,
     },
     slideChanged(slider) {
       setCurrentSlide(slider.track.details.rel + 1);
@@ -201,7 +217,7 @@ export const Destination = () => {
 
       <div ref={sliderRef} className="keen-slider max-w-[90%] mx-auto">
         {locations?.map((location) => (
-          <div key={location.id} className="keen-slider__slide max-w-[75px] min-w-[75px]">
+          <div key={location.id} className="keen-slider__slide max-w-[70px] min-w-[70px]">
             <LocationItem location={location} />
           </div>
         ))}
