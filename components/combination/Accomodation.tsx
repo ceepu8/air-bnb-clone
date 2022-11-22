@@ -1,55 +1,15 @@
-import axios from 'axios';
+import { useFetchAccommodation } from '@/hooks/api/accommodation';
+import { Accommodation as Accom } from '@/interfaces';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
-import { Accommodation as AccommInterface } from '../../interfaces/index';
 import { AccommodationCard } from '../data-display/AccommodationCard';
 import AccommodationSkeleton from '../feedback/skeleton/AccommodationSkeleton';
 
-type ContentApiResponse = {
-  data: AccommInterface[];
-  keywords: any;
-  pageIndex: number;
-  pageSize: number;
-  totalRow: number;
-};
-type APIResponse = {
-  content: AccommInterface[];
-  dateTime: any;
-  statusCode: any;
-};
 export const Accommodation = () => {
-  const [rooms, setRooms] = useState<AccommInterface[]>([]);
-  const [isLoading, setLoading] = useState(false);
-
   const {
     query: { locationId },
   } = useRouter();
 
-  const fetchAPI = async () => {
-    try {
-      setLoading(true);
-      const { data } = await axios.get<APIResponse>(
-        `https://airbnbnew.cybersoft.edu.vn/api/phong-thue/lay-phong-theo-vi-tri?maViTri=${locationId}`,
-        {
-          headers: {
-            tokenCybersoft:
-              'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5Mb3AiOiJCb290Y2FtcCAyNCIsIkhldEhhblN0cmluZyI6IjI1LzExLzIwMjIiLCJIZXRIYW5UaW1lIjoiMTY2OTMzNDQwMDAwMCIsIm5iZiI6MTYzNzk0NjAwMCwiZXhwIjoxNjY5NDgyMDAwfQ.vwkhYBKLRzJB0Tm18qLCchebQxHvEsbsbUYBmlawj5s',
-          },
-        },
-      );
-      setRooms(data?.content);
-
-      setTimeout(() => {
-        setLoading(false);
-      }, 1000);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchAPI();
-  }, [locationId]);
+  const [rooms, isLoading] = useFetchAccommodation(locationId);
 
   return (
     <section className="max-w-[1315px] px-12 mx-auto mt-12">
@@ -60,10 +20,8 @@ export const Accommodation = () => {
             return <AccommodationCard key={room.id} room={room} />;
           })}
 
-        {!isLoading && rooms.length < 1 ? (
+        {!isLoading && rooms.length < 1 && (
           <p className="col-span-4 flex items-center justify-center">Không có dữ liệu</p>
-        ) : (
-          ''
         )}
 
         {isLoading && (
