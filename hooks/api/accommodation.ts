@@ -3,9 +3,9 @@ import { Accommodation } from '@/interfaces';
 import { useEffect, useState } from 'react';
 
 type APIResponse = {
-  content: any;
-  dateTime: any;
-  statusCode: any;
+  content: Accommodation[];
+  dateTime: string | Date;
+  statusCode: number;
 };
 
 export const useFetchAccommodation = (
