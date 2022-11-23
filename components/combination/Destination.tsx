@@ -1,9 +1,12 @@
 import { useFetchLocation } from '@/hooks/api/destination';
 import { Location } from '@/interfaces';
+import { Button } from 'antd';
 import classNames from 'classnames';
 import { useKeenSlider } from 'keen-slider/react';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+import 'antd/dist/reset.css';
 
 function Arrow(props: any) {
   return (
@@ -94,13 +97,16 @@ export const Destination = () => {
     },
   });
 
+  useEffect(() => {
+    instanceRef.current?.update();
+  }, [locations || []]);
+
   return (
     <section className="max-w-[1315px] px-12 mx-auto mt-[112px] relative">
       <h2 className="h2">Khám phá những điểm đến gần đây</h2>
-
       <div ref={sliderRef} className="keen-slider max-w-[90%] mx-auto">
         {locations?.map((location) => (
-          <div key={location.id} className="keen-slider__slide max-w-[70px] min-w-[70px]">
+          <div key={location.id} className="keen-slider__slide max-w-[85px] min-w-[85px]">
             <LocationItem location={location} />
           </div>
         ))}
@@ -115,7 +121,7 @@ export const Destination = () => {
 
           <Arrow
             onClick={(e: any) => e.stopPropagation() || instanceRef.current?.next()}
-            disabled={currentSlide === instanceRef.current.track.details.slides.length - 1}
+            disabled={currentSlide === instanceRef.current.track.details?.slides.length - 1}
           />
         </>
       )}
