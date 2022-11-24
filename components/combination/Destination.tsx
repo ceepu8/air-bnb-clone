@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 import 'antd/dist/reset.css';
+import DestinationSkeleton from '../feedback/skeleton/DestinationSkeleton';
 
 function Arrow(props: any) {
   return (
@@ -69,7 +70,9 @@ const LocationItem = (props: LocationItemProps) => {
           <span className="text-xs whitespace-nowrap text-ellipsis overflow-hidden">
             {tenViTri}
           </span>
-          <span className="text-xs">{tinhThanh}</span>
+          <span className="text-xs whitespace-nowrap text-ellipsis overflow-hidden">
+            {tinhThanh}
+          </span>
         </div>
       </div>
     </button>
@@ -87,7 +90,7 @@ export const Destination = () => {
     mode: 'free-snap',
     slides: {
       perView: 'auto',
-      spacing: 15,
+      spacing: 10,
     },
     slideChanged(slider) {
       setCurrentSlide(slider.track.details.rel + 1);
@@ -99,17 +102,25 @@ export const Destination = () => {
 
   useEffect(() => {
     instanceRef.current?.update();
-  }, [locations || []]);
-
+  }, [locations.length, isLoading]);
   return (
     <section className="max-w-[1315px] px-12 mx-auto mt-[112px] relative">
       <h2 className="h2">Khám phá những điểm đến gần đây</h2>
-      <div ref={sliderRef} className="keen-slider max-w-[90%] mx-auto">
+      <div ref={sliderRef} className="keen-slider max-w-[1100px] min-w-0 mx-auto">
         {locations?.map((location) => (
-          <div key={location.id} className="keen-slider__slide max-w-[85px] min-w-[85px]">
+          <div key={location.id} className="keen-slider__slide min-w-[80px]">
             <LocationItem location={location} />
           </div>
         ))}
+
+        {isLoading &&
+          [...Array(15)].map((e, i) => {
+            return (
+              <div key={i} className="keen-slider__slide min-w-[80px]">
+                <DestinationSkeleton />
+              </div>
+            );
+          })}
       </div>
       {loaded && instanceRef.current && (
         <>

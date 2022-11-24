@@ -22,7 +22,9 @@ export const useFetchAccommodation = (
     (async () => {
       setLoading(true);
       const { content } = await axiosClient.get<unknown, APIResponse>(apiURL);
-      setData(content);
+      if (Array.isArray(content)) {
+        setData(content);
+      }
       setTimeout(() => {
         setLoading(false);
       }, 1000);

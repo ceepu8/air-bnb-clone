@@ -33,6 +33,7 @@ module.exports = {
       'linear-radial-100': 'var(--linear-radial-100)',
       'linear-radial-200': 'var(--linear-radial-200)',
       'linear-radial-300': 'var(--linear-radial-300)',
+      'linear-glass-effect': 'var(--linear-glass-effect)',
     },
     textColor: {
       primary: 'var(--primary-pink)',
