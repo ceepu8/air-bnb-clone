@@ -1,4 +1,39 @@
 /* Custom for calendar */
+.rdp {
+  --rdp-cell-size: 50px;
+  --rdp-accent-color: #0000ff;
+  --rdp-background-color: #e7edff;
+  /* Switch to dark colors for dark themes */
+  --rdp-accent-color-dark: #3003e1;
+  --rdp-background-color-dark: #180270;
+  /* Outline border for focused elements */
+  --rdp-outline: 2px solid var(--rdp-accent-color);
+  /* Outline border for focused and selected elements */
+  --rdp-outline-selected: 2px solid rgba(0, 0, 0, 0.75);
+  max-width: 100%;
+}
+
+.rdp-caption_label {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.rdp-head_cell {
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.rdp-cell {
+  max-width: var(--rdp-cell-size);
+  height: 100%;
+  height: var(--rdp-cell-size);
+  padding: 0;
+  text-align: center;
+}
+
+.rdp-weeknumber,
+.rdp-day {
+}
 .rdp-day_selected,
 .rdp-day_selected:focus-visible,
 .rdp-day_selected:hover {
