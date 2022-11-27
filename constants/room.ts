@@ -5,8 +5,15 @@ import { BiCameraMovie } from 'react-icons/bi';
 import { BsWind } from 'react-icons/bs';
 import { AiOutlineWifi } from 'react-icons/ai';
 import { FaSwimmingPool } from 'react-icons/fa';
+import { Room } from '@/interfaces';
+import { IconType } from 'react-icons';
 
-const roomServices = [
+interface RoomServices {
+  keyName: keyof Room;
+  name: string;
+  icon: IconType;
+}
+const roomServices: RoomServices[] = [
   {
     keyName: 'banLa',
     name: 'Bàn Là',

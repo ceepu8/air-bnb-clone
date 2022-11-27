@@ -47,7 +47,7 @@ const DateSelection = () => {
   return (
     <div ref={ref} className="grid grid-cols-2">
       <CapsuleSelection isActive={isMouseIn} labelText="Nhận phòng">
-        <div>
+        <div className="text-xs leading-1">
           {context?.state.date
             ? context?.state.date?.from
               ? format(context?.state.date?.from, 'PP')
@@ -56,7 +56,7 @@ const DateSelection = () => {
         </div>
       </CapsuleSelection>
       <CapsuleSelection isActive={isMouseIn} labelText="Trả phòng">
-        <div>
+        <div className="text-xs leading-1">
           {context?.state.date
             ? context?.state.date?.to
               ? format(context?.state.date?.to, 'PP')

@@ -13,13 +13,13 @@ const SelectionBox = (props: Props) => {
     <nav
       onClick={() => onSet(true)}
       className={classNames(
-        `max-w-[400px] mx-auto absolute top-0 left-1/2 max-h-full scale-100 -translate-x-1/2 transition-all opacity-100 visible`,
+        `min-w-[380px] mx-auto absolute top-1/2 left-1/2 max-h-full scale-100 -translate-x-1/2 -translate-y-1/2 transition-all opacity-100 visible`,
         {
           'scale-150 h-0 opacity-0 hidden': !isToggle,
         },
       )}
     >
-      <div className="flex items-center justify-around m-3 py-2 px-2 shadow border-grey-200 border-solid border rounded-full">
+      <div className="flex items-center justify-around py-2 px-2 shadow border-grey-200 border-solid border rounded-full">
         <button className="mx-3 text-sm">Địa điểm bất kì</button>
         <span className=""></span>
         <button className="mx-3 text-sm">Tuần bất kì</button>

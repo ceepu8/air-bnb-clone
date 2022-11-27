@@ -93,7 +93,7 @@ const MapSelection = () => {
     <div ref={ref}>
       <CapsuleSelection isActive={isMouseIn} labelText="Địa điểm">
         <input
-          className="bg-transparent"
+          className="bg-transparent text-xs leading-1"
           id="destination"
           placeholder="Tìm kiếm điểm đến"
           value={context?.state.placeId}

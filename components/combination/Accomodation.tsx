@@ -1,5 +1,5 @@
 import { useFetchAccommodation } from '@/hooks/api/accommodation';
-import { Accommodation as Accom } from '@/interfaces';
+import { Room as Accom } from '@/interfaces';
 import { useRouter } from 'next/router';
 import { AccommodationCard } from '../data-display/AccommodationCard';
 import AccommodationSkeleton from '../feedback/skeleton/AccommodationSkeleton';

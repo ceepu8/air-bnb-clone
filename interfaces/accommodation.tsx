@@ -1,21 +1,21 @@
-export interface Accommodation {
-  id: number;
-  tenPhong: string;
-  khach: number;
-  phongNgu: number;
-  giuong: number;
-  phongTam: number;
-  moTa: string;
-  giaTien: number;
-  mayGiat: boolean;
-  banLa: boolean;
-  tivi: boolean;
-  dieuHoa: boolean;
-  wifi: boolean;
-  bep: boolean;
-  doXe: boolean;
-  hoBoi: boolean;
-  banUi: boolean;
-  maViTri: number;
-  hinhAnh: string;
+export interface Room {
+  id: number | undefined;
+  tenPhong: string | undefined;
+  khach: number | undefined;
+  phongNgu: number | undefined;
+  giuong: number | undefined;
+  phongTam: number | undefined;
+  moTa: string | undefined;
+  giaTien: number | undefined;
+  mayGiat: boolean | undefined;
+  banLa: boolean | undefined;
+  tivi: boolean | undefined;
+  dieuHoa: boolean | undefined;
+  wifi: boolean | undefined;
+  bep: boolean | undefined;
+  doXe: boolean | undefined;
+  hoBoi: boolean | undefined;
+  banUi: boolean | undefined;
+  maViTri: number | undefined;
+  hinhAnh: string | undefined;
 }
