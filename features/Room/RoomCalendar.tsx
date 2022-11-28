@@ -2,7 +2,7 @@ import { addDays, format } from 'date-fns';
 import { useState } from 'react';
 import { DateRange, DayPicker } from 'react-day-picker';
 
-const StayingNights = () => {
+const RoomCalendar = () => {
   const pastMonth = new Date(2020, 10, 15);
   const defaultSelected: DateRange = {
     from: pastMonth,
@@ -38,4 +38,4 @@ const StayingNights = () => {
   );
 };
 
-export default StayingNights;
+export default RoomCalendar;

@@ -61,4 +61,27 @@ const roomServices: RoomServices[] = [
   },
 ];
 
-export { roomServices };
+const PEOPLE_SELECTION = [
+  {
+    id: 1,
+    name: 'Người lớn',
+    note: 'Từ 13 tuổi trở lên',
+  },
+  {
+    id: 2,
+    name: 'Trẻ em',
+    note: 'Độ tuổi 2 - 12',
+  },
+  {
+    id: 3,
+    name: 'Em bé',
+    note: 'Dưới 2 tuổi',
+  },
+  {
+    id: 4,
+    name: 'Thú cưng',
+    note: 'Dưới 2 tuổi',
+  },
+];
+
+export { roomServices, PEOPLE_SELECTION };

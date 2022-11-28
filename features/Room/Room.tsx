@@ -6,8 +6,8 @@ import RoomImage from './RoomImage';
 import RoomNumber from './RoomNumber';
 import AirCover from './AirCover';
 import RoomServices from './RoomServices';
-import StayingNights from './StayingNights';
-import SelectionForm from './components/SelectionForm';
+import RoomCalendar from './RoomCalendar';
+import SelectionForm from './SelectionForm';
 
 type Props = {};
 
@@ -30,7 +30,7 @@ const Room = (props: Props) => {
           <div className="w-full h-[1px] bg-grey-300"></div>
           <RoomServices room={room} />
           <div className="w-full h-[1px] bg-grey-300"></div>
-          <StayingNights />
+          <RoomCalendar />
           <div className="w-full h-[1px] bg-grey-300"></div>
         </div>
         <div className="col-span-1">
