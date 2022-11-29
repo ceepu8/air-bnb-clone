@@ -11,6 +11,7 @@ interface ButtonProps {
   text?: String;
   icon?: ReactNode;
   children?: any;
+  disabled?: boolean;
   onClick?: (event: any) => void;
   className?: string;
 }
@@ -24,6 +25,7 @@ const Button = ({
   shape,
   text,
   icon,
+  disabled,
   className,
   onClick,
   children,
@@ -58,8 +60,10 @@ const Button = ({
     <button
       className={classNames(
         `${className} ${borderStyle} ${shapeStyle} ${background} ${textColor} ${borderColorStyle}`,
+        {},
       )}
       onClick={onClick}
+      disabled={disabled}
     >
       {icon}
       {children}

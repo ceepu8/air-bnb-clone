@@ -64,21 +64,25 @@ const roomServices: RoomServices[] = [
 const PEOPLE_SELECTION = [
   {
     id: 1,
+    keyName: 'adult',
     name: 'Người lớn',
     note: 'Từ 13 tuổi trở lên',
   },
   {
     id: 2,
+    keyName: 'children',
     name: 'Trẻ em',
     note: 'Độ tuổi 2 - 12',
   },
   {
     id: 3,
+    keyName: 'toddler',
     name: 'Em bé',
     note: 'Dưới 2 tuổi',
   },
   {
     id: 4,
+    keyName: 'pet',
     name: 'Thú cưng',
     note: 'Dưới 2 tuổi',
   },
