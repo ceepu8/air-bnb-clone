@@ -1,5 +1,5 @@
 export * from './layout';
 export * from './locations';
-export * from './accommodation';
+export * from './room';
 export * from './auth';
 export * from './user';
