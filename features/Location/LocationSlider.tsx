@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 import 'antd/dist/reset.css';
-import DestinationSkeleton from '../feedback/skeleton/DestinationSkeleton';
+import LocationSkeleton from './LocationSkeleton';
 
 function Arrow(props: any) {
   return (
@@ -79,7 +79,7 @@ const LocationItem = (props: LocationItemProps) => {
   );
 };
 
-export const Destination = () => {
+export const LocationSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const [locations, isLoading] = useFetchLocation();
@@ -117,7 +117,7 @@ export const Destination = () => {
           [...Array(15)].map((e, i) => {
             return (
               <div key={i} className="keen-slider__slide min-w-[80px]">
-                <DestinationSkeleton />
+                <LocationSkeleton />
               </div>
             );
           })}

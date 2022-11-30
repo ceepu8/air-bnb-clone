@@ -1,10 +1,11 @@
 import { useFetchAccommodation } from '@/hooks/api/accommodation';
 import { Accommodation as Accom } from '@/interfaces';
 import { useRouter } from 'next/router';
-import { AccommodationCard } from '../data-display/AccommodationCard';
-import AccommodationSkeleton from '../feedback/skeleton/AccommodationSkeleton';
+import { AccommodationCard } from './AccommodationCard';
+import AccommodationSkeleton from './AccommodationSkeleton';
+import { LocationSlider } from './LocationSlider';
 
-export const Accommodation = () => {
+export const Location = () => {
   const {
     query: { locationId },
   } = useRouter();
@@ -13,6 +14,7 @@ export const Accommodation = () => {
 
   return (
     <section className="max-w-[1315px] px-12 mx-auto mt-12">
+      <LocationSlider />
       <h2 className="h2 mb-8">Ở bất cứ đâu</h2>
       <div className="grid grid-cols-4 min-h-[450px] justify-start gap-x-4 gap-y-8 m-xs:grid-cols-1 m-md:grid-cols-2 m-lg:grid-cols-3">
         {!isLoading &&
