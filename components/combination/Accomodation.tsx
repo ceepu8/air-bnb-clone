@@ -24,14 +24,7 @@ export const Accommodation = () => {
           <p className="col-span-4 flex items-center justify-center">Không có dữ liệu</p>
         )}
 
-        {isLoading && (
-          <>
-            <AccommodationSkeleton />
-            <AccommodationSkeleton />
-            <AccommodationSkeleton />
-            <AccommodationSkeleton />
-          </>
-        )}
+        {isLoading && [...Array(4)].map((e) => <AccommodationSkeleton />)}
       </div>
     </section>
   );
