@@ -26,9 +26,9 @@ const SelectionForm = () => {
           <div className="col-span-2 relative">
             <PeopleSelection />
             <Button
-              className="py-3 px-5 bg-linear-gradient-100 font-bold absolute right-0 mr-4 top-1/2 -translate-y-1/2"
+              className="text-sm py-3 px-5 bg-linear-gradient-100 font-bold absolute right-0 mr-4 top-1/2 -translate-y-1/2 "
               shape="circle"
-              icon={<BiSearch />}
+              icon={<BiSearch className="inline-block" />}
             >
               Tìm kiếm
             </Button>

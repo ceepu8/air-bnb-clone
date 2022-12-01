@@ -7,13 +7,13 @@ const HeaderNav = (props: Props) => {
     <nav>
       <ul className="flex items-center justify-center">
         <li className="m-2">
-          <button className="relative text-lg pb-2 m-2">Chỗ ở</button>
+          <button className="relative text-lg pb-2">Chỗ ở</button>
         </li>
         <li className="m-2">
-          <button className="relative text-lg pb-2 m-2">Trải nghiệm</button>
+          <button className="relative text-lg pb-2">Trải nghiệm</button>
         </li>
         <li className="m-2">
-          <button className="relative text-lg pb-2 m-2">Trải nghiệm trực tuyến</button>
+          <button className="relative text-lg pb-2">Trải nghiệm trực tuyến</button>
         </li>
       </ul>
     </nav>

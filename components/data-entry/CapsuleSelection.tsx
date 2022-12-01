@@ -10,7 +10,7 @@ type SelectionProps = {
 const CapsuleSelection = ({ isActive, labelText, children }: SelectionProps) => {
   return (
     <div
-      className={classNames('rounded-full py-4 px-5', {
+      className={classNames('rounded-full py-4 px-5 flex flex-col', {
         'bg-white': isActive,
       })}
     >
