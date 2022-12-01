@@ -5,7 +5,7 @@ type Props = {};
 const HeaderNav = (props: Props) => {
   return (
     <nav>
-      <ul className="flex items-center justify-center">
+      <ul className="flex items-center justify-center mb-0">
         <li className="m-2">
           <button className="relative text-lg pb-2">Chỗ ở</button>
         </li>

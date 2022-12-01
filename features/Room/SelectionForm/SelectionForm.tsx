@@ -4,13 +4,13 @@ import PeopleNumberSelection from './PeopleNumberSelection';
 
 const SelectionForm = () => {
   return (
-    <div className="pt-6 ml-6 sticky top-[85px]">
-      <div className="max-w-full min-h-[200px] box-shadow rounded-md border-grey-300 border-[1px] p-6">
+    <div className="pt-6 ml-2 sticky top-[85px]">
+      <div className="max-w-full min-h-[200px] box-light-shadow rounded-xl border-grey-100 border-[0.25px] p-6">
         <p>Add dates for prices</p>
 
         <DatePickerSelection />
         <PeopleNumberSelection />
-        <Button className="bg-linear-gradient-100 py-2 rounded-lg mt-4 w-full">Reserve</Button>
+        <Button className="bg-linear-gradient-100 py-2 rounded-lg mt-4 w-full">Đặt phòng</Button>
 
         <p className="text-xs text-center mt-4">You won't be charged yet</p>
 

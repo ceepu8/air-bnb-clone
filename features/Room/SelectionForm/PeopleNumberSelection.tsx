@@ -56,7 +56,7 @@ const PeopleNumberPopup = ({
           return (
             <div key={id} className="flex items-center justify-between">
               <div className="mb-4">
-                <p className="font-semibold">{name}</p>
+                <p className="font-semibold mb-0">{name}</p>
                 <span className="text-sm">{note}</span>
               </div>
               <div className="flex items-center">

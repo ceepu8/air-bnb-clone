@@ -41,7 +41,7 @@ const DatePickerPopup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose
           <span className="text-sm leading-3 text-grey-400">{footer}</span>
         </div>
 
-        <button className="flex max-w-[300px] w-full border-[1px] border-solid border-grey-400 rounded-md">
+        <button className="flex max-w-[315px] w-full border-[1px] border-solid border-grey-400 rounded-md">
           <div className="flex-1 text-left p-2 border-r-[1px] border-solid border-grey-400">
             <div className="text-[8px] font-semibold leading-3">CHECK-IN</div>
             <div className="text-sm text-grey-500">{startDate}</div>

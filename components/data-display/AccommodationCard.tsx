@@ -1,4 +1,4 @@
-import { Accommodation } from '@/interfaces/index';
+import { Room } from '@/interfaces/index';
 import Image from 'next/image';
 import { AiFillStar } from 'react-icons/ai';
 import { BsFillSuitHeartFill } from 'react-icons/bs';
@@ -6,7 +6,7 @@ import AccommodationSkeleton from '../feedback/skeleton/AccommodationSkeleton';
 import NavLink from '../navigation/Link';
 
 type Props = {
-  room: Accommodation;
+  room: Room;
 };
 
 const HeartIcon = () => {
@@ -27,7 +27,7 @@ export const AccommodationCard = (props: Props) => {
   const { id, hinhAnh, tenPhong, phongNgu, phongTam, giaTien, khach } = props.room || {};
 
   return (
-    <NavLink disabled href={`acommodation/${id}`}>
+    <NavLink href={`rooms/${id}`}>
       <div className="col-span-1">
         <div className="flex flex-col relative">
           <div className="overflow-hidden rounded-2xl">

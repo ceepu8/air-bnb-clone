@@ -46,7 +46,9 @@ const LocationItem = (props: LocationItemProps) => {
     <button
       className="w-full"
       onClick={() => {
-        router.push(`/?locationId=${id}`);
+        router.push(`/?locationId=${id}`, undefined, {
+          scroll: false,
+        });
       }}
     >
       <div
