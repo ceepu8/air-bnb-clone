@@ -1,11 +1,9 @@
 import Button from '@/components/general/Button';
 import Dropdown from '@/components/navigation/Dropdown';
 import useMouseLeave from '@/hooks/useMouseLeave';
-import { useState } from 'react';
-import RoomCalendar from '../RoomCalendar';
+import Calendar from '../components/Calendar';
 
-import { addDays, format } from 'date-fns';
-import { DateRange } from 'react-day-picker';
+import { format } from 'date-fns';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { clearDate } from '../redux/formReducer';
@@ -54,7 +52,7 @@ const DatePickerPopup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose
           </div>
         </button>
       </div>
-      <RoomCalendar />
+      <Calendar />
 
       <div className="text-right">
         <Button

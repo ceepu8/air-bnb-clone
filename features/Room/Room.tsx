@@ -6,8 +6,8 @@ import RoomImage from './RoomImage';
 import RoomNumber from './RoomNumber';
 import AirCover from './AirCover';
 import RoomServices from './RoomServices';
-import RoomCalendar from './RoomCalendar';
 import SelectionForm from './SelectionForm/SelectionForm';
+import RoomCalendar from './RoomCalendar';
 
 type Props = {};
 
@@ -23,7 +23,7 @@ const Room = (props: Props) => {
         <RoomImage src={room.hinhAnh || ''} />
       </div>
       <div className="grid grid-cols-3">
-        <div className="col-span-2">
+        <div className="col-span-2 mr-16">
           <RoomNumber room={room} />
           <div className="w-full h-[1px] bg-grey-300"></div>
           <AirCover />
