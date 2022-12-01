@@ -35,9 +35,12 @@ const formReducer = createSlice({
     setGuest: (state, action: PayloadAction<Guest>) => {
       return { ...state, guest: action.payload };
     },
+    clearDate: (state) => {
+      return { ...state, date: undefined };
+    },
   },
 });
 
-export const { setDate, setGuest } = formReducer.actions;
+export const { setDate, setGuest, clearDate } = formReducer.actions;
 
 export default formReducer.reducer;

@@ -6,10 +6,12 @@ import RoomCalendar from '../RoomCalendar';
 
 import { addDays, format } from 'date-fns';
 import { DateRange } from 'react-day-picker';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
+import { clearDate } from '../redux/formReducer';
 
 const DatePickerPopup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => void }) => {
+  const dispatch = useDispatch();
   const range = useSelector((state: RootState) => state.formReducer.date);
 
   let footer = <p>Please pick the first day.</p>;
@@ -55,7 +57,14 @@ const DatePickerPopup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose
       <RoomCalendar />
 
       <div className="text-right">
-        <Button variant="transparent" text="black" className="underline mr-3 text-sm">
+        <Button
+          variant="transparent"
+          text="black"
+          className="underline mr-3 text-sm"
+          onClick={() => {
+            dispatch(clearDate());
+          }}
+        >
           Xoá ngày
         </Button>
         <Button variant="black" className="px-4 py-1" onClick={handleClose}>
