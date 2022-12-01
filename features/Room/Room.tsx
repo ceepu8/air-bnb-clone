@@ -7,7 +7,7 @@ import RoomNumber from './RoomNumber';
 import AirCover from './AirCover';
 import RoomServices from './RoomServices';
 import RoomCalendar from './RoomCalendar';
-import SelectionForm from './components/SelectionForm/SelectionForm';
+import SelectionForm from './SelectionForm/SelectionForm';
 
 type Props = {};
 

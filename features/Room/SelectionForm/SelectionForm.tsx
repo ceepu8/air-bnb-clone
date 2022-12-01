@@ -11,6 +11,7 @@ const SelectionForm = () => {
         <DatePickerSelection />
         <PeopleNumberSelection />
         <Button className="bg-linear-gradient-100 py-2 rounded-lg mt-4 w-full">Reserve</Button>
+
         <p className="text-xs text-center mt-4">You won't be charged yet</p>
 
         <div className="mt-4">

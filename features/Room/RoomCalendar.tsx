@@ -1,37 +1,18 @@
-import { addDays, format } from 'date-fns';
-import { useState } from 'react';
-import { DateRange, DayPicker } from 'react-day-picker';
+import { DayPicker } from 'react-day-picker';
+import { useDispatch, useSelector } from 'react-redux';
+import { setDate } from './redux/formReducer';
 
 const RoomCalendar = () => {
-  const pastMonth = new Date(2020, 10, 15);
-  const defaultSelected: DateRange = {
-    from: pastMonth,
-    to: addDays(pastMonth, 4),
-  };
-  const [range, setRange] = useState<DateRange | undefined>(defaultSelected);
-
-  let footer = <p>Please pick the first day.</p>;
-  if (range?.from) {
-    if (!range.to) {
-      footer = <p>{format(range.from, 'PPP')}</p>;
-    } else if (range.to) {
-      footer = (
-        <p>
-          {format(range.from, 'PPP')}–{format(range.to, 'PPP')}
-        </p>
-      );
-    }
-  }
+  const dispatch = useDispatch();
+  const range = useSelector((state: any) => state.formReducer.date);
   return (
     <div className="flex flex-col items-center my-6">
-      <div className="w-full">
-        <span className="">{footer}</span>
-      </div>
       <DayPicker
         mode="range"
-        defaultMonth={pastMonth}
         selected={range}
-        onSelect={setRange}
+        onSelect={(val) => {
+          dispatch(setDate(val));
+        }}
         numberOfMonths={2}
       />
     </div>

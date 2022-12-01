@@ -1,8 +1,9 @@
-import { combineReducers } from "redux";
-import authReducer from "./auth/authReducer";
+import formReducer from '@/features/Room/redux/formReducer';
+import { combineReducers } from 'redux';
+import authReducer from './auth/authReducer';
 
 const rootReducer = combineReducers({
-  authReducer: authReducer,
+  formReducer: formReducer,
 });
 
 export default rootReducer;

@@ -2,39 +2,48 @@ import Button from '@/components/general/Button';
 import Dropdown from '@/components/navigation/Dropdown';
 import { PEOPLE_SELECTION } from '@/constants/room';
 import useMouseLeave from '@/hooks/useMouseLeave';
+import { RootState } from '@/redux/store';
 import classNames from 'classnames';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
+import { useDispatch, useSelector } from 'react-redux';
+import { setGuest } from '../redux/formReducer';
 
-interface People {
+interface Guest {
   adult: number;
   children: number;
   toddler: number;
-  pet: number;
 }
 
 const PeopleNumberPopup = ({
   isOpen,
   handleClose,
-  people,
-  setPeople,
 }: {
   isOpen: boolean;
   handleClose: () => void;
-  people: People;
-  setPeople: Dispatch<SetStateAction<People>>;
 }) => {
-  const handleIncrease = (name: keyof People) => {
+  const dispatch = useDispatch();
+  const state = useSelector((state: RootState) => state.formReducer.guest);
+  const [people, setPeople] = useState<Guest>({
+    adult: 0,
+    children: 0,
+    toddler: 0,
+  });
+
+  const handleIncrease = (name: keyof Guest) => {
     setPeople((state) => {
       return { ...state, [name]: state[name] + 1 };
     });
   };
 
-  const handleDecrease = (name: keyof People) => {
+  const handleDecrease = (name: keyof Guest) => {
     setPeople((state) => {
       return { ...state, [name]: state[name] - 1 };
     });
   };
+
+  dispatch(setGuest(people));
+  useEffect(() => {}, [people]);
 
   return (
     <Dropdown
@@ -55,25 +64,25 @@ const PeopleNumberPopup = ({
                   shape="circle"
                   border="default"
                   borderColor="grey"
-                  onClick={() => handleDecrease(keyName as keyof People)}
-                  disabled={people[keyName as keyof People] === 0}
+                  onClick={() => handleDecrease(keyName as keyof Guest)}
+                  disabled={state[keyName as keyof Guest] === 0}
                   className={classNames('text-grey-500', {
-                    'text-grey-300 border-grey-200': people[keyName as keyof People] === 0,
+                    'text-grey-300 border-grey-200': state[keyName as keyof Guest] === 0,
                   })}
                 >
                   <AiOutlineMinus
                     className={classNames('text-grey-500', {
-                      'text-grey-300': people[keyName as keyof People] === 0,
+                      'text-grey-300': state[keyName as keyof Guest] === 0,
                     })}
                     size={12}
                   />
                 </Button>
-                <span className="mx-3">{people[keyName as keyof People]}</span>
+                <span className="mx-3">{state[keyName as keyof Guest]}</span>
                 <Button
                   shape="circle"
                   border="default"
                   borderColor="grey"
-                  onClick={() => handleIncrease(keyName as keyof People)}
+                  onClick={() => handleIncrease(keyName as keyof Guest)}
                 >
                   <AiOutlinePlus className="text-grey-500" size={12} />
                 </Button>
@@ -99,12 +108,7 @@ const PeopleNumberPopup = ({
 
 const PeopleNumberSelection = () => {
   const { ref, value: isMouseIn, handleClose } = useMouseLeave<HTMLDivElement>();
-  const [state, setState] = useState<People>({
-    adult: 0,
-    children: 0,
-    toddler: 0,
-    pet: 0,
-  });
+  const state = useSelector((state: RootState) => state.formReducer.guest);
 
   return (
     <div ref={ref} className="relative">
@@ -116,12 +120,7 @@ const PeopleNumberSelection = () => {
           </div>
         </div>
       </button>
-      <PeopleNumberPopup
-        isOpen={isMouseIn}
-        handleClose={handleClose}
-        people={state}
-        setPeople={setState}
-      />
+      <PeopleNumberPopup isOpen={isMouseIn} handleClose={handleClose} />
     </div>
   );
 };
