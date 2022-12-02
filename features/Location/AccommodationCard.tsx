@@ -1,5 +1,6 @@
 import NavLink from '@/components/navigation/Link';
 import { Accommodation } from '@/interfaces/index';
+import { checkImgValid } from '@/utils/validation';
 import Image from 'next/image';
 import { AiFillStar } from 'react-icons/ai';
 import { BsFillSuitHeartFill } from 'react-icons/bs';
@@ -23,17 +24,26 @@ const HeartIcon = () => {
 };
 
 export const AccommodationCard = (props: Props) => {
-  const { id, hinhAnh, tenPhong, phongNgu, phongTam, giaTien, khach } = props.room || {};
+  const {
+    id,
+    hinhAnh,
+    tenPhong,
+    phongNgu,
+    phongTam,
+    giaTien,
+    khach,
+    rating = 4.5,
+  } = props.room || {};
 
   return (
-    <NavLink disabled href={`acommodation/${id}`}>
+    <NavLink disabled={!id} href={`rooms/${id}`}>
       <div className="col-span-1">
         <div className="flex flex-col relative">
           <div className="overflow-hidden rounded-2xl">
             <img
-              src={hinhAnh}
+              src={checkImgValid(hinhAnh)}
               alt="accommodation"
-              className="!max-w-[200%] !min-w-[200%] !min-h-[300px] !max-h-[300px] object-cover rounded mr-2"
+              className="!max-w-[200%] !w-[200%] !h-[300px] object-cover rounded mr-2"
             />
           </div>
 
@@ -48,7 +58,7 @@ export const AccommodationCard = (props: Props) => {
               </span>
               <span className="flex items-center">
                 <AiFillStar className="mr-1" />
-                4.5
+                {rating}
               </span>
             </div>
 

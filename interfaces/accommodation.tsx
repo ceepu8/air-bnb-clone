@@ -18,4 +18,5 @@ export interface Accommodation {
   banUi: boolean;
   maViTri: number;
   hinhAnh: string;
+  rating?: number;
 }
