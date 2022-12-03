@@ -146,12 +146,12 @@ body,
   }
 
   .arrow-left {
-    left: 42px;
+    left: 0px;
   }
 
   .arrow-right {
     left: auto;
-    right: 42px;
+    right: 0px;
   }
 
   .arrow-disabled {

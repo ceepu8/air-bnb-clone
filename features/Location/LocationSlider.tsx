@@ -7,7 +7,8 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 import 'antd/dist/reset.css';
-import DestinationSkeleton from '../feedback/skeleton/DestinationSkeleton';
+import LocationSkeleton from './LocationSkeleton';
+import LocationItem from './LocationSliderItem';
 
 function Arrow(props: any) {
   return (
@@ -30,58 +31,7 @@ function Arrow(props: any) {
   );
 }
 
-type LocationItemProps = {
-  location: Location;
-};
-
-const LocationItem = (props: LocationItemProps) => {
-  const { hinhAnh, tenViTri, tinhThanh, id } = props.location || {
-    hinhAnh:
-      'https://www.travelandleisure.com/thmb/rbPz5_6COrWFh94qFRHYLJrRM-g=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/iguazu-falls-argentina-brazil-MOSTBEAUTIFUL0921-e967cc4764ca4eb2b9941bd1b48d64b5.jpg',
-  };
-
-  const router = useRouter();
-
-  return (
-    <button
-      className="w-full"
-      onClick={() => {
-        router.push(`/?locationId=${id}`, undefined, {
-          scroll: false,
-        });
-      }}
-    >
-      <div
-        className={classNames(
-          `group flex flex-col my-5 border-b-2 border-transparent pb-2 hover:border-grey-300`,
-          {
-            'border-grey-300': Number(router.query.locationId) === id,
-          },
-        )}
-      >
-        <img
-          src={hinhAnh}
-          alt="location image"
-          className="w-[50px] h-[50px] rounded-full shrink-0 mx-auto"
-        />
-        <div
-          className={classNames('flex flex-col  mt-2 group-hover:!font-semibold text-center', {
-            'font-semibold': Number(router.query.locationId) === id,
-          })}
-        >
-          <span className="text-xs whitespace-nowrap text-ellipsis overflow-hidden">
-            {tenViTri}
-          </span>
-          <span className="text-xs whitespace-nowrap text-ellipsis overflow-hidden">
-            {tinhThanh}
-          </span>
-        </div>
-      </div>
-    </button>
-  );
-};
-
-export const Destination = () => {
+export const LocationSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loaded, setLoaded] = useState(false);
   const [locations, isLoading] = useFetchLocation();
@@ -106,9 +56,9 @@ export const Destination = () => {
     instanceRef.current?.update();
   }, [locations.length, isLoading]);
   return (
-    <section className="max-w-[1315px] px-12 mx-auto mt-[112px] relative">
+    <section className="relative">
       <h2 className="h2">Khám phá những điểm đến gần đây</h2>
-      <div ref={sliderRef} className="keen-slider max-w-[1100px] min-w-0 mx-auto">
+      <div ref={sliderRef} className="keen-slider mx-auto max-w-[92%]">
         {locations?.map((location) => (
           <div key={location.id} className="keen-slider__slide min-w-[80px]">
             <LocationItem location={location} />
@@ -119,7 +69,7 @@ export const Destination = () => {
           [...Array(15)].map((e, i) => {
             return (
               <div key={i} className="keen-slider__slide min-w-[80px]">
-                <DestinationSkeleton />
+                <LocationSkeleton />
               </div>
             );
           })}

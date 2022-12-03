@@ -1,12 +1,11 @@
-import { Accommodation, Destination } from '@/components/combination';
+import { Location } from '@/features/Location/Location';
 import { NextPageWithLayout } from '@/interfaces';
 import { MainLayout } from '@/layouts/main';
 
 const HomePage: NextPageWithLayout = () => {
   return (
     <>
-      <Destination />
-      <Accommodation />
+      <Location />
     </>
   );
 };
