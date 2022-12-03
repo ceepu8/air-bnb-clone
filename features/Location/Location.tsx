@@ -13,7 +13,7 @@ export const Location = () => {
   const [rooms, isLoading] = useFetchAccommodation(locationId);
 
   return (
-    <section className="max-w-[1315px] px-12 mx-auto mt-12">
+    <section className="max-w-[1315px] px-12 mx-auto mt-24">
       <LocationSlider />
       <h2 className="h2 mb-8">Ở bất cứ đâu</h2>
       <div className="grid grid-cols-4 min-h-[450px] justify-start gap-x-4 gap-y-8 m-xs:grid-cols-1 m-md:grid-cols-2 m-lg:grid-cols-3">

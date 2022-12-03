@@ -56,9 +56,9 @@ export const LocationSlider = () => {
     instanceRef.current?.update();
   }, [locations.length, isLoading]);
   return (
-    <section className="max-w-[1315px] px-12 mx-auto mt-[112px] relative">
+    <section className="relative">
       <h2 className="h2">Khám phá những điểm đến gần đây</h2>
-      <div ref={sliderRef} className="keen-slider max-w-[1100px] min-w-0 mx-auto">
+      <div ref={sliderRef} className="keen-slider mx-auto max-w-[92%]">
         {locations?.map((location) => (
           <div key={location.id} className="keen-slider__slide min-w-[80px]">
             <LocationItem location={location} />
