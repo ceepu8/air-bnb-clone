@@ -3,7 +3,7 @@
  */
 const nextConfig = {
   images: {
-    domains: ['airbnbnew.cybersoft.edu.vn'],
+    domains: ['airbnbnew.cybersoft.edu.vn', 'pix8.agoda.net'],
   },
 };
 

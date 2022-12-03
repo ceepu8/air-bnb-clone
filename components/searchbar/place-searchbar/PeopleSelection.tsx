@@ -71,7 +71,7 @@ const PeopleSelection = () => {
   return (
     <div ref={ref}>
       <CapsuleSelection isActive={isMouseIn} labelText="Khách">
-        <div>
+        <div className="text-xs leading-1">
           {calcTotal(context?.state.people) === 0 ? 'Thêm khách' : calcTotal(context?.state.people)}
         </div>
       </CapsuleSelection>

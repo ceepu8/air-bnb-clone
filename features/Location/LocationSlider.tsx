@@ -1,12 +1,8 @@
 import { useFetchLocation } from '@/hooks/api/destination';
-import { Location } from '@/interfaces';
-import { Button } from 'antd';
 import classNames from 'classnames';
 import { useKeenSlider } from 'keen-slider/react';
-import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
-import 'antd/dist/reset.css';
 import LocationSkeleton from './LocationSkeleton';
 import LocationItem from './LocationSliderItem';
 

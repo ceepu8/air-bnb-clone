@@ -10,10 +10,10 @@ const PlaceSearchBar = ({
   extendComponent: any;
 }) => {
   return (
-    <div>
+    <>
       <SelectionBoxExtend isToggle={extendSelectionBox} onSet={extendComponent} />
       <SelectionBox isToggle={!extendSelectionBox} onSet={extendComponent} />
-    </div>
+    </>
   );
 };
 

@@ -1,11 +1,61 @@
 /* Custom for calendar */
+.rdp {
+  --rdp-cell-size: 40px;
+  --rdp-accent-color: #0000ff;
+  --rdp-background-color: #e7edff;
+  /* Switch to dark colors for dark themes */
+  --rdp-accent-color-dark: #3003e1;
+  --rdp-background-color-dark: #180270;
+  /* Outline border for focused elements */
+  --rdp-outline: 2px solid var(--rdp-accent-color);
+  /* Outline border for focused and selected elements */
+  --rdp-outline-selected: 2px solid rgba(0, 0, 0, 0.75);
+  max-width: 100%;
+}
+
+.rdp-caption_label {
+  font-size: 16px;
+  font-weight: 500;
+  z-index: 0;
+}
+
+.rdp-head_cell {
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.rdp-cell {
+  max-width: var(--rdp-cell-size);
+  height: 100%;
+  height: var(--rdp-cell-size);
+  padding: 0;
+  text-align: center;
+}
+
 .rdp-day_selected,
 .rdp-day_selected:focus-visible,
 .rdp-day_selected:hover {
-  color: white;
+  color: var(--black-200);
   opacity: 1;
-  background-color: var(---primary-pink);
+  background-color: var(--grey-100) !important;
 }
+
+.rdp-day {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.rdp-day_range_start,
+.rdp-day_range_start:focus-visible,
+.rdp-day_range_start:hover,
+.rdp-day_range_end,
+.rdp-day_range_end:focus-visible,
+.rdp-day_range_end:hover {
+  color: var(--white);
+  background-color: var(--black-100) !important;
+  border-radius: 50% !important;
+}
+
 :where(.css-dev-only-do-not-override-stni74).ant-btn-primary {
   color: #fff;
   background-color: #1677ff !important;

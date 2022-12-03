@@ -4,6 +4,10 @@ function useMouseLeave<T extends HTMLElement>() {
   const [value, setValue] = useState(false);
   const ref = useRef<T>(null);
 
+  const handleClose = () => {
+    setValue(false);
+  };
+
   useEffect(() => {
     function handleClickOutside({ target }: MouseEvent) {
       const isMouseDown = ref.current?.contains(target as Node) ? true : false;
@@ -15,7 +19,7 @@ function useMouseLeave<T extends HTMLElement>() {
     };
   }, [ref]);
 
-  return { ref, value };
+  return { ref, value, handleClose };
 }
 
 export default useMouseLeave;
