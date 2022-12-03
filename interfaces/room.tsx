@@ -18,4 +18,5 @@ export interface Room {
   banUi: boolean | undefined;
   maViTri: number | undefined;
   hinhAnh: string | undefined;
+  rating?: number;
 }

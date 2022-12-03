@@ -1,12 +1,12 @@
 import NavLink from '@/components/navigation/Link';
-import { Accommodation } from '@/interfaces/index';
+import { Room } from '@/interfaces/index';
 import { checkImgValid } from '@/utils/validation';
 import Image from 'next/image';
 import { AiFillStar } from 'react-icons/ai';
 import { BsFillSuitHeartFill } from 'react-icons/bs';
 
 type Props = {
-  room: Accommodation;
+  room: Room;
 };
 
 const HeartIcon = () => {
@@ -40,9 +40,12 @@ export const AccommodationCard = (props: Props) => {
       <div className="col-span-1">
         <div className="flex flex-col relative">
           <div className="overflow-hidden rounded-2xl">
-            <img
-              src={checkImgValid(hinhAnh)}
+            <Image
+              src={checkImgValid(hinhAnh || '')}
               alt="accommodation"
+              width={300}
+              height={300}
+              layout={'responsive'}
               className="!max-w-[200%] !w-[200%] !h-[300px] object-cover rounded mr-2"
             />
           </div>
