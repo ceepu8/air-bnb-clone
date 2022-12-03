@@ -24,7 +24,7 @@ const DateDropdown = ({ isOpen, range }: DateProps) => {
         mode="range"
         defaultMonth={pastMonth}
         selected={range}
-        onSelect={(value: DateRange) => {
+        onSelect={(value: DateRange | undefined) => {
           context?.setState?.((state: SearchFormProps) => {
             return {
               ...state,
