@@ -1,7 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   // important: true,
-  content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
+    './features/**/*.{js,ts,jsx,tsx}',
+  ],
   corePlugins: {
     preflight: true,
   },
@@ -33,6 +37,7 @@ module.exports = {
       'linear-radial-100': 'var(--linear-radial-100)',
       'linear-radial-200': 'var(--linear-radial-200)',
       'linear-radial-300': 'var(--linear-radial-300)',
+      'linear-glass-effect': 'var(--linear-glass-effect)',
     },
     textColor: {
       primary: 'var(--primary-pink)',
@@ -59,6 +64,7 @@ module.exports = {
       skintone: 'var(--skintone)',
       blue: 'var(--blue)',
       green: 'var(--green)',
+      transparent: 'transparent',
       'orange-100': 'var(--black-100)',
       'black-100': 'var(--black-100)',
       'black-200': 'var(--black-200)',

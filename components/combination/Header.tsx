@@ -33,7 +33,7 @@ const Header = () => {
     <header
       className={`${
         extendSelectionBox ? 'h-[140px]' : 'h-[70px]'
-      } mx-auto fixed top-0 right-0 w-full border-solid border-grey-200 border-bottom border transition-all bg-white`}
+      } mx-auto fixed top-0 right-0 w-full border-solid border-grey-200 border-bottom border transition-all bg-white z-50`}
     >
       <div className="max-w-[1315px] mx-auto grid grid-cols-5">
         <div className="col-span-1">

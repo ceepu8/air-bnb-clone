@@ -1,4 +1,4 @@
-import { LayoutProps } from "@/interfaces/index";
+import { LayoutProps } from '@/interfaces';
 
 export function AdminLayout({ children }: LayoutProps) {
   return (

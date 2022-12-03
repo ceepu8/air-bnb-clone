@@ -1,16 +1,11 @@
-import Carousel from '@/components/data-display/Carousel';
-import React from 'react';
-
-import { Accommodation, Destination } from '../components/combination';
-import { NextPageWithLayout } from '../interfaces';
-import { MainLayout } from '../layouts';
+import { Location } from '@/features/Location/Location';
+import { NextPageWithLayout } from '@/interfaces';
+import { MainLayout } from '@/layouts/main';
 
 const HomePage: NextPageWithLayout = () => {
   return (
     <>
-      <Carousel />
-      {/* <Destination /> */}
-      <Accommodation />
+      <Location />
     </>
   );
 };

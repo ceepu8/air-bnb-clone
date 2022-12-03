@@ -1,4 +1,4 @@
-import AuthLayout from '@/layouts/auth';
+import { AuthLayout } from '../layouts';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { SubmitHandler, useForm } from 'react-hook-form';
