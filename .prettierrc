@@ -1,6 +1,15 @@
 {
-  "semi": true,
+  "semi": false, // remove semi-colon
   "singleQuote": true,
-  "trailingComma": "all",
-  "printWidth": 100
+  "printWidth": 100,
+  "trailingComma": "es5",
+  "arrowParens": "always",
+  "tabWidth": 2,
+  "useTabs": false,
+  "quoteProps": "as-needed",
+  "jsxSingleQuote": false,
+  "bracketSpacing": true,
+  "bracketSameLine": false,
+  "tailwindConfig": "./tailwind.config.js",
+  "endOfLine": "auto"
 }
