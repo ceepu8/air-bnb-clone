@@ -1,0 +1,108 @@
+:root {
+  --font-sans: "Roboto", sans-serif;
+
+  --primary: #ff385c;
+  --tiffany: #e1f4f2;
+  --pink: #fae0e8;
+  --gray: #f3f4f7;
+  --dark-gray: #999999;
+  --danger: #eb5757;
+  --green: #27ae60;
+
+  --text-main: #000000;
+  --text-sub: #ffffff;
+  --text-gray: var(--dark-gray);
+
+  --white: #ffffff;
+  --black-100: #000000;
+  --black-200: #222222;
+
+  --grey-100: #f7f7f7;
+  --grey-200: #ebebeb;
+  --grey-300: #dddddd;
+  --grey-400: #b0b0b0;
+  --grey-500: #717171;
+
+  --red-100: #c13515;
+  --red-200: #b32505;
+
+  --skintone: #fff8f6;
+  --orange-100: #e07912;
+  --green: #008a05;
+  --blue: #428bff;
+
+  --purple-100: #92174d;
+  --purple-200: #460479;
+
+  --linear-gradient-100: linear-gradient(to right, #e61e4d 0%, #e31c5f 50%, #d70466 100%);
+  --linear-gradient-200: linear-gradient(to right, #bd1e59 0%, #92174d 50%, #861453 100%);
+  --linear-gradient-300: linear-gradient(to right, #59086e 0%, #460479 50%, #440589 100%);
+  --linear-radial-100: radial-gradient(
+    circle at center,
+    #ff385c 0%,
+    #e61e4d 27.5%,
+    #e31c5f 40%,
+    #d70466 57.5%,
+    #bd1e59 75%,
+    #bd1e59 100%
+  );
+  --linear-radial-200: radial-gradient(
+    circle at center,
+    #d70466 0%,
+    #bd1e59 30%,
+    #92174d 55%,
+    #861453 72.5%,
+    #6c0d63 90%,
+    #6c0d63 100%
+  );
+  --linear-radial-300: radial-gradient(
+    circle at center,
+    #6c0d63 0%,
+    #59086e 30%,
+    #460479 55%,
+    #440589 72.5%,
+    #3b07bb 90%,
+    #3b07bb 100%
+  );
+  --linear-glass-effect: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.2) 20%,
+    rgba(255, 255, 255, 0.5) 60%,
+    rgba(255, 255, 255, 0)
+  );
+
+  --drop-shadow: 0px 20px 24px rgba(0, 0, 0, 0.03);
+  --bottom-shadow: 0px -4px 8px 24px rgba(45, 135, 45, 0.08);
+
+  --header-height: 70;
+}
+
+@tailwind base;
+
+@layer base {
+  body {
+    overscroll-behavior-y: none;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    text-rendering: optimizeLegibility;
+    touch-action: manipulation;
+    text-size-adjust: none;
+    user-select: none;
+    padding: 0;
+    margin: 0;
+  }
+  html {
+    height: -webkit-fill-available;
+  }
+  ul,
+  li {
+    list-style: none;
+  }
+
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: none;
+  }
+}

@@ -1,0 +1,19 @@
+.navigation {
+  background: var(--primary);
+}
+
+.activeTab {
+  font-weight: 700;
+}
+
+/* TODO: transition tab */
+.activeTab::after {
+  height: 4px;
+  border-radius: 2px;
+  display: block;
+  width: 54px;
+  top: 0;
+  position: absolute;
+  background: var(--primary);
+  content: '';
+}
