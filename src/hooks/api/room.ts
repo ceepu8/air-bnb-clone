@@ -1,4 +1,4 @@
-import { isServer } from "@/utils"
+import { buildURL, isServer } from "@/utils"
 import { useQuery } from "@tanstack/react-query"
 
 import api from "@/configs/axios"
@@ -19,15 +19,17 @@ export const useGetRoomList = (variables = {}) => {
   })
 }
 
-export const useGetRoomDetail = () => {
+export const useGetRoomDetail = (id: string | string[] | undefined = "") => {
   return useQuery(
-    [ROOM_DETAIL_KEY],
-    async (id: any) => {
-      const { data } = await api.get(API.ROOM.DETAIL.replace(":id", id))
-      return data
+    [ROOM_DETAIL_KEY, id],
+    async () => {
+      console.log(id)
+
+      const { data } = await api.get(API.ROOM.DETAIL.replace(":id", id.toString()))
+      return data.content
     },
     {
-      keepPreviousData: true,
+      keepPreviousData: false,
       staleTime: Infinity,
     }
   )

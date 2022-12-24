@@ -1,5 +1,11 @@
+import { RoomDetailView } from "@/views/RoomDetailView"
+
 const RoomDetail = () => {
-  return <>{/* <Room /> */}</>
+  return (
+    <>
+      <RoomDetailView />
+    </>
+  )
 }
 
 export default RoomDetail

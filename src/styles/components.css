@@ -45,7 +45,7 @@
 .rdp-day_selected,
 .rdp-day_selected:focus-visible,
 .rdp-day_selected:hover {
-  color: var(--black-200);
+  color: var(--black-100) !important;
   opacity: 1;
   background-color: var(--grey-100) !important;
 }
@@ -61,7 +61,18 @@
 .rdp-day_range_end,
 .rdp-day_range_end:focus-visible,
 .rdp-day_range_end:hover {
-  color: var(--white);
+  color: var(--white) !important;
+  background-color: var(--black-100) !important;
+  border-radius: 50% !important;
+}
+
+.rdp-day_range_start,
+.rdp-day_range_start:focus-visible,
+.rdp-day_range_start:hover,
+.rdp-day_range_end,
+.rdp-day_range_end:focus-visible,
+.rdp-day_range_end:hover {
+  color: var(--white) !important;
   background-color: var(--black-100) !important;
   border-radius: 50% !important;
 }

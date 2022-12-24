@@ -7,12 +7,12 @@ type LocationItemProps = {
   location: LocationInterface
 }
 
-const defaultImage =
+const DEFAULT_IMAGE =
   "https://www.travelandleisure.com/thmb/rbPz5_6COrWFh94qFRHYLJrRM-g=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/iguazu-falls-argentina-brazil-MOSTBEAUTIFUL0921-e967cc4764ca4eb2b9941bd1b48d64b5.jpg"
 
 const LocationItem = (props: LocationItemProps) => {
   const { hinhAnh, tenViTri, tinhThanh, id } = props.location || {
-    hinhAnh: defaultImage,
+    hinhAnh: DEFAULT_IMAGE,
   }
 
   const router = useRouter()

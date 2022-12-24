@@ -34,7 +34,7 @@ const Button = ({
   const background = classNames({
     "bg-primary": variant == "primary",
     "bg-white": variant == "white",
-    "bg-black-100": variant == "black",
+    "bg-black": variant == "black",
     transparent: (variant = "transparent"),
   })
 
@@ -44,7 +44,7 @@ const Button = ({
   })
 
   const borderStyle = classNames({
-    "border-[1px] border-grey-300 p-2": border == "default",
+    "border-[1px] border-dark-gray p-2": border == "default",
     none: !border,
   })
 
@@ -53,7 +53,7 @@ const Button = ({
   })
 
   const borderColorStyle = classNames({
-    "border-grey-300": borderColor === "grey",
+    "border-dark-gray": borderColor === "grey",
   })
 
   return (
