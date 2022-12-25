@@ -27,6 +27,7 @@ module.exports = {
       boxShadow: {
         drop: "var(--drop-shadow)",
         bottom: "var(--bottom-shadow)",
+        modal: "var(--modal-shadow)",
       },
       fontFamily: {
         san: "var(--font-sans)",

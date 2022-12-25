@@ -69,7 +69,7 @@ const Popup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => vo
 }
 
 export const PeoplePicker = () => {
-  const { ref, value, handleClose } = useMouseLeave()
+  const { ref, value, handleClose } = useMouseLeave<HTMLDivElement>()
 
   return (
     <div ref={ref} className="relative">

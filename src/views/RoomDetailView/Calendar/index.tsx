@@ -1,40 +1,21 @@
-import { addDays, format } from "date-fns"
 import { DateRange, DayPicker } from "react-day-picker"
-import React, { useState } from "react"
-
-const pastMonth = new Date(2020, 10, 15)
+import { useDispatch, useSelector } from "react-redux"
+import { SET_DATE } from "@/store/actions"
 
 export const Calendar = () => {
-  const defaultSelected: DateRange = {
-    from: pastMonth,
-    to: addDays(pastMonth, 4),
-  }
-  const [range, setRange] = useState<DateRange | undefined>(defaultSelected)
-
-  let footer = <p>Please pick the first day.</p>
-  if (range?.from) {
-    if (!range.to) {
-      footer = <p>{format(range.from, "PPP")}</p>
-    } else if (range.to) {
-      footer = (
-        <p>
-          {format(range.from, "PPP")}–{format(range.to, "PPP")}
-        </p>
-      )
-    }
-  }
+  const date = useSelector((state: any) => state.roomForm.date)
+  const dispatch = useDispatch()
 
   return (
     <div className="mt-8">
       <p className="text-xl font-medium">2 đêm tại NewApt D1</p>
-      <span className="text-grey-500 text-sm">{footer}</span>
+      {/* <span className="text-grey-500 text-sm">{footer}</span> */}
       <div className="my-6 flex flex-col items-center">
         <DayPicker
           mode="range"
-          selected={range}
-          onSelect={(val) => {
-            // dispatch(setDate(val))
-            setRange(val)
+          selected={date}
+          onSelect={(value: DateRange | undefined) => {
+            dispatch(SET_DATE(value))
           }}
           numberOfMonths={2}
         />

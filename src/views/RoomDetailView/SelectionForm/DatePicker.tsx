@@ -1,31 +1,13 @@
 import { Button, DropDown } from "@/components"
-import Dropdown from "@/components/navigation/Dropdown"
 import { useMouseLeave } from "@/hooks"
-import { addDays, format } from "date-fns"
-import { useState } from "react"
+import { SET_DATE } from "@/store/actions"
+import { format } from "date-fns"
 import { DateRange, DayPicker } from "react-day-picker"
+import { useDispatch, useSelector } from "react-redux"
 
-const pastMonth = new Date(2020, 10, 15)
-
-const DatePickerPopup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => void }) => {
-  const defaultSelected: DateRange = {
-    from: pastMonth,
-    to: addDays(pastMonth, 4),
-  }
-  const [range, setRange] = useState<DateRange | undefined>(defaultSelected)
-
-  let footer = <p>Please pick the first day.</p>
-  if (range?.from) {
-    if (!range.to) {
-      footer = <p>{format(range.from, "PPP")}</p>
-    } else if (range.to) {
-      footer = (
-        <p>
-          {format(range.from, "PPP")}–{format(range.to, "PPP")}
-        </p>
-      )
-    }
-  }
+const Popup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => void }) => {
+  const dispatch = useDispatch()
+  const date = useSelector((state: any) => state.roomForm.date)
 
   return (
     <DropDown
@@ -40,20 +22,24 @@ const DatePickerPopup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose
 
         <button className="flex w-full max-w-[315px] rounded-md border-[1px] border-solid border-dark-gray">
           <div className="flex-1 border-r-[1px] border-solid border-dark-gray p-2 text-left">
-            <div className="text-[8px] font-semibold leading-3">CHECK-IN</div>
-            <div className="text-grey-500 text-sm">123</div>
+            <div className="text-[8px] font-bold leading-3">CHECK-IN</div>
+            <div className="text-sm">
+              {date?.from ? format(date?.from, "dd/MM/yyyy") : "Thêm ngày"}
+            </div>
           </div>
           <div className="flex-1 p-2 text-left">
-            <div className="text-[8px] font-semibold leading-3">CHECK-OUT</div>
-            <div className="text-grey-500 text-sm">123</div>
+            <div className="text-[8px] font-bold leading-3">CHECK-OUT</div>
+            <div className="text-sm">{date?.to ? format(date?.to, "dd/MM/yyyy") : "Thêm ngày"}</div>
           </div>
         </button>
       </div>
       <div className="my-6 flex flex-col items-center">
         <DayPicker
           mode="range"
-          selected={range}
-          onSelect={(val) => console.log(123)}
+          selected={date}
+          onSelect={(value: DateRange | undefined) => {
+            dispatch(SET_DATE(value))
+          }}
           numberOfMonths={2}
         />
       </div>
@@ -76,20 +62,25 @@ const DatePickerPopup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose
 }
 
 export const DatePicker = () => {
-  const { ref, value, handleClose } = useMouseLeave()
+  const { ref, value, handleClose } = useMouseLeave<HTMLDivElement>()
+  const date = useSelector((state: any) => state.roomForm.date)
   return (
     <div ref={ref} className="relative">
       <button className="mt-4 flex w-full rounded-t-md border-[1px] border-solid border-dark-gray">
         <div className="flex-1 border-r-[1px] border-solid border-dark-gray p-2 text-left">
           <div className="text-[8px] font-semibold leading-3">CHECK-IN</div>
-          <div className="text-grey-500 text-sm">123</div>
+          <div className="text-grey-500 text-sm">
+            {date?.from ? format(date?.from, "dd/MM/yyyy") : "Thêm ngày"}
+          </div>
         </div>
         <div className="flex-1 p-2 text-left">
           <div className="text-[8px] font-semibold leading-3">CHECK-OUT</div>
-          <div className="text-grey-500 text-sm">123</div>
+          <div className="text-grey-500 text-sm">
+            {date?.to ? format(date?.to, "dd/MM/yyyy") : "Thêm ngày"}
+          </div>
         </div>
       </button>
-      <DatePickerPopup isOpen={value} handleClose={handleClose} />
+      <Popup isOpen={value} handleClose={handleClose} />
     </div>
   )
 }

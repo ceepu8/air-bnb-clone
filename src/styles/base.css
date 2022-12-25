@@ -73,6 +73,7 @@
     rgba(255, 255, 255, 0)
   );
 
+  --modal-shadow: 0px 6px 20px rgb(0 0 0 / 20%);
   --drop-shadow: 0px 20px 24px rgba(0, 0, 0, 0.03);
   --bottom-shadow: 0px -4px 8px 24px rgba(45, 135, 45, 0.08);
 

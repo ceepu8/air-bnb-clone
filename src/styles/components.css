@@ -24,9 +24,9 @@
 }
 
 .rdp-caption_label {
-  font-size: 16px;
-  font-weight: 500;
-  z-index: 0;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  z-index: 0 !important;
 }
 
 .rdp-head_cell {

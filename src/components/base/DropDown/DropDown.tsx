@@ -10,7 +10,7 @@ const Dropdown = ({ isOpen, className, children }: DropdownProps) => {
   return (
     <div
       className={classNames(
-        "absolute z-50 hidden rounded-3xl bg-white p-10 shadow-2xl",
+        "absolute z-50 hidden rounded-3xl bg-white p-10 shadow-modal",
         className,
         {
           "!block": isOpen,
