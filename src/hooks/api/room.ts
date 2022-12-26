@@ -6,9 +6,11 @@ import { API, ROOM_DETAIL_KEY, ROOM_LIST_KEY } from "@/constants"
 
 import { useInfinite } from "./base"
 
-export const useGetRoomList = (variables = {}) => {
+export const useGetRoomList = (variables: { locationId: string | string[] | undefined }) => {
+  const { locationId } = variables
+  const URL = locationId ? API.ROOM.DETAIL.replace(":id", locationId.toString()) : API.ROOM.LIST
   return useInfinite([ROOM_LIST_KEY, variables], {
-    queryURL: API.ROOM.LIST,
+    queryURL: URL,
     variables,
     options: {
       staleTime: Infinity,
@@ -23,8 +25,6 @@ export const useGetRoomDetail = (id: string | string[] | undefined = "") => {
   return useQuery(
     [ROOM_DETAIL_KEY, id],
     async () => {
-      console.log(id)
-
       const { data } = await api.get(API.ROOM.DETAIL.replace(":id", id.toString()))
       return data.content
     },

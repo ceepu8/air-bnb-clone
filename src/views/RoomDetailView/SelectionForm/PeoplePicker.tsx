@@ -1,11 +1,40 @@
 import { Button, DropDown } from "@/components"
 import { PEOPLE_SELECTION } from "@/constants"
 import { useMouseLeave } from "@/hooks"
+import { SET_GUEST } from "@/store/actions"
 import classNames from "classnames"
 import React from "react"
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai"
+import { useDispatch, useSelector } from "react-redux"
 
 const Popup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => void }) => {
+  const dispatch = useDispatch()
+  const guest = useSelector((state: any) => state.roomForm.guest)
+
+  const handleIncrease = (keyName: string) => {
+    const selectedTotal = guest[keyName]
+    if (selectedTotal >= 0) {
+      dispatch(
+        SET_GUEST({
+          ...guest,
+          [keyName]: selectedTotal + 1,
+        })
+      )
+    }
+  }
+
+  const handleDecrease = (keyName: string) => {
+    const selectedTotal = guest[keyName]
+    if (selectedTotal >= 1) {
+      dispatch(
+        SET_GUEST({
+          ...guest,
+          [keyName]: selectedTotal - 1,
+        })
+      )
+    }
+  }
+
   return (
     <DropDown
       isOpen={isOpen}
@@ -25,26 +54,20 @@ const Popup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => vo
                   shape="circle"
                   border="default"
                   borderColor="grey"
-                  // onClick={() => handleDecrease(keyName as keyof Guest)}
+                  onClick={() => handleDecrease(keyName)}
                   // disabled={state[keyName as keyof Guest] === 0}
                   className={classNames("text-dark-gray", {
                     // 'text-grey-300 border-grey-200': state[keyName as keyof Guest] === 0,
                   })}
                 >
-                  <AiOutlineMinus
-                    className={classNames("text-dark-gray", {
-                      // 'text-grey-300': state[keyName as keyof Guest] === 0,
-                    })}
-                    size={12}
-                  />
+                  <AiOutlineMinus className={classNames("text-dark-gray", {})} size={12} />
                 </Button>
-                {/* <span className="mx-3">{state[keyName as keyof Guest]}</span> */}
-                <span className="mx-3">1</span>
+                <span className="mx-3 w-6 text-center">{guest[keyName]}</span>
                 <Button
                   shape="circle"
                   border="default"
                   borderColor="grey"
-                  // onClick={() => handleIncrease(keyName as keyof Guest)}
+                  onClick={() => handleIncrease(keyName)}
                 >
                   <AiOutlinePlus className="text-dark-gray" size={12} />
                 </Button>

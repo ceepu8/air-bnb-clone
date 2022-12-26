@@ -11,8 +11,8 @@ export const RoomView = () => {
   const router = useRouter()
   const locationId = router.query?.locationId
 
-  // const { data: listRoom = [], isLoading } = useGetRoomList()
-  const { data: listRoom = [], isLoading } = useGetRoomDetail(locationId)
+  const { data: listRoom = [], isLoading } = useGetRoomList({ locationId })
+  // const { data: listRoom = [], isLoading } = useGetRoomDetail(locationId)
 
   const renderList = () => {
     if (isLoading) {
