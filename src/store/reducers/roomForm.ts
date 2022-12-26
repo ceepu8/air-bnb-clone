@@ -1,16 +1,12 @@
 import { createReducer, PayloadAction } from "@reduxjs/toolkit"
 import { addDays } from "date-fns"
+import { DateRange } from "react-day-picker"
 import { CLEAR_DATE, SET_DATE, SET_GUEST } from "../actions"
 
 interface Guest {
   adult: number
   children: number
   toddler: number
-}
-
-type DateRange = {
-  from: Date | undefined | string
-  to?: Date | undefined | string
 }
 
 interface FormState {
@@ -24,7 +20,7 @@ const INITIAL_STATE: FormState = {
     to: addDays(new Date(), 4),
   },
   guest: {
-    adult: 0,
+    adult: 1,
     children: 0,
     toddler: 0,
   },

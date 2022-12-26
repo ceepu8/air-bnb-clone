@@ -25,7 +25,7 @@ const Popup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => vo
 
   const handleDecrease = (keyName: string) => {
     const selectedTotal = guest[keyName]
-    if (selectedTotal >= 1) {
+    if ((selectedTotal >= 1 && keyName !== "adult") || selectedTotal > 1) {
       dispatch(
         SET_GUEST({
           ...guest,
@@ -55,9 +55,9 @@ const Popup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => vo
                   border="default"
                   borderColor="grey"
                   onClick={() => handleDecrease(keyName)}
-                  // disabled={state[keyName as keyof Guest] === 0}
                   className={classNames("text-dark-gray", {
-                    // 'text-grey-300 border-grey-200': state[keyName as keyof Guest] === 0,
+                    "cursor-not-allowed border-light-gray text-light-gray":
+                      guest[keyName] === 0 || guest["adult"] === 1,
                   })}
                 >
                   <AiOutlineMinus className={classNames("text-dark-gray", {})} size={12} />
@@ -93,13 +93,19 @@ const Popup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => vo
 
 export const PeoplePicker = () => {
   const { ref, value, handleClose } = useMouseLeave<HTMLDivElement>()
+  const guest = useSelector((state: any) => state.roomForm.guest)
+  console.log(Object.values(guest))
+
+  const total = Object.values<number>(guest).reduce((prev, curr): number => {
+    return prev + curr
+  }, 0)
 
   return (
     <div ref={ref} className="relative">
       <button className="flex w-full rounded-b-md border-[1px] border-t-[0px] border-solid border-dark-gray">
         <div className="flex-1 p-2 text-left">
           <div className="text-[8px] font-semibold leading-3">GUESTS</div>
-          <div className="text-grey-500 text-sm">1 guest</div>
+          <div className="text-grey-500 text-sm">{total}</div>
         </div>
       </button>
       <Popup isOpen={value} handleClose={handleClose} />
