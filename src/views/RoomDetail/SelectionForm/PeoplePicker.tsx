@@ -57,7 +57,7 @@ const Popup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => vo
                   onClick={() => handleDecrease(keyName)}
                   className={classNames("text-dark-gray", {
                     "cursor-not-allowed border-light-gray text-light-gray":
-                      guest[keyName] === 0 || guest["adult"] === 1,
+                      guest[keyName] === 0 || (keyName === "adult" && guest[keyName] === 1),
                   })}
                 >
                   <AiOutlineMinus className={classNames("text-dark-gray", {})} size={12} />
