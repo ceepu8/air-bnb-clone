@@ -61,7 +61,9 @@ export const RoomDetailView = () => {
               </div>
             </div>
             <LineBreak />
-            <Calendar />
+            <div className="mt-8">
+              <Calendar />
+            </div>
             <LineBreak />
           </div>
           <div className="col-span-1">

@@ -1,9 +1,8 @@
 import { Button, DropDown } from "@/components"
 import { useMouseLeave } from "@/hooks"
-import { SET_DATE } from "@/store/actions"
 import { format } from "date-fns"
-import { DateRange, DayPicker } from "react-day-picker"
 import { useDispatch, useSelector } from "react-redux"
+import { Calendar } from "../Calendar"
 
 const Popup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => void }) => {
   const dispatch = useDispatch()
@@ -14,13 +13,10 @@ const Popup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => vo
       isOpen={isOpen}
       className="absolute -top-4 -right-8 hidden min-h-[300px] min-w-[661px] rounded-2xl bg-white py-4 px-8"
     >
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="mb-0 text-xl font-semibold">5 đêm</p>
-          <span className="text-sm leading-3 text-dark-gray">123</span>
-        </div>
+      <div className="relative mt-8 flex items-center justify-between">
+        <Calendar />
 
-        <button className="flex w-full max-w-[315px] rounded-md border-[1px] border-solid border-dark-gray">
+        <button className="absolute top-0 right-0 flex w-full max-w-[315px] rounded-md border-[1px] border-solid border-dark-gray">
           <div className="flex-1 border-r-[1px] border-solid border-dark-gray p-2 text-left">
             <div className="text-[8px] font-bold leading-3">CHECK-IN</div>
             <div className="text-sm">
@@ -32,16 +28,6 @@ const Popup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => vo
             <div className="text-sm">{date?.to ? format(date?.to, "dd/MM/yyyy") : "Thêm ngày"}</div>
           </div>
         </button>
-      </div>
-      <div className="my-6 flex flex-col items-center">
-        <DayPicker
-          mode="range"
-          selected={date}
-          onSelect={(value: DateRange | undefined) => {
-            dispatch(SET_DATE(value))
-          }}
-          numberOfMonths={2}
-        />
       </div>
 
       <div className="text-right">

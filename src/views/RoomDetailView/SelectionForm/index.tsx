@@ -8,8 +8,8 @@ import { PeoplePicker } from "./PeoplePicker"
 
 const SelectionForm = () => {
   return (
-    <div className="sticky top-[85px] ml-2 pt-6">
-      <div className="box-light-shadow min-h-[200px] max-w-full rounded-xl border-[0.25px] border-dark-gray p-6">
+    <div className="sticky top-[85px] ml-2 pt-6 ">
+      <div className="min-h-[200px] max-w-full rounded-xl border-[0.25px] border-light-gray p-6 shadow-modal">
         <p>Add dates for prices</p>
 
         <DatePicker />
