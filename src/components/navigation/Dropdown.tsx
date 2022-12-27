@@ -9,13 +9,9 @@ type DropdownProps = {
 const Dropdown = ({ isOpen, className, children }: DropdownProps) => {
   return (
     <div
-      className={classNames(
-        "box-shadow absolute hidden rounded-3xl bg-white p-10 shadow-black",
-        className,
-        {
-          "!block": isOpen,
-        }
-      )}
+      className={classNames("absolute hidden rounded-3xl bg-white p-10 shadow", className, {
+        "!block": isOpen,
+      })}
     >
       {children}
     </div>

@@ -15,6 +15,7 @@ module.exports = {
         pink: "var(--pink)",
         gray: "var(--gray)",
         "dark-gray": "var(--dark-gray)",
+        "light-gray": "var(--light-gray)",
         danger: "var(--danger)",
         green: "var(--green)",
       },
@@ -26,6 +27,7 @@ module.exports = {
       boxShadow: {
         drop: "var(--drop-shadow)",
         bottom: "var(--bottom-shadow)",
+        modal: "var(--modal-shadow)",
       },
       fontFamily: {
         san: "var(--font-sans)",
