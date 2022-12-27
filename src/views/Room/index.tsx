@@ -1,18 +1,16 @@
 import isEmpty from "lodash/isEmpty"
-
-import { RoomItemSkeleton } from "@/components"
-import { useGetRoomList, useGetRoomDetail } from "@/hooks"
+import { useGetRoomList } from "@/hooks"
 import { RoomInterface } from "@/interfaces"
 import LocationSlider from "./Location"
 import { RoomItem } from "./RoomItem"
 import { useRouter } from "next/router"
+import RoomItemSkeleton from "./RoomItemSkeleton"
 
 export const RoomView = () => {
   const router = useRouter()
   const locationId = router.query?.locationId
 
   const { data: listRoom = [], isLoading } = useGetRoomList({ locationId })
-  // const { data: listRoom = [], isLoading } = useGetRoomDetail(locationId)
 
   const renderList = () => {
     if (isLoading) {

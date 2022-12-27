@@ -94,7 +94,6 @@ const Popup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => vo
 export const PeoplePicker = () => {
   const { ref, value, handleClose } = useMouseLeave<HTMLDivElement>()
   const guest = useSelector((state: any) => state.roomForm.guest)
-  console.log(Object.values(guest))
 
   const total = Object.values<number>(guest).reduce((prev, curr): number => {
     return prev + curr

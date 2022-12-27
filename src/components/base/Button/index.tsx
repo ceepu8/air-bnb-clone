@@ -32,24 +32,24 @@ const Button = ({
   ...props
 }: ButtonProps) => {
   const background = classNames({
-    "bg-primary": variant == "primary",
-    "bg-white": variant == "white",
-    "bg-black": variant == "black",
-    transparent: (variant = "transparent"),
+    "bg-primary": variant === "primary",
+    "bg-white": variant === "white",
+    "bg-black": variant === "black",
+    transparent: variant === "transparent",
   })
 
   const textColor = classNames({
-    "text-black-100": text == "black",
+    "text-black-100": text === "black",
     "text-white": !text,
   })
 
   const borderStyle = classNames({
-    "border-[1px] border-dark-gray p-2": border == "default",
+    "border-[1px] border-dark-gray p-2": border === "default",
     none: !border,
   })
 
   const shapeStyle = classNames({
-    "rounded-full": shape == "circle",
+    "rounded-full": shape === "circle",
   })
 
   const borderColorStyle = classNames({

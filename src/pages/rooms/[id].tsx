@@ -1,4 +1,4 @@
-import { RoomDetailView } from "@/views/RoomDetailView"
+import { RoomDetailView } from "@/views/RoomDetail"
 
 const RoomDetail = () => {
   return (

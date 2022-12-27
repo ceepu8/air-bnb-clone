@@ -2,13 +2,13 @@ import { buildURL, isServer } from "@/utils"
 import { useQuery } from "@tanstack/react-query"
 
 import api from "@/configs/axios"
-import { API, ROOM_DETAIL_KEY, ROOM_LIST_KEY } from "@/constants"
+import { API, ROOM_LOCATION_KEY, ROOM_DETAIL_KEY, ROOM_LIST_KEY } from "@/constants"
 
 import { useInfinite } from "./base"
 
 export const useGetRoomList = (variables: { locationId: string | string[] | undefined }) => {
   const { locationId } = variables
-  const URL = locationId ? API.ROOM.DETAIL.replace(":id", locationId.toString()) : API.ROOM.LIST
+  const URL = locationId ? API.ROOM.LOCATION.replace(":id", locationId.toString()) : API.ROOM.LIST
   return useInfinite([ROOM_LIST_KEY, variables], {
     queryURL: URL,
     variables,
@@ -21,6 +21,20 @@ export const useGetRoomList = (variables: { locationId: string | string[] | unde
   })
 }
 
+export const useGetRoomByLocation = (id: string | string[] | undefined = "") => {
+  return useQuery(
+    [ROOM_LOCATION_KEY, id],
+    async () => {
+      const { data } = await api.get(API.ROOM.LOCATION.replace(":id", id.toString()))
+      return data.content
+    },
+    {
+      keepPreviousData: true,
+      staleTime: Infinity,
+    }
+  )
+}
+
 export const useGetRoomDetail = (id: string | string[] | undefined = "") => {
   return useQuery(
     [ROOM_DETAIL_KEY, id],
@@ -29,7 +43,7 @@ export const useGetRoomDetail = (id: string | string[] | undefined = "") => {
       return data.content
     },
     {
-      keepPreviousData: false,
+      keepPreviousData: true,
       staleTime: Infinity,
     }
   )
