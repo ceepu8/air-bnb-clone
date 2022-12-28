@@ -1,8 +1,10 @@
+import { STATIC_COMMENT_LIST, STATIC_RATING_PROGRESS } from "@/constants"
+import Image from "next/image"
 import { AiFillStar } from "react-icons/ai"
 
 const renderRating = () => {
   return (
-    <div>
+    <>
       <div className="flex items-center text-xl font-medium">
         <span className="mr-2">
           <AiFillStar />
@@ -11,73 +13,43 @@ const renderRating = () => {
       </div>
 
       <div className="mt-4 grid grid-cols-2">
-        <div className="col-span-1 mr-24">
-          <div>
-            <div className="mt-4 flex items-center justify-between">
-              <h1 className="font-light">Mức độ sạch sẽ</h1>
-              <div className="flex w-1/3 items-center">
-                <div className="mr-3 h-1 w-full rounded bg-light-gray">
-                  <div className="h-1 w-[92%] rounded bg-black"></div>
-                </div>
-                <span className="text-xs font-medium">4.9</span>
-              </div>
-            </div>
+        {STATIC_RATING_PROGRESS.map(({ name, id, rating }) => {
+          const percentage = ((rating / 5) * 100).toFixed() + "%"
 
-            <div className="mt-4 flex items-center justify-between">
-              <h1 className="font-light">Giao tiếp</h1>
+          return (
+            <div key={id} className="col-span-1 mt-4 mr-24 flex items-center justify-between">
+              <h1 className="font-light">{name}</h1>
               <div className="flex w-1/3 items-center">
                 <div className="mr-3 h-1 w-full rounded bg-light-gray">
-                  <div className="h-1 w-[79%] rounded bg-black"></div>
+                  <div className="h-1 rounded bg-black" style={{ width: percentage }}></div>
                 </div>
-                <span className="text-xs font-medium">4.9</span>
+                <span className="text-xs font-medium">{rating}</span>
               </div>
             </div>
-
-            <div className="mt-4 flex items-center justify-between">
-              <h1 className="font-light">Nhận phòng</h1>
-              <div className="flex w-1/3 items-center">
-                <div className="mr-3 h-1 w-full rounded bg-light-gray">
-                  <div className="h-1 w-[85%] rounded bg-black"></div>
-                </div>
-                <span className="text-xs font-medium">4.9</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-span-1 mr-24">
-          <div>
-            <div className="mt-4 flex items-center justify-between">
-              <h1 className="font-light">Mức độ sạch sẽ</h1>
-              <div className="flex w-1/3 items-center">
-                <div className="mr-3 h-1 w-full rounded bg-light-gray">
-                  <div className="h-1 w-[92%] rounded bg-black"></div>
-                </div>
-                <span className="text-xs font-medium">4.9</span>
-              </div>
-            </div>
-
-            <div className="mt-4 flex items-center justify-between">
-              <h1 className="font-light">Giao tiếp</h1>
-              <div className="flex w-1/3 items-center">
-                <div className="mr-3 h-1 w-full rounded bg-light-gray">
-                  <div className="h-1 w-[79%] rounded bg-black"></div>
-                </div>
-                <span className="text-xs font-medium">4.9</span>
-              </div>
-            </div>
-
-            <div className="mt-4 flex items-center justify-between">
-              <h1 className="font-light">Nhận phòng</h1>
-              <div className="flex w-1/3 items-center">
-                <div className="mr-3 h-1 w-full rounded bg-light-gray">
-                  <div className="h-1 w-[85%] rounded bg-black"></div>
-                </div>
-                <span className="text-xs font-medium">4.9</span>
-              </div>
-            </div>
-          </div>
-        </div>
+          )
+        })}
       </div>
+    </>
+  )
+}
+
+const renderCommentList = () => {
+  return (
+    <div className="grid grid-cols-2">
+      {STATIC_COMMENT_LIST.map(({ tenNguoiBinhLuan, avatar, id, noiDung, ngayBinhLuan }) => {
+        return (
+          <div key={id} className="mt-8 mr-24">
+            <div className="flex items-center">
+              <Image className="rounded-full" src={avatar} alt="avatar" width="40" height="40" />
+              <div className="ml-3">
+                <p>{tenNguoiBinhLuan}</p>
+                <p className="mt-1 text-xs text-dark-gray">{ngayBinhLuan}</p>
+              </div>
+            </div>
+            <p className="mt-4">{noiDung}</p>
+          </div>
+        )
+      })}
     </div>
   )
 }
@@ -86,6 +58,7 @@ export const Comment = () => {
   return (
     <div>
       <div>{renderRating()}</div>
+      <div className="mt-8">{renderCommentList()}</div>
     </div>
   )
 }
