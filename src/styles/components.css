@@ -10,7 +10,7 @@
 
 /* custom for calendar */
 .rdp {
-  --rdp-cell-size: 40px;
+  --rdp-cell-size: 42px !important;
   --rdp-accent-color: #0000ff;
   --rdp-background-color: #e7edff;
   /* Switch to dark colors for dark themes */
@@ -20,7 +20,15 @@
   --rdp-outline: 2px solid var(--rdp-accent-color);
   /* Outline border for focused and selected elements */
   --rdp-outline-selected: 2px solid rgba(0, 0, 0, 0.75);
-  max-width: 100%;
+  width: 100%;
+}
+
+.rdp .rdp-multiple_months {
+  width: 100%;
+}
+
+.rdp-month {
+  width: 50%;
 }
 
 .rdp-caption_label {
@@ -32,6 +40,12 @@
 .rdp-head_cell {
   font-size: 10px;
   font-weight: 400;
+}
+
+.rdp-table {
+  margin: 0;
+  max-width: calc(100% / 7 * 7) !important;
+  border-collapse: collapse;
 }
 
 .rdp-cell {
@@ -51,7 +65,7 @@
 }
 
 .rdp-day {
-  font-size: 14px;
+  font-size: 14px !important;
   font-weight: 500;
 }
 
@@ -75,6 +89,11 @@
   color: var(--white) !important;
   background-color: var(--black-100) !important;
   border-radius: 50% !important;
+}
+
+.rdp-button[disabled]:not(.rdp-day_selected) {
+  opacity: 0.25;
+  text-decoration: line-through;
 }
 
 :where(.css-dev-only-do-not-override-stni74).ant-btn-primary {

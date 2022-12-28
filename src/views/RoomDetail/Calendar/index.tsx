@@ -20,7 +20,7 @@ export const Calendar = () => {
           ? `${nights} đêm tại địa điểm này`
           : "Chọn ngày nhận phòng"}
       </p>
-      <p>
+      <p className="mt-2 text-sm font-light text-dark-gray">
         {date?.from ? format(date?.from, "PP") : ""} - {date?.to ? format(date?.to, "PP") : ""}
       </p>
       <div className="my-6 flex flex-col items-center">

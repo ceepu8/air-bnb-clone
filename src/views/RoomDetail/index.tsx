@@ -9,6 +9,7 @@ import SelectionForm from "./SelectionForm"
 import { useRouter } from "next/router"
 import { useGetRoomDetail } from "@/hooks"
 import { RoomDetailSkeleton } from "./RoomDetailSkeleton"
+import { Comment } from "./Comment"
 
 export const RoomDetailView = () => {
   const { tenViTri, tinhThanh, quocGia } = STATIC_LOCATION
@@ -90,23 +91,26 @@ export const RoomDetailView = () => {
               {hinhAnh && <Image className="rounded-md" src={hinhAnh} width={1120} height={400} />}
             </div>
             <div className="grid grid-cols-3">
-              <div className="col-span-2 mr-16">
-                <div className="my-6">{renderRoomNumber()}</div>
+              <div className="col-span-2 mr-24">
+                <div className="my-8">{renderRoomNumber()}</div>
                 <LineBreak />
-                <div className="my-6">{renderAirCover()}</div>
+                <div className="my-8">{renderAirCover()}</div>
                 <LineBreak />
-                <div className="my-6">{renderServices()}</div>
+                <div className="my-8">{renderServices()}</div>
                 <LineBreak />
                 <div className="mt-8">
                   <Calendar />
                 </div>
-                <LineBreak />
               </div>
               <div className="col-span-1">
-                <div className="relative h-full">
-                  <SelectionForm />
-                </div>
+                <SelectionForm />
               </div>
+            </div>
+            <div className="mt-8">
+              <LineBreak />
+            </div>
+            <div className="mt-8">
+              <Comment />
             </div>
           </>
         )}
