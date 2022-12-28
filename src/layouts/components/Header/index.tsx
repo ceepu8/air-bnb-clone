@@ -3,7 +3,6 @@ import { BsGlobe } from "react-icons/bs"
 
 import { UserNavigate } from "@/components/navigation"
 import { NavLink } from "@/components"
-
 import PlaceSearchBar from "./components/PlaceSearchBar"
 
 const Logo = () => {

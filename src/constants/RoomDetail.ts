@@ -20,46 +20,55 @@ const AIR_COVER = {
 
 const ROOM_SERVICES: any[] = [
   {
+    id: 1,
     keyName: "banLa",
     name: "Bàn Là",
     icon: MdIron,
   },
   {
+    id: 2,
     keyName: "banUi",
     name: "Bàn Ủi",
     icon: MdIron,
   },
   {
+    id: 3,
     keyName: "mayGiat",
     name: "Máy giặt",
     icon: GiWashingMachine,
   },
   {
+    id: 4,
     keyName: "bep",
     name: "Bếp",
     icon: GiKnifeFork,
   },
   {
+    id: 5,
     keyName: "tivi",
     name: "TV",
     icon: BiCameraMovie,
   },
   {
+    id: 6,
     keyName: "dieuHoa",
     name: "Điều hoà",
     icon: BsWind,
   },
   {
+    id: 7,
     keyName: "wifi",
     name: "Wifi",
     icon: AiOutlineWifi,
   },
   {
+    id: 8,
     keyName: "doXe",
     name: "Bãi đỗ xe",
     icon: MdOutlineLocalParking,
   },
   {
+    id: 9,
     keyName: "hoBoi",
     name: "Hồ bơi",
     icon: FaSwimmingPool,

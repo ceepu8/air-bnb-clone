@@ -13,3 +13,8 @@ export const UPDATE_AUTH = createAction("UPDATE_AUTH")
 export const SET_DATE = createAction<DateRange | undefined>("SET_DATE")
 export const SET_GUEST = createAction<string>("SET_GUEST")
 export const CLEAR_DATE = createAction("CLEAR_DATE")
+
+export const SET_LOCATION_DATE = createAction<DateRange | undefined>("SET_LOCATION_DATE")
+export const SET_LOCATION_GUEST = createAction<string>("SET_LOCATION_GUEST")
+export const SET_LOCATION = createAction<any>("SET_LOCATION")
+export const CLEAR_LOCATION_DATE = createAction("CLEAR_LOCATION_DATE")

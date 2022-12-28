@@ -61,9 +61,9 @@ export const RoomDetailView = () => {
         <p className="mb-4 text-xl font-medium">Nơi này có những gì cho bạn</p>
         <div className="flex flex-wrap gap-y-2">
           {ROOM_SERVICES.map((service) => {
-            const { keyName, icon: Icon } = service
+            const { keyName, icon: Icon, id } = service
             return (
-              <div key={keyName} className="text-black-200 flex min-w-[50%] items-center">
+              <div key={id} className="text-black-200 flex min-w-[50%] items-center">
                 <Icon className="mr-3 text-2xl" />
                 <span
                   className={classNames({

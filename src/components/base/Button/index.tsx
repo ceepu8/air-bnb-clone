@@ -12,6 +12,7 @@ interface ButtonProps {
   icon?: ReactNode
   children?: any
   disabled?: boolean
+  btnType?: "button" | "submit" | "reset" | undefined
   onClick?: (event: any) => void
   className?: string
 }
@@ -27,6 +28,7 @@ const Button = ({
   icon,
   disabled,
   className,
+  btnType = "button",
   onClick,
   children,
   ...props
@@ -65,6 +67,7 @@ const Button = ({
       onClick={onClick}
       disabled={disabled}
       {...props}
+      type={btnType}
     >
       {icon}
       {children}

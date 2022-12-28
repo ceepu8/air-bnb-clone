@@ -1,11 +1,10 @@
 import { Button, DropDown } from "@/components"
 import { useMouseLeave } from "@/hooks"
 import { format } from "date-fns"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { Calendar } from "../Calendar"
 
 const Popup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => void }) => {
-  const dispatch = useDispatch()
   const date = useSelector((state: any) => state.roomForm.date)
 
   return (
