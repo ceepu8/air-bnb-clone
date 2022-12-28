@@ -13,7 +13,7 @@ const CapsuleSelection = ({ isActive, labelText, children }: SelectionProps) => 
         "bg-white": isActive,
       })}
     >
-      <label htmlFor="destination" className="label-input mb-1 block">
+      <label htmlFor="destination" className="label-input mb-1 block text-xs font-semibold">
         {labelText}
       </label>
       {children}

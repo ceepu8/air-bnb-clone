@@ -1,6 +1,6 @@
 import MainLayout from "@/layouts/MainLayout"
 import React from "react"
-import { AIR_COVER, ROOM_SERVICES, STATIC_LOCATION, STATIC_ROOM_DETAIL } from "@/constants"
+import { AIR_COVER, ROOM_SERVICES, STATIC_LOCATION } from "@/constants"
 import Image from "next/image"
 import { NavLink, LineBreak } from "@/components"
 import classNames from "classnames"

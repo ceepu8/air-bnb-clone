@@ -10,7 +10,7 @@ const SelectionForm = () => {
 
   return (
     <form className="mx-auto max-w-[800px]">
-      <div className="relative grid grid-cols-6 items-center rounded-full border border-solid border-gray bg-gray">
+      <div className="relative grid grid-cols-6 items-center rounded-full border border-solid border-light-gray bg-gray">
         <SearchFormContext.Provider value={{ state, setState }}>
           <div className="col-span-2">
             <MapSelection />
@@ -21,7 +21,8 @@ const SelectionForm = () => {
           <div className="relative col-span-2">
             <PeopleSelection />
             <Button
-              className="bg-linear-gradient-100 absolute right-0 top-1/2 mr-4 -translate-y-1/2 py-3 px-5 text-sm font-bold "
+              variant="primary"
+              className="absolute right-0 top-1/2 mr-4 -translate-y-1/2 py-3 px-5 text-sm font-bold "
               shape="circle"
               icon={<BiSearch className="inline-block" />}
             >

@@ -11,7 +11,7 @@ const Popup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => vo
   return (
     <DropDown
       isOpen={isOpen}
-      className="absolute -top-4 -right-8 hidden min-h-[300px] min-w-[661px] rounded-2xl bg-white py-4 px-8"
+      className="absolute -top-[50px] -right-8 hidden min-h-[300px] min-w-[661px] rounded-2xl bg-white py-4 px-8"
     >
       <div className="relative mt-8 flex items-center justify-between">
         <Calendar />
