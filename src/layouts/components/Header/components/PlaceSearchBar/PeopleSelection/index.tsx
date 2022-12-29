@@ -8,12 +8,6 @@ import classNames from "classnames"
 import { useDispatch, useSelector } from "react-redux"
 import { SET_LOCATION_GUEST } from "@/store/actions"
 
-// type SelectionProps = {
-//   type: string
-//   subNote: string
-//   code: string
-// }
-
 const PeopleDropdown = ({ isOpen }: { isOpen: boolean }) => {
   const guest = useSelector((state: any) => state.locationForm.guest)
   const dispatch = useDispatch()
