@@ -1,9 +1,6 @@
+import { LineBreak } from "@/components/base"
 import Link from "next/link"
 import Dropdown from "./Dropdown"
-
-const LineBreak = () => {
-  return <div className="my-4 h-[1px] w-full bg-gray"></div>
-}
 
 type NavProps = {
   path: string
@@ -13,14 +10,14 @@ type NavProps = {
 const NavLink = ({ path, destination }: NavProps) => {
   return (
     <Link href={path}>
-      <a className="block py-3 px-4 font-bold">{destination}</a>
+      <a className="block py-3 px-3 text-sm font-light hover:bg-white-gray">{destination}</a>
     </Link>
   )
 }
 
 const AuthMenu = ({ isOpen }: { isOpen: boolean }) => {
   return (
-    <Dropdown isOpen={isOpen} className="right-0 min-w-[250px] p-5">
+    <Dropdown isOpen={isOpen} className="right-0 min-w-[250px] !rounded-xl !py-2 !px-0">
       <NavLink path="/login" destination="Đăng nhập" />
       <NavLink path="/register" destination="Đăng ký" />
       <LineBreak />

@@ -14,22 +14,28 @@ const MapDropdown = ({ isOpen }: { isOpen: boolean }) => {
     <DropDown isOpen={isOpen} className="top-[110%] left-0 max-w-[450px]">
       <h4 className="h4">Tìm kiếm theo khu vực</h4>
       <div className="flex flex-wrap">
-        {STATIC_REGIONS.map(({ hinhAnh, tinhThanh, id }) => (
-          <button
-            className="w-1/3 p-2"
-            type="button"
-            onClick={() => dispatch(SET_LOCATION({ locationId: id, name: tinhThanh }))}
-          >
-            <div className="h-[120px]">
-              <img
-                src={hinhAnh}
-                alt=""
-                className="border-grey-300 hover:border-black-100 h-full w-full cursor-pointer rounded-lg border-[1px] border-solid object-cover transition-all"
-              />
-            </div>
-            <p>{tinhThanh}</p>
-          </button>
-        ))}
+        {STATIC_REGIONS.map((location: LocationInterface) => {
+          const { hinhAnh, tinhThanh, id } = location
+          return (
+            <button
+              key={id}
+              className="w-1/3 p-2"
+              type="button"
+              onClick={() => {
+                dispatch(SET_LOCATION(location))
+              }}
+            >
+              <div className="h-[120px]">
+                <img
+                  src={hinhAnh}
+                  alt=""
+                  className="border-grey-300 hover:border-black-100 h-full w-full cursor-pointer rounded-lg border-[1px] border-solid object-cover transition-all"
+                />
+              </div>
+              <p>{tinhThanh}</p>
+            </button>
+          )
+        })}
       </div>
     </DropDown>
   )
@@ -41,11 +47,15 @@ const SearchDropdown = ({ isOpen, searchList }: { isOpen: boolean; searchList: a
   return (
     <DropDown isOpen={isOpen} className="top-[110%] left-0 max-w-[450px] !p-3">
       <div>
-        {searchList.map(({ tinhThanh, tenViTri, id }: LocationInterface) => {
+        {searchList.map((location: LocationInterface) => {
+          const { tinhThanh, tenViTri, id } = location
           return (
             <div
+              key={id}
               className="my-2 flex cursor-pointer items-center px-8 py-2 hover:bg-white-gray"
-              onClick={() => dispatch(SET_LOCATION({ locationId: id, name: tinhThanh }))}
+              onClick={() => {
+                dispatch(SET_LOCATION(location))
+              }}
             >
               <div className="mr-4 flex h-12 w-12 items-center justify-center rounded-xl bg-very-light-gray">
                 <FiMapPin className="h-[22px] w-[22px]" />
@@ -82,7 +92,7 @@ const MapSelection = () => {
   const [data] = useState<LocationInterface[]>(STATIC_REGIONS)
 
   useEffect(() => {
-    setValue(location.name)
+    setValue(location.tinhThanh)
   }, [location])
 
   return (
@@ -97,7 +107,6 @@ const MapSelection = () => {
             const { value } = e.target
             setRecommend(false)
             setValue(value)
-
             if (!value) setRecommend(true)
           }}
         />

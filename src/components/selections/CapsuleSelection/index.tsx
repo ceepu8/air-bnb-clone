@@ -9,9 +9,12 @@ type SelectionProps = {
 const CapsuleSelection = ({ isActive, labelText, children }: SelectionProps) => {
   return (
     <div
-      className={classNames("flex flex-col rounded-full py-4 px-5", {
-        "bg-white": isActive,
-      })}
+      className={classNames(
+        "flex flex-col rounded-full border-[2px] border-solid border-transparent py-3 px-6 after:bg-white",
+        {
+          "bg-white shadow": isActive,
+        }
+      )}
     >
       <label htmlFor="destination" className="label-input mb-1 block text-xs font-semibold">
         {labelText}

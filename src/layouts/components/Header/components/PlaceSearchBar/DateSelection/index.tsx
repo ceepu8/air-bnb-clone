@@ -29,7 +29,8 @@ const DateDropdown = ({ isOpen }: { isOpen: boolean }) => {
 
 const DateSelection = () => {
   const { ref, value: isMouseIn } = useMouseLeave<HTMLDivElement>()
-  const date = useSelector((state: any) => state.locationForm.date)
+  const { date } = useSelector((state: any) => state.locationForm)
+  // const date = useSelector((state: any) => state.locationForm.date)
 
   return (
     <div ref={ref} className="grid grid-cols-2">

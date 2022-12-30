@@ -8,7 +8,7 @@ import PeopleSelection from "./PeopleSelection"
 const SelectionForm = () => {
   return (
     <form className="mx-auto max-w-[800px]">
-      <div className="relative grid grid-cols-6 items-center rounded-full border border-solid border-light-gray bg-gray">
+      <div className="relative grid grid-cols-6 items-center rounded-full border border-solid border-light-gray bg-very-light-gray">
         <div className="col-span-2">
           <MapSelection />
         </div>
