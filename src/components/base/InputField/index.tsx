@@ -1,13 +1,13 @@
-import { ChangeEvent, useState } from "react"
+import { useState } from "react"
 
 type InputFieldType = {
+  id: string
   label?: string
   placeholder: string
   type: string
-  onChange: ChangeEvent<HTMLInputElement>
 }
 
-const InputField = ({ label, placeholder, type, onChange }: InputFieldType) => {
+const InputField = ({ id, label, placeholder, type = "text", ...props }: InputFieldType) => {
   const [value, setValue] = useState()
   const handleChange = (e: any) => {
     const { value } = e.target
@@ -16,13 +16,15 @@ const InputField = ({ label, placeholder, type, onChange }: InputFieldType) => {
 
   return (
     <div className="form-group">
-      {label && <label htmlFor="input-field">{label}</label>}
+      {label && <label htmlFor={id}>{label}</label>}
       <input
+        id={id}
         type={type}
         value={value}
         className="form-control"
         placeholder={placeholder}
         onChange={handleChange}
+        {...props}
       />
     </div>
   )

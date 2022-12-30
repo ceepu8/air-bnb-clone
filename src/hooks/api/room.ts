@@ -31,6 +31,7 @@ export const useGetRoomByLocation = (id: string | string[] | undefined = "") => 
     {
       keepPreviousData: true,
       staleTime: Infinity,
+      enabled: !id,
     }
   )
 }
@@ -45,6 +46,7 @@ export const useGetRoomDetail = (id: string | string[] | undefined = "") => {
     {
       keepPreviousData: true,
       staleTime: Infinity,
+      enabled: !id,
     }
   )
 }
