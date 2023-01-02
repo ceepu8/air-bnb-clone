@@ -1,3 +1,4 @@
+import MainLayout from "@/layouts/MainLayout"
 import { RoomDetailView } from "@/views/RoomDetail"
 
 const RoomDetail = () => {
@@ -7,5 +8,6 @@ const RoomDetail = () => {
     </>
   )
 }
+RoomDetail.Layout = MainLayout
 
 export default RoomDetail

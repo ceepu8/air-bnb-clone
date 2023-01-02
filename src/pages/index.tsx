@@ -1,8 +1,9 @@
 import Head from "next/head"
 
 import HomeView from "@/views/Home"
+import MainLayout from "@/layouts/MainLayout"
 
-export default function Home() {
+export default function HomePage() {
   return (
     <>
       <Head>
@@ -14,3 +15,5 @@ export default function Home() {
     </>
   )
 }
+
+HomePage.Layout = MainLayout
