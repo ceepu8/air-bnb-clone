@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react"
 
 import { HeaderNavigate } from "@/components/navigation"
 import SelectionForm from "./SelectionForm"
+import classNames from "classnames"
 
 interface Props {
   onSet: any
@@ -33,11 +34,12 @@ const SelectionBoxExtend = (props: Props) => {
   return (
     <div
       ref={ref}
-      className={
+      className={classNames(
+        "transition-all duration-300",
         isToggle
-          ? "top-0 left-0 block max-h-full w-full scale-100 opacity-100 transition-all"
-          : "height-0 absolute -top-[20px] left-[80px] hidden scale-[60] opacity-0 transition-all"
-      }
+          ? "top-0 left-0 block max-h-full w-full scale-100 opacity-100 "
+          : "height-0 absolute -top-[20px] left-[80px] hidden scale-[60] opacity-0"
+      )}
     >
       <HeaderNavigate />
       <SelectionForm />

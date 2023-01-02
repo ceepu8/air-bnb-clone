@@ -16,7 +16,7 @@ export const useGetRoomList = (variables: { locationId: string | string[] | unde
       staleTime: Infinity,
       refetchOnMount: "always",
       enabled: !isServer,
-      iteratee: "date",
+      // iteratee: "date",
     },
   })
 }

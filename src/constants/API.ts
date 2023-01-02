@@ -14,7 +14,7 @@ export const API = {
     CHANGE_PASSWORD: "/me/password",
   },
   ROOM: {
-    LIST: "/phong-thue",
+    LIST: "/phong-thue/phan-trang-tim-kiem",
     LOCATION: "/phong-thue/lay-phong-theo-vi-tri?maViTri=:id",
     DETAIL: "/phong-thue/:id",
   },

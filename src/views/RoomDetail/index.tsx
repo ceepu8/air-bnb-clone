@@ -1,15 +1,13 @@
-import MainLayout from "@/layouts/MainLayout"
-import React from "react"
+import { LineBreak, NavLink } from "@/components"
 import { AIR_COVER, ROOM_SERVICES, STATIC_LOCATION } from "@/constants"
-import Image from "next/image"
-import { NavLink, LineBreak } from "@/components"
-import classNames from "classnames"
-import { Calendar } from "./Calendar"
-import SelectionForm from "./SelectionForm"
-import { useRouter } from "next/router"
 import { useGetRoomDetail } from "@/hooks"
-import { RoomDetailSkeleton } from "./RoomDetailSkeleton"
+import classNames from "classnames"
+import Image from "next/image"
+import { useRouter } from "next/router"
+import { Calendar } from "./Calendar"
 import { Comment } from "./Comment"
+import { RoomDetailSkeleton } from "./RoomDetailSkeleton"
+import SelectionForm from "./SelectionForm"
 
 export const RoomDetailView = () => {
   const { tenViTri, tinhThanh, quocGia } = STATIC_LOCATION
@@ -81,40 +79,38 @@ export const RoomDetailView = () => {
   }
 
   return (
-    <MainLayout>
-      <div className="mx-auto mt-6 max-w-[1120px]">
-        {isLoading && <RoomDetailSkeleton />}
-        {!isLoading && (
-          <>
-            <div>{renderRoomName()}</div>
-            <div className="mt-6">
-              {hinhAnh && <Image className="rounded-md" src={hinhAnh} width={1120} height={400} />}
-            </div>
-            <div className="grid grid-cols-3">
-              <div className="col-span-2 mr-24">
-                <div className="my-8">{renderRoomNumber()}</div>
-                <LineBreak />
-                <div className="my-8">{renderAirCover()}</div>
-                <LineBreak />
-                <div className="my-8">{renderServices()}</div>
-                <LineBreak />
-                <div className="mt-8">
-                  <Calendar />
-                </div>
-              </div>
-              <div className="col-span-1">
-                <SelectionForm room={room} />
-              </div>
-            </div>
-            <div className="mt-8">
+    <div className="mx-auto mt-6 max-w-[1120px]">
+      {isLoading && <RoomDetailSkeleton />}
+      {!isLoading && (
+        <>
+          <div>{renderRoomName()}</div>
+          <div className="mt-6">
+            {hinhAnh && <Image className="rounded-md" src={hinhAnh} width={1120} height={400} />}
+          </div>
+          <div className="grid grid-cols-3">
+            <div className="col-span-2 mr-24">
+              <div className="my-8">{renderRoomNumber()}</div>
               <LineBreak />
+              <div className="my-8">{renderAirCover()}</div>
+              <LineBreak />
+              <div className="my-8">{renderServices()}</div>
+              <LineBreak />
+              <div className="mt-8">
+                <Calendar />
+              </div>
             </div>
-            <div className="mt-8">
-              <Comment />
+            <div className="col-span-1">
+              <SelectionForm room={room} />
             </div>
-          </>
-        )}
-      </div>
-    </MainLayout>
+          </div>
+          <div className="mt-8">
+            <LineBreak />
+          </div>
+          <div className="mt-8">
+            <Comment />
+          </div>
+        </>
+      )}
+    </div>
   )
 }

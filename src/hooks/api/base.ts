@@ -44,31 +44,38 @@ export const useInfinite = (
 ) => {
   const {
     data: dataInfinite,
-    hasNextPage,
     fetchNextPage,
     ...query
   } = useInfiniteQuery(
     key,
-    async ({ pageParam = 0 }) => {
+    async ({ pageParam = 1 }) => {
       return fetcher({
         url: queryURL,
-        query: { page: pageParam, pageSize: variables.pageSize || DEFAULT_PAGE_SIZE, ...variables },
+        query: {
+          pageIndex: pageParam,
+          pageSize: variables.pageSize || DEFAULT_PAGE_SIZE,
+          ...variables,
+        },
       })
     },
     {
       select: (prev) => {
         const { pages = [] } = prev || {}
 
-        const page = pages.map((item) => item.content || item?.charges?.data || []).flat()
+        const page = pages.map((item) => item.content || item?.charges || []).flat()
+        const { totalRow, data } = page[pages.length - 1] || {}
+
         return {
           ...prev,
-          total: pages[pages.length - 1].total || 0,
-          pages: uniqBy([].concat(...page), "id"),
+          total: totalRow || 0,
+          pages: uniqBy([].concat(...data), "id"),
         }
       },
       getNextPageParam: (nextPage) => {
-        const { currentPage: page, totalPages, results = [], total: recordTotal } = nextPage || {}
-        return page < totalPages && results.length < recordTotal ? page + 1 : undefined
+        const { pageIndex: page, pageSize, data = [], totalRow } = nextPage?.content || {}
+        const totalPages = Math.floor(totalRow / pageSize)
+
+        return page < totalPages && data.length < totalRow ? page + 1 : undefined
       },
       // enabled: !isServer,
       ...options,
@@ -76,17 +83,18 @@ export const useInfinite = (
   )
 
   const { pages: data = [], total = 0 }: Props = dataInfinite || {}
+  const hasNextPage = data?.length < total
 
   const fetchMore = () => {
-    if (hasNextPage && data?.length < total) fetchNextPage()
+    if (hasNextPage) fetchNextPage()
   }
 
   return {
+    ...query,
     fetchNextPage,
     data,
     fetchMore,
-    hasNextPage: hasNextPage && data?.length < total,
+    hasNextPage,
     total,
-    ...query,
   }
 }
