@@ -1,8 +1,7 @@
+import { SET_DATE } from "@/store/actions"
+import { format } from "date-fns"
 import { DateRange, DayPicker } from "react-day-picker"
 import { useDispatch, useSelector } from "react-redux"
-import { SET_DATE } from "@/store/actions"
-import dayjs from "dayjs"
-import { format } from "date-fns"
 
 export const Calendar = () => {
   const { date, numberNights } = useSelector((state: any) => state.roomForm)
