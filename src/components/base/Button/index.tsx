@@ -1,5 +1,5 @@
 import classNames from "classnames"
-import { ReactNode } from "react"
+import { MouseEvent, ReactNode } from "react"
 
 interface ButtonProps {
   border?: String
@@ -10,10 +10,10 @@ interface ButtonProps {
   shape?: String
   text?: String
   icon?: ReactNode
-  children?: any
+  children?: ReactNode
   disabled?: boolean
   btnType?: "button" | "submit" | "reset" | undefined
-  onClick?: (event: any) => void
+  onClick?: (event: MouseEvent<HTMLButtonElement>) => void
   className?: string
 }
 

@@ -27,7 +27,7 @@ const Logo = () => {
 const Header = () => {
   const [extendSelectionBox, setExtendSelectionBox] = useState(false)
 
-  const setToggle = (open: any) => setExtendSelectionBox(open)
+  const setToggle = (open: boolean) => setExtendSelectionBox(open)
 
   return (
     <header

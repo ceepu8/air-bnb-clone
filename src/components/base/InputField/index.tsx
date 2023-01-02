@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { ChangeEvent, useState } from "react"
 
 type InputFieldType = {
   id: string
@@ -8,8 +8,8 @@ type InputFieldType = {
 }
 
 const InputField = ({ id, label, placeholder, type = "text", ...props }: InputFieldType) => {
-  const [value, setValue] = useState()
-  const handleChange = (e: any) => {
+  const [value, setValue] = useState<string | number>()
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
     setValue(value)
   }

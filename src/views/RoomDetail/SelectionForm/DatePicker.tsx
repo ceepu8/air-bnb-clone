@@ -1,12 +1,13 @@
 import { Button, DropDown } from "@/components"
 import { useMouseLeave } from "@/hooks"
+import { CLEAR_DATE } from "@/store/actions"
 import { format } from "date-fns"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Calendar } from "../Calendar"
 
 const Popup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => void }) => {
   const date = useSelector((state: any) => state.roomForm.date)
-
+  const dispatch = useDispatch()
   return (
     <DropDown
       isOpen={isOpen}
@@ -34,7 +35,7 @@ const Popup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => vo
           variant="transparent"
           text="black"
           className="mr-3 text-sm underline"
-          onClick={() => console.log(123)}
+          onClick={() => dispatch(CLEAR_DATE())}
         >
           Xoá ngày
         </Button>
@@ -46,7 +47,7 @@ const Popup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => vo
   )
 }
 
-export const DatePicker = () => {
+export const DatePicker = ({ isCheckRoom }: { isCheckRoom: boolean }) => {
   const { ref, value, handleClose } = useMouseLeave<HTMLDivElement>()
   const date = useSelector((state: any) => state.roomForm.date)
   return (
@@ -65,7 +66,7 @@ export const DatePicker = () => {
           </div>
         </div>
       </button>
-      <Popup isOpen={value} handleClose={handleClose} />
+      <Popup isOpen={value || isCheckRoom} handleClose={handleClose} />
     </div>
   )
 }

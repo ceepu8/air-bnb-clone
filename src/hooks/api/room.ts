@@ -1,4 +1,4 @@
-import { buildURL, isServer } from "@/utils"
+import { isServer } from "@/utils"
 import { useQuery } from "@tanstack/react-query"
 
 import api from "@/configs/axios"
@@ -46,7 +46,7 @@ export const useGetRoomDetail = (id: string | string[] | undefined = "") => {
     {
       keepPreviousData: true,
       staleTime: Infinity,
-      enabled: !id,
+      enabled: !!id,
     }
   )
 }

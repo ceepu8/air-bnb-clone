@@ -103,7 +103,7 @@ export const RoomDetailView = () => {
                 </div>
               </div>
               <div className="col-span-1">
-                <SelectionForm />
+                <SelectionForm room={room} />
               </div>
             </div>
             <div className="mt-8">

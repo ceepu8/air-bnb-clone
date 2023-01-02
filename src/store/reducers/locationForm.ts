@@ -10,26 +10,27 @@ import {
   SET_STEP,
 } from "../actions"
 
-// interface Guest {
-//   adult: number
-//   children: number
-//   toddler: number
-// }
+interface Guest {
+  adult: number
+  children: number
+  toddler: number
+}
 
-// interface FormState {
-//   loation: {
-//     locationId: number
-//     name: string
-//   }
-//   date: DateRange | undefined
-//   guest: Guest
-// }
+interface FormState {
+  step: string
+  location: LocationInterface
+  date: DateRange | undefined
+  guest: Guest
+}
 
-const INITIAL_STATE: any = {
+const INITIAL_STATE: FormState = {
   step: "1",
   location: {
-    locationId: 0,
-    name: "",
+    id: 0,
+    tenViTri: "",
+    tinhThanh: "",
+    quocGia: "",
+    hinhAnh: "",
   },
   date: {
     from: new Date(),
@@ -53,7 +54,7 @@ export default createReducer(INITIAL_STATE, (builder) => {
     return { ...state, date: action.payload }
   })
 
-  builder.addCase(SET_LOCATION_GUEST, (state, action: { payload: any }) => {
+  builder.addCase(SET_LOCATION_GUEST, (state, action: { payload: Guest }) => {
     return { ...state, guest: action.payload }
   })
 

@@ -1,9 +1,10 @@
 import classNames from "classnames"
+import { ReactNode } from "react"
 
 type DropdownProps = {
   isOpen: boolean
   className?: string
-  children?: any
+  children?: ReactNode
 }
 
 const Dropdown = ({ isOpen, className, children }: DropdownProps) => {
