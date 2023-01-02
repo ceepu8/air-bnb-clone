@@ -15,6 +15,9 @@ const SelectionForm = ({ room }: any) => {
 
   const [isCheckRoom, setIsCheckRoom] = useState<boolean>(false)
 
+  const doCloseCheckRoom = () => setIsCheckRoom(false)
+  const doOpenCheckRoom = () => setIsCheckRoom(true)
+
   const renderBill = () => {
     return (
       <>
@@ -49,7 +52,7 @@ const SelectionForm = ({ room }: any) => {
         <div className="min-h-[200px] max-w-full rounded-xl border-[0.25px] border-light-gray p-6 shadow-modal">
           <p>Add dates for prices</p>
 
-          <DatePicker isCheckRoom={isCheckRoom} />
+          <DatePicker {...{ isCheckRoom, doOpenCheckRoom, doCloseCheckRoom }} />
           <PeoplePicker />
 
           {date?.to && date?.from && (
@@ -60,10 +63,7 @@ const SelectionForm = ({ room }: any) => {
           )}
 
           {!date?.to && !date?.from && (
-            <Button
-              className="mt-4 w-full rounded-lg bg-primary py-2"
-              onClick={() => setIsCheckRoom(true)}
-            >
+            <Button className="mt-4 w-full rounded-lg bg-primary py-2" onClick={doOpenCheckRoom}>
               Kiểm tra tình trạng phòng
             </Button>
           )}

@@ -1,7 +1,8 @@
 import { Button, DropDown } from "@/components"
-import { useMouseLeave } from "@/hooks"
+import { useOnClickOutside } from "@/hooks"
 import { CLEAR_DATE } from "@/store/actions"
 import { format } from "date-fns"
+import { useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Calendar } from "../Calendar"
 
@@ -47,12 +48,26 @@ const Popup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => vo
   )
 }
 
-export const DatePicker = ({ isCheckRoom }: { isCheckRoom: boolean }) => {
-  const { ref, value, handleClose } = useMouseLeave<HTMLDivElement>()
+export const DatePicker = ({
+  isCheckRoom,
+  doOpenCheckRoom,
+  doCloseCheckRoom,
+}: {
+  isCheckRoom: boolean
+  doOpenCheckRoom: () => void
+  doCloseCheckRoom: () => void
+}) => {
   const date = useSelector((state: any) => state.roomForm.date)
+
+  const ref = useRef(null)
+  useOnClickOutside<HTMLDivElement>(ref, doCloseCheckRoom)
+
   return (
     <div ref={ref} className="relative">
-      <button className="mt-4 flex w-full rounded-t-md border-[1px] border-solid border-dark-gray">
+      <button
+        className="mt-4 flex w-full rounded-t-md border-[1px] border-solid border-dark-gray"
+        onClick={doOpenCheckRoom}
+      >
         <div className="flex-1 border-r-[1px] border-solid border-dark-gray p-2 text-left">
           <div className="text-[8px] font-semibold leading-3">CHECK-IN</div>
           <div className="text-grey-500 text-sm">
@@ -66,7 +81,7 @@ export const DatePicker = ({ isCheckRoom }: { isCheckRoom: boolean }) => {
           </div>
         </div>
       </button>
-      <Popup isOpen={value || isCheckRoom} handleClose={handleClose} />
+      <Popup isOpen={isCheckRoom} handleClose={doCloseCheckRoom} />
     </div>
   )
 }
