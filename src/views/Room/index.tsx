@@ -35,6 +35,8 @@ export const RoomView = () => {
     }
   }, [listRoom, isFetchingNextPage])
 
+  // xoas giup anh cai nay
+
   const renderList = () => {
     if (isLoading) {
       return [...Array(4)].map((_, idx) => <RoomItemSkeleton key={idx} />)
