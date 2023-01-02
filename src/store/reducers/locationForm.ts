@@ -1,4 +1,5 @@
 import { LocationInterface } from "@/interfaces"
+import { getNumberNights } from "@/utils"
 import { createReducer } from "@reduxjs/toolkit"
 import { addDays } from "date-fns"
 import { DateRange } from "react-day-picker"
@@ -20,6 +21,7 @@ interface FormState {
   step: string
   location: LocationInterface
   date: DateRange | undefined
+  numberNights: number | undefined
   guest: Guest
 }
 
@@ -36,6 +38,7 @@ const INITIAL_STATE: FormState = {
     from: new Date(),
     to: addDays(new Date(), 4),
   },
+  numberNights: 0,
   guest: {
     adult: 1,
     children: 0,
@@ -51,7 +54,8 @@ export default createReducer(INITIAL_STATE, (builder) => {
     return { ...state, location: action.payload }
   })
   builder.addCase(SET_LOCATION_DATE, (state: any, action: { payload: DateRange | undefined }) => {
-    return { ...state, date: action.payload }
+    const { from, to } = action.payload || {}
+    return { ...state, date: action.payload, numberNights: getNumberNights(from, to) }
   })
 
   builder.addCase(SET_LOCATION_GUEST, (state, action: { payload: Guest }) => {

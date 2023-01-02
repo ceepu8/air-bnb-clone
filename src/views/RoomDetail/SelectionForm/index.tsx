@@ -3,7 +3,6 @@
 // import PeopleNumberSelection from './PeopleNumberSelection';
 
 import { Button, LineBreak } from "@/components"
-import dayjs from "dayjs"
 import { useState } from "react"
 import { useSelector } from "react-redux"
 // import { RoomInterface } from "@/interfaces"
@@ -11,12 +10,10 @@ import { DatePicker } from "./DatePicker"
 import { PeoplePicker } from "./PeoplePicker"
 
 const SelectionForm = ({ room }: any) => {
-  const { date } = useSelector((state: any) => state.roomForm)
+  const { date, numberNights } = useSelector((state: any) => state.roomForm)
   const { giaTien } = room || {}
 
   const [isCheckRoom, setIsCheckRoom] = useState<boolean>(false)
-
-  const numberNights = date?.from && date?.to && dayjs(date?.to).diff(dayjs(date?.from), "day")
 
   const renderBill = () => {
     return (

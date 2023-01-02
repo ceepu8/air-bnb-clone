@@ -1,3 +1,4 @@
+import { getNumberNights } from "@/utils"
 import { createReducer } from "@reduxjs/toolkit"
 import { addDays } from "date-fns"
 import { DateRange } from "react-day-picker"
@@ -28,7 +29,8 @@ const INITIAL_STATE: FormState = {
 
 export default createReducer(INITIAL_STATE, (builder) => {
   builder.addCase(SET_DATE, (state: any, action: { payload: DateRange | undefined }) => {
-    return { ...state, date: action.payload }
+    const { from, to } = action.payload || {}
+    return { ...state, date: action.payload, numberNights: getNumberNights(from, to) }
   })
 
   builder.addCase(SET_GUEST, (state, action: { payload: any }) => {
