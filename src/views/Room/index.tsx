@@ -2,7 +2,7 @@ import { useGetRoomList } from "@/hooks"
 import { RoomInterface } from "@/interfaces"
 import isEmpty from "lodash/isEmpty"
 import { useRouter } from "next/router"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useInView } from "react-intersection-observer"
 import LocationSlider from "./Location"
 import { RoomItem } from "./RoomItem"
@@ -13,10 +13,8 @@ export const RoomView = () => {
   const router = useRouter()
   const locationId = router.query?.locationId
 
-  const [listRoom, setListRoom] = useState([])
-
   const {
-    data = [],
+    data: listRoom = [],
     isLoading,
     fetchMore,
     hasNextPage,
@@ -28,12 +26,6 @@ export const RoomView = () => {
       fetchMore()
     }
   }, [inView])
-
-  useEffect(() => {
-    if (!isLoading && !isFetchingNextPage) {
-      setListRoom((prev): any => [...prev, ...data])
-    }
-  }, [data, isFetchingNextPage])
 
   const renderList = () => {
     if (isLoading) {

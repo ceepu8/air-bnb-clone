@@ -1,4 +1,4 @@
-import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query"
+import { isServer, useInfiniteQuery, useQueryClient } from "@tanstack/react-query"
 import uniqBy from "lodash/uniqBy"
 import { useCallback } from "react"
 
@@ -61,14 +61,14 @@ export const useInfinite = (
     {
       select: (prev) => {
         const { pages = [] } = prev || {}
+        const { content = {} } = pages[pages.length - 1] || {}
 
-        const page = pages.map((item) => item.content || item?.charges || []).flat()
-        const { totalRow, data } = page[pages.length - 1] || {}
+        const page = pages.map((item) => item.content?.data || []).flat()
 
         return {
           ...prev,
-          total: totalRow || 0,
-          pages: uniqBy([].concat(...data), "id"),
+          total: content?.totalRow || 0,
+          pages: uniqBy([].concat(...page), options?.iteratee || "id"),
         }
       },
       getNextPageParam: (nextPage) => {
@@ -77,7 +77,7 @@ export const useInfinite = (
 
         return page < totalPages && data.length < totalRow ? page + 1 : undefined
       },
-      // enabled: !isServer,
+      enabled: !isServer,
       ...options,
     }
   )
