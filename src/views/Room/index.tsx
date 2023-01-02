@@ -13,10 +13,10 @@ export const RoomView = () => {
   const router = useRouter()
   const locationId = router.query?.locationId
 
-  const [data, setData] = useState([])
+  const [listRoom, setListRoom] = useState([])
 
   const {
-    data: listRoom = [],
+    data = [],
     isLoading,
     fetchMore,
     hasNextPage,
@@ -31,22 +31,20 @@ export const RoomView = () => {
 
   useEffect(() => {
     if (!isLoading && !isFetchingNextPage) {
-      setData((prev): any => [...prev, ...listRoom])
+      setListRoom((prev): any => [...prev, ...data])
     }
-  }, [listRoom, isFetchingNextPage])
-
-  // xoas giup anh cai nay
+  }, [data, isFetchingNextPage])
 
   const renderList = () => {
     if (isLoading) {
       return [...Array(4)].map((_, idx) => <RoomItemSkeleton key={idx} />)
     }
-    if (!isLoading && isEmpty(data)) {
+    if (!isLoading && isEmpty(listRoom)) {
       return <p className="col-span-4 flex items-center justify-center">Không có dữ liệu</p>
     }
     return (
       <>
-        {data?.map((room: RoomInterface) => {
+        {listRoom?.map((room: RoomInterface) => {
           return <RoomItem key={room.id} room={room} />
         })}
       </>
