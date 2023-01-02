@@ -1,4 +1,4 @@
-import { createReducer, PayloadAction } from "@reduxjs/toolkit"
+import { createReducer } from "@reduxjs/toolkit"
 import { addDays } from "date-fns"
 import { DateRange } from "react-day-picker"
 import { CLEAR_DATE, SET_DATE, SET_GUEST } from "../actions"
