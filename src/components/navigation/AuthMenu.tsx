@@ -20,7 +20,7 @@ const NavLink = ({ path, destination }: NavProps) => {
 
 const AuthMenu = ({ isOpen }: { isOpen: boolean }) => {
   return (
-    <Dropdown isOpen={isOpen} className="right-0 min-w-[250px] p-5">
+    <Dropdown isOpen={isOpen} className="right-0 min-w-[250px] !p-5">
       <NavLink path="/login" destination="Đăng nhập" />
       <NavLink path="/register" destination="Đăng ký" />
       <LineBreak />

@@ -1,7 +1,4 @@
-import { DropDown } from "@/components"
-import RegionItem from "./RegionItem"
-
-const regions = [
+export const STATIC_REGIONS = [
   {
     id: 1,
     tenViTri: "Quận 1",
@@ -45,18 +42,3 @@ const regions = [
     hinhAnh: "https://airbnbnew.cybersoft.edu.vn/images/vt6.jpg",
   },
 ]
-
-const MapDropdown = ({ isOpen }: { isOpen: boolean }) => {
-  return (
-    <DropDown isOpen={isOpen} className="top-[110%] left-0 max-w-[450px]">
-      <h4 className="h4">Tìm kiếm theo khu vực</h4>
-      <div className="flex flex-wrap">
-        {regions.map(({ hinhAnh, tinhThanh }, index) => (
-          <RegionItem key={index} image={hinhAnh} name={tinhThanh} />
-        ))}
-      </div>
-    </DropDown>
-  )
-}
-
-export default MapDropdown

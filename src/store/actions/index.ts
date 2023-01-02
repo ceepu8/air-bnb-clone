@@ -1,6 +1,13 @@
+import { LocationInterface } from "@/interfaces"
 import { createRequestTypes } from "@/utils/redux"
 import { createAction } from "@reduxjs/toolkit"
 import { DateRange } from "react-day-picker"
+
+interface Guest {
+  adult: number
+  children: number
+  toddler: number
+}
 
 export const LOGIN = createRequestTypes("LOGIN")
 export const REGISTER = createRequestTypes("REGISTER")
@@ -13,3 +20,10 @@ export const UPDATE_AUTH = createAction("UPDATE_AUTH")
 export const SET_DATE = createAction<DateRange | undefined>("SET_DATE")
 export const SET_GUEST = createAction<string>("SET_GUEST")
 export const CLEAR_DATE = createAction("CLEAR_DATE")
+
+export const SET_STEP = createAction<string>("SET_STEP")
+
+export const SET_LOCATION_DATE = createAction<DateRange | undefined>("SET_LOCATION_DATE")
+export const SET_LOCATION_GUEST = createAction<Guest>("SET_LOCATION_GUEST")
+export const SET_LOCATION = createAction<LocationInterface>("SET_LOCATION")
+export const CLEAR_LOCATION_DATE = createAction("CLEAR_LOCATION_DATE")

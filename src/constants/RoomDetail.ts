@@ -4,30 +4,6 @@ import { BiCameraMovie } from "react-icons/bi"
 import { BsWind } from "react-icons/bs"
 import { AiOutlineWifi } from "react-icons/ai"
 import { FaSwimmingPool } from "react-icons/fa"
-// import { Room } from '@/interfaces';
-// import { IconType } from 'react-icons';
-
-const STATIC_ROOM_DETAIL = {
-  id: 1,
-  tenPhong: "NewApt D1 - Cozy studio - NU apt - 500m Bui Vien!",
-  khach: 3,
-  phongNgu: 1,
-  giuong: 1,
-  phongTam: 1,
-  moTa: "Tự nhận phòng\r\nTự nhận phòng bằng khóa thông minh.\r\nDinh Long là Chủ nhà siêu cấp\r\nChủ nhà siêu cấp là những chủ nhà có kinh nghiệm, được đánh giá cao và là những người cam kết mang lại quãng thời gian ở tuyệt vời cho khách.",
-  giaTien: 28,
-  mayGiat: true,
-  banLa: true,
-  tivi: true,
-  dieuHoa: false,
-  wifi: true,
-  bep: false,
-  doXe: true,
-  hoBoi: true,
-  banUi: true,
-  maViTri: 1,
-  hinhAnh: "https://airbnbnew.cybersoft.edu.vn/images/phong1.jpg",
-}
 
 const STATIC_LOCATION = {
   id: 1,
@@ -44,46 +20,55 @@ const AIR_COVER = {
 
 const ROOM_SERVICES: any[] = [
   {
+    id: 1,
     keyName: "banLa",
     name: "Bàn Là",
     icon: MdIron,
   },
   {
+    id: 2,
     keyName: "banUi",
     name: "Bàn Ủi",
     icon: MdIron,
   },
   {
+    id: 3,
     keyName: "mayGiat",
     name: "Máy giặt",
     icon: GiWashingMachine,
   },
   {
+    id: 4,
     keyName: "bep",
     name: "Bếp",
     icon: GiKnifeFork,
   },
   {
+    id: 5,
     keyName: "tivi",
     name: "TV",
     icon: BiCameraMovie,
   },
   {
+    id: 6,
     keyName: "dieuHoa",
     name: "Điều hoà",
     icon: BsWind,
   },
   {
+    id: 7,
     keyName: "wifi",
     name: "Wifi",
     icon: AiOutlineWifi,
   },
   {
+    id: 8,
     keyName: "doXe",
     name: "Bãi đỗ xe",
     icon: MdOutlineLocalParking,
   },
   {
+    id: 9,
     keyName: "hoBoi",
     name: "Hồ bơi",
     icon: FaSwimmingPool,
@@ -117,4 +102,4 @@ const PEOPLE_SELECTION = [
   },
 ]
 
-export { STATIC_ROOM_DETAIL, STATIC_LOCATION, AIR_COVER, PEOPLE_SELECTION, ROOM_SERVICES }
+export { STATIC_LOCATION, AIR_COVER, PEOPLE_SELECTION, ROOM_SERVICES }

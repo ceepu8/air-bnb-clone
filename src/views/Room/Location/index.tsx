@@ -1,6 +1,7 @@
-import { KeenSlider, LocationSkeleton } from "@/components"
+import { KeenSlider } from "@/components"
 import { useGetLocationList } from "@/hooks"
 import { LocationInterface } from "@/interfaces"
+import LocationSkeleton from "../LocationSkeleton"
 
 import LocationItem from "./LocationItem"
 

@@ -36,10 +36,7 @@ const Popup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => vo
   }
 
   return (
-    <DropDown
-      isOpen={isOpen}
-      className="border-grey-300 box-light-shadow min-w-full rounded-md px-4 py-6"
-    >
+    <DropDown isOpen={isOpen} className="top-[110%] min-w-full rounded-md px-4 py-6">
       <div>
         {PEOPLE_SELECTION.map((each) => {
           const { name, id, note, keyName } = each
@@ -57,7 +54,7 @@ const Popup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => vo
                   onClick={() => handleDecrease(keyName)}
                   className={classNames("text-dark-gray", {
                     "cursor-not-allowed border-light-gray text-light-gray":
-                      guest[keyName] === 0 || guest["adult"] === 1,
+                      guest[keyName] === 0 || (keyName === "adult" && guest[keyName] === 1),
                   })}
                 >
                   <AiOutlineMinus className={classNames("text-dark-gray", {})} size={12} />
@@ -94,7 +91,6 @@ const Popup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => vo
 export const PeoplePicker = () => {
   const { ref, value, handleClose } = useMouseLeave<HTMLDivElement>()
   const guest = useSelector((state: any) => state.roomForm.guest)
-  console.log(Object.values(guest))
 
   const total = Object.values<number>(guest).reduce((prev, curr): number => {
     return prev + curr

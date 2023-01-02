@@ -15,7 +15,8 @@ export const API = {
   },
   ROOM: {
     LIST: "/phong-thue",
-    DETAIL: "/phong-thue/lay-phong-theo-vi-tri?maViTri=:id",
+    LOCATION: "/phong-thue/lay-phong-theo-vi-tri?maViTri=:id",
+    DETAIL: "/phong-thue/:id",
   },
   LOCATION: {
     LIST: "/vi-tri/phan-trang-tim-kiem",

@@ -3,7 +3,7 @@ import classNames from "classnames"
 import { BiSearch } from "react-icons/bi"
 
 interface Props {
-  onSet: any
+  onSet: (open: boolean) => void
   isToggle: boolean
 }
 

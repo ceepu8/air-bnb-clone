@@ -6,7 +6,7 @@ const PlaceSearchBar = ({
   extendComponent,
 }: {
   extendSelectionBox: boolean
-  extendComponent: any
+  extendComponent: (open: boolean) => void
 }) => {
   return (
     <>
