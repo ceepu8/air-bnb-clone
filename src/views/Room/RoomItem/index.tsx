@@ -39,7 +39,7 @@ export const RoomItem = (props: Props) => {
   return (
     <NavLink disabled={!id} href={`rooms/${id}`}>
       <div className="col-span-1">
-        <div className="relative flex flex-col">
+        <div className="group relative flex flex-col">
           <div className="overflow-hidden rounded-2xl">
             <Image
               src={checkValidImage(hinhAnh || "")}
@@ -47,14 +47,16 @@ export const RoomItem = (props: Props) => {
               width={300}
               height={300}
               layout={"responsive"}
-              className="mr-2 !h-[300px] !w-[200%] !max-w-[200%] rounded object-cover"
+              className="mr-2 !h-[300px] !w-[200%] !max-w-[200%] rounded object-cover transition-all duration-200 group-hover:scale-110"
             />
           </div>
 
           <HeartIcon />
 
           <div className="text-black-200 mt-4 flex flex-col">
-            <span className="text-lg font-extrabold">{tenPhong}</span>
+            <h3 className="text-lg font-extrabold transition-all duration-200 group-hover:text-primary">
+              {tenPhong}
+            </h3>
 
             <div className="flex items-center justify-between">
               <span className="text-grey-500">

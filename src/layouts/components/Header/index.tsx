@@ -44,8 +44,10 @@ const Header = () => {
         </div>
         <div className="col-span-1">
           <div className="flex items-center justify-around">
-            <p>Trở thành chủ nhà</p>
-            <div>
+            <div className="rounded-full px-3 py-2 transition-colors duration-150 hover:bg-gray">
+              Trở thành chủ nhà
+            </div>
+            <div className="rounded-full p-3 transition-colors duration-150 hover:bg-gray">
               <BsGlobe />
             </div>
             <UserNavigate />

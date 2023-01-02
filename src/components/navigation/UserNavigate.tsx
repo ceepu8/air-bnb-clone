@@ -7,7 +7,7 @@ const UserNavigate = () => {
 
   return (
     <div className="relative py-2.5" ref={ref}>
-      <button className="my-2 flex items-center justify-around rounded-full border border-solid border-light-gray px-3 py-2 shadow">
+      <button className="my-2 flex items-center justify-around rounded-full border border-solid border-light-gray px-3 py-2 shadow hover:shadow-lg">
         <AiOutlineMenu />
         <AiOutlineUser />
       </button>
