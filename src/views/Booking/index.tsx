@@ -69,7 +69,7 @@ export const BookingView = () => {
     return (
       <div className="rounded-xl border-[1px] border-solid border-light-gray p-6">
         <div className="grid grid-cols-3">
-          <div className="col-span-1 mr-2 overflow-hidden rounded">
+          <div className="col-span-1 mr-3 overflow-hidden rounded">
             <Image
               src={room.hinhAnh || ""}
               width={800}
@@ -79,14 +79,14 @@ export const BookingView = () => {
             />
           </div>
           <div className="col-span-2">
-            <div className="flex h-[98%] flex-col justify-between">
+            <div className="flex h-[97%] flex-col justify-between">
               <div>
                 <p className="text-xs font-light text-dark-gray">Toàn bộ căn phòng</p>
                 <p className="text-sm font-light text-black-gray">{room.tenPhong}</p>
               </div>
               <div>
                 <div className="flex items-center text-xs">
-                  <AiFillStar /> <span>4 &#x2022; </span>
+                  <AiFillStar className="mr-1" /> <span>4 &#x2022; </span>
                   <BiMedal className="mx-1" />
                   <span className="font-light text-dark-gray">Chủ nhà siêu cấp</span>
                 </div>
@@ -128,7 +128,9 @@ export const BookingView = () => {
         </div>
 
         <div className="col-span-1 ml-24">
-          <div>{renderRoomInfo()}</div>
+          <div className="relative h-full">
+            <div className="sticky top-[80px]">{renderRoomInfo()}</div>
+          </div>
         </div>
       </div>
     </section>
