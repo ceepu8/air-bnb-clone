@@ -13,7 +13,7 @@ const SelectionBox = (props: Props) => {
     <nav
       onClick={() => onSet(true)}
       className={classNames(
-        `visible absolute top-1/2 left-1/2 mx-auto max-h-full min-w-[380px] -translate-x-1/2 -translate-y-1/2 scale-100 opacity-100 transition-all`,
+        `visible absolute top-1/2 left-1/2 mx-auto max-h-full min-w-[380px] -translate-x-1/2 -translate-y-1/2 scale-100 opacity-100 transition-all duration-300`,
         {
           "hidden h-0 scale-150 opacity-0": !isToggle,
         }
