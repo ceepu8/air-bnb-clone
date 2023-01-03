@@ -150,7 +150,8 @@ export const BookingView = () => {
                 <LineBreak />
               </div>
               <div className="mt-4">
-                <Bill price={room?.giaTien} numberNights={numberNights} />
+                <p className="text-2xl font-medium">Chi tiết giá</p>
+                <Bill price={room?.giaTien} numberNights={numberNights} isCharged={false} />
               </div>
             </div>
           </div>

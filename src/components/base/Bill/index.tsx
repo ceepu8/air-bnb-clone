@@ -4,14 +4,15 @@ import { LineBreak } from "../LineBreak"
 type BillType = {
   numberNights: number | undefined | string | string[]
   price: number | undefined
+  isCharged: boolean
 }
 
 export const Bill = (props: BillType) => {
-  const { numberNights = 0, price } = props || {}
+  const { numberNights = 0, price, isCharged = true } = props || {}
   const total = Number(price) * Number(numberNights)
   return (
     <div>
-      <p className="mt-4 text-center text-xs">You won't be charged yet</p>
+      {isCharged && <p className="mt-4 text-center text-xs">You won't be charged yet</p>}
 
       <div className="mt-4">
         <div className="flex justify-between">
