@@ -1,5 +1,5 @@
 import MainLayout from "@/layouts/MainLayout"
-import { BookingView } from "@/views/Booking"
+import { BookingView } from "@/views/Book"
 import Head from "next/head"
 
 const BookingPage = () => {

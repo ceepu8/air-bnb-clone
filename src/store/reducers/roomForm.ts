@@ -21,7 +21,7 @@ const INITIAL_STATE: FormState = {
     from: new Date(),
     to: addDays(new Date(), 4),
   },
-  numberNights: 0,
+  numberNights: 3,
   guest: {
     adult: 1,
     children: 0,

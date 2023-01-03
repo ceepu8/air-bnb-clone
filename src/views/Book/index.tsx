@@ -1,14 +1,18 @@
-import { Button, LineBreak, NavLink } from "@/components"
-import { BOOKING_ROOM } from "@/constants"
-import { RoomInterface } from "@/interfaces"
+import { Bill, Button, LineBreak, NavLink } from "@/components"
+import { AIR_COVER, BOOKING_POLICY } from "@/constants"
+import { useGetRoomDetail } from "@/hooks"
 import Image from "next/image"
-import { useState } from "react"
+import { useRouter } from "next/router"
 import { AiFillStar } from "react-icons/ai"
 import { BiMedal } from "react-icons/bi"
 import { MdArrowBackIosNew } from "react-icons/md"
 
 export const BookingView = () => {
-  const [room, setRoom] = useState<RoomInterface>(BOOKING_ROOM)
+  const router = useRouter()
+  const { from, to, adult, children, toddler, numberNights, productId } = router.query
+  const { data: room = {} } = useGetRoomDetail(productId)
+
+  const totalGuest = Number(adult) + Number(children) + Number(toddler)
   const renderNotice = () => {
     return (
       <div className="rounded-xl border-[1px] border-solid border-light-gray p-6">
@@ -40,13 +44,15 @@ export const BookingView = () => {
     )
   }
 
-  const renderDateAndPeople = () => {
+  const renderDateAndGuest = () => {
     return (
       <div>
         <div className="mt-6 flex justify-between">
           <div>
             <p className="font-medium text-black-gray">Ngày</p>
-            <p className="mt-1 font-light text-black-gray">Ngày 10 - Ngày 17 tháng 1</p>
+            <p className="mt-1 font-light text-black-gray">
+              {from} đến {to}
+            </p>
           </div>
           <Button disabled className="font-medium underline " text="black">
             Chỉnh sửa
@@ -54,8 +60,8 @@ export const BookingView = () => {
         </div>
         <div className="mt-6 flex justify-between">
           <div>
-            <p className="font-medium text-black-gray">Ngày</p>
-            <p className="mt-1 font-light text-black-gray">Ngày 10 - Ngày 17 tháng 1</p>
+            <p className="font-medium text-black-gray">Khách</p>
+            <p className="mt-1 font-light text-black-gray">{totalGuest} khách</p>
           </div>
           <Button disabled className="font-medium underline" text="black">
             Chỉnh sửa
@@ -67,29 +73,27 @@ export const BookingView = () => {
 
   const renderRoomInfo = () => {
     return (
-      <div className="rounded-xl border-[1px] border-solid border-light-gray p-6">
-        <div className="grid grid-cols-3">
-          <div className="col-span-1 mr-3 overflow-hidden rounded">
-            <Image
-              src={room.hinhAnh || ""}
-              width={800}
-              height={680}
-              alt="room"
-              className="mr-2 !w-[200%] !max-w-[200%] rounded object-cover "
-            />
-          </div>
-          <div className="col-span-2">
-            <div className="flex h-[97%] flex-col justify-between">
-              <div>
-                <p className="text-xs font-light text-dark-gray">Toàn bộ căn phòng</p>
-                <p className="text-sm font-light text-black-gray">{room.tenPhong}</p>
-              </div>
-              <div>
-                <div className="flex items-center text-xs">
-                  <AiFillStar className="mr-1" /> <span>4 &#x2022; </span>
-                  <BiMedal className="mx-1" />
-                  <span className="font-light text-dark-gray">Chủ nhà siêu cấp</span>
-                </div>
+      <div className="grid grid-cols-3">
+        <div className="col-span-1 mr-3 overflow-hidden rounded">
+          <Image
+            src={room?.hinhAnh || ""}
+            width={800}
+            height={680}
+            alt="room"
+            className="mr-2 !w-[200%] !max-w-[200%] rounded object-cover "
+          />
+        </div>
+        <div className="col-span-2">
+          <div className="flex h-[97%] flex-col justify-between">
+            <div>
+              <p className="text-xs font-light text-dark-gray">Toàn bộ căn phòng</p>
+              <p className="text-sm font-light text-black-gray">{room?.tenPhong}</p>
+            </div>
+            <div>
+              <div className="flex items-center text-xs">
+                <AiFillStar className="mr-1" /> <span>4 &#x2022; </span>
+                <BiMedal className="mx-1" />
+                <span className="font-light text-dark-gray">Chủ nhà siêu cấp</span>
               </div>
             </div>
           </div>
@@ -111,10 +115,14 @@ export const BookingView = () => {
           <div className="mb-12">{renderNotice()}</div>
           <div>
             <p className="text-2xl font-medium">Chuyến đi của bạn</p>
-            {renderDateAndPeople()}
+            {renderDateAndGuest()}
           </div>
           <div className="mt-8">
             <LineBreak />
+          </div>
+
+          <div className="mt-8">
+            <p className="text-xs font-light">{BOOKING_POLICY}</p>
           </div>
 
           <div className="mt-8">
@@ -129,7 +137,22 @@ export const BookingView = () => {
 
         <div className="col-span-1 ml-24">
           <div className="relative h-full">
-            <div className="sticky top-[80px]">{renderRoomInfo()}</div>
+            <div className="sticky top-[80px] rounded-xl border-[1px] border-solid border-light-gray p-6">
+              <div className="">{renderRoomInfo()}</div>
+              <div className="mt-4">
+                <LineBreak />
+              </div>
+              <div className="mt-4 flex items-center">
+                <p className="mr-1 font-light">Đặt phòng của bạn được bảo vệ bởi</p>
+                <Image src={AIR_COVER.logoUrl} alt="air-cover" width={65} height={15} />
+              </div>
+              <div className="mt-4">
+                <LineBreak />
+              </div>
+              <div className="mt-4">
+                <Bill price={room?.giaTien} numberNights={numberNights} />
+              </div>
+            </div>
           </div>
         </div>
       </div>
