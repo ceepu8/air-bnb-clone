@@ -30,17 +30,6 @@ export const DateAndGuest = () => {
           Chỉnh sửa
         </Button>
       </div>
-
-      <div className="fixed inset-0 z-[9999] h-screen bg-black bg-opacity-50">
-        <div className="flex h-full items-center justify-center">
-          <div className="relative h-[400px] w-[300px] rounded-lg bg-white p-8 shadow-lg">
-            <button className="absolute top-4 right-4">
-              <AiOutlineClose className="fill-black text-xl" />
-            </button>
-            <div>123</div>
-          </div>
-        </div>
-      </div>
     </div>
   )
 }
