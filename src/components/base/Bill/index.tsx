@@ -16,22 +16,22 @@ export const Bill = (props: BillType) => {
 
       <div className="mt-4">
         <div className="flex justify-between">
-          <p className="text-sm underline">
-            {price}$ x {numberNights} nights
-          </p>
-          <p className="text-sm">{total}$</p>
+          {price && numberNights && (
+            <p className="text-sm underline">
+              {price}$ x {numberNights} nights
+            </p>
+          )}
+
+          {total && <p className="text-sm">{total}$</p>}
         </div>
 
-        <div className="my-4 flex justify-between">
-          <p className="text-sm underline">Service fee</p>
-          <p className="text-sm">0$</p>
+        <div className="my-4">
+          <LineBreak />
         </div>
 
-        <LineBreak />
-
-        <div className="my-4 flex justify-between font-semibold">
+        <div className="flex justify-between font-semibold">
           <p>Total</p>
-          <p>{total}$</p>
+          {total && <p>{total}$</p>}
         </div>
       </div>
     </div>

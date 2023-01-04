@@ -5,12 +5,12 @@ import Spin from "../Spin"
 import ModalHeader from "./ModalHeader"
 
 type ModalContentType = {
-  title: string
-  onClose: () => void
-  children: ReactNode
-  headerClassName: string
-  contentClassName: string
-  isLoading: boolean
+  title?: string
+  onClose?: () => void
+  children?: ReactNode
+  headerClassName?: string
+  contentClassName?: string
+  isLoading?: boolean
 }
 
 const ModalContent = ({

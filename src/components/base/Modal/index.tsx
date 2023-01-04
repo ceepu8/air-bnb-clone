@@ -66,11 +66,11 @@ type ModalType = {
   position?: "top" | "left" | "bottom" | "right" | "center"
   onClose: () => void
   size?: "small" | "medium" | "large" | "full"
-  title: string
-  children: ReactNode
-  headerClassName: string
-  contentClassName: string
-  isLoading: boolean
+  title?: string
+  children?: ReactNode
+  headerClassName?: string
+  contentClassName?: string
+  isLoading?: boolean
 }
 
 export default Modal
