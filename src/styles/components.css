@@ -10,7 +10,7 @@
 
 /* custom for calendar */
 .rdp {
-  --rdp-cell-size: 42px !important;
+  --rdp-cell-size: 40px !important;
   --rdp-accent-color: #0000ff;
   --rdp-background-color: #e7edff;
   /* Switch to dark colors for dark themes */
@@ -107,17 +107,20 @@
 }
 
 .ReactModal__Overlay {
+  z-index: 99999;
+  backdrop-filter: none !important;
+  background-color: rgb(34 34 34 / 50%) !important;
+}
+
+.ReactModal__Overlay {
   opacity: 0;
-  transition: all 100ms ease-in-out;
-  transform: scale(0.8);
+  transition: all 200ms ease-in-out;
 }
 
 .ReactModal__Overlay--after-open {
   opacity: 1;
-  transform: scale(1);
 }
 
 .ReactModal__Overlay--before-close {
   opacity: 0;
-  transform: scale(0.8);
 }

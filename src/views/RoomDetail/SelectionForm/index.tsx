@@ -21,8 +21,8 @@ const SelectionForm = ({ room }: any) => {
 
   const handleBook = () => {
     const queryRoomForm = {
-      from: dayjs(date?.from).format("DD-MM-YYYY"),
-      to: dayjs(date?.to).format("DD-MM-YYYY"),
+      from: dayjs(date?.from).format("YYYY-MM-DD"),
+      to: dayjs(date?.to).format("YYYY-MM-DD"),
       adult: roomForm.guest.adult,
       children: roomForm.guest.children,
       toddler: roomForm.guest.toddler,
