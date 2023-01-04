@@ -101,3 +101,23 @@
   background-color: #1677ff !important;
   box-shadow: 0 2px 0 rgb(5 145 255 / 10%);
 }
+
+.ReactModal__Body--open {
+  overflow: hidden;
+}
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: all 100ms ease-in-out;
+  transform: scale(0.8);
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+  transform: scale(0.8);
+}
