@@ -1,7 +1,5 @@
 import { Button } from "@/components"
 import { useRouter } from "next/router"
-import React from "react"
-import { AiOutlineClose } from "react-icons/ai"
 
 export const DateAndGuest = () => {
   const router = useRouter()
