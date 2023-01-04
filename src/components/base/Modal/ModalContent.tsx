@@ -1,18 +1,27 @@
 import cn from "classnames"
-import PropTypes from "prop-types"
+import { ReactNode } from "react"
 
 import Spin from "../Spin"
 import ModalHeader from "./ModalHeader"
 
+export type ModalContentType = {
+  title: string
+  onClose: () => void
+  children: ReactNode
+  headerClassName: string
+  contentClassName: string
+  isLoading: boolean
+}
+
 const ModalContent = ({
-  title,
+  title = "",
   onClose,
   children,
   headerClassName,
   contentClassName,
-  isLoading,
+  isLoading = false,
   ...props
-}) => (
+}: ModalContentType) => (
   <div {...props}>
     <ModalHeader {...{ title, onClose, headerClassName }} />
     <div className={cn(contentClassName)}>
@@ -25,19 +34,5 @@ const ModalContent = ({
     </div>
   </div>
 )
-
-ModalContent.propTypes = {
-  title: PropTypes.string,
-  onClose: PropTypes.func.isRequired,
-  children: PropTypes.node.isRequired,
-  headerClassName: PropTypes.string,
-  contentClassName: PropTypes.string,
-  isLoading: PropTypes.bool,
-}
-
-ModalContent.defaultProps = {
-  title: ModalHeader.defaultProps.title,
-  isLoading: false,
-}
 
 export default ModalContent

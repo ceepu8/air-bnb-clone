@@ -1,25 +1,26 @@
 /* eslint-disable no-nested-ternary */
 import cn from "classnames"
-import PropTypes from "prop-types"
+import { ComponentType, ReactNode } from "react"
 import ReactModal from "react-modal"
-
 import ModalContent from "./ModalContent"
 
 const MODAL_MARGIN = 20
 const TRANSITION_DURATION = 200
 const MODAL_SIZE = { small: "320px", medium: "650px", large: "890px", full: "100vw" }
-const MODAL_TOP = { center: "35%", bottom: "85%" }
+const MODAL_TOP: { [key: string]: string } = { center: "35%", bottom: "85%" }
 
 export const Modal = ({
   isOpen,
-  overlayAuxClassName,
-  reactModalProps,
-  position,
+  overlayAuxClassName = null,
+  reactModalProps = {},
+  position = "center",
   onClose,
-  size,
+  size = "medium",
   ...props
-}) => {
+}: ModalType) => {
   ReactModal.setAppElement("body")
+
+  const ModalSafeForReact18 = ReactModal as ComponentType<ReactModal["props"]>
 
   const reactModalContentStyle = {
     content: {
@@ -42,7 +43,7 @@ export const Modal = ({
   }
 
   return (
-    <ReactModal
+    <ModalSafeForReact18
       isOpen={!!isOpen}
       ariaHideApp={false}
       style={reactModalContentStyle}
@@ -52,25 +53,23 @@ export const Modal = ({
       shouldCloseOnOverlayClick
       {...reactModalProps}
     >
-      <ModalContent {...{ onClose, ...props }} />
-    </ReactModal>
+      <ModalContent {...{ ...props, onClose }} />
+    </ModalSafeForReact18>
   )
 }
 
-Modal.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  reactModalProps: PropTypes.object,
-  overlayAuxClassName: PropTypes.string,
-  position: PropTypes.oneOf(["top", "left", "bottom", "right", "center"]),
-  size: PropTypes.oneOf(["small", "medium", "large", "full"]),
-  ...ModalContent.propTypes,
-}
-
-Modal.defaultProps = {
-  reactModalProps: {},
-  overlayAuxClassName: null,
-  position: "center",
-  size: "medium",
+type ModalType = {
+  isOpen: boolean
+  reactModalProps: object
+  overlayAuxClassName: string | null
+  position: "top" | "left" | "bottom" | "right" | "center"
+  onClose: () => void
+  size: "small" | "medium" | "large" | "full"
+  title: string
+  children: ReactNode
+  headerClassName: string
+  contentClassName: string
+  isLoading: boolean
 }
 
 export default Modal
