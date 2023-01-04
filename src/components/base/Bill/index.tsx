@@ -4,7 +4,7 @@ import { LineBreak } from "../LineBreak"
 type BillType = {
   numberNights: number | undefined | string | string[]
   price: number | undefined
-  isCharged: boolean
+  isCharged?: boolean
 }
 
 export const Bill = (props: BillType) => {
