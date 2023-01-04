@@ -11,7 +11,7 @@ const MODAL_TOP: { [key: string]: string } = { center: "35%", bottom: "85%" }
 
 export const Modal = ({
   isOpen,
-  overlayAuxClassName = null,
+  overlayClassName = null,
   reactModalProps = {},
   position = "center",
   onClose,
@@ -22,7 +22,7 @@ export const Modal = ({
 
   const ModalSafeForReact18 = ReactModal as ComponentType<ReactModal["props"]>
 
-  const reactModalContentStyle = {
+  const rootStyle = {
     content: {
       padding: 0,
       border: "none",
@@ -46,9 +46,9 @@ export const Modal = ({
     <ModalSafeForReact18
       isOpen={!!isOpen}
       ariaHideApp={false}
-      style={reactModalContentStyle}
+      style={rootStyle}
       closeTimeoutMS={TRANSITION_DURATION}
-      overlayClassName={cn(overlayAuxClassName)}
+      overlayClassName={cn(overlayClassName)}
       onRequestClose={onClose}
       shouldCloseOnOverlayClick
       {...reactModalProps}
@@ -61,7 +61,7 @@ export const Modal = ({
 type ModalType = {
   isOpen: boolean
   reactModalProps: object
-  overlayAuxClassName: string | null
+  overlayClassName: string | null
   position: "top" | "left" | "bottom" | "right" | "center"
   onClose: () => void
   size: "small" | "medium" | "large" | "full"
