@@ -20,15 +20,15 @@
   --rdp-outline: 2px solid var(--rdp-accent-color);
   /* Outline border for focused and selected elements */
   --rdp-outline-selected: 2px solid rgba(0, 0, 0, 0.75);
-  width: 100%;
 }
 
 .rdp .rdp-multiple_months {
   width: 100%;
 }
 
-.rdp-month {
-  width: 50%;
+.rdp-months {
+  display: flex;
+  justify-content: space-around;
 }
 
 .rdp-caption_label {
@@ -40,12 +40,6 @@
 .rdp-head_cell {
   font-size: 10px;
   font-weight: 400;
-}
-
-.rdp-table {
-  margin: 0;
-  max-width: calc(100% / 7 * 7) !important;
-  border-collapse: collapse;
 }
 
 .rdp-cell {
