@@ -20,3 +20,9 @@ export interface RoomInterface {
   hinhAnh?: string | undefined
   rating?: number
 }
+
+export interface Guest {
+  adult: number
+  children: number
+  toddler: number
+}

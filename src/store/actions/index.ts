@@ -1,13 +1,7 @@
-import { LocationInterface } from "@/interfaces"
+import { Guest, LocationInterface } from "@/interfaces"
 import { createRequestTypes } from "@/utils/redux"
 import { createAction } from "@reduxjs/toolkit"
 import { DateRange } from "react-day-picker"
-
-interface Guest {
-  adult: number
-  children: number
-  toddler: number
-}
 
 export const LOGIN = createRequestTypes("LOGIN")
 export const REGISTER = createRequestTypes("REGISTER")

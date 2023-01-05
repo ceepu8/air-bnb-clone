@@ -18,8 +18,12 @@ module.exports = {
         "white-gray": "var(--white-gray)",
         "very-light-gray": "var(--very-light-gray)",
         "light-gray": "var(--light-gray)",
+        "black-gray": "var(--black-gray)",
         danger: "var(--danger)",
         green: "var(--green)",
+
+        "linear-100": "var(--linear-gradient-100)",
+        "linear-200": "var(--linear-gradient-200)",
       },
       textColor: {
         main: "var(--text-main)",

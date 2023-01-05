@@ -4,13 +4,13 @@ import { ReactNode } from "react"
 import Spin from "../Spin"
 import ModalHeader from "./ModalHeader"
 
-export type ModalContentType = {
-  title: string
-  onClose: () => void
-  children: ReactNode
-  headerClassName: string
-  contentClassName: string
-  isLoading: boolean
+type ModalContentType = {
+  title?: string
+  onClose?: () => void
+  children?: ReactNode
+  headerClassName?: string
+  contentClassName?: string
+  isLoading?: boolean
 }
 
 const ModalContent = ({

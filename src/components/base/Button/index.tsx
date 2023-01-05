@@ -11,6 +11,7 @@ interface ButtonProps {
   text?: String
   icon?: ReactNode
   children?: ReactNode
+  style?: any
   disabled?: boolean
   btnType?: "button" | "submit" | "reset" | undefined
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void
@@ -31,6 +32,7 @@ const Button = ({
   btnType = "button",
   onClick,
   children,
+  style,
   ...props
 }: ButtonProps) => {
   const background = classNames({
@@ -47,7 +49,7 @@ const Button = ({
 
   const borderStyle = classNames({
     "border-[1px] border-dark-gray p-2": border === "default",
-    none: !border,
+    "": !border,
   })
 
   const shapeStyle = classNames({
@@ -66,8 +68,9 @@ const Button = ({
       )}
       onClick={onClick}
       disabled={disabled}
-      {...props}
       type={btnType}
+      style={style}
+      {...props}
     >
       {icon}
       {children}

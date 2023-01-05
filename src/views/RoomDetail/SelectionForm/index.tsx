@@ -1,49 +1,38 @@
-// import Button from '@/components/general/Button';
-// import DatePickerSelection from './DatePickerSelection';
-// import PeopleNumberSelection from './PeopleNumberSelection';
-
-import { Button, LineBreak } from "@/components"
+import { Bill, Button } from "@/components"
+import dayjs from "dayjs"
+import { useRouter } from "next/router"
 import { useState } from "react"
 import { useSelector } from "react-redux"
-// import { RoomInterface } from "@/interfaces"
 import { DatePicker } from "./DatePicker"
 import { PeoplePicker } from "./PeoplePicker"
 
 const SelectionForm = ({ room }: any) => {
-  const { date, numberNights } = useSelector((state: any) => state.roomForm)
+  const { roomForm } = useSelector((state: any) => state)
+  const { date, numberNights } = roomForm
   const { giaTien } = room || {}
+  const router = useRouter()
+
+  const { id } = router.query
 
   const [isCheckRoom, setIsCheckRoom] = useState<boolean>(false)
 
   const doCloseCheckRoom = () => setIsCheckRoom(false)
   const doOpenCheckRoom = () => setIsCheckRoom(true)
 
-  const renderBill = () => {
-    return (
-      <>
-        <p className="mt-4 text-center text-xs">You won't be charged yet</p>
-
-        <div className="mt-4">
-          <div className="flex justify-between">
-            <p className="text-sm underline">
-              {giaTien}$ x {numberNights} nights
-            </p>
-            <p className="text-sm">{giaTien * numberNights}$</p>
-          </div>
-          <div className="my-4 flex justify-between">
-            <p className="text-sm underline">Service fee</p>
-            <p className="text-sm">0$</p>
-          </div>
-
-          <LineBreak />
-
-          <div className="my-4 flex justify-between font-semibold">
-            <p>Total</p>
-            <p>{giaTien * numberNights}$</p>
-          </div>
-        </div>
-      </>
-    )
+  const handleBook = () => {
+    const queryRoomForm = {
+      from: dayjs(date?.from).format("YYYY-MM-DD"),
+      to: dayjs(date?.to).format("YYYY-MM-DD"),
+      adult: roomForm.guest.adult,
+      children: roomForm.guest.children,
+      toddler: roomForm.guest.toddler,
+      productId: id,
+      numberNights: roomForm.numberNights,
+    }
+    router.push({
+      pathname: `/book/${id}`,
+      query: queryRoomForm,
+    })
   }
 
   return (
@@ -57,8 +46,10 @@ const SelectionForm = ({ room }: any) => {
 
           {date?.to && date?.from && (
             <>
-              <Button className="mt-4 w-full rounded-lg bg-primary py-2">Đặt phòng</Button>
-              {renderBill()}
+              <Button className="mt-4 w-full rounded-lg bg-primary py-2" onClick={handleBook}>
+                Đặt phòng
+              </Button>
+              <Bill price={giaTien} numberNights={numberNights} />
             </>
           )}
 

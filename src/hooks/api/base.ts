@@ -63,7 +63,7 @@ export const useInfinite = (
         const { pages = [] } = prev || {}
         const { content = {} } = pages[pages.length - 1] || {}
 
-        const page = pages.map((item) => item.content?.data || []).flat()
+        const page = pages.map((item) => item.content?.data || item.content || []).flat()
 
         return {
           ...prev,

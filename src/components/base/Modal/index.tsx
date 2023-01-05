@@ -7,7 +7,7 @@ import ModalContent from "./ModalContent"
 const MODAL_MARGIN = 20
 const TRANSITION_DURATION = 200
 const MODAL_SIZE = { small: "320px", medium: "650px", large: "890px", full: "100vw" }
-const MODAL_TOP: { [key: string]: string } = { center: "35%", bottom: "85%" }
+const MODAL_TOP: { [key: string]: string } = { center: "50%", bottom: "85%" }
 
 export const Modal = ({
   isOpen,
@@ -36,6 +36,7 @@ export const Modal = ({
       maxWidth: `${MODAL_SIZE[size]}` || "650px",
       boxShadow: "var(--drop-shadow)",
       borderRadius: "12px",
+      transform: "translateY(-50%)",
     },
     overlay: {
       backdropFilter: "blur(12px)",
@@ -60,16 +61,16 @@ export const Modal = ({
 
 type ModalType = {
   isOpen: boolean
-  reactModalProps: object
-  overlayClassName: string | null
-  position: "top" | "left" | "bottom" | "right" | "center"
+  reactModalProps?: object
+  overlayClassName?: string | null
+  position?: "top" | "left" | "bottom" | "right" | "center"
   onClose: () => void
-  size: "small" | "medium" | "large" | "full"
-  title: string
-  children: ReactNode
-  headerClassName: string
-  contentClassName: string
-  isLoading: boolean
+  size?: "small" | "medium" | "large" | "full"
+  title?: string
+  children?: ReactNode
+  headerClassName?: string
+  contentClassName?: string
+  isLoading?: boolean
 }
 
 export default Modal
