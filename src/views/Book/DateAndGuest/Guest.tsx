@@ -9,7 +9,9 @@ import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai"
 
 const Guest = () => {
   const router = useRouter()
+
   const { adult, children, toddler } = router.query
+
   const totalGuest = useMemo(
     () => Number(adult) + Number(children) + Number(toddler),
     [adult, children, toddler]
@@ -106,7 +108,7 @@ const Guest = () => {
           </div>
           <LineBreak />
           <div className="mt-4 flex justify-between px-6 pb-4">
-            <Button text="black" className="underline">
+            <Button text="black" className="underline" onClick={onClose}>
               Huỷ
             </Button>
             <Button variant="black" className="rounded-lg py-3 px-6" onClick={handleUpdateGuest}>

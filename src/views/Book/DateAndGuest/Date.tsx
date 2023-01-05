@@ -26,7 +26,6 @@ const Date = () => {
 
   const handleChangeDate = (_date: DateRange | undefined) => {
     const { from: _from, to: _to } = _date || {}
-    console.log(_date)
 
     setDateQuery((prev) => ({
       ...prev,
@@ -42,6 +41,22 @@ const Date = () => {
         query: date,
       })
       onClose()
+    }
+  }
+
+  const handleRemoveDate = () => {
+    if (from && to) {
+      const resetDate = {
+        ...date,
+        from: dayjs().format("YYYY-MM-DD"),
+        to: dayjs().add(1, "day").format("YYYY-MM-DD"),
+      }
+      setDateQuery(resetDate)
+
+      router.push({
+        pathname: `/book/${router.query.id}`,
+        query: resetDate,
+      })
     }
   }
 
@@ -71,7 +86,7 @@ const Date = () => {
             />
           </div>
           <div className="flex justify-end px-6 pb-4 text-sm">
-            <Button text="black" className="mr-4 underline">
+            <Button text="black" className="mr-4 underline" onClick={handleRemoveDate}>
               Xoá ngày
             </Button>
             <Button
