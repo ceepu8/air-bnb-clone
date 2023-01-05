@@ -19,8 +19,6 @@ const convertedDate = (
 
 const Date = () => {
   const router = useRouter()
-  console.log(router.query)
-
   const [date, setDateQuery] = useState(router.query)
   const { from, to, numberNights } = date || {}
 

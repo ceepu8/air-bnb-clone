@@ -8,10 +8,13 @@ import { useMemo, useState } from "react"
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai"
 
 const Guest = () => {
-  const { query } = useRouter()
-  const { adult, children, toddler } = query
-  const totalGuest = useMemo(() => Number(adult) + Number(children) + Number(toddler), [])
-  const [isOpen, setTrue, setFalse] = useFlag(false)
+  const router = useRouter()
+  const { adult, children, toddler } = router.query
+  const totalGuest = useMemo(
+    () => Number(adult) + Number(children) + Number(toddler),
+    [adult, children, toddler]
+  )
+  const [isOpen, onOpen, onClose] = useFlag(false)
 
   const [guest, setGuest] = useState<Guest>({
     adult: Number(adult) || 0,
@@ -39,6 +42,17 @@ const Guest = () => {
     }
   }
 
+  const handleUpdateGuest = () => {
+    router.replace({
+      pathname: `/book/${router.query.id}`,
+      query: {
+        ...router.query,
+        ...guest,
+      },
+    })
+    onClose()
+  }
+
   return (
     <div className="mt-6 flex justify-between">
       <div>
@@ -46,10 +60,10 @@ const Guest = () => {
         <p className="mt-1 font-light text-black-gray">{totalGuest} khách</p>
       </div>
 
-      <Button className="cursor-pointer font-medium underline" text="black" onClick={setTrue}>
+      <Button className="cursor-pointer font-medium underline" text="black" onClick={onOpen}>
         Chỉnh sửa
       </Button>
-      <Modal isOpen={isOpen} title="Guest" onClose={setFalse} size="small">
+      <Modal isOpen={isOpen} title="Guest" onClose={onClose} size="small">
         <div>
           <div className="px-6 pb-4">
             {PEOPLE_SELECTION.map((each) => {
@@ -95,7 +109,7 @@ const Guest = () => {
             <Button text="black" className="underline">
               Huỷ
             </Button>
-            <Button variant="black" className="rounded-lg py-3 px-6">
+            <Button variant="black" className="rounded-lg py-3 px-6" onClick={handleUpdateGuest}>
               Lưu
             </Button>
           </div>
