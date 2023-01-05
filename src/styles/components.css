@@ -101,14 +101,26 @@
 }
 
 .ReactModal__Overlay {
+  opacity: 0;
+  transition: all 200ms ease-in-out;
   z-index: 99999;
   backdrop-filter: none !important;
   background-color: rgb(34 34 34 / 50%) !important;
 }
 
-.ReactModal__Overlay {
+.ReactModal__Content {
+  transform: translateY(100%) !important;
+  transition: all 400ms ease-in-out;
   opacity: 0;
-  transition: all 200ms ease-in-out;
+}
+
+.ReactModal__Content--after-open {
+  transform: translateY(-50%) !important;
+  opacity: 1;
+}
+.ReactModal__Content--before-close {
+  transform: translateY(100%) !important;
+  opacity: 0;
 }
 
 .ReactModal__Overlay--after-open {
