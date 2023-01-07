@@ -33,10 +33,10 @@ const SelectionBoxExtend = () => {
     <div
       ref={ref}
       className={classNames(
-        "transition-all duration-300",
+        "absolute transition-all duration-[0.4s] ease-in-out",
         isExtended
-          ? "top-0 left-0 block max-h-full w-full scale-100 opacity-100 "
-          : "height-0 absolute -top-[20px] left-[80px] hidden scale-[60] opacity-0"
+          ? "visible top-0 left-0 z-50 block max-h-full w-full scale-100 opacity-100"
+          : "invisible -top-10 left-6 scale-50 opacity-0"
       )}
     >
       <HeaderNavigate />
