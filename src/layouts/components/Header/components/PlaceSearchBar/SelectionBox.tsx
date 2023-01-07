@@ -1,21 +1,19 @@
 import { Button } from "@/components"
+import { SET_EXTEND } from "@/store/actions"
 import classNames from "classnames"
 import { BiSearch } from "react-icons/bi"
+import { useDispatch, useSelector } from "react-redux"
 
-interface Props {
-  onSet: (open: boolean) => void
-  isToggle: boolean
-}
-
-const SelectionBox = (props: Props) => {
-  const { onSet, isToggle } = props
+const SelectionBox = () => {
+  const { isExtended } = useSelector((state: any) => state.searchbar)
+  const dispatch = useDispatch()
   return (
     <nav
-      onClick={() => onSet(true)}
+      onClick={() => dispatch(SET_EXTEND())}
       className={classNames(
         `visible absolute top-1/2 left-1/2 mx-auto max-h-full min-w-[380px] -translate-x-1/2 -translate-y-1/2 scale-100 opacity-100 transition-all duration-300`,
         {
-          "hidden h-0 scale-150 opacity-0": !isToggle,
+          "hidden h-0 scale-150 opacity-0": isExtended,
         }
       )}
     >

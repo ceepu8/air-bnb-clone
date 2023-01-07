@@ -1,8 +1,8 @@
-import { useState } from "react"
 import { BsGlobe } from "react-icons/bs"
 
-import { UserNavigate } from "@/components/navigation"
 import { NavLink } from "@/components"
+import { UserNavigate } from "@/components/navigation"
+import { useSelector } from "react-redux"
 import PlaceSearchBar from "./components/PlaceSearchBar"
 
 const Logo = () => {
@@ -25,14 +25,12 @@ const Logo = () => {
 }
 
 const Header = () => {
-  const [extendSelectionBox, setExtendSelectionBox] = useState(false)
-
-  const setToggle = (open: boolean) => setExtendSelectionBox(open)
+  const { isExtended } = useSelector((state: any) => state.searchbar)
 
   return (
     <header
       className={`${
-        extendSelectionBox ? "h-[140px]" : "h-[70px]"
+        isExtended ? "h-[140px]" : "h-[70px]"
       } border-bottom fixed top-0 right-0 z-50 mx-auto w-full border border-solid border-gray bg-white transition-all`}
     >
       <div className="mx-auto grid max-w-[1315px] grid-cols-5">
@@ -40,7 +38,7 @@ const Header = () => {
           <Logo />
         </div>
         <div className="relative col-span-3">
-          <PlaceSearchBar extendSelectionBox={extendSelectionBox} extendComponent={setToggle} />
+          <PlaceSearchBar />
         </div>
         <div className="col-span-1">
           <div className="flex items-center justify-around">
