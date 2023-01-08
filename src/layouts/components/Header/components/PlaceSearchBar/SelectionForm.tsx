@@ -29,7 +29,7 @@ const SelectionForm = () => {
             icon={<BiSearch className="inline-block" />}
             onClick={() => {
               if (location.id) {
-                router.push({ query: { locationId: location.id } })
+                router.replace({ pathname: "/", query: { locationId: location.id } })
                 dispatch(SET_SHRINK())
               }
             }}

@@ -1,12 +1,13 @@
 import classNames from "classnames"
+import { ReactNode } from "react"
 
 type SelectionProps = {
   isActive: boolean
-  labelText: string
-  children: JSX.Element | JSX.Element[]
+  labelText?: string
+  children: ReactNode
 }
 
-const CapsuleSelection = ({ isActive, labelText, children }: SelectionProps) => {
+const CapsuleSelection = ({ isActive = false, labelText, children, ...props }: SelectionProps) => {
   return (
     <div
       className={classNames(
@@ -15,10 +16,14 @@ const CapsuleSelection = ({ isActive, labelText, children }: SelectionProps) => 
           "bg-white shadow": isActive,
         }
       )}
+      {...props}
     >
-      <label htmlFor="destination" className="label-input mb-1 block text-xs font-semibold">
-        {labelText}
-      </label>
+      {labelText && (
+        <label htmlFor="destination" className="label-input mb-1 block text-xs font-semibold">
+          {labelText}
+        </label>
+      )}
+
       {children}
     </div>
   )
