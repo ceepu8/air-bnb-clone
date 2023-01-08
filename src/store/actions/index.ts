@@ -21,3 +21,6 @@ export const SET_LOCATION_DATE = createAction<DateRange | undefined>("SET_LOCATI
 export const SET_LOCATION_GUEST = createAction<Guest>("SET_LOCATION_GUEST")
 export const SET_LOCATION = createAction<LocationInterface>("SET_LOCATION")
 export const CLEAR_LOCATION_DATE = createAction("CLEAR_LOCATION_DATE")
+
+export const SET_EXTEND = createAction("SET_EXTEND")
+export const SET_SHRINK = createAction("SET_SHRINK")

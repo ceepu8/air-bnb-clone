@@ -1,20 +1,24 @@
-import { useMouseLeave } from "@/hooks"
-import { CapsuleSelection } from "@/components/selections"
 import { DropDown } from "@/components"
-import { STATIC_REGIONS } from "@/constants/Header"
-import { useDispatch, useSelector } from "react-redux"
-import { SET_LOCATION } from "@/store/actions"
-import { FiMapPin } from "react-icons/fi"
-import { useEffect, useState } from "react"
+import { CapsuleSelection } from "@/components/selections"
+import { useGetLocationList, useInputState, useMouseLeave } from "@/hooks"
 import { LocationInterface } from "@/interfaces"
+import { SET_LOCATION } from "@/store/actions"
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { FiMapPin } from "react-icons/fi"
+import { STATIC_REGIONS } from "@/constants/Header"
+
+const LOCATION_RENDER_LIMIT = 6
 
 const MapDropdown = ({ isOpen }: { isOpen: boolean }) => {
   const dispatch = useDispatch()
+  const { data: locationList } = useGetLocationList({ pageSize: LOCATION_RENDER_LIMIT })
+
   return (
     <DropDown isOpen={isOpen} className="top-[110%] left-0 max-w-[450px]">
       <h4 className="h4">Tìm kiếm theo khu vực</h4>
       <div className="flex flex-wrap">
-        {STATIC_REGIONS.map((location: LocationInterface) => {
+        {(locationList || []).map((location: LocationInterface) => {
           const { hinhAnh, tinhThanh, id } = location
           return (
             <button
@@ -41,13 +45,29 @@ const MapDropdown = ({ isOpen }: { isOpen: boolean }) => {
   )
 }
 
-const SearchDropdown = ({ isOpen, searchList }: { isOpen: boolean; searchList: any }) => {
+const filterSearchList = (array: LocationInterface[], value: string) => {
+  return array.filter(({ tinhThanh }: LocationInterface) =>
+    convertText(tinhThanh).includes(convertText(value || ""))
+  )
+}
+
+const SearchDropdown = ({ isOpen, value }: { isOpen: boolean; value: any }) => {
   const dispatch = useDispatch()
+  const [keyword, setKeyword] = useState("")
+  const locationList = filterSearchList(STATIC_REGIONS, keyword)
+
+  useEffect(() => {
+    const timeOut = setTimeout(() => {
+      setKeyword(value)
+    }, 500)
+
+    return () => clearTimeout(timeOut)
+  }, [value])
 
   return (
     <DropDown isOpen={isOpen} className="top-[110%] left-0 max-w-[450px] !p-3">
       <div>
-        {searchList.map((location: LocationInterface) => {
+        {(locationList || []).map((location: LocationInterface) => {
           const { tinhThanh, tenViTri, id } = location
           return (
             <div
@@ -78,18 +98,12 @@ const convertText = (text: string) => {
     .replace(/[\u0300-\u036f]/g, "")
 }
 
-const filterSearchList = (array: LocationInterface[], value: string) => {
-  return array.filter(({ tinhThanh }: LocationInterface) =>
-    convertText(tinhThanh).includes(convertText(value || ""))
-  )
-}
-
 const MapSelection = () => {
   const { ref, value: isMouseIn } = useMouseLeave<HTMLDivElement>()
   const { location } = useSelector((state: any) => state.locationForm)
-  const [value, setValue] = useState<string>(location.name)
+  const [value, setValue] = useInputState<string>(location.name)
+
   const [recommend, setRecommend] = useState<Boolean>(true)
-  const [data] = useState<LocationInterface[]>(STATIC_REGIONS)
 
   useEffect(() => {
     setValue(location.tinhThanh)
@@ -112,9 +126,7 @@ const MapSelection = () => {
         />
       </CapsuleSelection>
       {recommend && <MapDropdown isOpen={isMouseIn} />}
-      {!recommend && (
-        <SearchDropdown isOpen={isMouseIn} searchList={filterSearchList(data, value)} />
-      )}
+      {!recommend && <SearchDropdown isOpen={isMouseIn} value={value} />}
     </div>
   )
 }

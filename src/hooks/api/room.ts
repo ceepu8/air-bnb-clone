@@ -7,8 +7,6 @@ import { API, ROOM_DETAIL_KEY, ROOM_LIST_KEY, ROOM_LOCATION_KEY } from "@/consta
 import { useInfinite } from "./base"
 
 export const useGetRoomList = (variables: { locationId: string | string[] | undefined }) => {
-  console.log(variables)
-
   const { locationId } = variables
   const URL = locationId ? API.ROOM.LOCATION.replace(":id", locationId.toString()) : API.ROOM.LIST
   return useInfinite([ROOM_LIST_KEY, variables], {
