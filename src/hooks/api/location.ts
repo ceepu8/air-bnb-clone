@@ -13,7 +13,7 @@ export const useGetLocationList = (defaultQuery: any = {}) => {
   })
 
   return useQuery(
-    [LOCATION_LIST_KEY],
+    [LOCATION_LIST_KEY, defaultQuery],
     async () => {
       const { data } = await api.get(URL)
       return data
