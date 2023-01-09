@@ -41,7 +41,7 @@
   --linear-gradient-100: linear-gradient(to right, #e61e4d 0%, #e31c5f 50%, #d70466 100%);
   --linear-gradient-200: linear-gradient(to right, #bd1e59 0%, #92174d 50%, #861453 100%);
   --linear-gradient-300: linear-gradient(to right, #59086e 0%, #460479 50%, #440589 100%);
-  --linear-radial-100: radial-gradient(
+  --linear-gradient-button: radial-gradient(
     circle at center,
     #ff385c 0%,
     #e61e4d 27.5%,
