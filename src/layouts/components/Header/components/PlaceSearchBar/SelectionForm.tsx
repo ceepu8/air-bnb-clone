@@ -1,7 +1,7 @@
-import { BiSearch } from "react-icons/bi"
-import { Button } from "@/components"
+import { ButtonForMyLove } from "@/components"
 import { SET_SHRINK } from "@/store/actions"
 import { useRouter } from "next/router"
+import { BiSearch } from "react-icons/bi"
 import { useDispatch, useSelector } from "react-redux"
 import DateSelection from "./DateSelection"
 import MapSelection from "./MapSelection"
@@ -11,6 +11,14 @@ const SelectionForm = () => {
   const router = useRouter()
   const { location = {} } = useSelector((state: any) => state.locationForm)
   const dispatch = useDispatch()
+
+  const doSearch = () => {
+    if (location.id) {
+      router.push({ query: { locationId: location.id } })
+      dispatch(SET_SHRINK())
+    }
+  }
+
   return (
     <form className="mx-auto max-w-[800px]">
       <div className="relative grid grid-cols-6 items-center rounded-full border border-solid border-light-gray bg-very-light-gray">
@@ -22,20 +30,15 @@ const SelectionForm = () => {
         </div>
         <div className="relative col-span-2">
           <PeopleSelection />
-          <Button
-            variant="primary"
-            className="absolute right-0 top-1/2 mr-4 -translate-y-1/2 py-3 px-5 text-sm font-bold "
+          <ButtonForMyLove
             shape="circle"
-            icon={<BiSearch className="inline-block" />}
-            onClick={() => {
-              if (location.id) {
-                router.push({ query: { locationId: location.id } })
-                dispatch(SET_SHRINK())
-              }
-            }}
+            className="absolute right-2.5 top-1/2 w-max -translate-y-1/2 px-6"
+            leftIcon={<BiSearch />}
+            disabled={!location.id}
+            onClick={doSearch}
           >
             Tìm kiếm
-          </Button>
+          </ButtonForMyLove>
         </div>
       </div>
     </form>

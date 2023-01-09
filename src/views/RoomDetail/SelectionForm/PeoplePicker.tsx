@@ -1,9 +1,8 @@
-import { Button, DropDown } from "@/components"
+import { ButtonForMyLove, DropDown } from "@/components"
 import { PEOPLE_SELECTION } from "@/constants"
 import { useMouseLeave } from "@/hooks"
+import { Guest } from "@/interfaces"
 import { SET_GUEST } from "@/store/actions"
-import classNames from "classnames"
-import React from "react"
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai"
 import { useDispatch, useSelector } from "react-redux"
 
@@ -39,35 +38,29 @@ const Popup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => vo
     <DropDown isOpen={isOpen} className="top-[110%] min-w-full rounded-md px-4 py-6">
       <div>
         {PEOPLE_SELECTION.map((each) => {
-          const { name, id, note, keyName } = each
+          const { name, id, note, keyName } = each || {}
+          const total = guest[keyName as keyof Guest] || 0
+          const disabled = (keyName === "adult" && total === 1) || total === 0
+
           return (
             <div key={id} className="flex items-center justify-between">
               <div className="mb-4">
                 <p className="mb-0 font-semibold">{name}</p>
-                <span className="text-sm">{note}</span>
+                <span className="text-sm font-light text-black-gray">{note}</span>
               </div>
               <div className="flex items-center">
-                <Button
-                  shape="circle"
-                  border="default"
-                  borderColor="grey"
+                <ButtonForMyLove
+                  isJusIcon
+                  variant="light"
+                  disabled={disabled}
                   onClick={() => handleDecrease(keyName)}
-                  className={classNames("text-dark-gray", {
-                    "cursor-not-allowed border-light-gray text-light-gray":
-                      guest[keyName] === 0 || (keyName === "adult" && guest[keyName] === 1),
-                  })}
                 >
-                  <AiOutlineMinus className={classNames("text-dark-gray", {})} size={12} />
-                </Button>
-                <span className="mx-3 w-6 text-center">{guest[keyName]}</span>
-                <Button
-                  shape="circle"
-                  border="default"
-                  borderColor="grey"
-                  onClick={() => handleIncrease(keyName)}
-                >
+                  <AiOutlineMinus className="text-dark-gray" size={12} />
+                </ButtonForMyLove>
+                <span className="mx-3 w-6 text-center font-light text-black-gray">{total}</span>
+                <ButtonForMyLove isJusIcon variant="light" onClick={() => handleIncrease(keyName)}>
                   <AiOutlinePlus className="text-dark-gray" size={12} />
-                </Button>
+                </ButtonForMyLove>
               </div>
             </div>
           )
@@ -75,14 +68,14 @@ const Popup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => vo
       </div>
 
       <div className="text-right">
-        <Button
-          variant="transparent"
-          text="black"
-          className="text-md font-medium underline"
+        <ButtonForMyLove
+          variant="light"
+          size="small"
+          className="w-max underline shadow-none"
           onClick={handleClose}
         >
           Đóng
-        </Button>
+        </ButtonForMyLove>
       </div>
     </DropDown>
   )

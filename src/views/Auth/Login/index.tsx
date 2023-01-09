@@ -2,7 +2,7 @@ import { useRouter } from "next/router"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { ToastContainer } from "react-toastify"
 
-import { Button, NavLink } from "@/components"
+import { ButtonForMyLove, NavLink } from "@/components"
 // import { useLogin } from "@/hooks"
 import { LoginValues } from "@/interfaces"
 
@@ -65,9 +65,7 @@ const LoginView = () => {
               <span className="text-[red]">This is required</span>
             )}
           </div>
-          <Button className="mt-5 w-full py-2 px-4 font-bold" variant="primary">
-            LOGIN
-          </Button>
+          <ButtonForMyLove className="mt-5">LOGIN</ButtonForMyLove>
         </form>
         <button className="w-full" type="button" onClick={() => router.push("/register")}>
           Do not have the account yet? <strong>Register</strong>

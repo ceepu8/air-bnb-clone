@@ -1,8 +1,7 @@
-import { Button, LineBreak, Modal } from "@/components"
+import { ButtonForMyLove, LineBreak, Modal } from "@/components"
 import { PEOPLE_SELECTION } from "@/constants"
 import { useFlag } from "@/hooks"
 import { Guest } from "@/interfaces"
-import classNames from "classnames"
 import { useRouter } from "next/router"
 import { useMemo, useState } from "react"
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai"
@@ -62,14 +61,17 @@ const Guest = () => {
         <p className="mt-1 font-light text-black-gray">{totalGuest} khách</p>
       </div>
 
-      <Button className="cursor-pointer font-medium underline" text="black" onClick={onOpen}>
+      <ButtonForMyLove clean className="underline shadow-none" onClick={onOpen}>
         Chỉnh sửa
-      </Button>
+      </ButtonForMyLove>
       <Modal isOpen={isOpen} title="Guest" onClose={onClose} size="small">
         <div>
           <div className="px-6 pb-4">
             {PEOPLE_SELECTION.map((each) => {
-              const { name, id, note, keyName } = each
+              const { name, id, note, keyName } = each || {}
+              const total = guest[keyName as keyof Guest] || 0
+              const disabled = (keyName === "adult" && total === 1) || total === 0
+
               return (
                 <div key={id} className="flex items-center justify-between">
                   <div className="mb-4">
@@ -77,30 +79,22 @@ const Guest = () => {
                     <span className="text-sm font-light text-black-gray">{note}</span>
                   </div>
                   <div className="flex items-center">
-                    <Button
-                      shape="circle"
-                      border="default"
-                      borderColor="grey"
+                    <ButtonForMyLove
+                      isJusIcon
+                      variant="light"
+                      disabled={disabled}
                       onClick={() => handleDecrease(keyName)}
-                      className={classNames("text-dark-gray", {
-                        "cursor-not-allowed border-light-gray text-light-gray":
-                          guest[keyName as keyof Guest] === 0 ||
-                          (keyName === "adult" && guest[keyName as keyof Guest] === 1),
-                      })}
                     >
-                      <AiOutlineMinus className={classNames("text-dark-gray", {})} size={12} />
-                    </Button>
-                    <span className="mx-3 w-6 text-center font-light text-black-gray">
-                      {guest[keyName as keyof Guest]}
-                    </span>
-                    <Button
-                      shape="circle"
-                      border="default"
-                      borderColor="grey"
+                      <AiOutlineMinus className="text-dark-gray" size={12} />
+                    </ButtonForMyLove>
+                    <span className="mx-3 w-6 text-center font-light text-black-gray">{total}</span>
+                    <ButtonForMyLove
+                      isJusIcon
+                      variant="light"
                       onClick={() => handleIncrease(keyName)}
                     >
                       <AiOutlinePlus className="text-dark-gray" size={12} />
-                    </Button>
+                    </ButtonForMyLove>
                   </div>
                 </div>
               )
@@ -108,12 +102,12 @@ const Guest = () => {
           </div>
           <LineBreak />
           <div className="mt-4 flex justify-between px-6 pb-4">
-            <Button text="black" className="underline" onClick={onClose}>
+            <ButtonForMyLove clean className="font-medium underline" onClick={onClose}>
               Huỷ
-            </Button>
-            <Button variant="black" className="rounded-lg py-3 px-6" onClick={handleUpdateGuest}>
+            </ButtonForMyLove>
+            <ButtonForMyLove variant="secondary" className="w-max" onClick={handleUpdateGuest}>
               Lưu
-            </Button>
+            </ButtonForMyLove>
           </div>
         </div>
       </Modal>

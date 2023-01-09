@@ -1,12 +1,12 @@
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai"
 
-import { Button, DropDown } from "@/components"
-import { useMouseLeave } from "@/hooks"
+import { ButtonForMyLove, DropDown } from "@/components"
 import { CapsuleSelection } from "@/components/selections"
 import { PEOPLE_SELECTION } from "@/constants"
-import classNames from "classnames"
-import { useDispatch, useSelector } from "react-redux"
+import { useMouseLeave } from "@/hooks"
+import { Guest } from "@/interfaces"
 import { SET_LOCATION_GUEST } from "@/store/actions"
+import { useDispatch, useSelector } from "react-redux"
 
 const PeopleDropdown = ({ isOpen }: { isOpen: boolean }) => {
   const guest = useSelector((state: any) => state.locationForm.guest)
@@ -38,35 +38,29 @@ const PeopleDropdown = ({ isOpen }: { isOpen: boolean }) => {
   return (
     <DropDown isOpen={isOpen} className="top-[110%] right-0 min-w-[350px]">
       {PEOPLE_SELECTION.map((each) => {
-        const { name, id, note, keyName } = each
+        const { name, id, note, keyName } = each || {}
+        const total = guest[keyName as keyof Guest] || 0
+        const disabled = (keyName === "adult" && total === 1) || total === 0
+
         return (
           <div key={id} className="flex items-center justify-between">
             <div className="mb-4">
               <p className="mb-0 font-semibold">{name}</p>
-              <span className="text-sm">{note}</span>
+              <span className="text-sm font-light text-black-gray">{note}</span>
             </div>
             <div className="flex items-center">
-              <Button
-                shape="circle"
-                border="default"
-                borderColor="grey"
+              <ButtonForMyLove
+                isJusIcon
+                variant="light"
+                disabled={disabled}
                 onClick={() => handleDecrease(keyName)}
-                className={classNames("text-dark-gray", {
-                  "cursor-not-allowed border-light-gray text-light-gray":
-                    guest[keyName] === 0 || (keyName === "adult" && guest[keyName] === 1),
-                })}
               >
-                <AiOutlineMinus className={classNames("text-dark-gray", {})} size={12} />
-              </Button>
-              <span className="mx-3 w-6 text-center">{guest[keyName]}</span>
-              <Button
-                shape="circle"
-                border="default"
-                borderColor="grey"
-                onClick={() => handleIncrease(keyName)}
-              >
+                <AiOutlineMinus className="text-dark-gray" size={12} />
+              </ButtonForMyLove>
+              <span className="mx-3 w-6 text-center font-light text-black-gray">{total}</span>
+              <ButtonForMyLove isJusIcon variant="light" onClick={() => handleIncrease(keyName)}>
                 <AiOutlinePlus className="text-dark-gray" size={12} />
-              </Button>
+              </ButtonForMyLove>
             </div>
           </div>
         )
