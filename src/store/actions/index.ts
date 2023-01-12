@@ -24,3 +24,9 @@ export const CLEAR_LOCATION_DATE = createAction("CLEAR_LOCATION_DATE")
 
 export const SET_EXTEND = createAction("SET_EXTEND")
 export const SET_SHRINK = createAction("SET_SHRINK")
+
+export const OPEN_LOGIN_FORM = createAction("OPEN_LOGIN_FORM")
+export const CLOSE_LOGIN_FORM = createAction("CLOSE_LOGIN_FORM")
+
+export const OPEN_REGISTER_FORM = createAction("OPEN_REGISTER_FORM")
+export const CLOSE_REGISTER_FORM = createAction("CLOSE_REGISTER_FORM")

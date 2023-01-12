@@ -1,5 +1,7 @@
 import { LineBreak } from "@/components/base"
+import { OPEN_LOGIN_FORM, OPEN_REGISTER_FORM } from "@/store/actions"
 import Link from "next/link"
+import { useDispatch } from "react-redux"
 import Dropdown from "./Dropdown"
 
 type NavProps = {
@@ -16,10 +18,22 @@ const NavLink = ({ path, destination }: NavProps) => {
 }
 
 const AuthMenu = ({ isOpen }: { isOpen: boolean }) => {
+  const dispatch = useDispatch()
+
   return (
     <Dropdown isOpen={isOpen} className="right-0 min-w-[250px] !rounded-xl !py-2 !px-0">
-      <NavLink path="/login" destination="Đăng nhập" />
-      <NavLink path="/register" destination="Đăng ký" />
+      <div
+        className="block w-full cursor-pointer py-3 px-3 text-left text-sm font-light hover:bg-white-gray"
+        onClick={() => dispatch(OPEN_LOGIN_FORM())}
+      >
+        Đăng nhập
+      </div>
+      <div
+        className="block w-full cursor-pointer py-3 px-3 text-left text-sm font-light hover:bg-white-gray"
+        onClick={() => dispatch(OPEN_REGISTER_FORM())}
+      >
+        Đăng ký
+      </div>
       <LineBreak />
 
       <NavLink path="/" destination="Cho thuê nhà" />
