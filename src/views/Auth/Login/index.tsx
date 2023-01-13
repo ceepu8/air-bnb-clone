@@ -1,33 +1,29 @@
 import { Button, InputField, LineBreak, Modal } from "@/components"
+import { SOCIAL_MEDIA } from "@/constants"
 import { CLOSE_LOGIN_FORM } from "@/store/actions"
+import classNames from "classnames"
 import { useForm } from "react-hook-form"
-import { AiOutlineMail } from "react-icons/ai"
-import { BsApple, BsFacebook } from "react-icons/bs"
-import { FcGoogle } from "react-icons/fc"
 import { useDispatch, useSelector } from "react-redux"
 
 const renderSocialMedia = () => {
   return (
     <div>
-      <div className="mt-4 flex cursor-pointer items-center rounded-md border-[1px] border-solid border-black-gray py-3 px-5 hover:bg-very-light-gray">
-        <BsFacebook className="h-5 w-5 fill-blue-500" />
-        <p className="flex-1 text-center text-sm font-medium">Tiếp tục với Facebook</p>
-      </div>
-
-      <div className="mt-4 flex cursor-pointer items-center rounded-md border-[1px] border-solid border-black-gray py-3 px-5 hover:bg-very-light-gray">
-        <FcGoogle className="h-5 w-5 fill-blue-500" />
-        <p className="flex-1 text-center text-sm font-medium">Tiếp tục với Google</p>
-      </div>
-
-      <div className="mt-4 flex cursor-pointer items-center rounded-md border-[1px] border-solid border-black-gray py-3 px-5 hover:bg-very-light-gray">
-        <BsApple className="h-5 w-5" />
-        <p className="flex-1 text-center text-sm font-medium">Tiếp tục với Apple</p>
-      </div>
-
-      <div className="mt-4 flex cursor-pointer items-center rounded-md border-[1px] border-solid border-black-gray py-3 px-5 hover:bg-very-light-gray">
-        <AiOutlineMail className="h-5 w-5" />
-        <p className="flex-1 text-center text-sm font-medium">Tiếp tục với Email</p>
-      </div>
+      {SOCIAL_MEDIA.map((each) => {
+        const { id, name, Icon } = each
+        return (
+          <div
+            key={id}
+            className="mt-4 flex cursor-pointer items-center rounded-md border-[1px] border-solid border-black-gray py-3 px-5 hover:bg-very-light-gray"
+          >
+            <Icon
+              className={classNames("h-5 w-5", {
+                "fill-blue-500": name === "Facebook",
+              })}
+            />
+            <p className="flex-1 text-center text-sm font-medium">Tiếp tục với {name}</p>
+          </div>
+        )
+      })}
     </div>
   )
 }
