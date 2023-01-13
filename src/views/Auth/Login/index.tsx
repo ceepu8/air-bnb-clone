@@ -49,7 +49,7 @@ export const LoginView = () => {
     handleSubmit,
     watch,
   } = useForm({
-    mode: "onChange" || "onTouch",
+    mode: "onChange" || "onTouch" || "onTouched",
     resolver: yupResolver(schema),
   })
 
