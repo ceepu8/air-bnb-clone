@@ -1,5 +1,5 @@
 import classNames from "classnames"
-import { ChangeEvent, useState } from "react"
+import { useState } from "react"
 
 type InputFieldType = {
   id: string
@@ -7,6 +7,8 @@ type InputFieldType = {
   placeholder?: string
   type?: string
   name: string
+  register?: any
+  value?: any
 }
 
 export const InputField = ({
@@ -15,14 +17,10 @@ export const InputField = ({
   placeholder,
   type = "text",
   name,
+  register,
+  value,
   ...props
 }: InputFieldType) => {
-  const [value, setValue] = useState<string | number>()
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target
-    setValue(value)
-  }
-
   const [isFocus, setIsFocus] = useState(false)
 
   return (
@@ -32,7 +30,7 @@ export const InputField = ({
           className={classNames(
             "text-md absolute top-1/2 left-0 block -translate-y-1/2 text-dark-gray transition-all ",
             {
-              "!top-0 translate-y-0 text-xs": isFocus,
+              "!top-0 translate-y-0 text-xs": isFocus || value,
             }
           )}
           htmlFor={id}
@@ -41,16 +39,16 @@ export const InputField = ({
         </label>
       )}
       <input
+        {...register(name)}
         id={id}
         type={type}
-        value={value}
         className="form-control w-full pt-4 font-light text-black-gray placeholder-dark-gray"
         placeholder={placeholder}
-        onChange={handleChange}
         onFocus={() => setIsFocus(true)}
         onBlur={() => setIsFocus(false)}
         {...props}
       />
+      {/* error */}
     </div>
   )
 }
