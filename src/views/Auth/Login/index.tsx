@@ -1,9 +1,12 @@
 import { Button, InputField, LineBreak, Modal } from "@/components"
 import { SOCIAL_MEDIA } from "@/constants"
 import { CLOSE_LOGIN_FORM } from "@/store/actions"
+import { yupResolver } from "@hookform/resolvers/yup"
 import classNames from "classnames"
 import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
+import * as yup from "yup"
+import { ErrorMessage } from "../ErrorMessage"
 
 const renderSocialMedia = () => {
   return (
@@ -28,11 +31,27 @@ const renderSocialMedia = () => {
   )
 }
 
+const schema = yup
+  .object()
+  .shape({
+    email: yup.string().email("Email không hợp lệ").required("Không được để trống"),
+    password: yup.string().required("Không được để trống"),
+  })
+  .required()
+
 export const LoginView = () => {
   const dispatch = useDispatch()
   const { isLoginOpen } = useSelector((state: any) => state.authForm)
 
-  const { register, handleSubmit, watch } = useForm()
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    watch,
+  } = useForm({
+    mode: "onChange" || "onTouch",
+    resolver: yupResolver(schema),
+  })
 
   const onSubmit = (data: any) => {
     console.log(data)
@@ -46,23 +65,45 @@ export const LoginView = () => {
       <div className="px-6 pb-8">
         <h1 className="text-xl font-medium">Chào mừng bạn đến với Airbnb</h1>
         <form onSubmit={handleSubmit(onSubmit)} className="mt-4">
-          <div className="rounded-t-md border-[1px] border-solid border-dark-gray py-2 px-2">
+          <div
+            className={classNames(
+              "rounded-t-md border-[1px] border-b-[0.5px] border-solid border-dark-gray py-2 px-2",
+              {
+                "border-red-500": errors?.email,
+              }
+            )}
+          >
             <InputField
               register={register}
               name="email"
               id="email"
               label="Email"
               value={watch("email")}
+              error={errors?.email}
             />
+            {errors?.email && <ErrorMessage message={errors?.email?.message?.toString() || ""} />}
           </div>
-          <div className="rounded-b-md border-[1px] border-t-0 border-solid border-dark-gray py-2 px-2">
+
+          <div
+            className={classNames(
+              "rounded-b-md border-[1px] border-t-[0.5px] border-solid border-dark-gray py-2 px-2",
+              {
+                "border-red-500": errors?.password,
+              }
+            )}
+          >
             <InputField
               register={register}
               name="password"
               id="password"
               label="Mật khẩu"
               value={watch("password")}
+              type="password"
+              error={errors?.password}
             />
+            {errors?.password && (
+              <ErrorMessage message={errors?.password?.message?.toString() || ""} />
+            )}
           </div>
           <div>
             <Button className="mt-4 w-full rounded-md py-3" variant="primary" btnType="submit">
@@ -70,6 +111,7 @@ export const LoginView = () => {
             </Button>
           </div>
         </form>
+
         <div className="mt-4 flex items-center">
           <LineBreak />
           <p className="mx-4 text-xs text-black-gray">hoặc</p>

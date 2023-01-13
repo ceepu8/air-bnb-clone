@@ -1,5 +1,6 @@
 import classNames from "classnames"
 import { useState } from "react"
+import { FieldError, FieldErrorsImpl, Merge } from "react-hook-form"
 
 type InputFieldType = {
   id: string
@@ -9,6 +10,7 @@ type InputFieldType = {
   name: string
   register?: any
   value?: any
+  error?: FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined
 }
 
 export const InputField = ({
@@ -19,16 +21,18 @@ export const InputField = ({
   name,
   register,
   value,
+  error,
   ...props
 }: InputFieldType) => {
   const [isFocus, setIsFocus] = useState(false)
+  console.log()
 
   return (
     <div className="relative">
       {label && (
         <label
           className={classNames(
-            "text-md absolute top-1/2 left-0 block -translate-y-1/2 text-dark-gray transition-all ",
+            "text-md absolute top-1/2 left-0 block -translate-y-1/2 text-dark-gray transition-all",
             {
               "!top-0 translate-y-0 text-xs": isFocus || value,
             }
@@ -48,7 +52,6 @@ export const InputField = ({
         onBlur={() => setIsFocus(false)}
         {...props}
       />
-      {/* error */}
     </div>
   )
 }
