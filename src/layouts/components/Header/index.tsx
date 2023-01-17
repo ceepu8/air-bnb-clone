@@ -33,19 +33,19 @@ const Header = () => {
         isExtended ? "h-[140px]" : "h-[70px]"
       } border-bottom fixed top-0 right-0 z-50 mx-auto w-full border border-solid border-gray bg-white transition-all`}
     >
-      <div className="mx-auto grid max-w-[1315px] grid-cols-5">
+      <div className="mx-auto grid max-w-[1315px] grid-cols-3">
         <div className="col-span-1">
           <Logo />
         </div>
-        <div className="relative col-span-3">
+        <div className="relative col-span-1">
           <PlaceSearchBar />
         </div>
         <div className="col-span-1">
-          <div className="flex items-center justify-around">
-            <div className="rounded-full px-3 py-2 transition-colors duration-150 hover:bg-gray">
+          <div className="flex items-center justify-end">
+            <div className="rounded-full px-3 py-2 text-sm transition-colors duration-150 hover:bg-gray">
               Trở thành chủ nhà
             </div>
-            <div className="rounded-full p-3 transition-colors duration-150 hover:bg-gray">
+            <div className="mr-2 rounded-full p-3 transition-colors duration-150 hover:bg-gray">
               <BsGlobe />
             </div>
             <UserNavigate />

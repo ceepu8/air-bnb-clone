@@ -13,8 +13,8 @@ const SelectionBox = () => {
       className={classNames(
         "absolute mx-auto max-h-full min-w-[380px] transition-all duration-[0.4s] ease-in-out",
         isExtended
-          ? "invisible top-[90%] left-[17%] min-w-[520px] scale-150 opacity-0"
-          : "visible top-[12%] left-[26%] z-50 scale-100 opacity-100"
+          ? "invisible top-[90%] left-1/2 z-50 min-w-[520px] -translate-x-1/2 scale-150 opacity-0"
+          : "visible top-[12%] left-1/2 z-50 -translate-x-1/2 scale-100 opacity-100"
       )}
     >
       <div className="flex items-center justify-around rounded-full border border-solid border-gray py-2 px-2 shadow">

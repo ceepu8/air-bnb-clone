@@ -12,7 +12,7 @@ const SelectionForm = () => {
   const { location = {} } = useSelector((state: any) => state.locationForm)
   const dispatch = useDispatch()
   return (
-    <form className="mx-auto max-w-[800px]">
+    <form className="relative left-1/2 mx-auto min-w-[800px] -translate-x-1/2">
       <div className="relative grid grid-cols-6 items-center rounded-full border border-solid border-light-gray bg-very-light-gray">
         <div className="col-span-2">
           <MapSelection />
