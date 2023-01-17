@@ -24,7 +24,7 @@ export function useLogout() {
   return [doLogout]
 }
 
-export const useLogin = (): [(params: any) => Promise<void>, boolean, null | boolean, boolean] => {
+export const useLogin = () => {
   const dispatch = useDispatch()
 
   const [error, setError] = useState(null)
@@ -35,17 +35,20 @@ export const useLogin = (): [(params: any) => Promise<void>, boolean, null | boo
   const doLogin = async (params: any) => {
     setLoading(true)
     const { data } = await api.post(API.AUTH.LOGIN, params)
-    if (data?.success) {
+
+    if (data?.statusCode === 200) {
       dispatch(LOGIN_SUCCEED(data))
       setAuth(data)
       setSuccess(true)
     } else {
-      setError(data?.message)
+      console.log(data)
+
+      setError(data?.content)
     }
     setLoading(false)
   }
 
-  return [doLogin, loading, error, success]
+  return { doLogin, loading, error, success }
 }
 
 export const useRegister = () => {

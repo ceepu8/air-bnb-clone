@@ -2,11 +2,11 @@ import { Button, InputField, LineBreak, Modal } from "@/components"
 import { SOCIAL_MEDIA } from "@/constants"
 import { useLogin } from "@/hooks"
 import { CLOSE_LOGIN_FORM } from "@/store/actions"
+import { loginSchema } from "@/validations"
 import { yupResolver } from "@hookform/resolvers/yup"
 import classNames from "classnames"
 import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
-import * as yup from "yup"
 import { ErrorMessage } from "../ErrorMessage"
 
 const renderSocialMedia = () => {
@@ -32,19 +32,14 @@ const renderSocialMedia = () => {
   )
 }
 
-const schema = yup
-  .object()
-  .shape({
-    email: yup.string().email("Email không hợp lệ").required("Không được để trống"),
-    password: yup.string().required("Không được để trống"),
-  })
-  .required()
-
 export const LoginView = () => {
   const dispatch = useDispatch()
   const { isLoginOpen } = useSelector((state: any) => state.authForm)
 
-  const [doLogin] = useLogin()
+  const { doLogin, success, error } = useLogin()
+
+  console.log(error)
+
   const {
     register,
     formState: { errors },
@@ -52,12 +47,15 @@ export const LoginView = () => {
     watch,
   } = useForm({
     mode: "onChange" || "onTouch" || "onTouched",
-    resolver: yupResolver(schema),
+    resolver: yupResolver(loginSchema),
   })
 
-  const onSubmit = (data: any) => {
+  const onSubmit = async (data: any) => {
     try {
-      doLogin(data)
+      await doLogin(data)
+      if (success) {
+        dispatch(CLOSE_LOGIN_FORM())
+      }
     } catch (error) {}
   }
 

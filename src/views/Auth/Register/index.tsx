@@ -1,31 +1,14 @@
 import { Button, InputField, LineBreak, Modal } from "@/components"
-import { PHONE_NUMBER_REGEX } from "@/constants"
 import { useRegister } from "@/hooks"
 import { CLOSE_REGISTER_FORM } from "@/store/actions"
+import { registerSchema } from "@/validations"
 import { yupResolver } from "@hookform/resolvers/yup"
 import classNames from "classnames"
 import dayjs from "dayjs"
 import _ from "lodash"
 import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
-import * as yup from "yup"
 import { ErrorMessage } from "../ErrorMessage"
-
-const schema = yup
-  .object()
-  .shape({
-    email: yup.string().email("Email không hợp lệ").required("Không được để trống"),
-    name: yup.string().required("Không được để trống"),
-    phone: yup
-      .string()
-      .matches(PHONE_NUMBER_REGEX, "Số điện thoại không hợp lệ")
-      .required("Không được để trống"),
-    gender: yup.string().required("Không được để trống"),
-    birthday: yup.string().required("Không được để trống"),
-    password: yup.string().required("Không được để trống"),
-    confirmPassword: yup.string().oneOf([yup.ref("password"), null], "Mật khẩu không đồng nhất"),
-  })
-  .required()
 
 export const RegisterView = () => {
   const dispatch = useDispatch()
@@ -39,7 +22,7 @@ export const RegisterView = () => {
     watch,
   } = useForm({
     mode: "all",
-    resolver: yupResolver(schema),
+    resolver: yupResolver(registerSchema),
   })
 
   const onSubmit = (data: any) => {
