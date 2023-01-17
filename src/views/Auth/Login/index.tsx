@@ -1,5 +1,6 @@
 import { Button, InputField, LineBreak, Modal } from "@/components"
 import { SOCIAL_MEDIA } from "@/constants"
+import { useLogin } from "@/hooks"
 import { CLOSE_LOGIN_FORM } from "@/store/actions"
 import { yupResolver } from "@hookform/resolvers/yup"
 import classNames from "classnames"
@@ -43,6 +44,7 @@ export const LoginView = () => {
   const dispatch = useDispatch()
   const { isLoginOpen } = useSelector((state: any) => state.authForm)
 
+  const [doLogin] = useLogin()
   const {
     register,
     formState: { errors },
@@ -54,7 +56,9 @@ export const LoginView = () => {
   })
 
   const onSubmit = (data: any) => {
-    console.log(data)
+    try {
+      doLogin(data)
+    } catch (error) {}
   }
 
   return (

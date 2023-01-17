@@ -1,8 +1,11 @@
 import { Button, InputField, LineBreak, Modal } from "@/components"
 import { PHONE_NUMBER_REGEX } from "@/constants"
+import { useRegister } from "@/hooks"
 import { CLOSE_REGISTER_FORM } from "@/store/actions"
 import { yupResolver } from "@hookform/resolvers/yup"
 import classNames from "classnames"
+import dayjs from "dayjs"
+import _ from "lodash"
 import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
 import * as yup from "yup"
@@ -13,11 +16,12 @@ const schema = yup
   .shape({
     email: yup.string().email("Email không hợp lệ").required("Không được để trống"),
     name: yup.string().required("Không được để trống"),
-    phoneNumber: yup
+    phone: yup
       .string()
       .matches(PHONE_NUMBER_REGEX, "Số điện thoại không hợp lệ")
       .required("Không được để trống"),
     gender: yup.string().required("Không được để trống"),
+    birthday: yup.string().required("Không được để trống"),
     password: yup.string().required("Không được để trống"),
     confirmPassword: yup.string().oneOf([yup.ref("password"), null], "Mật khẩu không đồng nhất"),
   })
@@ -26,6 +30,7 @@ const schema = yup
 export const RegisterView = () => {
   const dispatch = useDispatch()
   const { isRegisterOpen } = useSelector((state: any) => state.authForm)
+  const { doLogin, error } = useRegister()
 
   const {
     register,
@@ -33,12 +38,29 @@ export const RegisterView = () => {
     handleSubmit,
     watch,
   } = useForm({
-    mode: "onChange" || "onTouched" || "onBlur",
+    mode: "all",
     resolver: yupResolver(schema),
   })
 
   const onSubmit = (data: any) => {
-    console.log(data)
+    try {
+      const values = {
+        ...data,
+        birthday: dayjs(dayjs(data.birthday).toDate()).format("DD/MM/YYYY"),
+        gender: data.gender === "male" ? true : false,
+        role: "USER",
+      }
+      const reqParams = _.pick(values, [
+        "phone",
+        "gender",
+        "password",
+        "birthday",
+        "name",
+        "email",
+        "role",
+      ])
+      doLogin(reqParams)
+    } catch (error) {}
   }
 
   return (
@@ -47,6 +69,7 @@ export const RegisterView = () => {
         <LineBreak />
       </div>
       <div className="px-6 pb-8">
+        {error && <p className="text-danger">{error}</p>}
         <h1 className="text-xl font-medium">Chào mừng bạn đến với Airbnb</h1>
         <form className="mt-4" onSubmit={handleSubmit(onSubmit)}>
           <div
@@ -87,21 +110,54 @@ export const RegisterView = () => {
             className={classNames(
               "border-[1px] border-y-[0.5px] border-solid border-dark-gray py-2 px-2",
               {
-                "border-red-500": errors?.phoneNumber,
+                "border-red-500": errors?.phone,
               }
             )}
           >
             <InputField
               register={register}
-              value={watch("phoneNumber")}
-              name="phoneNumber"
-              id="phoneNumber"
+              value={watch("phone")}
+              name="phone"
+              id="phone"
               label="Số điện thoại"
             />
-            {errors?.phoneNumber && (
-              <ErrorMessage message={errors?.phoneNumber?.message?.toString() || ""} />
-            )}
+            {errors?.phone && <ErrorMessage message={errors?.phone?.message?.toString() || ""} />}
           </div>
+
+          <div
+            className={classNames(
+              "relative border-[1px] border-y-[0.5px] border-solid border-dark-gray py-2 px-2",
+              {
+                "border-red-500": errors?.phone,
+              }
+            )}
+          >
+            <div className="relative">
+              <label
+                className={classNames(
+                  "text-md absolute top-1/2 left-0 block -translate-y-1/2 text-dark-gray transition-all",
+                  {
+                    "!top-0 translate-y-0 text-xs": true,
+                  }
+                )}
+                htmlFor="birthday"
+              >
+                Ngày sinh
+              </label>
+              <input
+                {...register("birthday")}
+                type="date"
+                pattern="\d{4}-\d{2}-\d{2}"
+                value={watch("birthday")}
+                placeholder="DD/MM/YYYY"
+                className="form-control w-full pt-4 font-light text-black-gray placeholder-dark-gray"
+              />
+              {errors?.birthday && (
+                <ErrorMessage message={errors?.birthday?.message?.toString() || ""} />
+              )}
+            </div>
+          </div>
+
           <div
             className={classNames(
               "border-[1px] border-y-[0.5px] border-solid border-dark-gray py-2 px-2",
@@ -113,9 +169,9 @@ export const RegisterView = () => {
             <label className="text-xs text-dark-gray" htmlFor="">
               Giới tính
             </label>
-            <select {...register("gender")} name="gender" className="w-full">
-              <option value={1}>Nam</option>
-              <option value={0}>Nữ</option>
+            <select defaultValue="male" {...register("gender")} name="gender" className="w-full">
+              <option value="male">Nam</option>
+              <option value="female">Nữ</option>
             </select>
             {errors?.gender && <ErrorMessage message={errors?.gender?.message?.toString() || ""} />}
           </div>
@@ -133,6 +189,7 @@ export const RegisterView = () => {
               name="password"
               id="password"
               label="Mật khẩu"
+              type="password"
             />
             {errors?.password && (
               <ErrorMessage message={errors?.password?.message?.toString() || ""} />
@@ -152,6 +209,7 @@ export const RegisterView = () => {
               name="confirmPassword"
               id="confirmPassword"
               label="Xác nhận mật khẩu"
+              type="password"
             />
             {errors?.confirmPassword && (
               <ErrorMessage message={errors?.confirmPassword?.message?.toString() || ""} />

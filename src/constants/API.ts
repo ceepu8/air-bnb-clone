@@ -4,8 +4,8 @@ export const TIMEOUT = 10000
 
 export const API = {
   AUTH: {
-    LOGIN: "/auth/login",
-    REGISTER: "/auth/register",
+    LOGIN: "/auth/signin",
+    REGISTER: "/auth/signup",
   },
   USER: {
     LIST: "/user",
