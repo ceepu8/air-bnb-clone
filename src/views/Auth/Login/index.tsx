@@ -5,6 +5,7 @@ import { CLOSE_LOGIN_FORM } from "@/store/actions"
 import { loginSchema } from "@/validations"
 import { yupResolver } from "@hookform/resolvers/yup"
 import classNames from "classnames"
+import { useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
 import { ErrorMessage } from "../ErrorMessage"
@@ -36,28 +37,29 @@ export const LoginView = () => {
   const dispatch = useDispatch()
   const { isLoginOpen } = useSelector((state: any) => state.authForm)
 
-  const { doLogin, success, error } = useLogin()
-
-  console.log(error)
+  const { doLogin, success, error, loading, setError } = useLogin()
 
   const {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
     watch,
   } = useForm({
-    mode: "onChange" || "onTouch" || "onTouched",
+    mode: "all",
     resolver: yupResolver(loginSchema),
   })
 
-  const onSubmit = async (data: any) => {
-    try {
-      await doLogin(data)
-      if (success) {
-        dispatch(CLOSE_LOGIN_FORM())
-      }
-    } catch (error) {}
+  const onSubmit = (data: any) => {
+    doLogin(data)
   }
+
+  useEffect(() => {
+    if (success && !loading) {
+      dispatch(CLOSE_LOGIN_FORM())
+      reset()
+    }
+  }, [success, loading])
 
   return (
     <Modal isOpen={isLoginOpen} onClose={() => dispatch(CLOSE_LOGIN_FORM())} title="Đăng nhập">
@@ -65,8 +67,9 @@ export const LoginView = () => {
         <LineBreak />
       </div>
       <div className="px-6 pb-8">
+        {error && <p className="text-md pb-4 text-center text-danger">{error}</p>}
         <h1 className="text-xl font-medium">Chào mừng bạn đến với Airbnb</h1>
-        <form onSubmit={handleSubmit(onSubmit)} className="mt-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="mt-4" onFocus={() => setError(null)}>
           <div
             className={classNames(
               "rounded-t-md border-[1px] border-b-[0.5px] border-solid border-dark-gray py-2 px-2",

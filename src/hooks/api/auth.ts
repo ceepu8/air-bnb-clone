@@ -8,6 +8,7 @@ import { API, ME_KEY } from "@/constants"
 import { LOGIN_SUCCEED, LOGOUT } from "@/store/actions"
 
 import { useLocalStorage } from "../shared"
+import { fetch } from "@/utils"
 
 export function useLogout() {
   const dispatch = useDispatch()
@@ -34,21 +35,21 @@ export const useLogin = () => {
 
   const doLogin = async (params: any) => {
     setLoading(true)
-    const { data } = await api.post(API.AUTH.LOGIN, params)
+    const response = await fetch({ method: "post", url: API.AUTH.LOGIN, params })
 
-    if (data?.statusCode === 200) {
-      dispatch(LOGIN_SUCCEED(data))
-      setAuth(data)
+    if (response?.statusCode === 200) {
+      dispatch(LOGIN_SUCCEED(response?.content))
+      setAuth(response?.content)
       setSuccess(true)
+      setError(null)
     } else {
-      console.log(data)
-
-      setError(data?.content)
+      setError(response?.content)
+      setSuccess(false)
     }
     setLoading(false)
   }
 
-  return { doLogin, loading, error, success }
+  return { doLogin, loading, error, success, setError }
 }
 
 export const useRegister = () => {

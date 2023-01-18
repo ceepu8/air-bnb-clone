@@ -25,7 +25,6 @@ export const InputField = ({
   ...props
 }: InputFieldType) => {
   const [isFocus, setIsFocus] = useState(false)
-  console.log()
 
   return (
     <div className="relative">
