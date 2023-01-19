@@ -1,4 +1,4 @@
-import { ButtonForMyLove, NavLink, InputField, LineBreak, Modal } from "@/components"
+import { ButtonForMyLove, InputField, LineBreak, Modal } from "@/components"
 import { SOCIAL_MEDIA } from "@/constants"
 import { useLogin } from "@/hooks"
 import { CLOSE_LOGIN_FORM } from "@/store/actions"
@@ -9,7 +9,6 @@ import { useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
 import { ErrorMessage } from "../ErrorMessage"
-import { LoginValues } from "@/interfaces"
 
 const renderSocialMedia = () => {
   return (
