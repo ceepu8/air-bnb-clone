@@ -1,6 +1,6 @@
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai"
 
-import { ButtonForMyLove, DropDown } from "@/components"
+import { Button, DropDown } from "@/components"
 import { CapsuleSelection } from "@/components/selections"
 import { PEOPLE_SELECTION } from "@/constants"
 import { useMouseLeave } from "@/hooks"
@@ -49,18 +49,18 @@ const PeopleDropdown = ({ isOpen }: { isOpen: boolean }) => {
               <span className="text-sm font-light text-black-gray">{note}</span>
             </div>
             <div className="flex items-center">
-              <ButtonForMyLove
-                isJusIcon
+              <Button
+                isJustIcon
                 variant="light"
                 disabled={disabled}
                 onClick={() => handleDecrease(keyName)}
               >
                 <AiOutlineMinus className="text-dark-gray" size={12} />
-              </ButtonForMyLove>
+              </Button>
               <span className="mx-3 w-6 text-center font-light text-black-gray">{total}</span>
-              <ButtonForMyLove isJusIcon variant="light" onClick={() => handleIncrease(keyName)}>
+              <Button isJustIcon variant="light" onClick={() => handleIncrease(keyName)}>
                 <AiOutlinePlus className="text-dark-gray" size={12} />
-              </ButtonForMyLove>
+              </Button>
             </div>
           </div>
         )

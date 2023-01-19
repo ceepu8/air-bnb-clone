@@ -1,4 +1,4 @@
-import { ButtonForMyLove, DropDown } from "@/components"
+import { Button, DropDown } from "@/components"
 import { useOnClickOutside } from "@/hooks"
 import { CLEAR_DATE } from "@/store/actions"
 import { format } from "date-fns"
@@ -37,12 +37,12 @@ const Popup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => vo
       </div>
 
       <div className="flex justify-end gap-3">
-        <ButtonForMyLove variant="light" size="small" fullWidth={false} onClick={handleClearDate}>
+        <Button variant="light" size="small" fullWidth={false} onClick={handleClearDate}>
           Xoá ngày
-        </ButtonForMyLove>
-        <ButtonForMyLove variant="secondary" size="small" fullWidth={false} onClick={handleClose}>
+        </Button>
+        <Button variant="secondary" size="small" fullWidth={false} onClick={handleClose}>
           Đóng
-        </ButtonForMyLove>
+        </Button>
       </div>
     </DropDown>
   )

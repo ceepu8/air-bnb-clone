@@ -1,4 +1,4 @@
-import { Bill, ButtonForMyLove } from "@/components"
+import { Bill, Button } from "@/components"
 import dayjs from "dayjs"
 import { useRouter } from "next/router"
 import { useState } from "react"
@@ -44,16 +44,16 @@ const SelectionForm = ({ room }: any) => {
           <PeoplePicker />
           {date?.to && date?.from && (
             <>
-              <ButtonForMyLove className="mt-4" onClick={handleBook}>
+              <Button className="mt-4" onClick={handleBook}>
                 Đặt phòng
-              </ButtonForMyLove>
+              </Button>
               <Bill price={giaTien} numberNights={numberNights} />
             </>
           )}
           {!date?.to && !date?.from && (
-            <ButtonForMyLove className="mt-4" onClick={doOpenCheckRoom}>
+            <Button className="mt-4" onClick={doOpenCheckRoom}>
               Kiểm tra tình trạng phòng
-            </ButtonForMyLove>
+            </Button>
           )}
         </div>
       </div>
