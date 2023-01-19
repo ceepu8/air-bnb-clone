@@ -23,3 +23,9 @@ export const USER_POLICY = [
       "Airbnb chỉ tiết lộ thông tin liên lạc cho Chủ nhà/Người tổ chức và khách sau khi đặt phòng/đặt chỗ được xác nhận.",
   },
 ]
+
+export const NAME_INFOR_NOTICE =
+  "Đây là tên trên giấy tờ thông hành của bạn, có thể là giấy phép hoặc hộ chiếu."
+
+export const EMAIL_INFOR_NOTICE = "Sử dụng địa chỉ mà bạn luôn có quyền truy cập."
+export const PHONE_INFOR_NOTICE = "Sử dụng số điện thoại mà bạn đang sử dụng."

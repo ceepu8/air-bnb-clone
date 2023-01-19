@@ -1,66 +1,60 @@
-import { Button, LineBreak } from "@/components"
+import { LineBreak } from "@/components"
+import { EMAIL_INFOR_NOTICE, NAME_INFOR_NOTICE, PHONE_INFOR_NOTICE } from "@/constants"
+import { useState } from "react"
 import { useSelector } from "react-redux"
+import { EditInfor } from "../EditInfor"
 
 export const UserInfor = () => {
   const { user = {} } = useSelector((state: any) => state.auth)
+  const [editing, setEditing] = useState("")
+  console.log(editing)
+
   return (
     <div>
-      <div className="flex items-center justify-between">
-        <div className="flex flex-col">
-          <h3 className="font-light">Tên pháp lý</h3>
-          <p className="text-sm font-light text-dark-gray">{user.name}</p>
-        </div>
-        <div>
-          <Button size="small" variant="light" className="shadow-none">
-            Chỉnh sửa
-          </Button>
-        </div>
-      </div>
+      <EditInfor
+        name="name"
+        label="Tên pháp lý"
+        infor={user.name}
+        setEditing={setEditing}
+        notice={NAME_INFOR_NOTICE}
+        disabled={editing !== "name" && editing !== ""}
+      />
       <div className="my-6">
-        <LineBreak />
+        <LineBreak className={editing === "" ? "" : "opacity-20"} />
       </div>
-      <div className="flex items-center justify-between">
-        <div className="flex flex-col">
-          <h3 className="font-light">Địa chỉ email</h3>
-          <p className="text-sm font-light text-dark-gray">{user.email}</p>
-        </div>
-        <div>
-          <Button size="small" variant="light" className="shadow-none">
-            Chỉnh sửa
-          </Button>
-        </div>
-      </div>
+
+      <EditInfor
+        name="email"
+        label="Địa chỉ email"
+        infor={user.email}
+        setEditing={setEditing}
+        notice={EMAIL_INFOR_NOTICE}
+        disabled={editing !== "email" && editing !== ""}
+      />
       <div className="my-6">
-        <LineBreak />
+        <LineBreak className={editing === "" ? "" : "opacity-20"} />
       </div>
-      <div className="flex items-center justify-between">
-        <div className="flex flex-col">
-          <h3 className="font-light">Số điện thoại</h3>
-          <p className="text-sm font-light text-dark-gray">{user.phone}</p>
-        </div>
-        <div>
-          <Button size="small" variant="light" className="shadow-none">
-            Chỉnh sửa
-          </Button>
-        </div>
-      </div>
+
+      <EditInfor
+        name="phoneNumber"
+        label="Số điện thoại"
+        infor={user.phone}
+        setEditing={setEditing}
+        notice={PHONE_INFOR_NOTICE}
+        disabled={editing !== "phoneNumber" && editing !== ""}
+      />
       <div className="my-6">
-        <LineBreak />
+        <LineBreak className={editing === "" ? "" : "opacity-20"} />
       </div>
-      <div className="flex items-center justify-between">
-        <div className="flex flex-col">
-          <h3 className="font-light">Giới tính</h3>
-          <p className="text-sm font-light text-dark-gray">{user.gender ? "Nam" : "Nữ"}</p>
-        </div>
-        <div>
-          <Button size="small" variant="light" className="shadow-none">
-            Chỉnh sửa
-          </Button>
-        </div>
-      </div>
-      <div className="my-6">
-        <LineBreak />
-      </div>
+
+      <EditInfor
+        name="gender"
+        label="Giới tính"
+        infor={user.gender ? "Nam" : "Nữ"}
+        options={["Nam", "Nữ"]}
+        setEditing={setEditing}
+        disabled={editing !== "gender" && editing !== ""}
+      />
     </div>
   )
 }
