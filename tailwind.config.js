@@ -24,6 +24,7 @@ module.exports = {
 
         "linear-100": "var(--linear-gradient-100)",
         "linear-200": "var(--linear-gradient-200)",
+        "linear-button": "var(--linear-gradient-button)",
       },
       textColor: {
         main: "var(--text-main)",
