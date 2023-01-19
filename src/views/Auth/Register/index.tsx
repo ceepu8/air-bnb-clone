@@ -8,6 +8,7 @@ import dayjs from "dayjs"
 import _ from "lodash"
 import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
+
 import { ErrorMessage } from "../ErrorMessage"
 
 export const RegisterView = () => {
@@ -198,10 +199,8 @@ export const RegisterView = () => {
               <ErrorMessage message={errors?.confirmPassword?.message?.toString() || ""} />
             )}
           </div>
-          <div>
-            <Button className="mt-4 w-full rounded-md py-3" variant="primary" btnType="submit">
-              Đăng ký
-            </Button>
+          <div className="mt-4">
+            <Button type="submit">Đăng ký</Button>
           </div>
         </form>
       </div>

@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react"
+import { RefObject, useEffect, useState } from "react"
 
-export const useGetMouseEvent = (ref: any) => {
+export const useGetMouseEvent = (ref: RefObject<HTMLButtonElement>) => {
   const [{ mouseX, mouseY }, setMousePos] = useState({ mouseX: 0, mouseY: 0 })
 
   useEffect(() => {

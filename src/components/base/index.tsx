@@ -1,5 +1,4 @@
 export { default as Button } from "./Button"
-export { default as ButtonForMyLove } from "./Button/ButtonForMyLove"
 export * from "./DropDown"
 export { default as KeenSlider } from "./KeenSlider"
 export { default as NavLink } from "./Link"

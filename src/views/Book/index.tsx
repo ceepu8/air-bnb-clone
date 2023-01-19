@@ -1,4 +1,4 @@
-import { Bill, ButtonForMyLove, LineBreak, NavLink } from "@/components"
+import { Bill, Button, LineBreak, NavLink } from "@/components"
 import { AIR_COVER, BOOKING_POLICY } from "@/constants"
 import { useGetRoomDetail } from "@/hooks"
 import Image from "next/image"
@@ -84,9 +84,9 @@ export const BookingView = () => {
           </div>
 
           <div className="mt-8">
-            <ButtonForMyLove className="" onClick={doPay}>
+            <Button className="" onClick={doPay}>
               Xác nhận và thanh toán &#x2022; Airbnb
-            </ButtonForMyLove>
+            </Button>
           </div>
         </div>
 

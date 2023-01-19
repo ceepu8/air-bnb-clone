@@ -1,4 +1,4 @@
-import { ButtonForMyLove, InputField, LineBreak, Modal } from "@/components"
+import { Button, InputField, LineBreak, Modal } from "@/components"
 import { SOCIAL_MEDIA } from "@/constants"
 import { useLogin } from "@/hooks"
 import { CLOSE_LOGIN_FORM } from "@/store/actions"
@@ -109,7 +109,9 @@ export const LoginView = () => {
               <ErrorMessage message={errors?.password?.message?.toString() || ""} />
             )}
           </div>
-          <ButtonForMyLove className="mt-5">LOGIN</ButtonForMyLove>
+          <Button type="submit" className="mt-5">
+            Đăng nhập
+          </Button>
         </form>
 
         <div className="mt-4 flex items-center">

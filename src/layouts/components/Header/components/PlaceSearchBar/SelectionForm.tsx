@@ -1,4 +1,4 @@
-import { ButtonForMyLove } from "@/components"
+import { Button } from "@/components"
 import { SET_SHRINK } from "@/store/actions"
 import { useRouter } from "next/router"
 import { BiSearch } from "react-icons/bi"
@@ -30,7 +30,7 @@ const SelectionForm = () => {
         </div>
         <div className="relative col-span-2">
           <PeopleSelection />
-          <ButtonForMyLove
+          <Button
             shape="circle"
             className="absolute right-2.5 top-1/2 w-max -translate-y-1/2 px-6"
             leftIcon={<BiSearch />}
@@ -38,7 +38,7 @@ const SelectionForm = () => {
             onClick={doSearch}
           >
             Tìm kiếm
-          </ButtonForMyLove>
+          </Button>
         </div>
       </div>
     </form>
