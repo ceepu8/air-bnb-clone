@@ -1,79 +1,112 @@
-import classNames from "classnames"
-import { MouseEvent, ReactNode } from "react"
+import cn from "classnames"
+import { MouseEvent, ReactNode, useRef } from "react"
+import { twMerge } from "tailwind-merge"
+
+import { useGetMouseEvent } from "@/hooks"
+
+import Spin from "../Spin"
 
 interface ButtonProps {
-  border?: String
-  borderColor?: String
-  value?: String
-  variant?: String
-  size?: String
-  shape?: String
-  text?: String
-  icon?: ReactNode
-  children?: ReactNode
-  style?: any
-  disabled?: boolean
-  btnType?: "button" | "submit" | "reset" | undefined
-  onClick?: (event: MouseEvent<HTMLButtonElement>) => void
+  label?: string
   className?: string
+  type?: "button" | "submit" | "reset"
+  shape?: "rectangle" | "circle" | "square"
+  variant?: "primary" | "secondary" | "outline" | "light"
+  size?: "tiny" | "small" | "medium" | "large" //  24 / 32 / 40 / 48 px
+  loading?: boolean
+  bordered?: boolean
+  onClick?: (event: MouseEvent<HTMLButtonElement>) => void
+  isJustIcon?: boolean
+  fullWidth?: boolean
+  disabled?: boolean
+  shadow?: boolean
+  clean?: boolean
+  bold?: boolean
+  leftIcon?: ReactNode
+  children?: ReactNode | string
 }
 
 const Button = ({
-  border,
-  borderColor,
-  value,
-  variant,
-  size,
-  shape,
-  text,
-  icon,
-  disabled,
-  className,
-  btnType = "button",
-  onClick,
+  label = "",
+  className = "",
+  type = "button",
+  shape = "rectangle",
+  variant = "primary",
+  size = "medium",
+  loading = false,
+  bordered = true,
+  onClick = () => {},
+  isJustIcon = false,
+  fullWidth = true,
+  disabled = false,
+  shadow = true,
+  clean = false,
+  bold = true,
+  leftIcon,
   children,
-  style,
   ...props
 }: ButtonProps) => {
-  const background = classNames({
-    "bg-primary": variant === "primary",
-    "bg-white": variant === "white",
-    "bg-black": variant === "black",
-    transparent: variant === "transparent",
+  const ref = useRef<HTMLButtonElement>(null)
+  const { mouseX, mouseY } = useGetMouseEvent(ref)
+
+  const sizeClassNames = cn({
+    "h-8 text-xs leading-4": size === "tiny",
+    "h-10 text-sm leading-[18px]": size === "small",
+    "h-12 text-base leading-[18px]": size === "medium",
+    "h-14 text-base leading-[18px]": size === "large",
+    "!w-8 h-8 leading-8": size === "tiny" && shape === "circle",
   })
 
-  const textColor = classNames({
-    "text-black-100": text === "black",
-    "text-white": !text,
-  })
+  const rootClassnames = !clean
+    ? cn(
+        "inline-block touch-manipulation select-none rounded-lg border-transparent px-6",
+        "transition-all duration-200 ease-linear focus:outline-none",
+        {
+          "border-black bg-white text-black hover:bg-white-gray": variant === "outline",
+          "bg-white text-black hover:bg-white-gray underline": variant === "light",
+          "bg-black-gray text-white hover:bg-black": variant === "secondary",
+          "!w-8 h-8 rounded-full border-dark-gray p-2": isJustIcon,
+          "rounded-full border-dark-gray p-2": shape === "circle",
+          "cursor-not-allowed opacity-50": disabled,
+          "border border-solid": bordered,
+          "px-4": size === "small",
+          "font-semibold": bold,
+          "shadow-drop": shadow,
+          "w-full": fullWidth,
+        },
+        className
+      )
+    : className
 
-  const borderStyle = classNames({
-    "border-[1px] border-dark-gray p-2": border === "default",
-    "": !border,
-  })
-
-  const shapeStyle = classNames({
-    "rounded-full": shape === "circle",
-  })
-
-  const borderColorStyle = classNames({
-    "border-dark-gray": borderColor === "grey",
-  })
+  const rootStyle =
+    variant === "primary" && !clean
+      ? {
+          backgroundImage: "var(--linear-gradient-button)",
+          backgroundPosition: `calc((100 - ${mouseX}) * 1%) calc((100 - ${mouseY}) * 1%)`,
+          backgroundSize: "200% 200%",
+          color: "white",
+        }
+      : {}
 
   return (
     <button
-      className={classNames(
-        `${className} ${borderStyle} ${shapeStyle} ${background} ${textColor} ${borderColorStyle}`,
-        {}
-      )}
-      onClick={onClick}
+      ref={ref}
+      type={type}
       disabled={disabled}
-      type={btnType}
-      style={style}
+      className={twMerge(cn(sizeClassNames, rootClassnames))}
+      onClick={onClick}
+      style={rootStyle}
       {...props}
     >
-      {icon}
-      {children}
+      <div className={cn("flex-center w-full gap-2")}>
+        {loading && (
+          <div className={cn(variant === "primary" ? "text-white" : "text-primary")}>
+            <Spin size={22} />
+          </div>
+        )}
+        {!loading && leftIcon && <div>{leftIcon}</div>}
+        {label || children}
+      </div>
     </button>
   )
 }
