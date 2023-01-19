@@ -110,7 +110,7 @@ export const LoginView = () => {
             )}
           </div>
           <Button type="submit" className="mt-5">
-            LOGIN
+            Đăng nhập
           </Button>
         </form>
 

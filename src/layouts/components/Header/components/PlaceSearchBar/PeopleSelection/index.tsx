@@ -50,7 +50,7 @@ const PeopleDropdown = ({ isOpen }: { isOpen: boolean }) => {
             </div>
             <div className="flex items-center">
               <Button
-                isJusIcon
+                isJustIcon
                 variant="light"
                 disabled={disabled}
                 onClick={() => handleDecrease(keyName)}
@@ -58,7 +58,7 @@ const PeopleDropdown = ({ isOpen }: { isOpen: boolean }) => {
                 <AiOutlineMinus className="text-dark-gray" size={12} />
               </Button>
               <span className="mx-3 w-6 text-center font-light text-black-gray">{total}</span>
-              <Button isJusIcon variant="light" onClick={() => handleIncrease(keyName)}>
+              <Button isJustIcon variant="light" onClick={() => handleIncrease(keyName)}>
                 <AiOutlinePlus className="text-dark-gray" size={12} />
               </Button>
             </div>

@@ -23,7 +23,7 @@ const SelectionBox = () => {
         <button className="mx-3 text-sm">Tuần bất kì</button>
         <span className=""></span>
         <button className="text-medGrey mx-3 text-sm font-thin">Thêm khách</button>
-        <Button isJusIcon className="border-transparent" leftIcon={<BiSearch />} />
+        <Button isJustIcon className="border-transparent" leftIcon={<BiSearch />} />
       </div>
     </nav>
   )
