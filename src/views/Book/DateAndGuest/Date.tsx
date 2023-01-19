@@ -1,5 +1,6 @@
 import { ButtonForMyLove, Calendar, Modal } from "@/components"
 import { useFlag } from "@/hooks"
+import { getNumberNights } from "@/utils"
 import dayjs from "dayjs"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
@@ -25,11 +26,13 @@ const Date = () => {
 
   const handleChangeDate = (_date: DateRange | undefined) => {
     const { from: _from, to: _to } = _date || {}
+    const calcNights = getNumberNights(_from, _to)?.toString()
 
     setDateQuery((prev) => ({
       ...prev,
       from: _from && dayjs(_from).format("YYYY-MM-DD"),
       to: _to && dayjs(_to).format("YYYY-MM-DD"),
+      numberNights: calcNights,
     }))
   }
 

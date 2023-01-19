@@ -1,5 +1,5 @@
 import HeadNext from "@/components/common/HeadNext"
-import LoginView from "@/views/Auth/Login"
+import { LoginView } from "@/views/Auth/Login"
 
 const Login = () => {
   return (

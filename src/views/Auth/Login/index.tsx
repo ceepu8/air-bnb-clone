@@ -1,78 +1,125 @@
-import { useRouter } from "next/router"
-import { SubmitHandler, useForm } from "react-hook-form"
-import { ToastContainer } from "react-toastify"
+import { ButtonForMyLove, InputField, LineBreak, Modal } from "@/components"
+import { SOCIAL_MEDIA } from "@/constants"
+import { useLogin } from "@/hooks"
+import { CLOSE_LOGIN_FORM } from "@/store/actions"
+import { loginSchema } from "@/validations"
+import { yupResolver } from "@hookform/resolvers/yup"
+import classNames from "classnames"
+import { useEffect } from "react"
+import { useForm } from "react-hook-form"
+import { useDispatch, useSelector } from "react-redux"
+import { ErrorMessage } from "../ErrorMessage"
 
-import { ButtonForMyLove, NavLink } from "@/components"
-// import { useLogin } from "@/hooks"
-import { LoginValues } from "@/interfaces"
-
-const LoginView = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginValues>({
-    mode: "onBlur",
-  })
-
-  // const [doLogin] = useLogin()
-
-  const onSubmit: SubmitHandler<LoginValues> = async (data) => {
-    if (data) {
-      // await doLogin(data)
-    }
-  }
-
-  const router = useRouter()
-
+const renderSocialMedia = () => {
   return (
-    <div className="flex h-screen w-screen items-center justify-center">
-      <ToastContainer />
-      <div className="login-container boxShadow w-full max-w-[568px] rounded p-10">
-        <NavLink href="/">
-          <i className="arrow alternate circle left icon mb-5 !text-4xl text-primary transition-all hover:text-black"></i>
-        </NavLink>
-        <h1 className="mb-5 text-2xl font-semibold">Welcome to Airbnb</h1>
-        <form className="mb-5" onSubmit={handleSubmit(onSubmit)}>
-          <div className="inputField rounded-t-md border-b-0">
-            <input
-              {...register("email", {
-                required: true,
-                pattern: {
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                  message: "invalid email address",
-                },
+    <div>
+      {SOCIAL_MEDIA.map((each) => {
+        const { id, name, Icon } = each
+        return (
+          <div
+            key={id}
+            className="mt-4 flex cursor-pointer items-center rounded-md border-[1px] border-solid border-black-gray py-3 px-5 hover:bg-very-light-gray"
+          >
+            <Icon
+              className={classNames("h-5 w-5", {
+                "fill-blue-500": name === "Facebook",
               })}
-              type="text"
-              placeholder="Email"
-              className="w-full"
             />
-            {errors.email && errors.email.type === "required" && (
-              <span className="text-[red]">This is required</span>
-            )}
-            {errors.email && errors.email.type === "pattern" && (
-              <span className="text-[red]">{errors.email.message}</span>
-            )}
+            <p className="flex-1 text-center text-sm font-medium">Tiếp tục với {name}</p>
           </div>
-          <div className="inputField rounded-b-md">
-            <input
-              {...register("password", { required: true })}
-              type="password"
-              placeholder="Password"
-              className="w-full"
-            />
-            {errors.password && errors.password.type === "required" && (
-              <span className="text-[red]">This is required</span>
-            )}
-          </div>
-          <ButtonForMyLove className="mt-5">LOGIN</ButtonForMyLove>
-        </form>
-        <button className="w-full" type="button" onClick={() => router.push("/register")}>
-          Do not have the account yet? <strong>Register</strong>
-        </button>
-      </div>
+        )
+      })}
     </div>
   )
 }
 
-export default LoginView
+export const LoginView = () => {
+  const dispatch = useDispatch()
+  const { isLoginOpen } = useSelector((state: any) => state.authForm)
+  const { doLogin, success, error, loading, setError } = useLogin()
+
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    reset,
+    watch,
+  } = useForm({
+    mode: "all",
+    resolver: yupResolver(loginSchema),
+  })
+
+  const onSubmit = (data: any) => {
+    doLogin(data)
+  }
+
+  useEffect(() => {
+    if (success && !loading) {
+      dispatch(CLOSE_LOGIN_FORM())
+      reset()
+    }
+  }, [success, loading])
+
+  return (
+    <Modal isOpen={isLoginOpen} onClose={() => dispatch(CLOSE_LOGIN_FORM())} title="Đăng nhập">
+      <div className="mb-6">
+        <LineBreak />
+      </div>
+      <div className="px-6 pb-8">
+        {error && <p className="text-md pb-4 text-center text-danger">{error}</p>}
+        <h1 className="text-xl font-medium">Chào mừng bạn đến với Airbnb</h1>
+        <form onSubmit={handleSubmit(onSubmit)} className="mt-4" onFocus={() => setError(null)}>
+          <div
+            className={classNames(
+              "rounded-t-md border-[1px] border-b-[0.5px] border-solid border-dark-gray py-2 px-2",
+              {
+                "border-red-500": errors?.email,
+              }
+            )}
+          >
+            <InputField
+              register={register}
+              name="email"
+              id="email"
+              label="Email"
+              value={watch("email")}
+              error={errors?.email}
+            />
+            {errors?.email && <ErrorMessage message={errors?.email?.message?.toString() || ""} />}
+          </div>
+
+          <div
+            className={classNames(
+              "rounded-b-md border-[1px] border-t-[0.5px] border-solid border-dark-gray py-2 px-2",
+              {
+                "border-red-500": errors?.password,
+              }
+            )}
+          >
+            <InputField
+              register={register}
+              name="password"
+              id="password"
+              label="Mật khẩu"
+              value={watch("password")}
+              type="password"
+              error={errors?.password}
+            />
+            {errors?.password && (
+              <ErrorMessage message={errors?.password?.message?.toString() || ""} />
+            )}
+          </div>
+          <ButtonForMyLove className="mt-5">LOGIN</ButtonForMyLove>
+        </form>
+
+        <div className="mt-4 flex items-center">
+          <LineBreak />
+          <p className="mx-4 text-xs text-black-gray">hoặc</p>
+          <LineBreak />
+        </div>
+
+        {renderSocialMedia()}
+      </div>
+    </Modal>
+  )
+}

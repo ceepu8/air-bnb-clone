@@ -35,8 +35,8 @@ const SelectionBoxExtend = () => {
       className={classNames(
         "absolute transition-all duration-[0.4s] ease-in-out",
         isExtended
-          ? "visible top-0 left-0 z-50 block max-h-full w-full scale-100 opacity-100"
-          : "invisible -top-10 left-6 scale-50 opacity-0"
+          ? "visible top-0 left-1/2 z-50 block max-h-full w-full -translate-x-1/2 scale-100 opacity-100"
+          : "invisible left-1/2 -top-10 -translate-x-1/2 scale-50 opacity-0"
       )}
     >
       <HeaderNavigate />

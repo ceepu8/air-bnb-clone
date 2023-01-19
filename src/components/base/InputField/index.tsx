@@ -1,33 +1,56 @@
-import { ChangeEvent, useState } from "react"
+import classNames from "classnames"
+import { useState } from "react"
+import { FieldError, FieldErrorsImpl, Merge } from "react-hook-form"
 
 type InputFieldType = {
   id: string
   label?: string
-  placeholder: string
-  type: string
+  placeholder?: string
+  type?: string
+  name: string
+  register?: any
+  value?: any
+  error?: FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined
 }
 
-const InputField = ({ id, label, placeholder, type = "text", ...props }: InputFieldType) => {
-  const [value, setValue] = useState<string | number>()
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target
-    setValue(value)
-  }
+export const InputField = ({
+  id,
+  label,
+  placeholder,
+  type = "text",
+  name,
+  register,
+  value,
+  error,
+  ...props
+}: InputFieldType) => {
+  const [isFocus, setIsFocus] = useState(false)
 
   return (
-    <div className="form-group">
-      {label && <label htmlFor={id}>{label}</label>}
+    <div className="relative">
+      {label && (
+        <label
+          className={classNames(
+            "text-md absolute top-1/2 left-0 block -translate-y-1/2 text-dark-gray transition-all",
+            {
+              "!top-0 translate-y-0 text-xs": isFocus || value,
+            }
+          )}
+          htmlFor={id}
+        >
+          {label}
+        </label>
+      )}
       <input
+        {...register(name)}
         id={id}
         type={type}
-        value={value}
-        className="form-control"
+        className="form-control w-full pt-4 font-light text-black-gray placeholder-dark-gray"
         placeholder={placeholder}
-        onChange={handleChange}
+        onFocus={() => setIsFocus(true)}
+        onBlur={() => setIsFocus(false)}
         {...props}
       />
     </div>
   )
 }
-
-export default InputField
