@@ -43,12 +43,12 @@ const AuthMenu = ({ isOpen }: { isOpen: boolean }) => {
   const renderUserMenu = () => {
     return (
       <div>
-        <Link href="/account-setting/user-info">
+        <Link href="/user/information">
           <p className="block w-full cursor-pointer py-3 px-3 text-left text-sm font-light hover:bg-white-gray">
             Thông tin tài khoản
           </p>
         </Link>
-        <Link href="/account-setting/booking-history">
+        <Link href="/user/booking-history">
           <p className="block w-full cursor-pointer py-3 px-3 text-left text-sm font-light hover:bg-white-gray">
             Lịch sử chuyến đi
           </p>

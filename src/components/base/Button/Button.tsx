@@ -26,7 +26,7 @@ interface ButtonProps {
   children?: ReactNode | string
 }
 
-const ButtonForMyLove = ({
+const Button = ({
   label = "",
   className = "",
   type = "button",
@@ -111,4 +111,4 @@ const ButtonForMyLove = ({
   )
 }
 
-export default ButtonForMyLove
+export default Button

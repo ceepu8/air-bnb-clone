@@ -1,4 +1,4 @@
-import { ButtonForMyLove, LineBreak, Modal } from "@/components"
+import { Button, LineBreak, Modal } from "@/components"
 import { PEOPLE_SELECTION } from "@/constants"
 import { useFlag } from "@/hooks"
 import { Guest } from "@/interfaces"
@@ -61,9 +61,9 @@ const Guest = () => {
         <p className="mt-1 font-light text-black-gray">{totalGuest} khách</p>
       </div>
 
-      <ButtonForMyLove clean className="underline shadow-none" onClick={onOpen}>
+      <Button clean className="underline shadow-none" onClick={onOpen}>
         Chỉnh sửa
-      </ButtonForMyLove>
+      </Button>
       <Modal isOpen={isOpen} title="Guest" onClose={onClose} size="small">
         <div>
           <div className="px-6 pb-4">
@@ -79,22 +79,18 @@ const Guest = () => {
                     <span className="text-sm font-light text-black-gray">{note}</span>
                   </div>
                   <div className="flex items-center">
-                    <ButtonForMyLove
+                    <Button
                       isJusIcon
                       variant="light"
                       disabled={disabled}
                       onClick={() => handleDecrease(keyName)}
                     >
                       <AiOutlineMinus className="text-dark-gray" size={12} />
-                    </ButtonForMyLove>
+                    </Button>
                     <span className="mx-3 w-6 text-center font-light text-black-gray">{total}</span>
-                    <ButtonForMyLove
-                      isJusIcon
-                      variant="light"
-                      onClick={() => handleIncrease(keyName)}
-                    >
+                    <Button isJusIcon variant="light" onClick={() => handleIncrease(keyName)}>
                       <AiOutlinePlus className="text-dark-gray" size={12} />
-                    </ButtonForMyLove>
+                    </Button>
                   </div>
                 </div>
               )
@@ -102,12 +98,12 @@ const Guest = () => {
           </div>
           <LineBreak />
           <div className="mt-4 flex justify-between px-6 pb-4">
-            <ButtonForMyLove clean className="font-medium underline" onClick={onClose}>
+            <Button clean className="font-medium underline" onClick={onClose}>
               Huỷ
-            </ButtonForMyLove>
-            <ButtonForMyLove variant="secondary" className="w-max" onClick={handleUpdateGuest}>
+            </Button>
+            <Button variant="secondary" className="w-max" onClick={handleUpdateGuest}>
               Lưu
-            </ButtonForMyLove>
+            </Button>
           </div>
         </div>
       </Modal>

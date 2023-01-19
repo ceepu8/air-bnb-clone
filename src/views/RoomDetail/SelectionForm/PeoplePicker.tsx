@@ -1,4 +1,4 @@
-import { ButtonForMyLove, DropDown } from "@/components"
+import { Button, DropDown } from "@/components"
 import { PEOPLE_SELECTION } from "@/constants"
 import { useMouseLeave } from "@/hooks"
 import { Guest } from "@/interfaces"
@@ -49,18 +49,18 @@ const Popup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => vo
                 <span className="text-sm font-light text-black-gray">{note}</span>
               </div>
               <div className="flex items-center">
-                <ButtonForMyLove
+                <Button
                   isJusIcon
                   variant="light"
                   disabled={disabled}
                   onClick={() => handleDecrease(keyName)}
                 >
                   <AiOutlineMinus className="text-dark-gray" size={12} />
-                </ButtonForMyLove>
+                </Button>
                 <span className="mx-3 w-6 text-center font-light text-black-gray">{total}</span>
-                <ButtonForMyLove isJusIcon variant="light" onClick={() => handleIncrease(keyName)}>
+                <Button isJusIcon variant="light" onClick={() => handleIncrease(keyName)}>
                   <AiOutlinePlus className="text-dark-gray" size={12} />
-                </ButtonForMyLove>
+                </Button>
               </div>
             </div>
           )
@@ -68,14 +68,14 @@ const Popup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => vo
       </div>
 
       <div className="text-right">
-        <ButtonForMyLove
+        <Button
           variant="light"
           size="small"
           className="w-max underline shadow-none"
           onClick={handleClose}
         >
           Đóng
-        </ButtonForMyLove>
+        </Button>
       </div>
     </DropDown>
   )

@@ -1,4 +1,4 @@
-import { ButtonForMyLove, Calendar, Modal } from "@/components"
+import { Button, Calendar, Modal } from "@/components"
 import { useFlag } from "@/hooks"
 import { getNumberNights } from "@/utils"
 import dayjs from "dayjs"
@@ -75,9 +75,9 @@ const Date = () => {
           {dayjs(router.query.to?.toString()).format("DD/MM/YYYY")}
         </p>
       </div>
-      <ButtonForMyLove clean className="underline shadow-none" onClick={onOpen}>
+      <Button clean className="underline shadow-none" onClick={onOpen}>
         Chỉnh sửa
-      </ButtonForMyLove>
+      </Button>
       <Modal isOpen={isOpen} title="Calendar" onClose={onClose}>
         <div className="mb-4">
           <div className="px-6">
@@ -88,15 +88,10 @@ const Date = () => {
             />
           </div>
           <div className="flex justify-end gap-3 px-6 pb-4">
-            <ButtonForMyLove
-              variant="light"
-              size="small"
-              fullWidth={false}
-              onClick={handleRemoveDate}
-            >
+            <Button variant="light" size="small" fullWidth={false} onClick={handleRemoveDate}>
               Xoá ngày
-            </ButtonForMyLove>
-            <ButtonForMyLove
+            </Button>
+            <Button
               variant="secondary"
               size="small"
               fullWidth={false}
@@ -104,7 +99,7 @@ const Date = () => {
               onClick={handleUpdateDate}
             >
               Lưu
-            </ButtonForMyLove>
+            </Button>
           </div>
         </div>
       </Modal>
