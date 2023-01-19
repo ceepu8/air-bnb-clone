@@ -1,4 +1,4 @@
-import { Bill, Button, LineBreak, NavLink } from "@/components"
+import { Bill, ButtonForMyLove, LineBreak, NavLink } from "@/components"
 import { AIR_COVER, BOOKING_POLICY } from "@/constants"
 import { useGetRoomDetail } from "@/hooks"
 import Image from "next/image"
@@ -13,6 +13,8 @@ export const BookingView = () => {
   const router = useRouter()
   const { numberNights, productId } = router.query
   const { data: room = {} } = useGetRoomDetail(productId)
+
+  const doPay = () => {}
 
   const renderRoomInfo = () => {
     return (
@@ -82,12 +84,9 @@ export const BookingView = () => {
           </div>
 
           <div className="mt-8">
-            <Button
-              style={{ backgroundImage: "var(--linear-gradient-100)" }}
-              className="rounded-lg bg-primary py-3 px-6 text-lg font-medium text-white"
-            >
+            <ButtonForMyLove className="" onClick={doPay}>
               Xác nhận và thanh toán &#x2022; Airbnb
-            </Button>
+            </ButtonForMyLove>
           </div>
         </div>
 

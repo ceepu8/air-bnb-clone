@@ -1,4 +1,4 @@
-import { Button, Calendar, Modal } from "@/components"
+import { ButtonForMyLove, Calendar, Modal } from "@/components"
 import { useFlag } from "@/hooks"
 import { getNumberNights } from "@/utils"
 import classNames from "classnames"
@@ -76,9 +76,9 @@ const Date = () => {
           {dayjs(router.query.to?.toString()).format("DD/MM/YYYY")}
         </p>
       </div>
-      <Button className="cursor-pointer font-medium underline" text="black" onClick={onOpen}>
+      <ButtonForMyLove clean className="underline shadow-none" onClick={onOpen}>
         Chỉnh sửa
-      </Button>
+      </ButtonForMyLove>
       <Modal isOpen={isOpen} title="Calendar" onClose={onClose}>
         <div className="mb-4">
           <div className="px-6">
@@ -88,20 +88,24 @@ const Date = () => {
               onSelect={handleChangeDate}
             />
           </div>
-          <div className="flex justify-end px-6 pb-4 text-sm">
-            <Button text="black" className="mr-4 underline" onClick={handleRemoveDate}>
+          <div className="flex justify-end gap-3 px-6 pb-4">
+            <ButtonForMyLove
+              variant="light"
+              size="small"
+              fullWidth={false}
+              onClick={handleRemoveDate}
+            >
               Xoá ngày
-            </Button>
-            <Button
-              variant="black"
+            </ButtonForMyLove>
+            <ButtonForMyLove
+              variant="secondary"
+              size="small"
+              fullWidth={false}
               disabled={!from || !to}
-              className={classNames("rounded-lg py-2 px-5", {
-                "cursor-not-allowed opacity-50": !from || !to,
-              })}
               onClick={handleUpdateDate}
             >
               Lưu
-            </Button>
+            </ButtonForMyLove>
           </div>
         </div>
       </Modal>

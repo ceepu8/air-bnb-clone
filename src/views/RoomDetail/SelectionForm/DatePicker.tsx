@@ -1,4 +1,4 @@
-import { Button, DropDown } from "@/components"
+import { ButtonForMyLove, DropDown } from "@/components"
 import { useOnClickOutside } from "@/hooks"
 import { CLEAR_DATE } from "@/store/actions"
 import { format } from "date-fns"
@@ -9,6 +9,11 @@ import { Calendar } from "../Calendar"
 const Popup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => void }) => {
   const date = useSelector((state: any) => state.roomForm.date)
   const dispatch = useDispatch()
+
+  const handleClearDate = () => {
+    dispatch(CLEAR_DATE())
+  }
+
   return (
     <DropDown
       isOpen={isOpen}
@@ -31,18 +36,13 @@ const Popup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => vo
         </button>
       </div>
 
-      <div className="text-right">
-        <Button
-          variant="transparent"
-          text="black"
-          className="mr-3 text-sm underline"
-          onClick={() => dispatch(CLEAR_DATE())}
-        >
+      <div className="flex justify-end gap-3">
+        <ButtonForMyLove variant="light" size="small" fullWidth={false} onClick={handleClearDate}>
           Xoá ngày
-        </Button>
-        <Button variant="black" className="rounded px-4 py-1" onClick={handleClose}>
+        </ButtonForMyLove>
+        <ButtonForMyLove variant="secondary" size="small" fullWidth={false} onClick={handleClose}>
           Đóng
-        </Button>
+        </ButtonForMyLove>
       </div>
     </DropDown>
   )

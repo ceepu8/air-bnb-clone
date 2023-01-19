@@ -1,4 +1,4 @@
-import { Button, InputField, LineBreak, Modal } from "@/components"
+import { ButtonForMyLove, NavLink, InputField, LineBreak, Modal } from "@/components"
 import { SOCIAL_MEDIA } from "@/constants"
 import { useLogin } from "@/hooks"
 import { CLOSE_LOGIN_FORM } from "@/store/actions"
@@ -9,6 +9,7 @@ import { useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
 import { ErrorMessage } from "../ErrorMessage"
+import { LoginValues } from "@/interfaces"
 
 const renderSocialMedia = () => {
   return (
@@ -36,7 +37,6 @@ const renderSocialMedia = () => {
 export const LoginView = () => {
   const dispatch = useDispatch()
   const { isLoginOpen } = useSelector((state: any) => state.authForm)
-
   const { doLogin, success, error, loading, setError } = useLogin()
 
   const {
@@ -110,11 +110,7 @@ export const LoginView = () => {
               <ErrorMessage message={errors?.password?.message?.toString() || ""} />
             )}
           </div>
-          <div>
-            <Button className="mt-4 w-full rounded-md py-3" variant="primary" btnType="submit">
-              Đăng nhập
-            </Button>
-          </div>
+          <ButtonForMyLove className="mt-5">LOGIN</ButtonForMyLove>
         </form>
 
         <div className="mt-4 flex items-center">
