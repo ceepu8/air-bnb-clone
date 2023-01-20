@@ -1,5 +1,10 @@
 import { LineBreak } from "@/components"
-import { EMAIL_INFOR_NOTICE, NAME_INFOR_NOTICE, PHONE_INFOR_NOTICE } from "@/constants"
+import {
+  EMAIL_INFOR_NOTICE,
+  NAME_INFOR_NOTICE,
+  PHONE_INFOR_NOTICE,
+  PHONE_NUMBER_REGEX,
+} from "@/constants"
 import { useState } from "react"
 import { useSelector } from "react-redux"
 import { EditInfor } from "../EditInfor"
@@ -29,6 +34,7 @@ export const UserInfor = () => {
         setEditing={setEditing}
         notice={EMAIL_INFOR_NOTICE}
         disabled={editing !== "email" && editing !== ""}
+        rules={[{ name: "email", message: "Không đúng định dạng email!" }]}
       />
       <div className="my-6">
         <LineBreak className={editing === "" ? "" : "opacity-20"} />
@@ -41,6 +47,9 @@ export const UserInfor = () => {
         setEditing={setEditing}
         notice={PHONE_INFOR_NOTICE}
         disabled={editing !== "phone" && editing !== ""}
+        rules={[
+          { name: "phone", message: "Số điện thoại không hợp lệ", regex: PHONE_NUMBER_REGEX },
+        ]}
       />
       <div className="my-6">
         <LineBreak className={editing === "" ? "" : "opacity-20"} />

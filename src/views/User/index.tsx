@@ -5,7 +5,7 @@ import { useSelector } from "react-redux"
 import { UserInfor } from "./UserInfor"
 import { UserPolicy } from "./UserPolicy"
 
-const InformationView = () => {
+const UserView = () => {
   const { user = {} } = useSelector((state: any) => state.auth)
   const router = useRouter()
 
@@ -29,4 +29,4 @@ const InformationView = () => {
   )
 }
 
-export default InformationView
+export default UserView

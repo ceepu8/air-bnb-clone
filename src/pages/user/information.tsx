@@ -1,10 +1,10 @@
 import MainLayout from "@/layouts/MainLayout"
-import InformationView from "@/views/Information"
+import UserView from "@/views/User"
 
 const Information = () => {
   return (
     <>
-      <InformationView />
+      <UserView />
     </>
   )
 }
