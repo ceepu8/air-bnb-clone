@@ -7,7 +7,6 @@ import { EditInfor } from "../EditInfor"
 export const UserInfor = () => {
   const { user = {} } = useSelector((state: any) => state.auth)
   const [editing, setEditing] = useState("")
-  console.log(editing)
 
   return (
     <div>
@@ -36,12 +35,12 @@ export const UserInfor = () => {
       </div>
 
       <EditInfor
-        name="phoneNumber"
+        name="phone"
         label="Số điện thoại"
         infor={user.phone}
         setEditing={setEditing}
         notice={PHONE_INFOR_NOTICE}
-        disabled={editing !== "phoneNumber" && editing !== ""}
+        disabled={editing !== "phone" && editing !== ""}
       />
       <div className="my-6">
         <LineBreak className={editing === "" ? "" : "opacity-20"} />

@@ -59,7 +59,7 @@ export default createReducer(INITIAL_STATE, (builder: any) => {
   })
 
   builder.addCase(UPDATE_AUTH, (state: any, action: { payload: any }) => {
-    const { user } = action.payload || {}
+    const { content: user } = action.payload || {}
     return {
       ...state,
       user,

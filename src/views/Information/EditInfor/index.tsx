@@ -1,4 +1,5 @@
 import { Button } from "@/components"
+import { useUpdateMe } from "@/hooks"
 import classNames from "classnames"
 import { isEmpty } from "lodash"
 import { Dispatch, SetStateAction, useState } from "react"
@@ -24,6 +25,18 @@ export const EditInfor = ({
 }: EditInforType) => {
   const [value, setValue] = useState<boolean>(false)
   const [editInfor, setEditInfor] = useState<string>(infor)
+
+  const { doUpdateMe } = useUpdateMe()
+
+  const updateUserInformation = () => {
+    if (name === "gender") {
+      doUpdateMe({ [name]: editInfor === "Nữ" ? false : true }, {})
+    } else {
+      doUpdateMe({ [name]: editInfor }, {})
+    }
+    setValue(false)
+    setEditing("")
+  }
 
   const renderSelect = () => {
     return (
@@ -95,7 +108,12 @@ export const EditInfor = ({
             {!isEmpty(options) ? renderSelect() : renderInput()}
           </div>
           <div className="mt-4">
-            <Button fullWidth={false} size="medium" variant="secondary">
+            <Button
+              fullWidth={false}
+              size="medium"
+              variant="secondary"
+              onClick={updateUserInformation}
+            >
               Lưu
             </Button>
           </div>

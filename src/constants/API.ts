@@ -10,7 +10,7 @@ export const API = {
   USER: {
     LIST: "/user",
     ME: "/me",
-    UPDATE: "/me",
+    UPDATE: "/users/:id",
     CHANGE_PASSWORD: "/me/password",
   },
   ROOM: {
