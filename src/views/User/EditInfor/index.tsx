@@ -24,7 +24,7 @@ export const EditInfor = ({
     handleSubmit,
   } = useForm({
     mode: "all",
-    resolver: yupResolver(schema),
+    resolver: schema && yupResolver(schema),
     defaultValues: {
       [name]: infor,
     },
