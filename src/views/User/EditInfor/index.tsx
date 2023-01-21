@@ -1,12 +1,9 @@
 import { Button } from "@/components"
-import { useUpdateMe } from "@/hooks"
 import { ErrorMessage } from "@/views/Auth/ErrorMessage"
 import { yupResolver } from "@hookform/resolvers/yup"
 import classNames from "classnames"
-import { isEmpty } from "lodash"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
-import * as yup from "yup"
 import { EditInforType } from "./type"
 
 export const EditInfor = ({
@@ -14,20 +11,16 @@ export const EditInfor = ({
   infor = "",
   notice = "",
   name = "",
-  options = [],
   setEditing,
   disabled = false,
-}: // rules = [],
-EditInforType) => {
-  const schema = yup.object().shape({
-    [name]: yup.string().required("Không được bỏ trống"),
-  })
-  const { doUpdateMe } = useUpdateMe()
+  onSubmit,
+  children = () => <></>,
+  schema,
+}: EditInforType) => {
   const [value, setValue] = useState<boolean>(false)
   const {
     register,
     formState: { errors },
-    setValue: setFormValue,
     handleSubmit,
   } = useForm({
     mode: "all",
@@ -37,28 +30,9 @@ EditInforType) => {
     },
   })
 
-  const updateUserInformation = (data: any) => {
-    if (name === "gender") {
-      doUpdateMe({ gender: data[name] === "Nữ" ? false : true }, {})
-    } else {
-      doUpdateMe(data, {})
-    }
+  const doSubmit = (data: any) => {
     setValue(false)
-    setEditing("")
-  }
-
-  const renderSelect = () => {
-    return (
-      <select {...register(name)} className="w-full font-light">
-        {options.map((option) => (
-          <option value={option}>{option}</option>
-        ))}
-      </select>
-    )
-  }
-
-  const renderInput = () => {
-    return <input {...register(name)} className="w-full font-light" />
+    onSubmit(data)
   }
 
   return (
@@ -80,7 +54,6 @@ EditInforType) => {
             disabled={disabled}
             onClick={() => {
               setValue((prev) => !prev)
-              setFormValue(name, infor)
               setEditing((prev) => {
                 if (!prev) {
                   return name
@@ -94,12 +67,12 @@ EditInforType) => {
           </Button>
         </div>
       </div>
-      <form onSubmit={handleSubmit(updateUserInformation)}>
+      <form onSubmit={handleSubmit(doSubmit)}>
         {value && (
           <>
             <div className="mt-4 rounded-md border-[1px] border-solid border-dark-gray py-1 px-2">
               <label className="text-xs font-light text-dark-gray"> {label}</label>
-              {!isEmpty(options) ? renderSelect() : renderInput()}
+              {children(register)}
             </div>
             {errors?.[name] && <ErrorMessage message={errors?.[name]?.message?.toString() || ""} />}
 
