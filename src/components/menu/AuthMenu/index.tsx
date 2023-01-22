@@ -1,23 +1,9 @@
-import { LineBreak } from "@/components/base"
+import { LineBreak, NavLink } from "@/components/base"
 import { LOGOUT, OPEN_LOGIN_FORM, OPEN_REGISTER_FORM } from "@/store/actions"
-import Link from "next/link"
 import { useDispatch, useSelector } from "react-redux"
 import Dropdown from "./Dropdown"
 
-type NavProps = {
-  path: string
-  destination: string
-}
-
-const NavLink = ({ path, destination }: NavProps) => {
-  return (
-    <Link href={path}>
-      <a className="block py-3 px-3 text-sm font-light hover:bg-white-gray">{destination}</a>
-    </Link>
-  )
-}
-
-const AuthMenu = ({ isOpen }: { isOpen: boolean }) => {
+const AuthMenu = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => void }) => {
   const dispatch = useDispatch()
   const { isLogged } = useSelector((state: any) => state.auth)
 
@@ -26,13 +12,19 @@ const AuthMenu = ({ isOpen }: { isOpen: boolean }) => {
       <>
         <div
           className="block w-full cursor-pointer py-3 px-3 text-left text-sm font-light hover:bg-white-gray"
-          onClick={() => dispatch(OPEN_LOGIN_FORM())}
+          onClick={() => {
+            dispatch(OPEN_LOGIN_FORM())
+            handleClose()
+          }}
         >
           Đăng nhập
         </div>
         <div
           className="block w-full cursor-pointer py-3 px-3 text-left text-sm font-light hover:bg-white-gray"
-          onClick={() => dispatch(OPEN_REGISTER_FORM())}
+          onClick={() => {
+            dispatch(OPEN_REGISTER_FORM())
+            handleClose()
+          }}
         >
           Đăng ký
         </div>
@@ -43,16 +35,22 @@ const AuthMenu = ({ isOpen }: { isOpen: boolean }) => {
   const renderUserMenu = () => {
     return (
       <div>
-        <Link href="/user/information">
-          <p className="block w-full cursor-pointer py-3 px-3 text-left text-sm font-light hover:bg-white-gray">
+        <NavLink href="/user/information">
+          <p
+            className="block w-full cursor-pointer py-3 px-3 text-left text-sm font-light hover:bg-white-gray"
+            onClick={handleClose}
+          >
             Thông tin tài khoản
           </p>
-        </Link>
-        <Link href="/user/booking-history">
-          <p className="block w-full cursor-pointer py-3 px-3 text-left text-sm font-light hover:bg-white-gray">
+        </NavLink>
+        <NavLink href="/user/booking-history">
+          <p
+            className="block w-full cursor-pointer py-3 px-3 text-left text-sm font-light hover:bg-white-gray"
+            onClick={handleClose}
+          >
             Lịch sử chuyến đi
           </p>
-        </Link>
+        </NavLink>
       </div>
     )
   }
@@ -63,9 +61,30 @@ const AuthMenu = ({ isOpen }: { isOpen: boolean }) => {
       {isLogged && renderUserMenu()}
       <LineBreak />
 
-      <NavLink path="/" destination="Cho thuê nhà" />
-      <NavLink path="/" destination="Tổ chức trải nghiệm" />
-      <NavLink path="/" destination="Hỗ trợ" />
+      <NavLink href="/" disabled>
+        <button
+          className="block w-full cursor-pointer py-3 px-3 text-left text-sm font-light hover:bg-white-gray"
+          onClick={handleClose}
+        >
+          Cho thuê nhà
+        </button>
+      </NavLink>
+      <NavLink href="/" disabled>
+        <button
+          className="block w-full cursor-pointer py-3 px-3 text-left text-sm font-light hover:bg-white-gray"
+          onClick={handleClose}
+        >
+          Tổ chức trải nghiệm
+        </button>
+      </NavLink>
+      <NavLink href="/" disabled>
+        <button
+          className="block w-full cursor-pointer py-3 px-3 text-left text-sm font-light hover:bg-white-gray"
+          onClick={handleClose}
+        >
+          Hỗ trợ
+        </button>
+      </NavLink>
 
       {isLogged && (
         <>
@@ -73,7 +92,10 @@ const AuthMenu = ({ isOpen }: { isOpen: boolean }) => {
 
           <div
             className="block w-full cursor-pointer py-3 px-3 text-left text-sm font-semibold hover:bg-white-gray"
-            onClick={() => dispatch(LOGOUT.REQUEST())}
+            onClick={() => {
+              dispatch(LOGOUT.REQUEST())
+              handleClose()
+            }}
           >
             Đăng xuất
           </div>
