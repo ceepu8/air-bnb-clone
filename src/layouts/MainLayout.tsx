@@ -7,6 +7,8 @@ import { LayoutProps } from "@/interfaces"
 
 import Header from "./components/Header"
 import Footer from "./components/Footer"
+import { LoginView } from "@/views/Auth/Login"
+import { RegisterView } from "@/views/Auth/Register"
 
 const HEADER_HEIGHT = 35
 function MainLayout({ children, title, mainClassName }: LayoutProps) {
@@ -33,6 +35,8 @@ function MainLayout({ children, title, mainClassName }: LayoutProps) {
           >
             {children}
           </main>
+          <LoginView />
+          <RegisterView />
           <Footer />
         </div>
       </LazyMotion>
