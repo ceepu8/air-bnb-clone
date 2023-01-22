@@ -1,4 +1,5 @@
 import { LineBreak, NavLink } from "@/components/base"
+import { USER_NAVIGATE } from "@/constants"
 import { LOGOUT, OPEN_LOGIN_FORM, OPEN_REGISTER_FORM } from "@/store/actions"
 import { useDispatch, useSelector } from "react-redux"
 import Dropdown from "./Dropdown"
@@ -35,7 +36,7 @@ const AuthMenu = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () =>
   const renderUserMenu = () => {
     return (
       <div>
-        <NavLink href="/user/information">
+        <NavLink href={USER_NAVIGATE.INFORMATION}>
           <p
             className="block w-full cursor-pointer py-3 px-3 text-left text-sm font-light hover:bg-white-gray"
             onClick={handleClose}
@@ -43,7 +44,7 @@ const AuthMenu = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () =>
             Thông tin tài khoản
           </p>
         </NavLink>
-        <NavLink href="/user/booking-history">
+        <NavLink href={USER_NAVIGATE.BOOKING_HISTORY}>
           <p
             className="block w-full cursor-pointer py-3 px-3 text-left text-sm font-light hover:bg-white-gray"
             onClick={handleClose}
