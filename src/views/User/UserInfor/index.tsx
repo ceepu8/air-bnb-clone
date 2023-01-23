@@ -1,13 +1,13 @@
 import { LineBreak } from "@/components"
 import { EMAIL_INFOR_NOTICE, NAME_INFOR_NOTICE, PHONE_INFOR_NOTICE } from "@/constants"
-import { useUpdateMe } from "@/hooks"
+import { useGetMe, useUpdateMe } from "@/hooks"
 import { getSchema, requiredSchema } from "@/validations"
 import { useState } from "react"
-import { useSelector } from "react-redux"
+
 import { EditInfor } from "../EditInfor"
 
 export const UserInfor = () => {
-  const { user = {} } = useSelector((state: any) => state.auth)
+  const { me } = useGetMe()
   const [editing, setEditing] = useState("")
 
   const { doUpdateMe } = useUpdateMe()
@@ -17,7 +17,7 @@ export const UserInfor = () => {
     if (data["gender"]) {
       newData = data["gender"] === "Nam" ? true : false
     }
-    doUpdateMe({ ...user, ...data, gender: newData }, {})
+    doUpdateMe({ ...me, ...data, gender: newData }, {})
     setEditing("")
   }
 
@@ -26,7 +26,7 @@ export const UserInfor = () => {
       <EditInfor
         name="name"
         label="Tên pháp lý"
-        infor={user.name}
+        infor={me?.name}
         setEditing={setEditing}
         notice={NAME_INFOR_NOTICE}
         disabled={editing !== "name" && editing !== ""}
@@ -42,7 +42,7 @@ export const UserInfor = () => {
       <EditInfor
         name="email"
         label="Địa chỉ email"
-        infor={user.email}
+        infor={me?.email}
         setEditing={setEditing}
         notice={EMAIL_INFOR_NOTICE}
         disabled={editing !== "email" && editing !== ""}
@@ -58,7 +58,7 @@ export const UserInfor = () => {
       <EditInfor
         name="phone"
         label="Số điện thoại"
-        infor={user.phone}
+        infor={me?.phone}
         setEditing={setEditing}
         notice={PHONE_INFOR_NOTICE}
         disabled={editing !== "phone" && editing !== ""}
@@ -74,7 +74,7 @@ export const UserInfor = () => {
       <EditInfor
         name="gender"
         label="Giới tính"
-        infor={user.gender ? "Nam" : "Nữ"}
+        infor={me?.gender ? "Nam" : "Nữ"}
         setEditing={setEditing}
         disabled={editing !== "gender" && editing !== ""}
         onSubmit={(data: any) => updateUserInformation(data)}

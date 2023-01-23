@@ -9,21 +9,26 @@ import api from "@/configs/axios"
 import { API, BOOKING_ROOM_LIST_KEY, ME_KEY } from "@/constants"
 import { BOOK_SUCCESS, UPDATE_AUTH } from "@/store/actions"
 
-import { useLocalStorage } from "../shared"
-import { useLogout } from "./auth"
 import { Booking } from "@/interfaces"
 import { buildURL } from "@/utils"
-
-export async function fetchMe() {
-  const { data } = await api.get(API.USER.ME)
-  return data
-}
+import { useLocalStorage } from "../shared"
+import { useLogout } from "./auth"
 
 export const useQueryMe = (options: object) => {
-  return useQuery([ME_KEY], () => fetchMe(), {
-    retry: false,
-    ...options,
-  })
+  const { user } = useSelector((state: any) => state.auth)
+
+  return useQuery(
+    [ME_KEY],
+    async () => {
+      const { data } = await api.get(API.USER.ME.replace(":id", user?.id))
+      return data
+    },
+    {
+      retry: false,
+      enabled: !!user?.id,
+      ...options,
+    }
+  )
 }
 
 export function useGetMe() {

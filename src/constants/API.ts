@@ -8,8 +8,8 @@ export const API = {
     REGISTER: "/auth/signup",
   },
   USER: {
-    LIST: "/user",
-    ME: "/me",
+    LIST: "/users",
+    ME: "/users/:id",
     UPDATE: "/users/:id",
     CHANGE_PASSWORD: "/me/password",
     BOOK_ROOM: "/dat-phong",

@@ -1,7 +1,9 @@
-import { useGetMe } from "@/hooks"
-import { isEmpty } from "lodash"
+import isEmpty from "lodash/isEmpty"
 import { useRouter } from "next/router"
 import { useEffect } from "react"
+
+import { useGetMe } from "@/hooks"
+
 import { UserInfor } from "./UserInfor"
 import { UserPolicy } from "./UserPolicy"
 

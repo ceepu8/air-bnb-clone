@@ -1,8 +1,8 @@
 import { Button } from "@/components"
+import { useFlag } from "@/hooks"
 import { ErrorMessage } from "@/views/Auth/ErrorMessage"
 import { yupResolver } from "@hookform/resolvers/yup"
 import classNames from "classnames"
-import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { EditInforType } from "./type"
 
@@ -17,7 +17,7 @@ export const EditInfor = ({
   children = () => <></>,
   schema,
 }: EditInforType) => {
-  const [value, setValue] = useState<boolean>(false)
+  const [hasValue, , onHideValue, onToggle] = useFlag()
   const {
     register,
     formState: { errors },
@@ -31,8 +31,8 @@ export const EditInfor = ({
   })
 
   const doSubmit = (data: any) => {
-    setValue(false)
     onSubmit(data)
+    onHideValue()
   }
 
   return (
@@ -44,7 +44,7 @@ export const EditInfor = ({
       <div className="flex items-center justify-between">
         <div className="flex flex-col">
           <h3 className="font-light">{label}</h3>
-          <p className="text-sm font-light text-dark-gray">{!value ? infor : notice}</p>
+          <p className="text-sm font-light text-dark-gray">{!hasValue ? infor : notice}</p>
         </div>
         <div>
           <Button
@@ -53,7 +53,7 @@ export const EditInfor = ({
             className="shadow-none"
             disabled={disabled}
             onClick={() => {
-              setValue((prev) => !prev)
+              onToggle()
               setEditing((prev) => {
                 if (!prev) {
                   return name
@@ -63,12 +63,12 @@ export const EditInfor = ({
               })
             }}
           >
-            {value ? "Huỷ" : "Chỉnh sửa"}
+            {hasValue ? "Huỷ" : "Chỉnh sửa"}
           </Button>
         </div>
       </div>
       <form onSubmit={handleSubmit(doSubmit)}>
-        {value && (
+        {hasValue && (
           <>
             <div className="mt-4 rounded-md border-[1px] border-solid border-dark-gray py-1 px-2">
               <label className="text-xs font-light text-dark-gray"> {label}</label>
