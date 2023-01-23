@@ -50,11 +50,11 @@ function MyApp({ Component, pageProps, token }: propsInterface) {
 
   setDefaultHeaders({ tokenCybersoft: TOKEN_CYBERSOFT })
 
-  // if (token) {
-  //   setDefaultHeaders({
-  //     Authorization: `Bearer ${token}`,
-  //   })
-  // }
+  if (token) {
+    setDefaultHeaders({
+      Authorization: `Bearer ${token}`,
+    })
+  }
 
   return (
     <>

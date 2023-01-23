@@ -14,18 +14,16 @@ import { useLogout } from "./auth"
 import { Booking } from "@/interfaces"
 import { buildURL } from "@/utils"
 
+export async function fetchMe() {
+  const { data } = await api.get(API.USER.ME)
+  return data
+}
+
 export const useQueryMe = (options: object) => {
-  return useQuery(
-    [ME_KEY],
-    async () => {
-      const { data } = await api.get(API.USER.ME)
-      return data
-    },
-    {
-      retry: false,
-      ...options,
-    }
-  )
+  return useQuery([ME_KEY], () => fetchMe(), {
+    retry: false,
+    ...options,
+  })
 }
 
 export function useGetMe() {
@@ -33,7 +31,7 @@ export function useGetMe() {
   const [_userStorage, setUserStorage] = useLocalStorage(ME_KEY)
   const dispatch = useDispatch()
 
-  const { refetch } = useQueryMe({
+  const { refetch, isLoading } = useQueryMe({
     onSuccess: (res: any) => {
       if (!isEmpty(res?.user) && !isEqual(user, res?.user)) {
         dispatch(UPDATE_AUTH(res))
@@ -49,6 +47,7 @@ export function useGetMe() {
     me: user || {},
     refetch,
     isLogged,
+    loading: isLoading,
   }
 }
 

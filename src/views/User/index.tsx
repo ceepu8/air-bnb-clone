@@ -1,19 +1,20 @@
+import { useGetMe } from "@/hooks"
 import { isEmpty } from "lodash"
 import { useRouter } from "next/router"
-import React, { useEffect } from "react"
-import { useSelector } from "react-redux"
+import { useEffect } from "react"
 import { UserInfor } from "./UserInfor"
 import { UserPolicy } from "./UserPolicy"
 
 const UserView = () => {
-  const { user = {} } = useSelector((state: any) => state.auth)
+  const { me, loading } = useGetMe()
   const router = useRouter()
 
   useEffect(() => {
-    if (isEmpty(user)) {
+    if (!loading && isEmpty(me)) {
       router.push("/")
     }
-  }, [user])
+  }, [me, loading])
+
   return (
     <section className="mx-auto mt-8 w-full max-w-[1080px] px-12">
       <h1 className="text-3xl font-semibold text-very-dark-gray">Thông tin cá nhân</h1>
