@@ -7,10 +7,11 @@ import { useDebouncedCallback } from "use-debounce"
 
 import api from "@/configs/axios"
 import { API, ME_KEY } from "@/constants"
-import { UPDATE_AUTH } from "@/store/actions"
+import { BOOK_SUCCESS, UPDATE_AUTH } from "@/store/actions"
 
 import { useLocalStorage } from "../shared"
 import { useLogout } from "./auth"
+import { Booking } from "@/interfaces"
 
 export const useQueryMe = (options: object) => {
   return useQuery(
@@ -116,4 +117,29 @@ export const useUpdatePassword = () => {
   )
 
   return [doUpdatePassword, isLoading, isSuccess]
+}
+
+export const useBookRoom = () => {
+  const dispatch = useDispatch()
+  const {
+    mutate: bookRoom,
+    isLoading,
+    isSuccess,
+  } = useMutation(
+    async (params: Booking) => {
+      const response = await api.post(API.USER.BOOK_ROOM, params)
+      return response.data
+    },
+    {
+      onSuccess: (res) => {
+        if (!isEmpty(res?.content)) {
+          dispatch(BOOK_SUCCESS(res?.content))
+        }
+      },
+    }
+  )
+
+  const doBookRoom = useDebouncedCallback((req: any, options: any) => bookRoom(req, options), 250)
+
+  return { doBookRoom, isLoading, isSuccess }
 }

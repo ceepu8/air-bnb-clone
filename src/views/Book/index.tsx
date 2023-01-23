@@ -1,32 +1,44 @@
 import { Bill, Button, LineBreak, NavLink } from "@/components"
 import { AIR_COVER, BOOKING_POLICY } from "@/constants"
-import { useGetRoomDetail } from "@/hooks"
+import { useBookRoom, useGetRoomDetail } from "@/hooks"
+import { OPEN_LOGIN_FORM } from "@/store/actions"
 import dayjs from "dayjs"
 import Image from "next/image"
 import { useRouter } from "next/router"
 import { AiFillStar } from "react-icons/ai"
 import { BiMedal } from "react-icons/bi"
 import { MdArrowBackIosNew } from "react-icons/md"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { BookSuccessView } from "../BookSuccess"
 import { DateAndGuest } from "./DateAndGuest"
 import { Notice } from "./Notice"
 
 export const BookingView = () => {
   const router = useRouter()
+  const dispatch = useDispatch()
   const { numberNights, productId, from, to, toddler, children, adult } = router.query
   const { user } = useSelector((state: any) => state.auth)
   const { data: room = {} } = useGetRoomDetail(productId)
   const DATE_ISO8601_FORMAT = "YYYY-MM-DDTHH:mm:ssZ[Z]"
 
-  const doPay = () => {
-    const data = {
-      maPhong: productId,
-      ngayDen: from && dayjs(from.toString()).format(DATE_ISO8601_FORMAT),
-      ngayDi: to && dayjs(to.toString()).format(DATE_ISO8601_FORMAT),
-      soLuongKhach: Number(toddler) + Number(children) + Number(adult),
-      maNguoiDung: user.id,
+  const { doBookRoom } = useBookRoom()
+
+  const doPay = async () => {
+    if (!user.id) {
+      dispatch(OPEN_LOGIN_FORM())
+      return
     }
-    console.log(data)
+
+    try {
+      const data = {
+        maPhong: productId,
+        ngayDen: from && dayjs(from.toString()).format(DATE_ISO8601_FORMAT),
+        ngayDi: to && dayjs(to.toString()).format(DATE_ISO8601_FORMAT),
+        soLuongKhach: Number(toddler) + Number(children) + Number(adult),
+        maNguoiDung: user.id,
+      }
+      doBookRoom(data, {})
+    } catch (error) {}
   }
 
   const renderRoomInfo = () => {
@@ -122,6 +134,7 @@ export const BookingView = () => {
           </div>
         </div>
       </div>
+      <BookSuccessView />
     </section>
   )
 }

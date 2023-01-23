@@ -12,6 +12,7 @@ export const API = {
     ME: "/me",
     UPDATE: "/users/:id",
     CHANGE_PASSWORD: "/me/password",
+    BOOK_ROOM: "/dat-phong",
   },
   ROOM: {
     LIST: "/phong-thue/phan-trang-tim-kiem",
