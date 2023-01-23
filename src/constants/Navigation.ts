@@ -1,6 +1,5 @@
-export const USER_NAVIGATE = {
-  INFORMATION: "/user/information",
+export const NAVIGATES = {
+  USER_INFO: "/user/information",
   BOOKING_HISTORY: "/user/booking-history",
+  BOOKING_NAVIGATE: "/book/:id",
 }
-
-export const BOOKING_NAVIGATE = "/book/:id"

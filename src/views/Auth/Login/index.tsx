@@ -33,7 +33,7 @@ const renderSocialMedia = () => {
   )
 }
 
-export const LoginView = () => {
+export const LoginViewModal = () => {
   const dispatch = useDispatch()
   const { isLoginOpen } = useSelector((state: any) => state.authForm)
   const { doLogin, success, error, loading, setError } = useLogin()

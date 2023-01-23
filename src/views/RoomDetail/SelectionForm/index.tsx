@@ -1,5 +1,5 @@
 import { Bill, Button } from "@/components"
-import { BOOKING_NAVIGATE } from "@/constants"
+import { NAVIGATES } from "@/constants"
 import dayjs from "dayjs"
 import { useRouter } from "next/router"
 import { useState } from "react"
@@ -31,7 +31,7 @@ const SelectionForm = ({ room }: any) => {
       numberNights: roomForm.numberNights,
     }
     router.push({
-      pathname: BOOKING_NAVIGATE.replace(":id", id as string),
+      pathname: NAVIGATES.BOOKING_NAVIGATE.replace(":id", id as string),
       query: queryRoomForm,
     })
   }

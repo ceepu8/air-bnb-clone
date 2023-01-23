@@ -4,6 +4,8 @@ import { NavLink } from "@/components"
 import { UserNavigate } from "@/components/navigation"
 import { useSelector } from "react-redux"
 import PlaceSearchBar from "./components/PlaceSearchBar"
+import { LoginViewModal } from "@/views/Auth/Login"
+import { RegisterViewModal } from "@/views/Auth/Register"
 
 const Logo = () => {
   return (
@@ -52,6 +54,8 @@ const Header = () => {
           </div>
         </div>
       </div>
+      <LoginViewModal />
+      <RegisterViewModal />
     </header>
   )
 }

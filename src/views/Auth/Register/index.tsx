@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux"
 
 import { ErrorMessage } from "../ErrorMessage"
 
-export const RegisterView = () => {
+export const RegisterViewModal = () => {
   const dispatch = useDispatch()
   const { isRegisterOpen } = useSelector((state: any) => state.authForm)
   const { doLogin, error } = useRegister()

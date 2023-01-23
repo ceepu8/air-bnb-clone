@@ -63,7 +63,7 @@ export const useUpdateMe = () => {
   } = useMutation(
     async (params: any) => {
       const URL = API.USER.UPDATE.replace(":id", me.id)
-      const response = await api.put(URL, { ...me, ...params })
+      const response = await api.put(URL, params)
       return response.data
     },
     {
