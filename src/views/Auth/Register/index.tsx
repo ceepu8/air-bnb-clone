@@ -1,11 +1,12 @@
 import { Button, InputField, LineBreak, Modal } from "@/components"
 import { useRegister } from "@/hooks"
-import { CLOSE_REGISTER_FORM } from "@/store/actions"
+import { CLOSE_REGISTER_FORM, OPEN_LOGIN_FORM } from "@/store/actions"
 import { registerSchema } from "@/validations"
 import { yupResolver } from "@hookform/resolvers/yup"
 import classNames from "classnames"
 import dayjs from "dayjs"
 import _ from "lodash"
+import { useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { useDispatch, useSelector } from "react-redux"
 
@@ -14,7 +15,7 @@ import { ErrorMessage } from "../ErrorMessage"
 export const RegisterViewModal = () => {
   const dispatch = useDispatch()
   const { isRegisterOpen } = useSelector((state: any) => state.authForm)
-  const { doLogin, error } = useRegister()
+  const { doRegister, error, isSuccess } = useRegister()
 
   const {
     register,
@@ -34,7 +35,7 @@ export const RegisterViewModal = () => {
         gender: data.gender === "male" ? true : false,
         role: "USER",
       }
-      const reqParams = _.pick(values, [
+      const registerParams = _.pick(values, [
         "phone",
         "gender",
         "password",
@@ -43,9 +44,18 @@ export const RegisterViewModal = () => {
         "email",
         "role",
       ])
-      doLogin(reqParams)
+      doRegister(registerParams)
     } catch (error) {}
   }
+
+  useEffect(() => {
+    if (isSuccess) {
+      setTimeout(() => {
+        dispatch(CLOSE_REGISTER_FORM())
+        dispatch(OPEN_LOGIN_FORM())
+      }, 800)
+    }
+  }, [isSuccess])
 
   return (
     <Modal isOpen={isRegisterOpen} onClose={() => dispatch(CLOSE_REGISTER_FORM())} title="Đăng ký">
@@ -53,7 +63,8 @@ export const RegisterViewModal = () => {
         <LineBreak />
       </div>
       <div className="px-6 pb-8">
-        {error && <p className="text-danger">{error}</p>}
+        {error && <p className="text-center text-danger">{error}</p>}
+        {isSuccess && !error && <p className="text-center text-danger">Đăng ký thành công!</p>}
         <h1 className="text-xl font-medium">Chào mừng bạn đến với Airbnb</h1>
         <form className="mt-4" onSubmit={handleSubmit(onSubmit)}>
           <div
