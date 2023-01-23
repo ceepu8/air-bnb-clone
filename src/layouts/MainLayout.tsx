@@ -14,7 +14,7 @@ function MainLayout({ children, title, mainClassName }: LayoutProps) {
     const headerHeight = !title ? 0 : HEADER_HEIGHT
 
     return {
-      // minHeight: `calc(100vh - ${headerHeight + navigationHeight + tabHeight}px)`,
+      minHeight: `calc(100vh - ${headerHeight + 70 + 472}px)`,
       paddingTop: `${headerHeight + 70}px`,
     }
   }, [title])

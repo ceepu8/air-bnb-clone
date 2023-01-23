@@ -35,7 +35,7 @@ export const useGetRoomByLocation = (id: string | string[] | undefined = "") => 
   )
 }
 
-export const useGetRoomDetail = (id: string | string[] | undefined = "") => {
+export const useGetRoomDetail = (id: string | string[] | number | undefined = "") => {
   return useQuery(
     [ROOM_DETAIL_KEY, id],
     async () => {

@@ -6,12 +6,13 @@ import { useDispatch, useSelector } from "react-redux"
 import { useDebouncedCallback } from "use-debounce"
 
 import api from "@/configs/axios"
-import { API, ME_KEY } from "@/constants"
+import { API, BOOKING_ROOM_LIST_KEY, ME_KEY } from "@/constants"
 import { BOOK_SUCCESS, UPDATE_AUTH } from "@/store/actions"
 
 import { useLocalStorage } from "../shared"
 import { useLogout } from "./auth"
 import { Booking } from "@/interfaces"
+import { buildURL } from "@/utils"
 
 export const useQueryMe = (options: object) => {
   return useQuery(
@@ -142,4 +143,30 @@ export const useBookRoom = () => {
   const doBookRoom = useDebouncedCallback((req: any, options: any) => bookRoom(req, options), 250)
 
   return { doBookRoom, isLoading, isSuccess }
+}
+
+export const useGetBookingList = (params: string, defaultQuery: any = {}) => {
+  const { page, pageSize = 5, ...rest } = defaultQuery || {}
+
+  const URL = buildURL(API.USER.GET_BOOK_ROOM.replace(":id", params), {
+    pageIndex: page || 1,
+    pageSize,
+    ...rest,
+  })
+
+  return useQuery(
+    [BOOKING_ROOM_LIST_KEY, params],
+    async () => {
+      const { data } = await api.get(URL)
+      return data
+    },
+    {
+      select: (data) => {
+        return data?.content || []
+      },
+
+      keepPreviousData: true,
+      staleTime: Infinity,
+    }
+  )
 }

@@ -1,4 +1,5 @@
 export interface Booking {
+  id?: string | number
   maPhong: string | number
   ngayDen: string
   ngayDi: string

@@ -13,6 +13,7 @@ export const API = {
     UPDATE: "/users/:id",
     CHANGE_PASSWORD: "/me/password",
     BOOK_ROOM: "/dat-phong",
+    GET_BOOK_ROOM: "/dat-phong/lay-theo-nguoi-dung/:id",
   },
   ROOM: {
     LIST: "/phong-thue/phan-trang-tim-kiem",
