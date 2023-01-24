@@ -1,17 +1,20 @@
-import { LineBreak, NavLink } from "@/components/base"
+import { LineBreak } from "@/components/base"
 import { NAVIGATES } from "@/constants"
+import { HEADER_AUTH_MENU } from "@/constants/Header"
 import { LOGOUT, OPEN_LOGIN_FORM, OPEN_REGISTER_FORM } from "@/store/actions"
+import { useRouter } from "next/router"
 import { useDispatch, useSelector } from "react-redux"
 import Dropdown from "./Dropdown"
 
 const AuthMenu = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => void }) => {
   const dispatch = useDispatch()
+  const router = useRouter()
   const { isLogged } = useSelector((state: any) => state.auth)
 
   const renderLoginAndRegisterMenu = () => {
     return (
       <>
-        <div
+        <button
           className="block w-full cursor-pointer py-3 px-3 text-left text-sm font-light hover:bg-white-gray"
           onClick={() => {
             dispatch(OPEN_LOGIN_FORM())
@@ -19,8 +22,8 @@ const AuthMenu = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () =>
           }}
         >
           Đăng nhập
-        </div>
-        <div
+        </button>
+        <button
           className="block w-full cursor-pointer py-3 px-3 text-left text-sm font-light hover:bg-white-gray"
           onClick={() => {
             dispatch(OPEN_REGISTER_FORM())
@@ -28,7 +31,7 @@ const AuthMenu = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () =>
           }}
         >
           Đăng ký
-        </div>
+        </button>
       </>
     )
   }
@@ -36,22 +39,24 @@ const AuthMenu = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () =>
   const renderUserMenu = () => {
     return (
       <div>
-        <NavLink href={NAVIGATES.USER_INFO}>
-          <p
-            className="block w-full cursor-pointer py-3 px-3 text-left text-sm font-light hover:bg-white-gray"
-            onClick={handleClose}
-          >
-            Thông tin tài khoản
-          </p>
-        </NavLink>
-        <NavLink href={NAVIGATES.BOOKING_HISTORY}>
-          <p
-            className="block w-full cursor-pointer py-3 px-3 text-left text-sm font-light hover:bg-white-gray"
-            onClick={handleClose}
-          >
-            Lịch sử chuyến đi
-          </p>
-        </NavLink>
+        <button
+          className="block w-full cursor-pointer py-3 px-3 text-left text-sm font-light hover:bg-white-gray"
+          onClick={() => {
+            handleClose()
+            router.replace(NAVIGATES.USER_INFO)
+          }}
+        >
+          Thông tin tài khoản
+        </button>
+        <button
+          className="block w-full cursor-pointer py-3 px-3 text-left text-sm font-light hover:bg-white-gray"
+          onClick={() => {
+            handleClose()
+            router.replace(`${NAVIGATES.BOOKING_HISTORY}?pageSize=1`)
+          }}
+        >
+          Lịch sử chuyến đi
+        </button>
       </div>
     )
   }
@@ -62,30 +67,20 @@ const AuthMenu = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () =>
       {isLogged && renderUserMenu()}
       <LineBreak />
 
-      <NavLink href="/" disabled>
-        <button
-          className="block w-full cursor-pointer py-3 px-3 text-left text-sm font-light hover:bg-white-gray"
-          onClick={handleClose}
-        >
-          Cho thuê nhà
-        </button>
-      </NavLink>
-      <NavLink href="/" disabled>
-        <button
-          className="block w-full cursor-pointer py-3 px-3 text-left text-sm font-light hover:bg-white-gray"
-          onClick={handleClose}
-        >
-          Tổ chức trải nghiệm
-        </button>
-      </NavLink>
-      <NavLink href="/" disabled>
-        <button
-          className="block w-full cursor-pointer py-3 px-3 text-left text-sm font-light hover:bg-white-gray"
-          onClick={handleClose}
-        >
-          Hỗ trợ
-        </button>
-      </NavLink>
+      {HEADER_AUTH_MENU.map(({ slug, id, text }: { slug: string; id: number; text: string }) => {
+        return (
+          <button
+            key={id}
+            className="block w-full cursor-pointer py-3 px-3 text-left text-sm font-light hover:bg-white-gray"
+            onClick={() => {
+              handleClose()
+              router.replace(slug)
+            }}
+          >
+            {text}
+          </button>
+        )
+      })}
 
       {isLogged && (
         <>

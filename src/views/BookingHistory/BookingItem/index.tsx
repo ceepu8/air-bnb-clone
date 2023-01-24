@@ -11,8 +11,6 @@ export const BookingItem = (props: Booking) => {
   const { data: room = {} } = useGetRoomDetail(maPhong)
   const isDeleteBookingValid = dayjs(ngayDen) > dayjs(new Date())
 
-  console.log(room)
-
   return (
     <div className="mt-6 rounded-md border-[1px] border-solid border-light-gray p-4 shadow">
       <h1 className="text-2xl font-semibold">#{id}</h1>

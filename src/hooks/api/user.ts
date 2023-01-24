@@ -170,7 +170,7 @@ export const useGetBookingList = (params: string, defaultQuery: any = {}) => {
       },
 
       keepPreviousData: true,
-      staleTime: Infinity,
+      staleTime: 0,
     }
   )
 }
