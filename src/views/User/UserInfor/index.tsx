@@ -1,4 +1,4 @@
-import { LineBreak } from "@/components"
+import { LineBreak, Spin } from "@/components"
 import { EMAIL_INFOR_NOTICE, NAME_INFOR_NOTICE, PHONE_INFOR_NOTICE } from "@/constants"
 import { useGetMe, useUpdateMe } from "@/hooks"
 import { getSchema, requiredSchema } from "@/validations"
@@ -7,7 +7,7 @@ import { useState } from "react"
 import { EditInfor } from "../EditInfor"
 
 export const UserInfor = () => {
-  const { me } = useGetMe()
+  const { me, loading } = useGetMe()
   const [editing, setEditing] = useState("")
 
   const { doUpdateMe } = useUpdateMe()
@@ -19,6 +19,14 @@ export const UserInfor = () => {
     }
     doUpdateMe({ ...me, ...data, gender: newData }, {})
     setEditing("")
+  }
+
+  if (loading) {
+    return (
+      <div className="flex-center w-full py-48">
+        <Spin />
+      </div>
+    )
   }
 
   return (
