@@ -108,21 +108,3 @@ export const STATIC_REGIONS = [
     hinhAnh: "https://airbnbnew.cybersoft.edu.vn/images/vt3.jpg",
   },
 ]
-
-export const HEADER_AUTH_MENU = [
-  {
-    id: 1,
-    slug: "/",
-    text: "Cho thuê nhà",
-  },
-  {
-    id: 2,
-    slug: "/",
-    text: "Tổ chức trải nghiệm",
-  },
-  {
-    id: 3,
-    slug: "/",
-    text: "Hỗ trợ",
-  },
-]
