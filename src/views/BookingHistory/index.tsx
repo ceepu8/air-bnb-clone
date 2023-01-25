@@ -20,7 +20,7 @@ export const BookingHistoryView = () => {
 
       <div className="mt-8 min-h-[650px]">
         {bookings?.slice(start, end).map((booking: BookingInterFace) => {
-          return <BookingItem {...booking} />
+          return <BookingItem key={booking?.id} {...booking} />
         })}
       </div>
       <Pagination totalCount={bookings?.length} pageSize={2} currentPage={Number(pageSize)} />
