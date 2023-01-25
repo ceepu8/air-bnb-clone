@@ -13,3 +13,26 @@ export const checkValidImage = (imgSrc: string) => {
   }
   return ROOM_DEFAULT_IMG
 }
+
+export const useGetStartEnd = (length: number) => {
+  const start = () => {
+    let index = 0
+    for (var i = 1; i < length; i++) {
+      index += 2
+    }
+    return index
+  }
+
+  const end = () => {
+    let index = 1
+    for (var i = 1; i < length; i++) {
+      index += 2
+    }
+    return index + 1
+  }
+
+  return {
+    start: start(),
+    end: end(),
+  }
+}

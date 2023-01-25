@@ -149,17 +149,17 @@ export const useBookRoom = () => {
   return { doBookRoom, isLoading, isSuccess }
 }
 
-export const useGetBookingList = (params: string, defaultQuery: any = {}) => {
+export const useGetBookingList = (userId: string, defaultQuery: any = {}) => {
   const { page, pageSize = 5, ...rest } = defaultQuery || {}
 
-  const URL = buildURL(API.USER.GET_BOOK_ROOM.replace(":id", params), {
+  const URL = buildURL(API.USER.GET_BOOK_ROOM.replace(":id", userId), {
     pageIndex: page || 1,
     pageSize,
     ...rest,
   })
 
   return useQuery(
-    [BOOKING_ROOM_LIST_KEY, params],
+    [BOOKING_ROOM_LIST_KEY, userId],
     async () => {
       const { data } = await api.get(URL)
       return data
@@ -169,8 +169,10 @@ export const useGetBookingList = (params: string, defaultQuery: any = {}) => {
         return data?.content || []
       },
 
-      keepPreviousData: true,
-      staleTime: 0,
+      keepPreviousData: false,
+      refetchOnMount: "always",
+      enabled: !!userId,
+      cacheTime: 0,
     }
   )
 }

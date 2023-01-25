@@ -33,7 +33,6 @@ function MainLayout({ children, title, mainClassName }: LayoutProps) {
           >
             {children}
           </main>
-
           <Footer />
         </div>
       </LazyMotion>
