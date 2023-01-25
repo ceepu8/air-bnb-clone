@@ -9,7 +9,7 @@ import api from "@/configs/axios"
 import { API, BOOKING_ROOM_LIST_KEY, ME_KEY } from "@/constants"
 import { BOOK_SUCCESS, UPDATE_AUTH } from "@/store/actions"
 
-import { Booking } from "@/interfaces"
+import { BookingInterFace } from "@/interfaces"
 import { buildURL } from "@/utils"
 import { useLocalStorage } from "../shared"
 import { useLogout } from "./auth"
@@ -131,7 +131,7 @@ export const useBookRoom = () => {
     isLoading,
     isSuccess,
   } = useMutation(
-    async (params: Booking) => {
+    async (params: BookingInterFace) => {
       const response = await api.post(API.USER.BOOK_ROOM, params)
       return response.data
     },

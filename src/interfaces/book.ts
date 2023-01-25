@@ -1,4 +1,4 @@
-export interface Booking {
+export interface BookingInterFace {
   id?: string | number
   maPhong: string | number
   ngayDen: string

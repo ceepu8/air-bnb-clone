@@ -1,7 +1,6 @@
 import { usePagination } from "@/hooks/shared/usePagination"
 import classNames from "classnames"
 import { useRouter } from "next/router"
-import React from "react"
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai"
 import Button from "../Button"
 

@@ -1,9 +1,9 @@
-import { Booking } from "@/interfaces"
+import { BookingInterFace } from "@/interfaces"
 import { createReducer } from "@reduxjs/toolkit"
 import { BOOK_FAIL, BOOK_SUCCESS, CLEAR_BOOK } from "../actions"
 
 interface FormState {
-  bookInfo: Booking | Object
+  bookInfo: BookingInterFace | Object
   isSuccess: boolean
   isFail: boolean
 }
@@ -15,7 +15,7 @@ const INITIAL_STATE: FormState = {
 }
 
 export default createReducer(INITIAL_STATE, (builder) => {
-  builder.addCase(BOOK_SUCCESS, (state: any, action: { payload: Booking }) => {
+  builder.addCase(BOOK_SUCCESS, (state: any, action: { payload: BookingInterFace }) => {
     return { ...state, bookInfor: action.payload, isSuccess: true }
   })
   builder.addCase(BOOK_FAIL, (state: any) => {

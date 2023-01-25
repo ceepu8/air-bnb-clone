@@ -1,11 +1,11 @@
 import { Button } from "@/components"
 import { useGetRoomDetail } from "@/hooks"
-import { Booking } from "@/interfaces"
+import { BookingInterFace } from "@/interfaces"
 import dayjs from "dayjs"
 import Image from "next/image"
 import React from "react"
 
-export const BookingItem = (props: Booking) => {
+export const BookingItem = (props: BookingInterFace) => {
   const { id, ngayDen, ngayDi, maPhong, soLuongKhach } = props || {}
 
   const { data: room = {} } = useGetRoomDetail(maPhong)
@@ -15,8 +15,8 @@ export const BookingItem = (props: Booking) => {
     <div className="mt-6 rounded-md border-[1px] border-solid border-light-gray p-4 shadow">
       <h1 className="text-2xl font-semibold">#{id}</h1>
 
-      <div className="mt-4 flex items-center gap-x-8">
-        <div>
+      <div className="mt-4 flex items-start gap-x-8">
+        <div className="mt-2 shrink-0">
           {room?.hinhAnh && (
             <Image
               src={room?.hinhAnh}
@@ -27,7 +27,7 @@ export const BookingItem = (props: Booking) => {
             />
           )}
         </div>
-        <div>
+        <div className="flex-1">
           <h3 className="text-xl font-semibold text-black-gray">{room?.tenPhong}</h3>
           <p className="text-sm text-very-dark-gray">
             Phòng ngủ: {room?.phongNgu} &#x2022; Phòng tắm: {room?.phongTam} &#x2022; Giường:{" "}
