@@ -14,7 +14,7 @@ const SelectionForm = () => {
 
   const doSearch = () => {
     if (location.id) {
-      router.push({ query: { locationId: location.id } })
+      router.push({ pathname: "/", query: { locationId: location.id } })
       dispatch(SET_SHRINK())
     }
   }

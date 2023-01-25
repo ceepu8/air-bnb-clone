@@ -1,5 +1,4 @@
 import Head from "next/head"
-
 import HomeView from "@/views/Home"
 import MainLayout from "@/layouts/MainLayout"
 

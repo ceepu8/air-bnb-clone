@@ -1,4 +1,4 @@
-import { Guest, LocationInterface } from "@/interfaces"
+import { BookingInterFace, Guest, LocationInterface } from "@/interfaces"
 import { createRequestTypes } from "@/utils/redux"
 import { createAction } from "@reduxjs/toolkit"
 import { DateRange } from "react-day-picker"
@@ -30,3 +30,7 @@ export const CLOSE_LOGIN_FORM = createAction("CLOSE_LOGIN_FORM")
 
 export const OPEN_REGISTER_FORM = createAction("OPEN_REGISTER_FORM")
 export const CLOSE_REGISTER_FORM = createAction("CLOSE_REGISTER_FORM")
+
+export const BOOK_SUCCESS = createAction<BookingInterFace>("BOOK_SUCCESS")
+export const BOOK_FAIL = createAction("BOOK_FAIL")
+export const CLEAR_BOOK = createAction("CLEAR_BOOK")

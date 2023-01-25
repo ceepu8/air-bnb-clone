@@ -5,6 +5,7 @@ import roomForm from "@/store/reducers/roomForm"
 import locationForm from "@/store/reducers/locationForm"
 import searchbar from "@/store/reducers/searchbar"
 import authForm from "@/store/reducers/authForm"
+import bookSuccess from "@/store/reducers/bookSuccess"
 
 export default combineReducers({
   auth,
@@ -12,4 +13,5 @@ export default combineReducers({
   locationForm,
   searchbar,
   authForm,
+  bookSuccess,
 })

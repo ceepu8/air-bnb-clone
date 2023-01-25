@@ -1,14 +1,12 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 
-import api from "@/configs/axios"
-
 import { setDefaultHeaders } from "@/configs"
 import { API, ME_KEY } from "@/constants"
 import { LOGIN_SUCCEED, LOGOUT } from "@/store/actions"
 
-import { useLocalStorage } from "../shared"
 import { fetch } from "@/utils"
+import { useLocalStorage } from "../shared"
 
 export function useLogout() {
   const dispatch = useDispatch()
@@ -59,17 +57,20 @@ export const useRegister = () => {
 
   const [_, setAuth] = useLocalStorage(ME_KEY)
 
-  const doLogin = async (params: any) => {
+  const doRegister = async (params: any) => {
     setLoading(true)
-    const { data } = await api.post(API.AUTH.REGISTER, params)
-    if (data?.success) {
-      setAuth(data)
+    const response = await fetch({ method: "post", url: API.AUTH.REGISTER, params })
+
+    if (response?.statusCode === 200) {
+      setAuth(response)
+      setError(null)
       setIsSuccess(true)
     } else {
-      setError(data?.message)
+      setError(response?.content)
+      setIsSuccess(false)
     }
     setLoading(false)
   }
 
-  return { doLogin, loading, error, isSuccess }
+  return { doRegister, loading, error, isSuccess }
 }

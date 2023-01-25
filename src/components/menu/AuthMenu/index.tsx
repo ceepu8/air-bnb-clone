@@ -1,83 +1,118 @@
-import { LineBreak } from "@/components/base"
+import { NAVIGATES } from "@/constants"
 import { LOGOUT, OPEN_LOGIN_FORM, OPEN_REGISTER_FORM } from "@/store/actions"
-import Link from "next/link"
+import { useRouter } from "next/router"
 import { useDispatch, useSelector } from "react-redux"
 import Dropdown from "./Dropdown"
 
-type NavProps = {
-  path: string
-  destination: string
+type AuthMenuItemType = {
+  label: string
+  className?: string
+  onClick: () => void
 }
 
-const NavLink = ({ path, destination }: NavProps) => {
+const AuthMenuItem = ({ label, onClick }: AuthMenuItemType) => {
   return (
-    <Link href={path}>
-      <a className="block py-3 px-3 text-sm font-light hover:bg-white-gray">{destination}</a>
-    </Link>
+    <button
+      className="block w-full cursor-pointer py-3 px-3 text-left text-sm font-light hover:bg-white-gray"
+      onClick={onClick}
+    >
+      {label}
+    </button>
   )
 }
 
-const AuthMenu = ({ isOpen }: { isOpen: boolean }) => {
+const AuthMenu = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => void }) => {
   const dispatch = useDispatch()
+  const router = useRouter()
   const { isLogged } = useSelector((state: any) => state.auth)
 
-  const renderLoginAndRegisterMenu = () => {
-    return (
-      <>
-        <div
-          className="block w-full cursor-pointer py-3 px-3 text-left text-sm font-light hover:bg-white-gray"
-          onClick={() => dispatch(OPEN_LOGIN_FORM())}
-        >
-          Đăng nhập
-        </div>
-        <div
-          className="block w-full cursor-pointer py-3 px-3 text-left text-sm font-light hover:bg-white-gray"
-          onClick={() => dispatch(OPEN_REGISTER_FORM())}
-        >
-          Đăng ký
-        </div>
-      </>
-    )
+  const renderAuthMenu = () => {
+    const menus = isLogged
+      ? [
+          {
+            label: "Thông tin tài khoản",
+            onClick: () => {
+              router.replace(NAVIGATES.USER_INFO)
+              handleClose()
+            },
+          },
+          {
+            label: "Lịch sử chuyến đi",
+            onClick: () => {
+              router.replace(`${NAVIGATES.BOOKING_HISTORY}?pageSize=1`)
+              handleClose()
+            },
+          },
+        ]
+      : [
+          {
+            label: "Đăng nhập",
+            onClick: () => {
+              dispatch(OPEN_LOGIN_FORM())
+              handleClose()
+            },
+          },
+          {
+            label: "Đăng ký",
+            onClick: () => {
+              dispatch(OPEN_REGISTER_FORM())
+              handleClose()
+            },
+          },
+        ]
+
+    return menus.map((item: AuthMenuItemType) => (
+      <AuthMenuItem key={item.label} label={item.label} onClick={item.onClick} />
+    ))
   }
 
-  const renderUserMenu = () => {
-    return (
-      <div>
-        <Link href="/account-setting/user-info">
-          <p className="block w-full cursor-pointer py-3 px-3 text-left text-sm font-light hover:bg-white-gray">
-            Thông tin tài khoản
-          </p>
-        </Link>
-        <Link href="/account-setting/booking-history">
-          <p className="block w-full cursor-pointer py-3 px-3 text-left text-sm font-light hover:bg-white-gray">
-            Lịch sử chuyến đi
-          </p>
-        </Link>
-      </div>
-    )
+  const renderOtherMenu = () => {
+    const menus = [
+      {
+        label: "Cho thuê nhà",
+        onClick: () => {
+          router.replace("/")
+          handleClose()
+        },
+      },
+      {
+        label: "Tổ chức trải nghiệm",
+        onClick: () => {
+          router.replace("/")
+          handleClose()
+        },
+      },
+      {
+        label: "Hỗ trợ",
+        onClick: () => {
+          router.replace("/")
+          handleClose()
+        },
+      },
+    ]
+
+    return menus.map((item: AuthMenuItemType) => (
+      <AuthMenuItem key={item.label} label={item.label} onClick={item.onClick} />
+    ))
   }
 
   return (
-    <Dropdown isOpen={isOpen} className="right-0 min-w-[250px] !rounded-xl !py-2 !px-0">
-      {!isLogged && renderLoginAndRegisterMenu()}
-      {isLogged && renderUserMenu()}
-      <LineBreak />
-
-      <NavLink path="/" destination="Cho thuê nhà" />
-      <NavLink path="/" destination="Tổ chức trải nghiệm" />
-      <NavLink path="/" destination="Hỗ trợ" />
-
+    <Dropdown
+      isOpen={isOpen}
+      className="right-0 min-w-[250px] divide-y divide-very-light-gray !rounded-xl !py-2 !px-0"
+    >
+      <div>{renderAuthMenu()}</div>
+      <div>{renderOtherMenu()}</div>
       {isLogged && (
-        <>
-          <LineBreak />
-
-          <div
-            className="block w-full cursor-pointer py-3 px-3 text-left text-sm font-semibold hover:bg-white-gray"
-            onClick={() => dispatch(LOGOUT.REQUEST())}
-          >
-            Đăng xuất
-          </div>
-        </>
+        <div>
+          <AuthMenuItem
+            label="Đăng xuất"
+            onClick={() => {
+              dispatch(LOGOUT.REQUEST())
+              handleClose()
+            }}
+          />
+        </div>
       )}
     </Dropdown>
   )
