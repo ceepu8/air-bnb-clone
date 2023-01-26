@@ -6,6 +6,7 @@ import PlaceSearchBar from "./components/PlaceSearchBar"
 import { LoginViewModal } from "@/views/Auth/Login"
 import { RegisterViewModal } from "@/views/Auth/Register"
 import { AirbnbLogo } from "@/components/icons"
+import { useToastContext } from "@/store/contexts/NotificationContext"
 
 const Logo = () => {
   return (
@@ -19,6 +20,7 @@ const Logo = () => {
 
 const Header = () => {
   const { isExtended } = useSelector((state: any) => state.searchbar)
+  const { notiDispatch } = useToastContext()
 
   return (
     <header
@@ -26,6 +28,32 @@ const Header = () => {
         isExtended ? "h-[150px]" : "h-[70px]"
       } border-bottom fixed top-0 right-0 z-50 mx-auto w-full border border-solid border-gray bg-white transition-all`}
     >
+      <div>
+        <button
+          onClick={() =>
+            notiDispatch({
+              type: "ADD",
+              payload: {
+                content: { type: "error", message: `${+new Date()}` },
+              },
+            })
+          }
+        >
+          Show basic notification
+        </button>
+        <button
+          onClick={() =>
+            notiDispatch({
+              type: "ADD",
+              payload: {
+                content: { type: "warning", message: "Hello World" },
+              },
+            })
+          }
+        >
+          Show basic notification
+        </button>
+      </div>
       <div className="mx-auto grid max-w-[1315px] grid-cols-3">
         <div className="col-span-1">
           <Logo />

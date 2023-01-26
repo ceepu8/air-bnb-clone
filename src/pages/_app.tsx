@@ -19,6 +19,7 @@ import { propsInterface } from "@/interfaces"
 import { useStore } from "@/store"
 import { PersistGate } from "redux-persist/integration/react"
 import { TOKEN_CYBERSOFT } from "@/constants"
+import { NotificationProvider } from "@/store/contexts/NotificationContext"
 
 const progress = new ProgressBar({
   size: 1,
@@ -62,15 +63,17 @@ function MyApp({ Component, pageProps, token }: propsInterface) {
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
       </Head>
       <Provider store={store}>
-        <PersistGate persistor={persistor}>
-          {() => (
-            <ReactQueryProvider {...pageProps}>
-              <Layout {...pageProps} token={token}>
-                <Component {...pageProps} />
-              </Layout>
-            </ReactQueryProvider>
-          )}
-        </PersistGate>
+        <NotificationProvider>
+          <PersistGate persistor={persistor}>
+            {() => (
+              <ReactQueryProvider {...pageProps}>
+                <Layout {...pageProps} token={token}>
+                  <Component {...pageProps} />
+                </Layout>
+              </ReactQueryProvider>
+            )}
+          </PersistGate>
+        </NotificationProvider>
       </Provider>
     </>
   )

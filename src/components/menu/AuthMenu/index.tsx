@@ -39,7 +39,7 @@ const AuthMenu = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () =>
           {
             label: "Lịch sử chuyến đi",
             onClick: () => {
-              router.replace("NAVIGATES.BOOKING_HISTORY")
+              router.replace(NAVIGATES.BOOKING_HISTORY)
               handleClose()
             },
           },
