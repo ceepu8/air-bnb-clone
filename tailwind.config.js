@@ -47,6 +47,20 @@ module.exports = {
       screens: {
         tiny: "321px", // iphone5
       },
+      animation: {
+        "slide-in": "slideIn 1s ease-in-out 1",
+        "slide-out": "slideOut 1s ease-in-out 1",
+      },
+      keyframes: {
+        slideIn: {
+          from: { transform: "translateX(100%)" },
+          to: { transform: "translateX(0%)" },
+        },
+        slideOut: {
+          from: { transform: "translateX(0%)" },
+          to: { transform: "translateX(100%)" },
+        },
+      },
     },
   },
   plugins: [require("@tailwindcss/line-clamp")],

@@ -1,5 +1,6 @@
 import { Pagination } from "@/components"
-import { useGetBookingList, useGetMe } from "@/hooks"
+import { ME_KEY } from "@/constants"
+import { useGetBookingList, useLocalStorage } from "@/hooks"
 import { BookingInterFace } from "@/interfaces"
 import { useGetStartEnd } from "@/utils"
 import { isEmpty } from "lodash"
@@ -8,19 +9,18 @@ import { useEffect } from "react"
 import { BookingItem } from "./BookingItem"
 
 export const BookingHistoryView = () => {
-  const { me, loading } = useGetMe()
+  const [me] = useLocalStorage(ME_KEY)
   const { data: bookings } = useGetBookingList(me?.id)
-
   const router = useRouter()
 
   const { pageSize } = router.query
   const { start, end } = useGetStartEnd(Number(pageSize))
 
   useEffect(() => {
-    if (!loading && isEmpty(me)) {
+    if (isEmpty(me)) {
       router.push("/")
     }
-  }, [me, loading])
+  }, [me])
 
   return (
     <section className="mx-auto mt-8 w-full max-w-[1080px] px-12">
