@@ -1,5 +1,6 @@
 import { NAVIGATES } from "@/constants"
-import { LOGOUT, OPEN_LOGIN_FORM, OPEN_REGISTER_FORM } from "@/store/actions"
+import { useLogout } from "@/hooks"
+import { OPEN_LOGIN_FORM, OPEN_REGISTER_FORM } from "@/store/actions"
 import { useRouter } from "next/router"
 import { useDispatch, useSelector } from "react-redux"
 import Dropdown from "./Dropdown"
@@ -24,6 +25,7 @@ const AuthMenuItem = ({ label, onClick }: AuthMenuItemType) => {
 const AuthMenu = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => void }) => {
   const dispatch = useDispatch()
   const router = useRouter()
+  const [doLogout] = useLogout()
   const { isLogged } = useSelector((state: any) => state.auth)
 
   const renderAuthMenu = () => {
@@ -108,7 +110,7 @@ const AuthMenu = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () =>
           <AuthMenuItem
             label="Đăng xuất"
             onClick={() => {
-              dispatch(LOGOUT.REQUEST())
+              doLogout()
               handleClose()
             }}
           />

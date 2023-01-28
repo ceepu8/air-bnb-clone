@@ -46,7 +46,7 @@ export const LoginViewModal = () => {
     watch,
   } = useForm({
     mode: "all",
-    resolver: yupResolver(loginSchema),
+    resolver: yupResolver(loginSchema()),
   })
 
   const onSubmit = (data: any) => {

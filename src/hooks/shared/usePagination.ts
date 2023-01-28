@@ -1,4 +1,4 @@
-import range from "lodash/range"
+import { range } from "@/utils"
 import { useMemo } from "react"
 
 type Pagination = {
@@ -21,7 +21,7 @@ export const usePagination = ({
     const totalPageNumbers = siblingCount + 5
 
     if (totalPageNumbers >= totalPageCount) {
-      return range(1, totalPageCount + 1)
+      return range(1, totalPageCount)
     }
 
     const leftSiblingIndex = Math.max(currentPage - siblingCount, 1)
