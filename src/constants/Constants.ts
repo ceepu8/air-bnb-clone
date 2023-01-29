@@ -11,3 +11,11 @@ export const FOOTER_COPYRIGHT = {
   copyright: "© 2022 Airbnb, Inc.",
   content: ["Quyền riêng tư", "Điều khoản", "Sơ đồ trang web"],
 }
+
+export const HEAD_TYPE = {
+  HOME: "AirBnB",
+  ROOM_DETAIL: "AirBnB - Room",
+  BOOKING: "AirBnB - Booking",
+  USER: "AirBnB - User Infor",
+  BOOKING_HISTORY: "AirBnB - Booking History",
+}
