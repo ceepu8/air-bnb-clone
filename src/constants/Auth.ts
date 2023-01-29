@@ -1,34 +1,33 @@
-import { IconType } from "react-icons"
+import { SocialInterface } from "@/interfaces"
 import { AiOutlineMail } from "react-icons/ai"
 import { BsApple, BsFacebook } from "react-icons/bs"
 import { FcGoogle } from "react-icons/fc"
 
-type socialMediaType = {
-  id: number
-  Icon: IconType
-  name: string
-}
-
-export const SOCIAL_MEDIA: socialMediaType[] = [
+export const SOCIAL_MEDIA: SocialInterface[] = [
   {
     id: 1,
     Icon: BsFacebook,
     name: "Facebook",
+    href: "/",
+    className: "fill-blue",
   },
   {
     id: 2,
     Icon: FcGoogle,
     name: "Google",
+    href: "/",
   },
   {
     id: 3,
     Icon: BsApple,
     name: "Apple",
+    href: "/",
   },
   {
     id: 4,
     Icon: AiOutlineMail,
     name: "Email",
+    href: "/",
   },
 ]
 
