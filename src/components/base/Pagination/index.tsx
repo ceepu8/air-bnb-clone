@@ -49,7 +49,7 @@ export const Pagination = ({
 
         {paginationRange.map((pageNumber) => {
           if (pageNumber === "dots") {
-            return <li className="pagination-item dots">&#8230;</li>
+            return <li>&#8230;</li>
           }
           return (
             <Button

@@ -1,4 +1,3 @@
-import { DropDown } from "@/components"
 import { CapsuleSelection } from "@/components/selections"
 import { useGetLocationList, useInputState, useMouseLeave } from "@/hooks"
 import { LocationInterface } from "@/interfaces"
@@ -7,6 +6,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { FiMapPin } from "react-icons/fi"
 import { STATIC_REGIONS } from "@/constants/Header"
+import { Dropdown } from "@/components"
 
 const LOCATION_RENDER_LIMIT = 6
 
@@ -15,7 +15,7 @@ const MapDropdown = ({ isOpen }: { isOpen: boolean }) => {
   const { data: locationList } = useGetLocationList({ pageSize: LOCATION_RENDER_LIMIT })
 
   return (
-    <DropDown isOpen={isOpen} className="top-[110%] left-0 max-w-[450px]">
+    <Dropdown isOpen={isOpen} className="top-[110%] left-0 max-w-[450px]">
       <h4 className="h4">Tìm kiếm theo khu vực</h4>
       <div className="flex flex-wrap">
         {(locationList || []).map((location: LocationInterface) => {
@@ -41,7 +41,7 @@ const MapDropdown = ({ isOpen }: { isOpen: boolean }) => {
           )
         })}
       </div>
-    </DropDown>
+    </Dropdown>
   )
 }
 
@@ -65,7 +65,7 @@ const SearchDropdown = ({ isOpen, value }: { isOpen: boolean; value: any }) => {
   }, [value])
 
   return (
-    <DropDown isOpen={isOpen} className="top-[110%] left-0 max-w-[450px] !p-3">
+    <Dropdown isOpen={isOpen} className="top-[110%] left-0 max-w-[450px] !p-3">
       <div>
         {(locationList || []).map((location: LocationInterface) => {
           const { tinhThanh, tenViTri, id } = location
@@ -87,7 +87,7 @@ const SearchDropdown = ({ isOpen, value }: { isOpen: boolean; value: any }) => {
           )
         })}
       </div>
-    </DropDown>
+    </Dropdown>
   )
 }
 
