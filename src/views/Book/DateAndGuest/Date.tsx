@@ -1,4 +1,5 @@
 import { Button, Calendar, Modal } from "@/components"
+import { FORMAT_DATE } from "@/constants"
 import { useFlag } from "@/hooks"
 import { getNumberNights } from "@/utils"
 import dayjs from "dayjs"
@@ -30,8 +31,8 @@ const Date = () => {
 
     setDateQuery((prev) => ({
       ...prev,
-      from: _from && dayjs(_from).format("YYYY-MM-DD"),
-      to: _to && dayjs(_to).format("YYYY-MM-DD"),
+      from: _from && dayjs(_from).format(FORMAT_DATE.INTERNATIONAL),
+      to: _to && dayjs(_to).format(FORMAT_DATE.INTERNATIONAL),
       numberNights: calcNights,
     }))
   }
@@ -50,8 +51,8 @@ const Date = () => {
     if (from && to) {
       const resetDate = {
         ...date,
-        from: dayjs().format("YYYY-MM-DD"),
-        to: dayjs().add(1, "day").format("YYYY-MM-DD"),
+        from: dayjs().format(FORMAT_DATE.INTERNATIONAL),
+        to: dayjs().add(1, "day").format(FORMAT_DATE.INTERNATIONAL),
       }
       setDateQuery(resetDate)
 
@@ -71,8 +72,8 @@ const Date = () => {
       <div>
         <p className="font-medium text-black-gray">Ngày</p>
         <p className="mt-1 font-light text-black-gray">
-          {dayjs(router.query.from?.toString()).format("DD/MM/YYYY")} đến{" "}
-          {dayjs(router.query.to?.toString()).format("DD/MM/YYYY")}
+          {dayjs(router.query.from?.toString()).format(FORMAT_DATE.DEFAULT)} đến{" "}
+          {dayjs(router.query.to?.toString()).format(FORMAT_DATE.DEFAULT)}
         </p>
       </div>
       <Button clean className="underline shadow-none" onClick={onOpen}>

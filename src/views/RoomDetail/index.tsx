@@ -1,10 +1,12 @@
-import { LineBreak, NavLink } from "@/components"
+import { Calendar, LineBreak, NavLink } from "@/components"
 import { AIR_COVER, ROOM_SERVICES, STATIC_LOCATION } from "@/constants"
 import { useGetRoomDetail } from "@/hooks"
+import { SET_DATE } from "@/store/actions"
 import classNames from "classnames"
 import Image from "next/image"
 import { useRouter } from "next/router"
-import { Calendar } from "./Calendar"
+import { DateRange } from "react-day-picker"
+import { useDispatch, useSelector } from "react-redux"
 import { Comment } from "./Comment"
 import { RoomDetailSkeleton } from "./RoomDetailSkeleton"
 import SelectionForm from "./SelectionForm"
@@ -14,8 +16,11 @@ export const RoomDetailView = () => {
   const { logoUrl, content } = AIR_COVER
 
   const router = useRouter()
+  const dispatch = useDispatch()
   const { id } = router.query
   const { data: room = {}, isLoading } = useGetRoomDetail(id)
+
+  const { date, numberNights } = useSelector((state: any) => state.roomForm)
 
   const { tenPhong, hinhAnh, khach, phongNgu, phongTam } = room || {}
 
@@ -96,7 +101,13 @@ export const RoomDetailView = () => {
               <div className="my-8">{renderServices()}</div>
               <LineBreak />
               <div className="mt-8">
-                <Calendar />
+                <Calendar
+                  date={date}
+                  numberNights={numberNights}
+                  onSelect={(value: DateRange | undefined) => {
+                    dispatch(SET_DATE(value))
+                  }}
+                />
               </div>
             </div>
             <div className="col-span-1">

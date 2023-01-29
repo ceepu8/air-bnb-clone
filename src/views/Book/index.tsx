@@ -1,5 +1,5 @@
 import { Bill, Button, LineBreak, NavLink } from "@/components"
-import { AIR_COVER, BOOKING_POLICY } from "@/constants"
+import { AIR_COVER, BOOKING_POLICY, FORMAT_DATE } from "@/constants"
 import { useBookRoom, useGetRoomDetail } from "@/hooks"
 import { OPEN_LOGIN_FORM } from "@/store/actions"
 import dayjs from "dayjs"
@@ -19,7 +19,6 @@ export const BookingView = () => {
   const { numberNights, productId, from, to, toddler, children, adult } = router.query
   const { user } = useSelector((state: any) => state.auth)
   const { data: room = {} } = useGetRoomDetail(productId)
-  const DATE_ISO8601_FORMAT = "YYYY-MM-DDTHH:mm:ssZ[Z]"
 
   const { doBookRoom } = useBookRoom()
 
@@ -32,8 +31,8 @@ export const BookingView = () => {
     try {
       const data = {
         maPhong: productId,
-        ngayDen: from && dayjs(from.toString()).format(DATE_ISO8601_FORMAT),
-        ngayDi: to && dayjs(to.toString()).format(DATE_ISO8601_FORMAT),
+        ngayDen: from && dayjs(from.toString()).format(FORMAT_DATE.DATE_ISO8601),
+        ngayDi: to && dayjs(to.toString()).format(FORMAT_DATE.DATE_ISO8601),
         soLuongKhach: Number(toddler) + Number(children) + Number(adult),
         maNguoiDung: user.id,
       }
