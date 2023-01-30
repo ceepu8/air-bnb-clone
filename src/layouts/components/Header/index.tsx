@@ -1,12 +1,13 @@
-import { BsGlobe } from "react-icons/bs"
 import { NavLink } from "@/components"
+import { useAlert } from "@/components/base/Alert"
+import { AirbnbLogo } from "@/components/icons"
 import { UserNavigate } from "@/components/navigation"
-import { useSelector } from "react-redux"
-import PlaceSearchBar from "./components/PlaceSearchBar"
+import { useToastContext } from "@/store/contexts/NotificationContext"
 import { LoginViewModal } from "@/views/Auth/Login"
 import { RegisterViewModal } from "@/views/Auth/Register"
-import { AirbnbLogo } from "@/components/icons"
-import { useToastContext } from "@/store/contexts/NotificationContext"
+import { BsGlobe } from "react-icons/bs"
+import { useSelector } from "react-redux"
+import PlaceSearchBar from "./components/PlaceSearchBar"
 
 const Logo = () => {
   return (
@@ -21,6 +22,7 @@ const Logo = () => {
 const Header = () => {
   const { isExtended } = useSelector((state: any) => state.searchbar)
   const { notiDispatch } = useToastContext()
+  const alert = useAlert()
 
   return (
     <header
@@ -31,12 +33,13 @@ const Header = () => {
       <div>
         <button
           onClick={() =>
-            notiDispatch({
-              type: "ADD",
-              payload: {
-                content: { type: "error", message: `${+new Date()}` },
-              },
-            })
+            // notiDispatch({
+            //   type: "ADD",
+            //   payload: {
+            //     content: { type: "error", message: `${+new Date()}` },
+            //   },
+            // })
+            alert.success("Đặt phòng thành công!")
           }
         >
           Show basic notification
