@@ -34,7 +34,6 @@ export const useLogin = () => {
   const doLogin = async (params: any) => {
     setLoading(true)
     const response = await fetch({ method: "post", url: API.AUTH.LOGIN, params })
-    console.log(response)
 
     if (response?.statusCode === 200) {
       dispatch(LOGIN_SUCCEED(response?.content))

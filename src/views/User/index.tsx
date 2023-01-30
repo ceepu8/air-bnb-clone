@@ -2,21 +2,20 @@ import isEmpty from "lodash/isEmpty"
 import { useRouter } from "next/router"
 import { useEffect } from "react"
 
-import { useLocalStorage } from "@/hooks"
+import { useGetMe } from "@/hooks"
 
 import { UserInfor } from "./UserInfor"
 import { UserPolicy } from "./UserPolicy"
-import { ME_KEY } from "@/constants"
 
 const UserView = () => {
-  const [me] = useLocalStorage(ME_KEY)
+  const { me, loading } = useGetMe()
   const router = useRouter()
 
   useEffect(() => {
-    if (isEmpty(me)) {
+    if (!loading && isEmpty(me)) {
       router.push("/")
     }
-  }, [me])
+  }, [me, loading])
 
   return (
     <section className="mx-auto mt-8 w-full max-w-[1080px] px-12">

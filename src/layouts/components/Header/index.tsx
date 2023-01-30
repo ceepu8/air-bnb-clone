@@ -45,14 +45,15 @@ const Header = () => {
           Show basic notification
         </button>
         <button
-          onClick={() =>
+          onClick={() => {
             notiDispatch({
               type: "ADD",
               payload: {
                 content: { type: "warning", message: "Hello World" },
               },
             })
-          }
+            alert.error("Đặt phòng thất bại!")
+          }}
         >
           Show basic notification
         </button>
