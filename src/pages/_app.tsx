@@ -20,7 +20,7 @@ import { TOKEN_CYBERSOFT } from "@/constants"
 import { ReactQueryProvider } from "@/contexts"
 import { propsInterface } from "@/interfaces"
 import { useStore } from "@/store"
-import { NotificationProvider } from "@/store/contexts/NotificationContext"
+import NotificationProvider from "@/components/base/Notification/NotificationProvider"
 
 const progress = new ProgressBar({
   size: 1,
