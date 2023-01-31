@@ -18,6 +18,7 @@ export const useNotification = () => {
 
   return {
     success: (message: string) => handleDispatch(NOTIFICATION_TYPE.SUCCESS, message),
-    error: (message: string) => handleDispatch(NOTIFICATION_TYPE.SUCCESS, message),
+    error: (message: string) => handleDispatch(NOTIFICATION_TYPE.ERROR, message),
+    warning: (message: string) => handleDispatch(NOTIFICATION_TYPE.WARNING, message),
   }
 }

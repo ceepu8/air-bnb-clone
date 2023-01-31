@@ -41,12 +41,22 @@ export const toastReducer = (state: any, action: any) => {
 const NotificationProvider = ({ children }: any) => {
   const [value, dispatch] = useReducer(toastReducer, initialState)
 
+  const onDismiss = (id: number) => {
+    if (typeof dispatch === "function") {
+      dispatch({
+        type: ACTION.DELETE_NOTI,
+        payload: {
+          id: id,
+        },
+      })
+    }
+  }
   return (
     <NotificationContext.Provider value={value}>
       <NotificationDispatchContext.Provider value={dispatch}>
         {children}
       </NotificationDispatchContext.Provider>
-      <Notification noti={value} />
+      <Notification notiArray={value} onDismiss={onDismiss} />
     </NotificationContext.Provider>
   )
 }
