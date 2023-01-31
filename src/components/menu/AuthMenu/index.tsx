@@ -1,9 +1,9 @@
+import { Dropdown } from "@/components/base"
 import { NAVIGATES } from "@/constants"
 import { useLogout } from "@/hooks"
 import { OPEN_LOGIN_FORM, OPEN_REGISTER_FORM } from "@/store/actions"
 import { useRouter } from "next/router"
 import { useDispatch, useSelector } from "react-redux"
-import Dropdown from "./Dropdown"
 
 type AuthMenuItemType = {
   label: string
