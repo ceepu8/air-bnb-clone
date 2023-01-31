@@ -1,6 +1,5 @@
 import { Pagination } from "@/components"
-import { ME_KEY } from "@/constants"
-import { useGetBookingList, useLocalStorage } from "@/hooks"
+import { useGetBookingList, useGetMe } from "@/hooks"
 import { BookingInterFace } from "@/interfaces"
 import { useGetStartEnd } from "@/utils"
 import { isEmpty } from "lodash"
@@ -9,7 +8,7 @@ import { useEffect } from "react"
 import { BookingItem } from "./BookingItem"
 
 export const BookingHistoryView = () => {
-  const [me] = useLocalStorage(ME_KEY)
+  const { me } = useGetMe()
   const { data: bookings } = useGetBookingList(me?.id)
   const router = useRouter()
 
