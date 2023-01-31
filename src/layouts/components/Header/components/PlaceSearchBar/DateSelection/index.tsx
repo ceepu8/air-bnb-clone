@@ -1,10 +1,10 @@
 import { useMouseLeave } from "@/hooks"
 import { CapsuleSelection } from "@/components/selections"
-import Dropdown from "@/components/base/DropDown/DropDown"
 import { DateRange, DayPicker } from "react-day-picker"
 import { useDispatch, useSelector } from "react-redux"
 import { SET_LOCATION_DATE } from "@/store/actions"
 import { format } from "date-fns"
+import { Dropdown } from "@/components"
 
 const DateDropdown = ({ isOpen }: { isOpen: boolean }) => {
   const date = useSelector((state: any) => state.locationForm.date)

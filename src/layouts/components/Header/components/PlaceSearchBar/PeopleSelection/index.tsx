@@ -1,6 +1,6 @@
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai"
 
-import { Button, DropDown } from "@/components"
+import { Button, Dropdown } from "@/components"
 import { CapsuleSelection } from "@/components/selections"
 import { PEOPLE_SELECTION } from "@/constants"
 import { useMouseLeave } from "@/hooks"
@@ -36,7 +36,7 @@ const PeopleDropdown = ({ isOpen }: { isOpen: boolean }) => {
     }
   }
   return (
-    <DropDown isOpen={isOpen} className="top-[110%] right-0 min-w-[350px]">
+    <Dropdown isOpen={isOpen} className="top-[110%] right-0 min-w-[350px]">
       {PEOPLE_SELECTION.map((each) => {
         const { name, id, note, keyName } = each || {}
         const total = guest[keyName as keyof Guest] || 0
@@ -65,7 +65,7 @@ const PeopleDropdown = ({ isOpen }: { isOpen: boolean }) => {
           </div>
         )
       })}
-    </DropDown>
+    </Dropdown>
   )
 }
 

@@ -1,4 +1,4 @@
-import { Button, DropDown } from "@/components"
+import { Button, Dropdown } from "@/components"
 import { PEOPLE_SELECTION } from "@/constants"
 import { useMouseLeave } from "@/hooks"
 import { Guest } from "@/interfaces"
@@ -35,7 +35,7 @@ const Popup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => vo
   }
 
   return (
-    <DropDown isOpen={isOpen} className="top-[110%] min-w-full rounded-md px-4 py-6">
+    <Dropdown isOpen={isOpen} className="top-[110%] min-w-full rounded-md px-4 py-6">
       <div>
         {PEOPLE_SELECTION.map((each) => {
           const { name, id, note, keyName } = each || {}
@@ -77,7 +77,7 @@ const Popup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => vo
           Đóng
         </Button>
       </div>
-    </DropDown>
+    </Dropdown>
   )
 }
 

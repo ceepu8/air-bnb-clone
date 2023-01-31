@@ -1,2 +1,24 @@
-export { default as DropDown } from "./DropDown"
-export { default as DateDropdown } from "./DateDropdown"
+import classNames from "classnames"
+import { ReactNode } from "react"
+
+type DropdownProps = {
+  isOpen: boolean
+  className?: string
+  children?: ReactNode
+}
+
+export const Dropdown = ({ isOpen, className, children }: DropdownProps) => {
+  return (
+    <div
+      className={classNames(
+        "absolute z-50 hidden rounded-3xl border-[1px] border-solid border-light-gray bg-white p-10 shadow-modal",
+        className,
+        {
+          "!block": isOpen,
+        }
+      )}
+    >
+      {children}
+    </div>
+  )
+}
