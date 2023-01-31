@@ -12,13 +12,15 @@ import nookies from "nookies"
 
 import { Provider } from "react-redux"
 import { persistStore } from "redux-persist"
+import { PersistGate } from "redux-persist/integration/react"
 
+import AlertProvider from "@/components/base/Alert/AlertProvider"
 import { setDefaultHeaders } from "@/configs/axios"
+import { TOKEN_CYBERSOFT } from "@/constants"
 import { ReactQueryProvider } from "@/contexts"
 import { propsInterface } from "@/interfaces"
 import { useStore } from "@/store"
-import { PersistGate } from "redux-persist/integration/react"
-import { TOKEN_CYBERSOFT } from "@/constants"
+import NotificationProvider from "@/components/base/Notification/NotificationProvider"
 
 const progress = new ProgressBar({
   size: 1,
@@ -65,9 +67,13 @@ function MyApp({ Component, pageProps, token }: propsInterface) {
         <PersistGate persistor={persistor}>
           {() => (
             <ReactQueryProvider {...pageProps}>
-              <Layout {...pageProps} token={token}>
-                <Component {...pageProps} />
-              </Layout>
+              <NotificationProvider>
+                <AlertProvider>
+                  <Layout {...pageProps} token={token}>
+                    <Component {...pageProps} />
+                  </Layout>
+                </AlertProvider>
+              </NotificationProvider>
             </ReactQueryProvider>
           )}
         </PersistGate>

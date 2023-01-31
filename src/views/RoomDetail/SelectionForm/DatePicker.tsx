@@ -1,4 +1,4 @@
-import { Button, DropDown } from "@/components"
+import { Button, Dropdown } from "@/components"
 import { useOnClickOutside } from "@/hooks"
 import { CLEAR_DATE } from "@/store/actions"
 import { format } from "date-fns"
@@ -15,7 +15,7 @@ const Popup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => vo
   }
 
   return (
-    <DropDown
+    <Dropdown
       isOpen={isOpen}
       className="absolute -top-[50px] -right-8 hidden min-h-[300px] min-w-[661px] rounded-2xl bg-white py-4 px-8"
     >
@@ -44,7 +44,7 @@ const Popup = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => vo
           Đóng
         </Button>
       </div>
-    </DropDown>
+    </Dropdown>
   )
 }
 
