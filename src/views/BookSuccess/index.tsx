@@ -1,6 +1,6 @@
 import { Button, Modal } from "@/components"
 import { AirbnbLogo } from "@/components/icons"
-import { BOOKING_NOTI, BOOKING_NOT_CHARGED } from "@/constants"
+import { BOOKING_NOTI, BOOKING_NOT_CHARGED, FORMAT_DATE } from "@/constants"
 import { useGetRoomDetail } from "@/hooks"
 import { CLEAR_BOOK } from "@/store/actions"
 import dayjs from "dayjs"
@@ -47,11 +47,11 @@ export const BookSuccessView = () => {
         <div className="mt-8 grid grid-cols-2 gap-y-8">
           <div className="col-span-1">
             <p className="text-very-dark-gray">Check-in</p>
-            <span className="font-semibold">{dayjs(ngayDen).format("ddd, MMM D")}</span>
+            <span className="font-semibold">{dayjs(ngayDen).format(FORMAT_DATE.SPECIFIC)}</span>
           </div>
           <div className="col-span-1">
             <p className="text-very-dark-gray">Check-out</p>
-            <span className="font-semibold">{dayjs(ngayDi).format("ddd, MMM D")}</span>
+            <span className="font-semibold">{dayjs(ngayDi).format(FORMAT_DATE.SPECIFIC)}</span>
           </div>
           <div>
             <p className="text-very-dark-gray">Guest(s)</p>

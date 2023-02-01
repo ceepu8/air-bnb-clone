@@ -1,20 +1,20 @@
-import { Dropdown } from "@/components/base"
+import { LineBreak } from "@/components/base"
 import { NAVIGATES } from "@/constants"
 import { useLogout } from "@/hooks"
 import { OPEN_LOGIN_FORM, OPEN_REGISTER_FORM } from "@/store/actions"
 import { useRouter } from "next/router"
 import { useDispatch, useSelector } from "react-redux"
 
-type AuthMenuItemType = {
-  label: string
-  className?: string
+type MenuType = {
+  id?: number | string
+  label?: string
   onClick: () => void
 }
 
-const AuthMenuItem = ({ label, onClick }: AuthMenuItemType) => {
+const AuthMenuItem = ({ label, onClick }: MenuType) => {
   return (
     <button
-      className="block w-full cursor-pointer py-3 px-3 text-left text-sm font-light hover:bg-white-gray"
+      className="block w-full cursor-pointer whitespace-nowrap py-3 px-3 text-left text-sm font-light hover:bg-white-gray"
       onClick={onClick}
     >
       {label}
@@ -22,101 +22,83 @@ const AuthMenuItem = ({ label, onClick }: AuthMenuItemType) => {
   )
 }
 
-const AuthMenu = ({ isOpen, handleClose }: { isOpen: boolean; handleClose: () => void }) => {
+const AuthMenu = () => {
   const dispatch = useDispatch()
   const router = useRouter()
   const [doLogout] = useLogout()
   const { isLogged } = useSelector((state: any) => state.auth)
 
-  const renderAuthMenu = () => {
-    const menus = isLogged
-      ? [
-          {
-            label: "Thông tin tài khoản",
-            onClick: () => {
-              router.replace(NAVIGATES.USER_INFO)
-              handleClose()
-            },
-          },
-          {
-            label: "Lịch sử chuyến đi",
-            onClick: () => {
-              router.replace(NAVIGATES.BOOKING_HISTORY)
-              handleClose()
-            },
-          },
-        ]
-      : [
-          {
-            label: "Đăng nhập",
-            onClick: () => {
-              dispatch(OPEN_LOGIN_FORM())
-              handleClose()
-            },
-          },
-          {
-            label: "Đăng ký",
-            onClick: () => {
-              dispatch(OPEN_REGISTER_FORM())
-              handleClose()
-            },
-          },
-        ]
-
-    return menus.map((item: AuthMenuItemType) => (
-      <AuthMenuItem key={item.label} label={item.label} onClick={item.onClick} />
-    ))
+  const AUTH_MENU = {
+    NOT_LOGIN: [
+      {
+        id: 1,
+        label: "Đăng nhập",
+        onClick: () => dispatch(OPEN_LOGIN_FORM()),
+      },
+      {
+        id: 2,
+        label: "Đăng ký",
+        onClick: () => dispatch(OPEN_REGISTER_FORM()),
+      },
+    ],
+    ALREADY_LOGIN: [
+      {
+        id: 1,
+        label: "Thông tin tài khoản",
+        onClick: () => router.replace(NAVIGATES.USER_INFO),
+      },
+      {
+        id: 2,
+        label: "Lịch sử chuyến đi",
+        onClick: () => router.replace(NAVIGATES.BOOKING_HISTORY),
+      },
+    ],
   }
 
-  const renderOtherMenu = () => {
-    const menus = [
-      {
-        label: "Cho thuê nhà",
-        onClick: () => {
-          router.replace("/")
-          handleClose()
-        },
-      },
-      {
-        label: "Tổ chức trải nghiệm",
-        onClick: () => {
-          router.replace("/")
-          handleClose()
-        },
-      },
-      {
-        label: "Hỗ trợ",
-        onClick: () => {
-          router.replace("/")
-          handleClose()
-        },
-      },
-    ]
+  const OTHER_MENU = [
+    {
+      id: 1,
+      label: "Cho thuê nhà",
+      onClick: () => router.replace(NAVIGATES.HOME),
+    },
+    {
+      id: 2,
+      label: "Tổ chức trải nghiệm",
+      onClick: () => router.replace(NAVIGATES.HOME),
+    },
+    {
+      id: 3,
+      label: "Hỗ trợ",
+      onClick: () => router.replace(NAVIGATES.HOME),
+    },
+  ]
 
-    return menus.map((item: AuthMenuItemType) => (
-      <AuthMenuItem key={item.label} label={item.label} onClick={item.onClick} />
-    ))
+  const renderMenu = (menu: MenuType[]) => {
+    return (menu || []).map((item) => {
+      const { label, id, onClick } = item
+      return <AuthMenuItem key={id} label={label} onClick={onClick} />
+    })
+  }
+
+  const renderLogoutButton = () => {
+    return (
+      <AuthMenuItem
+        label="Đăng xuất"
+        onClick={() => {
+          doLogout()
+        }}
+      />
+    )
   }
 
   return (
-    <Dropdown
-      isOpen={isOpen}
-      className="right-0 min-w-[250px] divide-y divide-very-light-gray !rounded-xl !py-2 !px-0"
-    >
-      <div>{renderAuthMenu()}</div>
-      <div>{renderOtherMenu()}</div>
-      {isLogged && (
-        <div>
-          <AuthMenuItem
-            label="Đăng xuất"
-            onClick={() => {
-              doLogout()
-              handleClose()
-            }}
-          />
-        </div>
-      )}
-    </Dropdown>
+    <div>
+      <div>{renderMenu(AUTH_MENU[isLogged ? "ALREADY_LOGIN" : "NOT_LOGIN"])}</div>
+      <LineBreak />
+      <div>{renderMenu(OTHER_MENU)}</div>
+      <LineBreak />
+      <div>{isLogged && renderLogoutButton()}</div>
+    </div>
   )
 }
 

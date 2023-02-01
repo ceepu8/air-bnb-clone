@@ -1,4 +1,5 @@
 import { Button } from "@/components"
+import { FORMAT_DATE } from "@/constants"
 import { useGetRoomDetail } from "@/hooks"
 import { BookingInterFace } from "@/interfaces"
 import dayjs from "dayjs"
@@ -38,13 +39,13 @@ export const BookingItem = (props: BookingInterFace) => {
             <div>
               <p className="text-xs text-very-dark-gray">Check-in</p>
               <span className="font-medium text-black-gray">
-                {dayjs(ngayDen).format("dddd, MMM D, YYYY")}
+                {dayjs(ngayDen).format(FORMAT_DATE.SPECIFIC_WITH_YEAR)}
               </span>
             </div>
             <div>
               <p className="text-xs text-very-dark-gray">Check-out</p>
               <span className="font-medium text-black-gray">
-                {dayjs(ngayDi).format("dddd, MMM D, YYYY")}
+                {dayjs(ngayDi).format(FORMAT_DATE.SPECIFIC_WITH_YEAR)}
               </span>
             </div>
             <div>

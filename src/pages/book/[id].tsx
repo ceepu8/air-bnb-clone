@@ -1,3 +1,4 @@
+import { HEAD_TYPE } from "@/constants"
 import MainLayout from "@/layouts/MainLayout"
 import { BookingView } from "@/views/Book"
 import Head from "next/head"
@@ -6,7 +7,7 @@ const BookingPage = () => {
   return (
     <>
       <Head>
-        <title>Booking</title>
+        <title>{HEAD_TYPE.BOOKING}</title>
       </Head>
       <BookingView />
     </>

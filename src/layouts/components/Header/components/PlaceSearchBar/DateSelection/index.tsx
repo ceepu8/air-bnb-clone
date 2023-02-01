@@ -1,27 +1,22 @@
 import { useMouseLeave } from "@/hooks"
 import { CapsuleSelection } from "@/components/selections"
-import { DateRange, DayPicker } from "react-day-picker"
+import { DateRange } from "react-day-picker"
 import { useDispatch, useSelector } from "react-redux"
 import { SET_LOCATION_DATE } from "@/store/actions"
 import { format } from "date-fns"
-import { Dropdown } from "@/components"
+import { Calendar, Dropdown } from "@/components"
 
 const DateDropdown = ({ isOpen }: { isOpen: boolean }) => {
-  const date = useSelector((state: any) => state.locationForm.date)
+  const { date, numberNights } = useSelector((state: any) => state.locationForm)
   const dispatch = useDispatch()
-
-  const disabledDays = [{ from: new Date(1, 1, 1), to: new Date(Date.now() - 24 * 60 * 60 * 1000) }]
   return (
     <Dropdown isOpen={isOpen} className="top-[110%] left-[50%] -translate-x-1/2">
-      <DayPicker
-        showOutsideDays
-        disabled={disabledDays}
-        mode="range"
-        selected={date}
+      <Calendar
+        date={date}
+        numberNights={numberNights}
         onSelect={(value: DateRange | undefined) => {
           dispatch(SET_LOCATION_DATE(value))
         }}
-        numberOfMonths={2}
       />
     </Dropdown>
   )
@@ -30,7 +25,6 @@ const DateDropdown = ({ isOpen }: { isOpen: boolean }) => {
 const DateSelection = () => {
   const { ref, value: isMouseIn } = useMouseLeave<HTMLDivElement>()
   const { date } = useSelector((state: any) => state.locationForm)
-  // const date = useSelector((state: any) => state.locationForm.date)
 
   return (
     <div ref={ref} className="grid grid-cols-2">
