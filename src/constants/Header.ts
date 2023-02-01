@@ -1,5 +1,3 @@
-import { NAVIGATES } from "./Navigation"
-
 export const STATIC_REGIONS = [
   {
     id: 1,
@@ -108,36 +106,5 @@ export const STATIC_REGIONS = [
     tinhThanh: "Tp.HCM",
     quocGia: "Việt Nam",
     hinhAnh: "https://airbnbnew.cybersoft.edu.vn/images/vt3.jpg",
-  },
-]
-
-export const AUTH_MENU = [
-  {
-    id: 1,
-    label: "Thông tin tài khoản",
-    href: NAVIGATES.USER_INFO,
-  },
-  {
-    id: 2,
-    label: "Lịch sử chuyến đi",
-    href: `${NAVIGATES.BOOKING_HISTORY}?pageSize=1`,
-  },
-]
-
-export const OTHER_MENU = [
-  {
-    id: 1,
-    label: "Cho thuê nhà",
-    href: "/",
-  },
-  {
-    id: 2,
-    label: "Tổ chức trải nghiệm",
-    href: "/",
-  },
-  {
-    id: 3,
-    label: "Hỗ trợ",
-    href: "/",
   },
 ]

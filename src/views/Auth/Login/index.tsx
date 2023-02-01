@@ -13,8 +13,8 @@ import { ErrorMessage } from "../ErrorMessage"
 const renderSocialMedia = () => {
   return (
     <div>
-      {SOCIAL_MEDIA.map((each) => {
-        return <Social {...each} />
+      {SOCIAL_MEDIA.map(({ id, name, href, className, Icon }) => {
+        return <Social key={id} {...{ name, href, className, Icon }} />
       })}
     </div>
   )

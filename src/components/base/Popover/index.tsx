@@ -13,7 +13,7 @@ export const Popover = ({ placement = "bottom", title = "", content, children }:
   const position = {
     bottom: "top-full right-0 mt-2",
     bottomRight: "top-full right-0 mt-2",
-    bottomLeft: "top-full left-1/2 -translate-x-1/2 mt-2",
+    bottomLeft: "top-full left-0 mt-2",
   }[placement]
 
   const { ref, value: isMouseIn } = useMouseLeave<HTMLDivElement>()
@@ -30,7 +30,7 @@ export const Popover = ({ placement = "bottom", title = "", content, children }:
           }
         )}
       >
-        <h1>{title}</h1>
+        {title && <h1>{title}</h1>}
         {content}
       </div>
     </div>
