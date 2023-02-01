@@ -149,6 +149,25 @@ export const useBookRoom = () => {
   return { doBookRoom, isLoading, isSuccess }
 }
 
+export const useDeleteBooking = () => {
+  const {
+    mutate: deleteBook,
+    isLoading,
+    isSuccess,
+  } = useMutation(async (id: string = "") => {
+    const URL = buildURL(API.USER.DELETE_BOOK.replace(":id", id), {})
+    const response = await api.delete(URL)
+    return response.data
+  })
+
+  const doDeleteBook = useDebouncedCallback(
+    (req: any, options: any) => deleteBook(req, options),
+    250
+  )
+
+  return { doDeleteBook, isLoading, isSuccess }
+}
+
 export const useGetBookingList = (userId: string, defaultQuery: any = {}) => {
   const { page, pageSize = 5, ...rest } = defaultQuery || {}
 

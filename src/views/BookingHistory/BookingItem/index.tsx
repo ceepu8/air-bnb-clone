@@ -1,5 +1,5 @@
 import { Button } from "@/components"
-import { useGetRoomDetail } from "@/hooks"
+import { useDeleteBooking, useGetRoomDetail } from "@/hooks"
 import { BookingInterFace } from "@/interfaces"
 import dayjs from "dayjs"
 import Image from "next/image"
@@ -10,6 +10,12 @@ export const BookingItem = (props: BookingInterFace) => {
 
   const { data: room = {} } = useGetRoomDetail(maPhong)
   const isDeleteBookingValid = dayjs(ngayDen) > dayjs(new Date())
+
+  const { doDeleteBook } = useDeleteBooking()
+
+  const handleDeleteBook = (id: string | number | undefined) => {
+    doDeleteBook(id, {})
+  }
 
   return (
     <div className="mt-6 rounded-md border-[1px] border-solid border-light-gray p-4 shadow">
@@ -55,7 +61,7 @@ export const BookingItem = (props: BookingInterFace) => {
 
           {isDeleteBookingValid ? (
             <div className="mt-4">
-              <Button size="small" fullWidth={false}>
+              <Button size="small" fullWidth={false} onClick={() => handleDeleteBook(id)}>
                 Huỷ đặt phòng
               </Button>
             </div>

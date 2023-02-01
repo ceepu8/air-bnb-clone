@@ -14,6 +14,7 @@ export const API = {
     CHANGE_PASSWORD: "/me/password",
     BOOK_ROOM: "/dat-phong",
     GET_BOOK_ROOM: "/dat-phong/lay-theo-nguoi-dung/:id",
+    DELETE_BOOK: "/dat-phong/:id",
   },
   ROOM: {
     LIST: "/phong-thue/phan-trang-tim-kiem",
