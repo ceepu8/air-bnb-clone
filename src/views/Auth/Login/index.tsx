@@ -1,4 +1,4 @@
-import { Button, InputField, LineBreak, Modal } from "@/components"
+import { Button, InputField, LineBreak, Modal, Social } from "@/components"
 import { SOCIAL_MEDIA } from "@/constants"
 import { useLogin } from "@/hooks"
 import { CLOSE_LOGIN_FORM } from "@/store/actions"
@@ -13,21 +13,8 @@ import { ErrorMessage } from "../ErrorMessage"
 const renderSocialMedia = () => {
   return (
     <div>
-      {SOCIAL_MEDIA.map((each) => {
-        const { id, name, Icon } = each
-        return (
-          <div
-            key={id}
-            className="mt-4 flex cursor-pointer items-center rounded-md border-[1px] border-solid border-black-gray py-3 px-5 hover:bg-very-light-gray"
-          >
-            <Icon
-              className={classNames("h-5 w-5", {
-                "fill-blue-500": name === "Facebook",
-              })}
-            />
-            <p className="flex-1 text-center text-sm font-medium">Tiếp tục với {name}</p>
-          </div>
-        )
+      {SOCIAL_MEDIA.map(({ id, name, href, className, Icon }) => {
+        return <Social key={id} {...{ name, href, className, Icon }} />
       })}
     </div>
   )

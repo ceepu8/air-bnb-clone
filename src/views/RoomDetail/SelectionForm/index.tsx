@@ -1,5 +1,5 @@
 import { Bill, Button } from "@/components"
-import { NAVIGATES } from "@/constants"
+import { FORMAT_DATE, NAVIGATES } from "@/constants"
 import dayjs from "dayjs"
 import { useRouter } from "next/router"
 import { useState } from "react"
@@ -22,8 +22,8 @@ const SelectionForm = ({ room }: any) => {
 
   const handleBook = () => {
     const queryRoomForm = {
-      from: dayjs(date?.from).format("YYYY-MM-DD"),
-      to: dayjs(date?.to).format("YYYY-MM-DD"),
+      from: dayjs(date?.from).format(FORMAT_DATE.INTERNATIONAL),
+      to: dayjs(date?.to).format(FORMAT_DATE.INTERNATIONAL),
       adult: roomForm.guest.adult,
       children: roomForm.guest.children,
       toddler: roomForm.guest.toddler,

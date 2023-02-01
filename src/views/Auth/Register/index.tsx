@@ -1,4 +1,5 @@
 import { Button, InputField, LineBreak, Modal } from "@/components"
+import { FORMAT_DATE } from "@/constants"
 import { useRegister } from "@/hooks"
 import { CLOSE_REGISTER_FORM, OPEN_LOGIN_FORM } from "@/store/actions"
 import { registerSchema } from "@/validations"
@@ -31,7 +32,7 @@ export const RegisterViewModal = () => {
     try {
       const values = {
         ...data,
-        birthday: dayjs(dayjs(data.birthday).toDate()).format("DD/MM/YYYY"),
+        birthday: dayjs(dayjs(data.birthday).toDate()).format(FORMAT_DATE.DEFAULT),
         gender: data.gender === "male" ? true : false,
         role: "USER",
       }
