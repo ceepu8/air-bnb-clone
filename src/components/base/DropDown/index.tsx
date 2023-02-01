@@ -7,7 +7,7 @@ type DropdownProps = {
   children?: ReactNode
 }
 
-export const Dropdown = ({ isOpen, className = "", children }: DropdownProps) => {
+export const Dropdown = ({ isOpen, className, children }: DropdownProps) => {
   return (
     <div
       className={classNames(

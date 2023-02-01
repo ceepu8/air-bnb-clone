@@ -25,7 +25,7 @@ export const RegisterViewModal = () => {
     watch,
   } = useForm({
     mode: "all",
-    resolver: yupResolver(registerSchema),
+    resolver: yupResolver(registerSchema()),
   })
 
   const onSubmit = (data: any) => {

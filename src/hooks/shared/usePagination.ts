@@ -1,4 +1,4 @@
-import range from "lodash/range"
+import { range } from "@/utils"
 import { useMemo } from "react"
 
 type Pagination = {

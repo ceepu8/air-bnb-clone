@@ -5,7 +5,7 @@ import { useGetRoomDetail } from "@/hooks"
 import { CLEAR_BOOK } from "@/store/actions"
 import dayjs from "dayjs"
 import { useRouter } from "next/router"
-import React from "react"
+import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
 export const BookSuccessView = () => {
@@ -16,11 +16,14 @@ export const BookSuccessView = () => {
 
   const { data: room = {} } = useGetRoomDetail(maPhong)
 
+  useEffect(() => {
+    dispatch(CLEAR_BOOK())
+  }, [])
+
   return (
     <Modal
       isOpen={isSuccess}
       onClose={() => {
-        dispatch(CLEAR_BOOK())
         router.replace("/")
       }}
     >
@@ -63,7 +66,6 @@ export const BookSuccessView = () => {
         <div className="mt-8">
           <Button
             onClick={() => {
-              dispatch(CLEAR_BOOK())
               router.replace("/user/booking-history")
             }}
           >

@@ -15,7 +15,7 @@ export function useLogout() {
     dispatch(LOGOUT.REQUEST())
 
     window.localStorage.clear()
-    window.location.replace("/login")
+    window.location.replace("/")
 
     setDefaultHeaders({ Authorization: `` })
   }
