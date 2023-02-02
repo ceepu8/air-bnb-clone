@@ -21,7 +21,7 @@ export const Calendar = (props: CalendarType) => {
           ? `${numberNights} đêm tại địa điểm này`
           : CHECK_IN_DATE}
       </p>
-      <button className="absolute top-1 right-0 flex w-full max-w-[315px] rounded-md border-[1px] border-solid border-dark-gray">
+      <div className="absolute top-1 right-0 flex w-full max-w-[315px] rounded-md border-[1px] border-solid border-dark-gray">
         <div className="flex-1 border-r-[1px] border-solid border-dark-gray p-2 text-left">
           <div className="text-[8px] font-bold leading-3">CHECK-IN</div>
           <div className="text-sm">
@@ -34,7 +34,7 @@ export const Calendar = (props: CalendarType) => {
             {date?.to ? dayjs(date.to).format(FORMAT_DATE.DEFAULT) : "Thêm ngày"}
           </div>
         </div>
-      </button>
+      </div>
       <p className="mt-2 text-sm font-light text-dark-gray">
         {date?.from ? dayjs(date.from).format(FORMAT_DATE.DEFAULT) : ""} -{" "}
         {date?.to ? dayjs(date.to).format(FORMAT_DATE.DEFAULT) : ""}
