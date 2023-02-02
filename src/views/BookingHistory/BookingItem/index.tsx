@@ -1,5 +1,4 @@
 import { Button, PopConfirm } from "@/components"
-import { useAlert } from "@/components/base/Alert"
 import { FORMAT_DATE, MESSAGE } from "@/constants"
 import { useDeleteBooking, useGetRoomDetail } from "@/hooks"
 import { BookingInterFace } from "@/interfaces"
@@ -31,15 +30,11 @@ export const BookingItem = (props: BookingInterFace) => {
   const isDeleteBookingValid = dayjs(ngayDen) > dayjs(new Date())
 
   const { doDeleteBook } = useDeleteBooking()
-  const alert = useAlert()
 
-  const handleDeleteBook = (id: string | number | undefined) => {
-    doDeleteBook(id, {
-      onSuccess: () => {
-        alert.success(MESSAGE.DELETE_BOOKING_SUCCESS)
-        window.location.reload()
-      },
-    })
+  const handleDeleteBook = () => {
+    if (id) {
+      doDeleteBook(id)
+    }
   }
 
   return (
@@ -86,7 +81,7 @@ export const BookingItem = (props: BookingInterFace) => {
 
           {isDeleteBookingValid ? (
             <div className="mt-4">
-              <DeleteBooking onClick={() => handleDeleteBook(id)} />
+              <DeleteBooking onClick={handleDeleteBook} />
             </div>
           ) : (
             <div className="mt-4">

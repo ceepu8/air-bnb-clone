@@ -6,11 +6,12 @@ import { useDispatch, useSelector } from "react-redux"
 import { useDebouncedCallback } from "use-debounce"
 
 import api from "@/configs/axios"
-import { API, BOOKING_ROOM_LIST_KEY, ME_KEY } from "@/constants"
+import { API, BOOKING_ROOM_LIST_KEY, MESSAGE, ME_KEY } from "@/constants"
 import { BOOK_SUCCESS, UPDATE_AUTH } from "@/store/actions"
-
+import { useAlert } from "@/components/base/Alert"
 import { BookingInterFace } from "@/interfaces"
 import { buildURL } from "@/utils"
+
 import { useLocalStorage } from "../shared"
 import { useLogout } from "./auth"
 
@@ -150,18 +151,28 @@ export const useBookRoom = () => {
 }
 
 export const useDeleteBooking = () => {
+  const queryClient = useQueryClient()
+  const alert = useAlert()
+
   const {
     mutate: deleteBook,
     isLoading,
     isSuccess,
-  } = useMutation(async (id: string = "") => {
-    const URL = buildURL(API.USER.DELETE_BOOK.replace(":id", id), {})
-    const response = await api.delete(URL)
-    return response.data
-  })
+  } = useMutation(
+    async (id: string = "") => {
+      const URL = buildURL(API.USER.DELETE_BOOK.replace(":id", id), {})
+      const response = await api.delete(URL)
+      return response.data
+    },
+    {
+      onSuccess: () => alert.success(MESSAGE.DELETE_BOOKING_SUCCESS),
+      onError: () => alert.error(MESSAGE.DELETE_BOOKING_FAILED),
+      onSettled: () => queryClient.invalidateQueries([BOOKING_ROOM_LIST_KEY]),
+    }
+  )
 
   const doDeleteBook = useDebouncedCallback(
-    (req: any, options: any) => deleteBook(req, options),
+    (req: any, options?: any) => deleteBook(req, options),
     250
   )
 
@@ -178,7 +189,7 @@ export const useGetBookingList = (userId: string, defaultQuery: any = {}) => {
   })
 
   return useQuery(
-    [BOOKING_ROOM_LIST_KEY, userId],
+    [BOOKING_ROOM_LIST_KEY],
     async () => {
       const { data } = await api.get(URL)
       return data
