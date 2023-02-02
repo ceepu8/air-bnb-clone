@@ -24,7 +24,6 @@ const Logo = () => {
 const Header = () => {
   const { isExtended } = useSelector((state: any) => state.searchbar)
   const router = useRouter()
-  console.log(PAGE_HAVE_SEARCHBAR.some((item) => item == router.pathname))
 
   const isHaveSearchBar = PAGE_HAVE_SEARCHBAR.some((item) => item === router.pathname)
 
