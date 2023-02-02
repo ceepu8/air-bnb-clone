@@ -9,13 +9,7 @@ import { BsGlobe } from "react-icons/bs"
 import { useSelector } from "react-redux"
 import PlaceSearchBar from "./components/PlaceSearchBar"
 
-const PAGE_HAVE_SEARCHBAR = {
-  "/": true,
-  "/booking/[id]": true,
-  "/rooms/[id]": true,
-  "/user/information": false,
-  "/user/booking-history": false,
-}
+const PAGE_HAVE_SEARCHBAR = ["/", "/booking/[id]", "/rooms/[id]"]
 
 const Logo = () => {
   return (
@@ -30,7 +24,9 @@ const Logo = () => {
 const Header = () => {
   const { isExtended } = useSelector((state: any) => state.searchbar)
   const router = useRouter()
-  const isHaveSearchBar = PAGE_HAVE_SEARCHBAR[router.pathname as keyof typeof PAGE_HAVE_SEARCHBAR]
+  console.log(PAGE_HAVE_SEARCHBAR.some((item) => item == router.pathname))
+
+  const isHaveSearchBar = PAGE_HAVE_SEARCHBAR.some((item) => item === router.pathname)
 
   return (
     <header
