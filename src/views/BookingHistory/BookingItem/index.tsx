@@ -1,36 +1,26 @@
-import { Button, Popover } from "@/components"
+import { Button, PopConfirm } from "@/components"
 import { useAlert } from "@/components/base/Alert"
 import { FORMAT_DATE, MESSAGE } from "@/constants"
 import { useDeleteBooking, useGetRoomDetail } from "@/hooks"
 import { BookingInterFace } from "@/interfaces"
 import dayjs from "dayjs"
 import Image from "next/image"
-import { useMemo } from "react"
 
-type PopConfirmType = {
-  onClick: () => void
-}
-
-const PopConfirm = ({ onClick }: PopConfirmType) => {
-  const renderConfirmContent = () => {
-    return (
-      <div>
-        <p className="font-semibold">Bạn có chắc chắn muốn huỷ đặt phòng?</p>
-        <div className="mt-4 text-right">
-          <Button variant="secondary" size="tiny" fullWidth={false} onClick={onClick}>
-            YES
-          </Button>
-        </div>
-      </div>
-    )
-  }
-
+const DeleteBooking = ({ onClick }: { onClick: () => void }) => {
   return (
-    <Popover placement="bottom" content={renderConfirmContent()} hasClose>
+    <PopConfirm title={MESSAGE.DELETE_BOOKING_CONFIRM} onConfirm={onClick}>
       <Button size="small" fullWidth={false}>
         Huỷ đặt phòng
       </Button>
-    </Popover>
+    </PopConfirm>
+  )
+}
+
+const CommentBooking = () => {
+  return (
+    <Button size="small" fullWidth={false}>
+      Bình luận
+    </Button>
   )
 }
 
@@ -38,7 +28,7 @@ export const BookingItem = (props: BookingInterFace) => {
   const { id, ngayDen, ngayDi, maPhong, soLuongKhach } = props || {}
 
   const { data: room = {} } = useGetRoomDetail(maPhong)
-  const isDeleteBookingValid = useMemo(() => dayjs(ngayDen) > dayjs(new Date()), [ngayDen])
+  const isDeleteBookingValid = dayjs(ngayDen) > dayjs(new Date())
 
   const { doDeleteBook } = useDeleteBooking()
   const alert = useAlert()
@@ -96,13 +86,11 @@ export const BookingItem = (props: BookingInterFace) => {
 
           {isDeleteBookingValid ? (
             <div className="mt-4">
-              <PopConfirm onClick={() => handleDeleteBook(id)} />
+              <DeleteBooking onClick={() => handleDeleteBook(id)} />
             </div>
           ) : (
             <div className="mt-4">
-              <Button size="small" fullWidth={false}>
-                Bình luận
-              </Button>
+              <CommentBooking />
             </div>
           )}
         </div>
