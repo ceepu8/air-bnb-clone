@@ -1,16 +1,41 @@
-import { Button } from "@/components"
-import { FORMAT_DATE } from "@/constants"
-import { useGetRoomDetail } from "@/hooks"
+import { Button, PopConfirm } from "@/components"
+import { FORMAT_DATE, MESSAGE } from "@/constants"
+import { useDeleteBooking, useGetRoomDetail } from "@/hooks"
 import { BookingInterFace } from "@/interfaces"
 import dayjs from "dayjs"
 import Image from "next/image"
-import React from "react"
+
+const DeleteBooking = ({ onClick }: { onClick: () => void }) => {
+  return (
+    <PopConfirm title={MESSAGE.DELETE_BOOKING_CONFIRM} onConfirm={onClick}>
+      <Button size="small" fullWidth={false}>
+        Huỷ đặt phòng
+      </Button>
+    </PopConfirm>
+  )
+}
+
+const CommentBooking = () => {
+  return (
+    <Button size="small" fullWidth={false}>
+      Bình luận
+    </Button>
+  )
+}
 
 export const BookingItem = (props: BookingInterFace) => {
   const { id, ngayDen, ngayDi, maPhong, soLuongKhach } = props || {}
 
   const { data: room = {} } = useGetRoomDetail(maPhong)
   const isDeleteBookingValid = dayjs(ngayDen) > dayjs(new Date())
+
+  const { doDeleteBook } = useDeleteBooking()
+
+  const handleDeleteBook = () => {
+    if (id) {
+      doDeleteBook(id)
+    }
+  }
 
   return (
     <div className="mt-6 rounded-md border-[1px] border-solid border-light-gray p-4 shadow">
@@ -56,15 +81,11 @@ export const BookingItem = (props: BookingInterFace) => {
 
           {isDeleteBookingValid ? (
             <div className="mt-4">
-              <Button size="small" fullWidth={false}>
-                Huỷ đặt phòng
-              </Button>
+              <DeleteBooking onClick={handleDeleteBook} />
             </div>
           ) : (
             <div className="mt-4">
-              <Button size="small" fullWidth={false}>
-                Bình luận
-              </Button>
+              <CommentBooking />
             </div>
           )}
         </div>
