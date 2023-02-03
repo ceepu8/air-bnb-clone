@@ -1,6 +1,6 @@
 import { Button, Modal } from "@/components"
 import { AirbnbLogo } from "@/components/icons"
-import { BOOKING_NOTI, BOOKING_NOT_CHARGED, FORMAT_DATE } from "@/constants"
+import { BOOKING, FORMAT_DATE } from "@/constants"
 import { useGetRoomDetail } from "@/hooks"
 import { CLEAR_BOOK } from "@/store/actions"
 import dayjs from "dayjs"
@@ -32,8 +32,8 @@ export const BookSuccessView = () => {
           <AirbnbLogo className="mx-auto" />
         </div>
         <div className="mt-12 text-center">
-          <h1 className="text-3xl font-bold text-black-gray">Request Sent</h1>
-          <p className="mt-4 px-12 text-very-dark-gray">{BOOKING_NOTI}</p>
+          <h1 className="text-3xl font-bold text-black-gray">{BOOKING.SUCCESS.TITLE}</h1>
+          <p className="mt-4 px-8 text-very-dark-gray">{BOOKING.POLICY.RECONFIRM}</p>
         </div>
 
         <div className="mt-12">
@@ -60,7 +60,7 @@ export const BookSuccessView = () => {
         </div>
 
         <div className="mt-8">
-          <p className="text-very-dark-gray">{BOOKING_NOT_CHARGED}</p>
+          <p className="text-very-dark-gray">{BOOKING.POLICY.NOT_CHARGED}</p>
         </div>
 
         <div className="mt-8">

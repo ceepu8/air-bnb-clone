@@ -1,5 +1,5 @@
 import { Bill, Button, LineBreak, NavLink } from "@/components"
-import { AIR_COVER, BOOKING_POLICY, FORMAT_DATE } from "@/constants"
+import { AIR_COVER, BOOKING, FORMAT_DATE } from "@/constants"
 import { useBookRoom, useGetRoomDetail } from "@/hooks"
 import { OPEN_LOGIN_FORM } from "@/store/actions"
 import dayjs from "dayjs"
@@ -76,7 +76,7 @@ export const BookingView = () => {
   const renderAirCoverPolicy = () => {
     return (
       <div className="flex items-center">
-        <p className="mr-1 font-light">Đặt phòng của bạn được bảo vệ bởi</p>
+        <p className="mr-1 font-light">{BOOKING.POLICY.AIRCOVER}</p>
         <Image src={AIR_COVER.logoUrl} alt="air-cover" width={65} height={15} />
       </div>
     )
@@ -88,7 +88,7 @@ export const BookingView = () => {
         <NavLink href="/">
           <MdArrowBackIosNew className="mr-10" />
         </NavLink>
-        <p className="text-3xl font-medium">Yêu cầu đặt phòng/đặt chỗ &#x2022; Airbnb</p>
+        <p className="text-3xl font-medium">{BOOKING.PROGRESS.TITLE}</p>
       </div>
       <div className="mt-8 grid grid-cols-2">
         <div className="col-span-1">
@@ -104,7 +104,7 @@ export const BookingView = () => {
           </div>
 
           <div className="mt-8">
-            <p className="text-xs font-light">{BOOKING_POLICY}</p>
+            <p className="text-xs font-light">{BOOKING.POLICY.PREBOOKING}</p>
           </div>
 
           <div className="mt-8">
