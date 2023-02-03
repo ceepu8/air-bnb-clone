@@ -8,7 +8,7 @@ import { useRouter } from "next/router"
 
 const DeleteBooking = ({ onClick }: { onClick: () => void }) => {
   return (
-    <PopConfirm title={MESSAGE.DELETE_BOOKING_CONFIRM} onConfirm={onClick}>
+    <PopConfirm title={MESSAGE.DELETE_BOOKING.CONFIRM} onConfirm={onClick}>
       <Button size="small" fullWidth={false}>
         Huỷ đặt phòng
       </Button>

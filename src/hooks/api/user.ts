@@ -167,9 +167,9 @@ export const useDeleteBooking = ({ onSuccess }: { onSuccess?: () => void } = {})
     {
       onSuccess: () => {
         onSuccess?.()
-        alert.success(MESSAGE.DELETE_BOOKING_SUCCESS)
+        alert.success(MESSAGE.DELETE_BOOKING.SUCCESS)
       },
-      onError: () => alert.error(MESSAGE.DELETE_BOOKING_FAILED),
+      onError: () => alert.error(MESSAGE.DELETE_BOOKING.FAILED),
       onSettled: () => queryClient.invalidateQueries([BOOKING_ROOM_LIST_KEY]),
     }
   )
