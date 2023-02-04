@@ -1,4 +1,5 @@
 import { Pagination } from "@/components"
+import { BOOKING } from "@/constants"
 import { useGetBookingList, useGetMe } from "@/hooks"
 import { BookingInterFace } from "@/interfaces"
 import { useGetStartEnd } from "@/utils"
@@ -23,9 +24,10 @@ export const BookingHistoryView = () => {
 
   return (
     <section className="mx-auto mt-8 w-full max-w-[1080px] px-12">
-      <h1 className="text-3xl font-semibold text-very-dark-gray">Lịch sử chuyến đi</h1>
+      <h1 className="text-3xl font-semibold text-very-dark-gray">{BOOKING.HISTORY.TITLE}</h1>
 
       <div className="mt-8 min-h-[520px]">
+        {isEmpty(bookings) && <p>{BOOKING.HISTORY.EMPTY}</p>}
         {bookings?.slice(start, end).map((booking: BookingInterFace) => {
           return <BookingItem key={booking?.id} {...booking} />
         })}

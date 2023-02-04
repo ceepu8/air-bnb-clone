@@ -2,11 +2,12 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 
 import { setDefaultHeaders } from "@/configs"
-import { API, ME_KEY } from "@/constants"
+import { API, MESSAGE, ME_KEY } from "@/constants"
 import { LOGIN_SUCCEED, LOGOUT } from "@/store/actions"
 
 import { fetch } from "@/utils"
 import { useLocalStorage } from "../shared"
+import { useAlert } from "@/components/base/Alert"
 
 export function useLogout() {
   const dispatch = useDispatch()
@@ -55,6 +56,8 @@ export const useRegister = () => {
   const [loading, setLoading] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
 
+  const alert = useAlert()
+
   const [_, setAuth] = useLocalStorage(ME_KEY)
 
   const doRegister = async (params: any) => {
@@ -65,9 +68,11 @@ export const useRegister = () => {
       setAuth(response)
       setError(null)
       setIsSuccess(true)
+      alert.success(MESSAGE.REGISTER.SUCCESS)
     } else {
       setError(response?.content)
       setIsSuccess(false)
+      alert.error(MESSAGE.REGISTER.FAILED)
     }
     setLoading(false)
   }
