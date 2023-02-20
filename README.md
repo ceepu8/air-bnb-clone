@@ -1,6 +1,5 @@
 <h1 align='center'> Air bnb clone 🔥</h1>
 
-
 ## **Using 📦**
 
 1. Clone Template
@@ -26,3 +25,5 @@ yarn dev
 ```
 rm -rf .git
 ```
+
+5.20/2/2023
