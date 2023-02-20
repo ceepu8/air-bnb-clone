@@ -1,13 +1,14 @@
 import { Button, PopConfirm } from "@/components"
-import { FORMAT_DATE, MESSAGE } from "@/constants"
+import { FORMAT_DATE, MESSAGE, NAVIGATES } from "@/constants"
 import { useDeleteBooking, useGetRoomDetail } from "@/hooks"
 import { BookingInterFace } from "@/interfaces"
 import dayjs from "dayjs"
 import Image from "next/image"
+import { useRouter } from "next/router"
 
 const DeleteBooking = ({ onClick }: { onClick: () => void }) => {
   return (
-    <PopConfirm title={MESSAGE.DELETE_BOOKING_CONFIRM} onConfirm={onClick}>
+    <PopConfirm title={MESSAGE.DELETE_BOOKING.CONFIRM} onConfirm={onClick}>
       <Button size="small" fullWidth={false}>
         Huỷ đặt phòng
       </Button>
@@ -26,10 +27,16 @@ const CommentBooking = () => {
 export const BookingItem = (props: BookingInterFace) => {
   const { id, ngayDen, ngayDi, maPhong, soLuongKhach } = props || {}
 
+  const router = useRouter()
+
   const { data: room = {} } = useGetRoomDetail(maPhong)
   const isDeleteBookingValid = dayjs(ngayDen) > dayjs(new Date())
 
-  const { doDeleteBook } = useDeleteBooking()
+  const { doDeleteBook } = useDeleteBooking({
+    onSuccess: () => {
+      router.replace(NAVIGATES.BOOKING_HISTORY)
+    },
+  })
 
   const handleDeleteBook = () => {
     if (id) {

@@ -150,7 +150,7 @@ export const useBookRoom = () => {
   return { doBookRoom, isLoading, isSuccess }
 }
 
-export const useDeleteBooking = () => {
+export const useDeleteBooking = ({ onSuccess }: { onSuccess?: () => void } = {}) => {
   const queryClient = useQueryClient()
   const alert = useAlert()
 
@@ -165,8 +165,11 @@ export const useDeleteBooking = () => {
       return response.data
     },
     {
-      onSuccess: () => alert.success(MESSAGE.DELETE_BOOKING_SUCCESS),
-      onError: () => alert.error(MESSAGE.DELETE_BOOKING_FAILED),
+      onSuccess: () => {
+        onSuccess?.()
+        alert.success(MESSAGE.DELETE_BOOKING.SUCCESS)
+      },
+      onError: () => alert.error(MESSAGE.DELETE_BOOKING.FAILED),
       onSettled: () => queryClient.invalidateQueries([BOOKING_ROOM_LIST_KEY]),
     }
   )

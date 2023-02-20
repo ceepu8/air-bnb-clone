@@ -99,7 +99,9 @@ const convertText = (text: string) => {
 }
 
 const MapSelection = () => {
-  const { ref, value: isMouseIn } = useMouseLeave<HTMLDivElement>()
+  const { ref, value: isMouseIn, handleOpen } = useMouseLeave<HTMLDivElement>()
+
+  const { isExtended } = useSelector((state: any) => state.searchbar)
   const { location } = useSelector((state: any) => state.locationForm)
   const [value, setValue] = useInputState<string>(location.name)
 
@@ -108,6 +110,10 @@ const MapSelection = () => {
   useEffect(() => {
     setValue(location.tinhThanh)
   }, [location])
+
+  useEffect(() => {
+    if (isExtended) handleOpen()
+  }, [isExtended])
 
   return (
     <div ref={ref}>
