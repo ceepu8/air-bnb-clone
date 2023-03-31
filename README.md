@@ -26,3 +26,5 @@ yarn dev
 rm -rf .git
 ```
 5.
+
+6.
