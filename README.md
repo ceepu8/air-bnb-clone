@@ -2,8 +2,7 @@
 
 ## **Using 📦**
 ..
-1. Clone Template
-
+1. Clone Templa
 ```
 git clone git@github.com:tcdtist/ceepu8-air-bnb-clone.git
 ```
