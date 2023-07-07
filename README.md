@@ -1,6 +1,6 @@
 <h1 align='center'> Air bnb clone 🔥</h1>
 
-## **Using 📦**
+## **Using 📦**ns
 ..
 1. Clone Templa
 ```
