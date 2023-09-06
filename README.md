@@ -24,4 +24,3 @@ yarn dev
 ```
 rm -rf .git
 ```
-///
